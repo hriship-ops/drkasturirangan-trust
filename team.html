@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team — Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ================================================================
+   TEAM — team.html
+   From Figma node 852:1273 (1439x1726px canvas).
+   6 team cards in 2 rows of 3.
+   Card: 360x360px, border 4px #e9a22d, r=27px.
+   Column gap: 65px (532-107-360). Left margin: 107px.
+   ================================================================ */
+
+.team-section {
+  padding: var(--section-py) 0 var(--section-py) 107px;
+}
+
+/* Heading row: amber dot 32px + "Meet our team" 36px bold navy. */
+.team-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.team-heading-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+}
+
+.team-heading-row h1 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+}
+
+/* 3-column card grid. gap=65px from Figma. */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+  gap: 40px 65px;
+  margin-bottom: 60px;
+}
+
+/* ----------------------------------------------------------
+   TEAM CARD
+   Outer: amber border 4px, r=27px, overflow hidden.
+   Photo: fills top portion, object-fit: cover.
+   Wave SVG: 85px tall, spans full width above cream band.
+   Cream band: #fcedd6, h=56px, r bottom only (27px).
+   ---------------------------------------------------------- */
+
+.team-card {
+  width: 360px;
+  border: 4px solid #e9a22d;
+  border-radius: 27px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card-photo {
+  width: 100%;
+  height: 304px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Placeholder for cards without a photo yet. */
+.team-card-photo-placeholder {
+  width: 100%;
+  height: 304px;
+  background: #f0e8d8;
+  flex-shrink: 0;
+}
+
+/* Wave SVG overlaps the bottom of photo + top of band.
+   Pulled up by negative margin so it overlaps the photo. */
+.team-card-wave {
+  width: 100%;
+  height: 85px;
+  display: block;
+  margin-top: -40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cream name/email band at bottom. */
+.team-card-band {
+  background: #fcedd6;
+  text-align: center;
+  padding: 8px 12px 14px;
+  flex-shrink: 0;
+}
+
+.team-card-name {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.team-card-email {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: 1.4;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+   ---------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  .team-section { padding-left: 40px; }
+  .team-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .team-card { width: 100%; }
+  .team-card-photo,
+  .team-card-photo-placeholder { height: 260px; }
+}
+
+@media (max-width: 800px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .team-section { padding-left: 20px; padding-right: 20px; }
+  .team-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-icon" src="assets/images/logo-icon.png" alt="">
+    <img class="nav-logo-text" src="assets/images/logo-text.png" alt="Dr Kasturirangan Trust">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="about.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+        <a href="#">Annual Reports</a>
+        <a href="#">Financial Declarations</a>
+      </div>
+    </li>
+    <li>
+      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">His life</a>
+        <a href="#">Selected Writings</a>
+        <a href="#">Testimonials</a>
+      </div>
+    </li>
+    <li>
+      <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+        <a href="#">Travel Grants</a>
+        <a href="#">Awards</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Alumni</a>
+      </div>
+    </li>
+    <li>
+      <a href="publications.html">Publications <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Reports</a>
+      </div>
+    </li>
+    <li>
+      <a href="journeys.html">Journeys of Change <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Awardees</a>
+        <a href="#">Media</a>
+      </div>
+    </li>
+    <li>
+      <a href="links.html">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- TEAM SECTION -->
+<section class="team-section">
+  <div class="team-heading-row">
+    <div class="team-heading-dot"></div>
+    <h1>Meet our team</h1>
+  </div>
+
+  <div class="team-grid">
+    <!-- Row 1 -->
+    <div class="team-card">
+      <img class="team-card-photo"
+           src="assets/images/team-photo-1.png"
+           alt="Anurag Behar">
+      <img class="team-card-wave"
+           src="assets/images/team-card-wave.svg"
+           alt="">
+      <div class="team-card-band">
+        <p class="team-card-name">Anurag Behar</p>
+        <p class="team-card-email">anurag.behar@drkasturirangantrust.org</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-photo-placeholder"></div>
+      <img class="team-card-wave"
+           src="assets/images/team-card-wave.svg"
+           alt="">
+      <div class="team-card-band">
+        <p class="team-card-name">Sanjay Rangan</p>
+        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-photo-placeholder"></div>
+      <img class="team-card-wave"
+           src="assets/images/team-card-wave.svg"
+           alt="">
+      <div class="team-card-band">
+        <p class="team-card-name">Sanjay Rangan</p>
+        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="team-card">
+      <div class="team-card-photo-placeholder"></div>
+      <img class="team-card-wave"
+           src="assets/images/team-card-wave.svg"
+           alt="">
+      <div class="team-card-band">
+        <p class="team-card-name">Anurag Behar</p>
+        <p class="team-card-email">anurag.behar@drkasturirangantrust.org</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-photo-placeholder"></div>
+      <img class="team-card-wave"
+           src="assets/images/team-card-wave.svg"
+           alt="">
+      <div class="team-card-band">
+        <p class="team-card-name">Sanjay Rangan</p>
+        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-photo-placeholder"></div>
+      <img class="team-card-wave"
+           src="assets/images/team-card-wave.svg"
+           alt="">
+      <div class="team-card-band">
+        <p class="team-card-name">Sanjay Rangan</p>
+        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="about.html">About Us</a>
+    <a href="kasturirangan.html">K. Kasturirangan</a>
+    <a href="initiatives.html">Initiatives</a>
+    <a href="publications.html">Publications</a>
+    <a href="journeys.html">Journeys of Change</a>
+    <a href="links.html">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <button class="footer-map-btn">&#128205; View on Map</button>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

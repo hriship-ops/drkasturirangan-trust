@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision &amp; Mission — Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ================================================================
+   VISION & MISSION — vision.html
+   All layout values from Figma node 682:31 (1439x4416px canvas).
+   No absolute positioning on structural elements.
+   ================================================================ */
+
+/* ----------------------------------------------------------
+   MISSION QUOTE STRIP
+   Cream bg #fffcf7. Full-width section below nav.
+   Canvas: y=112 to y=573 (height=461px).
+   Decorative " marks: Agdasima 300px #d9982e.
+   Quote text: 36px regular #b37a1e, centered, max-w=645px.
+   ---------------------------------------------------------- */
+
+.vm-quote-strip {
+  background: #fffcf7;
+  padding: 56px var(--page-px);
+  position: relative;
+  overflow: hidden;
+}
+
+.vm-quote-inner {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 80px;
+}
+
+.vm-deco-open,
+.vm-deco-close {
+  font-family: var(--font-deco);
+  font-size: 200px;
+  line-height: 0.55;
+  color: #d9982e;
+  position: absolute;
+  display: block;
+}
+
+.vm-deco-open  { top: -10px; left: 0; }
+.vm-deco-close { bottom: -80px; right: 0; transform: rotate(180deg); }
+
+.vm-quote-text {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-regular);
+  color: #b37a1e;
+  line-height: 46px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------
+   SHARED SECTION WRAPPER
+   padding: 56px 58px (--section-py and --page-px from tokens).
+   ---------------------------------------------------------- */
+
+.vm-section {
+  padding: var(--section-py) var(--page-px);
+}
+
+/* Amber dot + h2 heading row — used on every section. */
+.vm-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.vm-heading-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+}
+
+.vm-heading-row h2 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+}
+
+/* ----------------------------------------------------------
+   THE LEGACY
+   2-col grid: left text (53%), right portrait.
+   Portrait has a navy circle behind it (decorative).
+   Portrait: w=585px h=390px r=71px (--r-portrait).
+   Circle behind: 392x392px navy, absolutely positioned.
+   ---------------------------------------------------------- */
+
+.vm-legacy-grid {
+  display: grid;
+  grid-template-columns: 53% 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.vm-legacy-text {
+  padding-right: 40px;
+}
+
+.vm-body-para {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: 35px;
+  margin-bottom: 24px;
+}
+
+.vm-timeline-link {
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  line-height: 35px;
+  margin-top: 20px;
+}
+
+.vm-link-amber {
+  font-weight: var(--fw-bold);
+  color: #ce8510;
+  text-decoration: underline;
+}
+
+.vm-legacy-portrait {
+  position: relative;
+  height: 430px;
+}
+
+/* Navy circle sits to the right behind the portrait. */
+.vm-portrait-bg-circle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 392px;
+  height: 392px;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
+/* Portrait overlaps circle; z-index: 1 brings it forward. */
+.vm-portrait-img {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: calc(100% - 30px);
+  max-width: 585px;
+  height: 390px;
+  object-fit: cover;
+  border-radius: var(--r-portrait);
+  z-index: 1;
+}
+
+/* Horizontal amber rule between Legacy and Ethos. */
+.vm-section-divider {
+  height: 3px;
+  background: var(--c-accent);
+  margin: 0 var(--page-px) 0 auto;
+  width: calc(100% - var(--page-px) - 394px);
+}
+
+/* ----------------------------------------------------------
+   ETHOS
+   Intro text 24px. 4 navy circles in a flex row.
+   Each circle: 198x197px navy, bold 24px white text centered.
+   Spacing: gap=26px between circles.
+   ---------------------------------------------------------- */
+
+.vm-ethos-intro {
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  line-height: 35px;
+  margin-bottom: 48px;
+  max-width: 900px;
+}
+
+.vm-ethos-circles {
+  display: flex;
+  gap: 26px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+/* Each ethos item: label above the circle, rotated like in Figma */
+.vm-ethos-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.vm-ethos-label {
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  color: var(--c-accent);
+  text-align: center;
+  width: 180px;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  transform: rotate(-18deg);
+  display: block;
+}
+
+.vm-ethos-circle {
+  width: 198px;
+  height: 197px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.vm-ethos-circle p {
+  font-size: 20px;
+  font-weight: var(--fw-bold);
+  color: #fff;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ----------------------------------------------------------
+   OBJECTIVES
+   5 items: 2-col grid (rows 1-2) + 1 centred bottom item.
+   Each item: cream bg box (min-h 96px, r=26px) topped by a
+   navy pill label (h=45px, r=15px, 20px semibold white).
+   The pill slightly overlaps the box top (margin-bottom: -1px).
+   ---------------------------------------------------------- */
+
+.vm-obj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 28px;
+}
+
+.vm-obj-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vm-obj-center {
+  grid-column: 1 / -1;
+  max-width: 570px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.vm-obj-pill {
+  background: var(--c-primary);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 15px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+  margin-bottom: -1px;
+}
+
+.vm-obj-box {
+  background: var(--c-bg-cream);
+  border-radius: var(--r-exp-row);
+  min-height: 96px;
+  width: 100%;
+  padding: 24px 20px;
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  text-align: center;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ----------------------------------------------------------
+   FOCUS AREAS
+   4 cards in a row. Each: cream bg, icon at top, text below.
+   Cards: w=274px h=330px r=26px in Figma.
+   Each card bg is a slightly different amber cream shade.
+   Icons: 148x160px top-centred.
+   ---------------------------------------------------------- */
+
+.vm-focus-intro {
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  line-height: 35px;
+  margin-bottom: 40px;
+}
+
+.vm-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.vm-focus-card {
+  border-radius: var(--r-exp-row);
+  padding: 28px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-height: 330px;
+}
+
+.vm-focus-card-1 { background: #fceacd; }
+.vm-focus-card-2 { background: #fdeaca; }
+.vm-focus-card-3 { background: #fbe5c7; }
+.vm-focus-card-4 { background: #fbe7c9; }
+
+.vm-focus-icon {
+  width: 148px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.vm-focus-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Category label at the top of each focus area card */
+.vm-focus-label {
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  color: var(--c-accent);
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: -8px;
+}
+
+.vm-focus-card p:not(.vm-focus-label) {
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ----------------------------------------------------------
+   GOVERNANCE & TRANSPARENCY
+   2-col: left text block (43%), right cream partnership box.
+   Left text: strong labels + 24px regular body, line-h 35px.
+   Right box: #fff6e7 r=27px, has its own amber dot + heading.
+   ---------------------------------------------------------- */
+
+.vm-gov-grid {
+  display: grid;
+  grid-template-columns: 43% 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.vm-gov-text p {
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  line-height: 35px;
+  margin-bottom: 20px;
+}
+
+.vm-gov-text strong {
+  font-weight: var(--fw-bold);
+}
+
+.vm-partnerships-box {
+  background: var(--c-bg-cream);
+  border-radius: 27px;
+  padding: 48px 40px 48px 44px;
+}
+
+.vm-partnerships-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.vm-partnerships-heading-row h3 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+}
+
+.vm-partnerships-box p {
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  line-height: 35px;
+  margin-bottom: 4px;
+}
+
+.vm-partnerships-box strong {
+  font-weight: var(--fw-medium);
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+   ---------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .vm-legacy-grid  { grid-template-columns: 1fr; }
+  .vm-legacy-portrait { height: 340px; margin-top: 20px; }
+  .vm-portrait-img { max-width: 100%; height: 310px; }
+  .vm-portrait-bg-circle { width: 300px; height: 300px; }
+  .vm-gov-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .vm-ethos-circles { justify-content: center; }
+  .vm-focus-grid { grid-template-columns: repeat(2, 1fr); }
+  .vm-obj-grid { grid-template-columns: 1fr; }
+  .vm-obj-center { grid-column: 1; max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .vm-quote-text { font-size: 26px; line-height: 36px; }
+  .vm-focus-grid { grid-template-columns: 1fr; }
+  .vm-ethos-circle { width: 160px; height: 160px; }
+  .vm-deco-open, .vm-deco-close { font-size: 120px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-icon" src="assets/images/logo-icon.png" alt="">
+    <img class="nav-logo-text" src="assets/images/logo-text.png" alt="Dr Kasturirangan Trust">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="about.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+        <a href="#">Annual Reports</a>
+        <a href="#">Financial Declarations</a>
+      </div>
+    </li>
+    <li>
+      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">His life</a>
+        <a href="#">Selected Writings</a>
+        <a href="#">Testimonials</a>
+      </div>
+    </li>
+    <li>
+      <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+        <a href="#">Travel Grants</a>
+        <a href="#">Awards</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Alumni</a>
+      </div>
+    </li>
+    <li>
+      <a href="publications.html">Publications <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Reports</a>
+      </div>
+    </li>
+    <li>
+      <a href="journeys.html">Journeys of Change <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Awardees</a>
+        <a href="#">Media</a>
+      </div>
+    </li>
+    <li>
+      <a href="links.html">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- MISSION QUOTE STRIP -->
+<section class="vm-quote-strip">
+  <div class="vm-quote-inner">
+    <span class="vm-deco-open">&ldquo;</span>
+    <p class="vm-quote-text">To propagate the ideals, vision and life-values of Dr Krishnaswamy Kasturirangan through structured, excellence-driven, ethical and humane initiatives that inspire future humanity and sustainable actions</p>
+    <span class="vm-deco-close">&ldquo;</span>
+  </div>
+</section>
+
+<!-- THE LEGACY -->
+<section class="vm-section">
+  <div class="vm-heading-row">
+    <div class="vm-heading-dot"></div>
+    <h2>The Legacy</h2>
+  </div>
+  <div class="vm-legacy-grid">
+    <div class="vm-legacy-text">
+      <p class="vm-body-para">The Dr Kasturirangan Trust was constituted to commemorate the lifelong selfless service by K. Kasturirangan. His contributions across the domains of space, science and technology, education, environment and many other areas has helped shape modern India.</p>
+      <p class="vm-body-para">He leaves behind a spirit of Indianism rooted in inner quest, rightful discovery, committed hard work, and compassion for every human being. He consistently emphasised rigorous inquiry, wide consultation, problem solving, and humane consideration &ndash; qualities that reflected a distinctive systems thinking, anticipated scientifically grounded future action and recognised the interconnectedness of institutions and ideas. His forward-looking approach helped bring together knowledge, research, education, and governance in service of a larger public good.</p>
+      <p class="vm-timeline-link">Go through this <a href="#" class="vm-link-amber">timeline</a> to learn more about his life.</p>
+    </div>
+    <div class="vm-legacy-portrait">
+      <div class="vm-portrait-bg-circle"></div>
+      <img class="vm-portrait-img"
+           src="assets/images/vision-portrait.png"
+           alt="K. Kasturirangan">
+    </div>
+  </div>
+</section>
+
+<!-- ETHOS -->
+<section class="vm-section">
+  <div class="vm-heading-row">
+    <div class="vm-heading-dot"></div>
+    <h2>Ethos</h2>
+  </div>
+  <p class="vm-ethos-intro">The Trust is guided by the vision, values and philosophy of K. Kasturirangan &ndash; uniting curiosity with understanding, scientific rigour with ethical responsibility, and envisioning future systems grounded in human values.</p>
+  <div class="vm-ethos-circles">
+    <div class="vm-ethos-item">
+      <span class="vm-ethos-label">Science with conscience</span>
+      <div class="vm-ethos-circle">
+        <p>How can discovery be guided by integrity?</p>
+      </div>
+    </div>
+    <div class="vm-ethos-item">
+      <span class="vm-ethos-label">Knowledge with compassion</span>
+      <div class="vm-ethos-circle">
+        <p>How can knowledge improve lives?</p>
+      </div>
+    </div>
+    <div class="vm-ethos-item">
+      <span class="vm-ethos-label">Excellence with empathy</span>
+      <div class="vm-ethos-circle">
+        <p>How can we excel without losing our humanity?</p>
+      </div>
+    </div>
+    <div class="vm-ethos-item">
+      <span class="vm-ethos-label">Progress in harmony</span>
+      <div class="vm-ethos-circle">
+        <p>How can human progress and nature coexist?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIVES -->
+<section class="vm-section">
+  <div class="vm-heading-row">
+    <div class="vm-heading-dot"></div>
+    <h2>Objectives</h2>
+  </div>
+  <div class="vm-obj-grid">
+    <div class="vm-obj-item">
+      <div class="vm-obj-pill">Creating Future Leaders</div>
+      <div class="vm-obj-box">Fellowships, scholarships, and research grants</div>
+    </div>
+    <div class="vm-obj-item">
+      <div class="vm-obj-pill">Policy &amp; Impact</div>
+      <div class="vm-obj-box">Programmes to improve institutional effectiveness and policymaking</div>
+    </div>
+    <div class="vm-obj-item">
+      <div class="vm-obj-pill">Advancing Knowledge</div>
+      <div class="vm-obj-box">Conferences, books, and outreach events</div>
+    </div>
+    <div class="vm-obj-item">
+      <div class="vm-obj-pill">Global Collaboration</div>
+      <div class="vm-obj-box">Liaisons with like-minded institutions</div>
+    </div>
+    <div class="vm-obj-item vm-obj-center">
+      <div class="vm-obj-pill">Futures Institute</div>
+      <div class="vm-obj-box">An institution that advances future thinking, research, and practical solutions for India&rsquo;s long-term development</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS AREAS -->
+<section class="vm-section">
+  <div class="vm-heading-row">
+    <div class="vm-heading-dot"></div>
+    <h2>Focus areas</h2>
+  </div>
+  <p class="vm-focus-intro">The Trust is a living institution of people active in diverse domains that shaped K. Kasturirangan&rsquo;s remarkable life.</p>
+  <div class="vm-focus-grid">
+    <div class="vm-focus-card vm-focus-card-1">
+      <p class="vm-focus-label">SPACE TECH</p>
+      <div class="vm-focus-icon">
+        <img src="assets/images/vm-focus-1.png" alt="Space and satellite technology">
+      </div>
+      <p>Satellite applications and space technology for the benefit of humankind</p>
+    </div>
+    <div class="vm-focus-card vm-focus-card-2">
+      <p class="vm-focus-label">EDUCATION</p>
+      <div class="vm-focus-icon">
+        <img src="assets/images/vm-focus-2.png" alt="Education and learning">
+      </div>
+      <p>Revolutionising learning systems and research frameworks</p>
+    </div>
+    <div class="vm-focus-card vm-focus-card-3">
+      <p class="vm-focus-label">SUSTAINABILITY</p>
+      <div class="vm-focus-icon">
+        <img src="assets/images/vm-focus-3.png" alt="Environment">
+      </div>
+      <p>Environmental consciousness and urban/rural transformation</p>
+    </div>
+    <div class="vm-focus-card vm-focus-card-4">
+      <p class="vm-focus-label">PUBLIC POLICY</p>
+      <div class="vm-focus-icon">
+        <img src="assets/images/vm-focus-4.png" alt="Public life and governance">
+      </div>
+      <p>Cultivating leadership and ethical governance</p>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE & TRANSPARENCY -->
+<section class="vm-section">
+  <div class="vm-heading-row">
+    <div class="vm-heading-dot"></div>
+    <h2>Governance &amp; transparency</h2>
+  </div>
+  <div class="vm-gov-grid">
+    <div class="vm-gov-text">
+      <p><strong>Public Charitable Nature:</strong> A non-profit, non-political, and irrevocable organisation established for the public at large</p>
+      <p><strong>Eminent Leadership:</strong> Governed by a Board of Trustees, Advisory Board and Executive Council representing experts and eminent persons from diverse backgrounds in science, academia, and civil service</p>
+      <p><strong>Strict Ethics and Compliancy:</strong> Unwavering commitment to integrity, ethical conduct, and compliance with human values, societal expectations, and national and international laws and standards</p>
+      <p>Applicable laws include the Indian Trusts Act</p>
+    </div>
+    <div class="vm-partnerships-box">
+      <div class="vm-partnerships-heading-row">
+        <div class="vm-heading-dot"></div>
+        <h3>Partnerships</h3>
+      </div>
+      <p>The Trust will partner with government institutions, private enterprises, and nonprofit organisations in India and around the world that share its commitment to scientific excellence and the betterment of humanity.</p>
+      <p><strong>Trustees@drkasturirangantrust.org</strong></p>
+      <p><strong>Registered Office:</strong> Alder 1002, Godrej Woodsman Estate, Hebbal, Bengaluru &ndash; 560045</p>
+      <p><strong>Sanjay Rangan</strong> | sanjay.rangan@drkasturirangantrust.org</p>
+      <p><strong>Mukund Rao</strong> | mukund.rao@drkasturirangantrust.org</p>
+      <p><strong>Anurag Behar</strong> | anurag.behar@drkasturirangantrust.org</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="about.html">About Us</a>
+    <a href="kasturirangan.html">K. Kasturirangan</a>
+    <a href="initiatives.html">Initiatives</a>
+    <a href="publications.html">Publications</a>
+    <a href="journeys.html">Journeys of Change</a>
+    <a href="links.html">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <button class="footer-map-btn">&#128205; View on Map</button>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

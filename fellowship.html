@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fellowship Programme &mdash; Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ================================================================
+   FELLOWSHIP PAGE — fellowship.html
+   Layout from Figma node 271:987 (1440px canvas).
+   All measurements from absolute coordinates + cornerRadius values.
+   ================================================================ */
+
+/* ----------------------------------------------------------
+   HERO SECTION
+   Background: #f7f5f5 (c-bg-light). Height: 629px canvas rect.
+   2-column grid.
+   Left col (text): content from x=96-723 ~ 51.25% of canvas.
+   Right col (image): from x=738 to x=1383, w=645, h=509.
+   Gap in canvas: 738-723 = 15px (negligible; flex handles it).
+   ---------------------------------------------------------- */
+
+.fell-hero {
+  background: var(--c-bg-light);
+  display: grid;
+  grid-template-columns: 51% 49%;
+  min-height: 629px;
+  padding: 0 0 0 0;
+}
+
+/* Left col: text content starting at x=96 (eyebrow dot), x=108 (text). */
+.fell-hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 102px 40px 60px 96px;
+}
+
+/* Eyebrow row: small dot (32px, #2a427e) + "Dr Kasturirangan Trust" text. */
+.fell-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.fell-eyebrow-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  flex-shrink: 0;
+}
+
+/* Eyebrow: 36px Regular #2a427e. */
+.fell-eyebrow {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: normal;
+}
+
+/* Title: 36px Bold #2a427e. */
+.fell-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+  margin-bottom: 24px;
+  line-height: normal;
+}
+
+/* Bullets: 24px Regular #2a427e, list, max-width=615px. */
+.fell-bullets {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: normal;
+  max-width: 615px;
+  padding-left: 22px;
+  margin-bottom: 40px;
+}
+
+.fell-bullets li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Apply button: border=2px #2a427e, radius=12px, w=162, h=56. */
+.fell-apply-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 162px;
+  height: 56px;
+  border: 2px solid var(--c-primary);
+  border-radius: var(--r-apply-btn);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  font-family: var(--font-main);
+  background: none;
+  cursor: pointer;
+}
+
+.fell-apply-btn:hover {
+  background: var(--c-primary);
+  color: #fff;
+}
+
+/* Right col: illustration image w=645, h=509, at x=738. */
+.fell-hero-right {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 69px 57px 60px 0;
+}
+
+/* Illustration: Figma w=645, h=509. No border-radius.
+   width:100% scales with the column; max-width caps at Figma value.
+   height:auto preserves aspect ratio at all viewport widths. */
+.fell-illustration {
+  width: 100%;
+  max-width: 645px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   BANNER STRIP
+   Background: #2a427e, height ~95px.
+   Two amber pills (bg=#ffb338, radius=26px) with text.
+   Pill 1: w=274, at x=322. Pill 2: w=304, at x=1084.
+   Text: 36px (Regular label + value), white.
+   Layout: flex row, center, gap between pills.
+   ---------------------------------------------------------- */
+
+.fell-banner {
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 0 40px;
+  min-height: 95px;
+  flex-wrap: wrap;
+}
+
+/* Amber pill: bg=#ffb338, radius=26px.
+   Font 36px from Figma. Breakpoint below scales it at narrower widths. */
+.fell-banner-pill {
+  background: var(--c-accent);
+  border-radius: var(--r-banner);
+  padding: 14px 28px;
+  font-size: var(--fs-banner);
+  color: #fff;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 1300px) {
+  .fell-banner-pill {
+    font-size: 24px;
+    padding: 12px 22px;
+  }
+  .fell-banner {
+    gap: 24px;
+    min-height: 80px;
+  }
+}
+
+.fell-banner-pill span {
+  font-weight: var(--fw-regular);
+}
+
+.fell-banner-pill strong {
+  font-weight: var(--fw-bold);
+}
+
+/* ----------------------------------------------------------
+   TAB NAV
+   Container: border=3px rgba(217,217,217,0.7), radius=27px,
+   max-width=1324px, h=114px, centered.
+   7 tabs, flex row, evenly distributed.
+   Dividers: 1px vertical lines between tabs.
+   Tab text: 24px medium #2a427e. Tab icon: 38-41px.
+   ---------------------------------------------------------- */
+
+.fell-tabs-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 44px var(--page-px) 0;
+}
+
+.fell-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: var(--max-w-content);
+  height: 114px;
+  border: 3px solid rgba(217, 217, 217, 0.7);
+  border-radius: var(--r-tab-bar);
+}
+
+.fell-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  height: 100%;
+  padding: 0 12px;
+  font-size: 20px;
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  text-decoration: none;
+  border-right: 1px solid rgba(217, 217, 217, 0.7);
+  transition: background 0.15s;
+}
+
+@media (max-width: 1300px) {
+  .fell-tabs {
+    height: auto;
+    min-height: 80px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-radius: 16px;
+  }
+  .fell-tab {
+    font-size: 14px;
+    padding: 0 10px;
+    gap: 5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .fell-tab img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.fell-tab:last-child {
+  border-right: none;
+}
+
+.fell-tab:hover {
+  background: var(--c-bg-cream);
+  border-radius: 4px;
+}
+
+.fell-tab img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   SECTION SHARED STYLES
+   Each section: border-top=1px #e6e6e6, padding=56px.
+   Kicker: 20px bold #d39d47, letter-spacing=2px.
+   H2: 36px bold #2a427e.
+   ---------------------------------------------------------- */
+
+.fell-section {
+  padding: var(--section-py) var(--page-px);
+  border-top: 1px solid #e6e6e6;
+}
+
+.fell-kicker {
+  font-size: var(--fs-kicker);
+  font-weight: var(--fw-bold);
+  color: var(--c-kicker);
+  letter-spacing: var(--ls-kicker);
+  margin-bottom: 4px;
+}
+
+.fell-h2 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+  margin-bottom: 32px;
+}
+
+/* ----------------------------------------------------------
+   OBJECTIVES SECTION
+   2-column grid.
+   Left: bullet list, max-width=608px, 24px Regular #2a427e.
+   Right: image (fellowship-header.png) w=493, h=329, radius top=45px.
+   Grid: left=55%, right=45% (608/1324=45.9% content).
+   ---------------------------------------------------------- */
+
+.fell-obj-grid {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 40px;
+  align-items: start;
+}
+
+.fell-obj-list {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: 1.5;
+  padding-left: 22px;
+  max-width: 608px;
+}
+
+.fell-obj-list li {
+  margin-bottom: 16px;
+}
+
+/* Image: Figma w=493, h=329, top corners rounded 45px.
+   width:100% scales within right column; max-width caps at Figma value. */
+.fell-obj-img {
+  width: 100%;
+  max-width: 493px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 45px 45px 0 0;
+  display: block;
+  justify-self: end;
+}
+
+/* ----------------------------------------------------------
+   BENEFITS SECTION
+   3 circles in a flex row.
+   Each circle: 270x269px, bg=#2a427e, border-radius=50%.
+   Text: 20px bold white, centered, padding=40px.
+   Gap from Figma: 484-84-270=130px between circles.
+   ---------------------------------------------------------- */
+
+.fell-benefits-row {
+  display: flex;
+  justify-content: center;
+  gap: 130px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* Circle: 270x269px, bg primary, radius 50%. Text white bold 20px. */
+.fell-benefit-circle {
+  width: 270px;
+  height: 269px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 36px;
+  font-size: 20px;
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: normal;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   EXPECTATIONS SECTION
+   2-column grid.
+   Left: portrait image, w=394, h=572, border-radius=42px.
+   Right: kicker+h2 above 4 rows.
+   Canvas gap: x=718 - (x=157+w=394) = 167px.
+   Grid: left=29.8%, gap=12.6%, right=57.6% of 1324px content.
+   ---------------------------------------------------------- */
+
+.fell-exp-grid {
+  display: grid;
+  grid-template-columns: 394px 1fr;
+  column-gap: 167px;
+  align-items: start;
+}
+
+/* Portrait: w=394, h=572, border-radius=42px. */
+.fell-exp-portrait {
+  width: 394px;
+  height: 572px;
+  object-fit: cover;
+  border-radius: var(--r-exp-port);
+  display: block;
+}
+
+.fell-exp-right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4 expectation rows:
+   bg=#fff6e7, radius=26px, h=96px, w=581px.
+   Gap between rows: 2445-2309-96 = 40px in canvas. */
+.fell-exp-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--c-bg-cream);
+  border-radius: var(--r-exp-row);
+  padding: 20px 24px;
+  min-height: 96px;
+  margin-bottom: 40px;
+}
+
+.fell-exp-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Icon: 57px x 57px. */
+.fell-exp-icon {
+  width: 57px;
+  height: 57px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Row text: 22px Regular #2a427e. */
+.fell-exp-row p {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: normal;
+}
+
+/* ----------------------------------------------------------
+   ELIGIBILITY SECTION
+   2 boxes side by side + a centered circle overlapping them.
+   Box 1: bg=#fff6e7, radius=26px, w=643, h=190.
+   Box 2: bg=#fff6e7, radius=26px, w=663, h=190.
+   Circle: 208x207px, bg=#2a427e, centered between boxes.
+   Layout: use a 3-col grid (box | circle | box) with auto middle.
+   ---------------------------------------------------------- */
+
+.fell-elig-layout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+/* Eligibility boxes: bg=#fff6e7, radius=26px. */
+.fell-elig-box {
+  background: var(--c-bg-cream);
+  border-radius: var(--r-elig-box);
+  padding: 28px 32px;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+}
+
+/* Circle: 208x207px, bg=#2a427e, radius=50%. Text white bold 22px.
+   margin: 0 -20px creates the Figma overlap effect at desktop.
+   At <= 900px the grid collapses to 1-col and the circle centres. */
+.fell-elig-circle {
+  width: 208px;
+  height: 207px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px;
+  font-size: 22px;
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: normal;
+  flex-shrink: 0;
+  margin: 0 -20px;
+  z-index: 1;
+  position: relative;
+}
+
+@media (max-width: 1050px) {
+  .fell-elig-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .fell-elig-circle {
+    margin: 0 auto;
+    order: 2;
+  }
+}
+
+/* ----------------------------------------------------------
+   REVIEW PROCESS SECTION
+   4 circles in a flex row with arrow connectors between them.
+   Circles: 270x269px, bg=#2a427e (first 3), #ffb338 (last).
+   Gap between circles: ~53px in canvas.
+   Arrows: CSS right-pointing arrow (or unicode).
+   ---------------------------------------------------------- */
+
+/* 4 circles × 270px + 3 arrows = ~1200px minimum.
+   At <= 1200px, allow wrapping so circles don't squeeze. */
+.fell-review-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  row-gap: 32px;
+}
+
+/* Review circles: 270x269px, radius=50%. flex-shrink:0 at desktop.
+   At <= 1200px they're allowed to shrink so 4 fit without squeezing. */
+.fell-review-circle {
+  width: 270px;
+  height: 269px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 36px;
+  font-size: 19px;
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+/* Raised to 1300px: at 1280px viewport (1164px content),
+   4 × 270px + arrows = ~1230px which overflows and wraps the 4th circle.
+   At 220px: 4 × 220px + arrows = ~1030px which fits cleanly. */
+@media (max-width: 1300px) {
+  .fell-review-circle {
+    width: 220px;
+    height: 220px;
+    font-size: 16px;
+    padding: 28px;
+  }
+}
+
+/* Last circle: accent background. */
+.fell-review-circle.accent {
+  background: var(--c-accent);
+}
+
+/* Arrow connector between circles: 28px amber. */
+.fell-review-arrow {
+  font-size: 28px;
+  color: var(--c-accent);
+  padding: 0 8px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ----------------------------------------------------------
+   TIMELINE SECTION
+   Vertical line: border-left=3px #ffb338, from x=412 in canvas.
+   Items: dot on line (35px circle) + date (bold 36px) + label (regular 36px).
+   Items at y=4386, 4544, 4702, 4860 (spacing ~158px).
+   ---------------------------------------------------------- */
+
+.fell-timeline {
+  max-width: 900px;
+  position: relative;
+  padding-left: 60px;
+  border-left: 3px solid var(--c-accent);
+  margin: 0 auto;
+}
+
+.fell-tl-item {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 44px;
+  position: relative;
+}
+
+/* Bullet dot on the timeline line: 16px circle #ffb338.
+   Positioned to sit ON the left border. */
+.fell-tl-item::before {
+  content: '';
+  position: absolute;
+  left: -68px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--c-accent);
+}
+
+/* Date column: 36px bold #2a427e, min-width=180px. */
+.fell-tl-date {
+  font-size: 30px;
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+  min-width: 180px;
+  flex-shrink: 0;
+}
+
+/* Label: 30px regular #2a427e. */
+.fell-tl-label {
+  font-size: 30px;
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+}
+
+/* ----------------------------------------------------------
+   APPLICATION PROCESS SECTION
+   Amber-bordered box: border=4px #d9982e, radius=27px, w=962, centered.
+   Inside: submission text + 2 doc cards side by side.
+   Text: 36px Regular #162752, bold date in #405893.
+   Doc cards: image (327x252px) + text (36px medium #2a427e).
+   ---------------------------------------------------------- */
+
+.fell-app-text {
+  font-size: 28px;
+  font-weight: var(--fw-regular);
+  color: var(--c-text-navy);
+  max-width: 1060px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.fell-app-date {
+  font-weight: var(--fw-bold);
+  color: var(--c-text-blue);
+}
+
+/* Docs heading: 26px bold #d9982e, centered. */
+.fell-docs-heading {
+  font-size: 26px;
+  font-weight: var(--fw-bold);
+  color: var(--c-amber-border);
+  text-align: center;
+  margin: 32px 0 24px;
+}
+
+/* Bordered container: 4px #d9982e, radius=27px, max-width=962px. */
+.fell-doc-box {
+  border: 4px solid var(--c-amber-border);
+  border-radius: 27px;
+  max-width: 962px;
+  margin: 0 auto;
+  padding: 40px 60px;
+}
+
+/* 2 doc cards side by side. */
+.fell-doc-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* Each doc card: icon image + label. */
+.fell-doc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.fell-doc-card img {
+  width: 260px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Doc label: 36px medium #2a427e. */
+.fell-doc-label {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: 1.3;
+  max-width: 376px;
+}
+
+/* ----------------------------------------------------------
+   FELLOWSHIP CTA
+   Tagline: 23px italic #808080.
+   Button: bg=#2a427e, w=234, h=42, radius=13, 23px white.
+   Rocket: 234x165px.
+   ---------------------------------------------------------- */
+
+.fell-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px var(--page-px) 60px;
+  gap: 16px;
+}
+
+.fell-cta-tagline {
+  font-size: var(--fs-tagline);
+  font-style: italic;
+  color: var(--c-text-muted);
+  text-align: center;
+}
+
+.fell-cta-rocket {
+  width: 234px;
+  height: 165px;
+  object-fit: contain;
+}
+
+/* CTA button: same as home page. */
+.fell-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 234px;
+  height: 42px;
+  background: var(--c-primary);
+  border-radius: var(--r-cta-btn);
+  font-size: var(--fs-tagline);
+  font-weight: var(--fw-regular);
+  color: #fff;
+  font-family: var(--font-main);
+  border: none;
+  cursor: pointer;
+}
+
+.fell-cta-btn:hover {
+  background: #3a529e;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   ---------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .fell-benefits-row {
+    gap: 40px;
+  }
+  .fell-exp-grid {
+    column-gap: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .fell-hero {
+    grid-template-columns: 1fr;
+  }
+  .fell-hero-right {
+    padding: 20px 20px 40px;
+    justify-content: center;
+    align-items: center;
+  }
+  .fell-illustration {
+    width: 100%;
+    height: auto;
+  }
+  .fell-obj-grid {
+    grid-template-columns: 1fr;
+  }
+  .fell-obj-img {
+    width: 100%;
+    height: auto;
+    justify-self: start;
+  }
+  .fell-exp-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 32px;
+  }
+  .fell-exp-portrait {
+    width: 100%;
+    height: auto;
+  }
+  .fell-elig-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .fell-elig-circle {
+    margin: 0 auto;
+  }
+  .fell-review-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .fell-review-arrow {
+    transform: rotate(90deg);
+  }
+  .fell-tl-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .fell-doc-cards {
+    grid-template-columns: 1fr;
+  }
+  .fell-tabs {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px;
+    gap: 8px;
+  }
+  .fell-tab {
+    border-right: none;
+    border-bottom: 1px solid rgba(217, 217, 217, 0.7);
+    flex: none;
+    width: 100%;
+    height: 48px;
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+  .fell-tab:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .fell-hero-left {
+    padding: 40px 20px;
+  }
+  .fell-section {
+    padding: 36px 20px;
+  }
+  .fell-tabs-wrap {
+    padding: 24px 20px 0;
+  }
+  .fell-benefits-row {
+    gap: 32px;
+  }
+  .fell-benefit-circle {
+    width: 220px;
+    height: 220px;
+    font-size: 18px;
+    padding: 28px;
+  }
+  .fell-review-circle {
+    width: 220px;
+    height: 220px;
+    font-size: 17px;
+    padding: 28px;
+  }
+  .fell-tl-date,
+  .fell-tl-label {
+    font-size: 22px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-icon" src="assets/images/logo-icon.png" alt="">
+    <img class="nav-logo-text" src="assets/images/logo-text.png" alt="Dr Kasturirangan Trust">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="about.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+        <a href="#">Annual Reports</a>
+        <a href="#">Financial Declarations</a>
+      </div>
+    </li>
+    <li>
+      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">His life</a>
+        <a href="#">Selected Writings</a>
+        <a href="#">Testimonials</a>
+      </div>
+    </li>
+    <li>
+      <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+        <a href="#">Travel Grants</a>
+        <a href="#">Awards</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Alumni</a>
+      </div>
+    </li>
+    <li>
+      <a href="publications.html">Publications <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Reports</a>
+      </div>
+    </li>
+    <li>
+      <a href="journeys.html">Journeys of Change <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Awardees</a>
+        <a href="#">Media</a>
+      </div>
+    </li>
+    <li>
+      <a href="links.html">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="fell-hero">
+  <div class="fell-hero-left">
+    <div class="fell-eyebrow-row">
+      <div class="fell-eyebrow-dot"></div>
+      <p class="fell-eyebrow">Dr Kasturirangan Trust</p>
+    </div>
+    <h1 class="fell-title">FELLOWSHIP PROGRAMME</h1>
+    <ul class="fell-bullets">
+      <li>Nation-building through knowledge and education</li>
+      <li>Supporting research that transcends disciplinary boundaries</li>
+      <li>Financial support worth Rs 2 lakh for selected fellows</li>
+      <li>For anyone holding or pursuing a PhD</li>
+    </ul>
+    <button class="fell-apply-btn" onclick="location.href='#apply-section'">Apply now</button>
+  </div>
+  <div class="fell-hero-right">
+    <img class="fell-illustration"
+         src="assets/images/fellowship-illustration.png"
+         alt="Fellowship Programme Illustration">
+  </div>
+</section>
+
+<!-- BANNER STRIP -->
+<div class="fell-banner">
+  <div class="fell-banner-pill">
+    <span>Applications open : </span><strong>October 25, 2026</strong>
+  </div>
+  <div class="fell-banner-pill">
+    <span>Last date for submission : </span><strong>December 31, 2026</strong>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="fell-tabs-wrap">
+  <nav class="fell-tabs" aria-label="Fellowship sections">
+    <a class="fell-tab" href="#objectives">
+      <img src="assets/images/icon-person.png" alt="">Objectives
+    </a>
+    <a class="fell-tab" href="#benefits">
+      <img src="assets/images/icon-gift.png" alt="">Benefits
+    </a>
+    <a class="fell-tab" href="#expectations">
+      <img src="assets/images/icon-goal.png" alt="">Expectations
+    </a>
+    <a class="fell-tab" href="#eligibility">
+      <img src="assets/images/icon-gforms.png" alt="">Eligibility
+    </a>
+    <a class="fell-tab" href="#review">
+      <img src="assets/images/icon-analyze.png" alt="">Review process
+    </a>
+    <a class="fell-tab" href="#timeline">
+      <img src="assets/images/icon-schedule.png" alt="">Timeline
+    </a>
+    <a class="fell-tab" href="#apply-section">
+      <img src="assets/images/icon-resume.png" alt="">Application process
+    </a>
+  </nav>
+</div>
+
+<!-- OBJECTIVES -->
+<section class="fell-section" id="objectives">
+  <p class="fell-kicker">ABOUT THE FELLOWSHIP</p>
+  <h2 class="fell-h2">Objectives</h2>
+  <div class="fell-obj-grid">
+    <ul class="fell-obj-list">
+      <li>
+        Supports emerging leaders committed to improving existing methods and
+        systems to address major educational and societal challenges
+      </li>
+      <li>
+        Specifically targets individuals working on cross-disciplinary,
+        interdisciplinary, or multidisciplinary topics that connect science,
+        engineering, humanities, and social sciences
+      </li>
+    </ul>
+    <img class="fell-obj-img"
+         src="assets/images/fellowship-header.png"
+         alt="Fellowship overview">
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="fell-section" id="benefits">
+  <p class="fell-kicker">WHAT THE FELLOWSHIP PROVIDES</p>
+  <h2 class="fell-h2">Fellowship benefits</h2>
+  <div class="fell-benefits-row">
+    <div class="fell-benefit-circle">
+      Each Fellowship will receive a funding of &#8377;2 lakh for one year,
+      with the possibility of renewal for an additional year.
+    </div>
+    <div class="fell-benefit-circle">
+      Each fellow will be paired with a mentor, meeting regularly throughout
+      the year to exchange ideas, discuss progress, and receive guidance.
+    </div>
+    <div class="fell-benefit-circle">
+      There will be two workshops where fellows present their work for an
+      informal review session with invited experts and peers.
+    </div>
+  </div>
+</section>
+
+<!-- EXPECTATIONS -->
+<section class="fell-section" id="expectations">
+  <div class="fell-exp-grid">
+    <img class="fell-exp-portrait"
+         src="assets/images/sir-portrait.png"
+         alt="Dr Kasturirangan">
+    <div class="fell-exp-right">
+      <p class="fell-kicker">RESPONSIBILITIES</p>
+      <h2 class="fell-h2">Expectations from Fellows</h2>
+      <div class="fell-exp-row">
+        <img class="fell-exp-icon" src="assets/images/icon-meeting.png" alt="">
+        <p>Attend and actively participate in workshops and mentoring events
+           over the period of fellowship</p>
+      </div>
+      <div class="fell-exp-row">
+        <img class="fell-exp-icon" src="assets/images/icon-training.png" alt="">
+        <p>Present vision and updates on ongoing work during designated times</p>
+      </div>
+      <div class="fell-exp-row">
+        <img class="fell-exp-icon" src="assets/images/icon-goal.png" alt="">
+        <p>Uphold and demonstrate the values of Dr Kasturirangan in the
+           professional sphere</p>
+      </div>
+      <div class="fell-exp-row">
+        <img class="fell-exp-icon" src="assets/images/icon-person.png" alt="">
+        <p>Stay engaged with the Trust and support future cohorts of fellows</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ELIGIBILITY -->
+<section class="fell-section" id="eligibility">
+  <p class="fell-kicker">CURRENT CALL</p>
+  <h2 class="fell-h2">Eligibility</h2>
+  <div class="fell-elig-layout">
+    <div class="fell-elig-box">
+      Must have been awarded a PhD in the past X years or be in the final stages
+      of a PhD from a recognised state institution.
+    </div>
+    <div class="fell-elig-circle">
+      All ages and all disciplines are welcome to apply
+    </div>
+    <div class="fell-elig-box">
+      Must have demonstrated research ability through peer-reviewed publications
+      or conference presentations.
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW PROCESS -->
+<section class="fell-section" id="review">
+  <p class="fell-kicker">HOW FELLOWS ARE CHOSEN</p>
+  <h2 class="fell-h2">Review process</h2>
+  <div class="fell-review-row">
+    <div class="fell-review-circle">
+      All applications will be reviewed to ensure they are complete and meet the
+      eligibility criteria before being forwarded to the jury.
+    </div>
+    <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
+    <div class="fell-review-circle">
+      A distinguished jury of experts will evaluate the applications and prepare
+      a shortlist based on merit and alignment with the trust&rsquo;s values and
+      objectives.
+    </div>
+    <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
+    <div class="fell-review-circle">
+      Shortlisted candidates will be notified, and interviews will be scheduled
+      with a panel.
+    </div>
+    <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
+    <div class="fell-review-circle accent">
+      Selected fellows will be announced on <strong>April 25, 2027</strong>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="fell-section" id="timeline">
+  <p class="fell-kicker">KEY DATES</p>
+  <h2 class="fell-h2">Timeline</h2>
+  <div class="fell-timeline">
+    <div class="fell-tl-item">
+      <span class="fell-tl-date">Oct 25, 2026</span>
+      <span class="fell-tl-label">Applications open</span>
+    </div>
+    <div class="fell-tl-item">
+      <span class="fell-tl-date">Dec 31, 2026</span>
+      <span class="fell-tl-label">Last date of submission</span>
+    </div>
+    <div class="fell-tl-item">
+      <span class="fell-tl-date">March 2027</span>
+      <span class="fell-tl-label">Interviews of shortlisted candidates</span>
+    </div>
+    <div class="fell-tl-item">
+      <span class="fell-tl-date">April 25, 2027</span>
+      <span class="fell-tl-label">Fellows announced</span>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION PROCESS -->
+<section class="fell-section" id="apply-section">
+  <p class="fell-kicker">HOW TO APPLY</p>
+  <h2 class="fell-h2">Application process</h2>
+  <p class="fell-app-text">
+    Submit your details on the application portal by
+    <span class="fell-app-date">December 31, 2026.</span>
+  </p>
+  <p class="fell-docs-heading">
+    Please keep these supporting documents handy at the time of submission:
+  </p>
+  <div class="fell-doc-box">
+    <div class="fell-doc-cards">
+      <div class="fell-doc-card">
+        <img src="assets/images/doc-icon.png" alt="Document icon">
+        <p class="fell-doc-label">Curriculum Vitae (maximum 2 pages)</p>
+      </div>
+      <div class="fell-doc-card">
+        <img src="assets/images/doc-icon.png" alt="Document icon">
+        <p class="fell-doc-label">Proof of PhD completion or current enrolment</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FELLOWSHIP CTA -->
+<div class="fell-cta">
+  <p class="fell-cta-tagline">
+    Cultivating Excellence. Futures Thinking. Advancing Humanity.
+  </p>
+  <img class="fell-cta-rocket" src="assets/images/rocket.png" alt="">
+  <button class="fell-cta-btn">Apply for Fellowships</button>
+</div>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="about.html">About Us</a>
+    <a href="kasturirangan.html">K. Kasturirangan</a>
+    <a href="initiatives.html">Initiatives</a>
+    <a href="publications.html">Publications</a>
+    <a href="journeys.html">Journeys of Change</a>
+    <a href="links.html">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <button class="footer-map-btn">&#128205; View on Map</button>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">
+      info@drkasturirangantrust.org
+    </a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

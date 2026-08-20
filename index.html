@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ================================================================
+   HOME PAGE — index.html
+   Rebuilt from Figma node 1:2 (1440×2888px canvas) with Pro access.
+   Figma Auto Layout → CSS Grid / Flexbox. No structural absolute pos.
+   All decorative shapes are position:absolute within position:relative
+   containers only.
+   ================================================================ */
+
+/* ----------------------------------------------------------
+   HERO SECTION
+   2-col grid: left col = 784/1440 = 54.44% | right col = 1fr.
+   Left: portrait (x=167, y=287, w=617, h=416, r=71px) layered above
+         blue pill (x=58, y=188, w=234, h=338, r=99px).
+   Right: amber dot + headline + desc + CTA.
+   ---------------------------------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 54.44% 1fr;
+  min-height: 630px;
+}
+
+/* Left column: decorative shapes overlap portrait, clip at column edge. */
+.hero-left {
+  position: relative;
+  min-height: 630px;
+  overflow: hidden;
+}
+
+/* Partially off-screen decorative amber circle (x=-138, y=496, w=274). */
+.hero-deco-circle {
+  position: absolute;
+  left: -138px;
+  top: 395px;
+  width: 274px;
+  height: 274px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Navy pill behind portrait: x=58, y=188 (canvas) → hero-relative top=87px. */
+.hero-blue-rect {
+  position: absolute;
+  left: 58px;
+  top: 87px;
+  width: 234px;
+  height: 338px;
+  border-radius: var(--r-pill);
+  background: var(--c-primary);
+}
+
+/* Portrait: x=167, y=287 (canvas) → hero-relative top=186px. */
+.hero-portrait {
+  position: absolute;
+  left: 167px;
+  top: 186px;
+  width: calc(100% - 167px);
+  height: 416px;
+  border-radius: var(--r-portrait);
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Right column: flex column, content starts at y=315-101=214px from top.
+   padding-left = 857-784 = 73px (canvas gap between cols). */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 214px 40px 60px 73px;
+}
+
+/* Amber marker dot + headline in a flex row. */
+.hero-headline-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.hero-amber-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* Headline: 35px Regular black. line-height: 93.52% from Figma. */
+.hero-headline {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-regular);
+  color: #000;
+  line-height: 0.935;
+}
+
+/* Description: 18px Regular black, max-width 446px. */
+.hero-desc {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-regular);
+  color: #000;
+  line-height: 1.32;
+  max-width: 446px;
+  margin-bottom: 16px;
+}
+
+/* "Explore Our Work" link: 16px #808080. */
+.hero-explore-link {
+  display: block;
+  font-size: var(--fs-nav);
+  color: var(--c-text-muted);
+  margin-bottom: 28px;
+}
+
+.hero-explore-link:hover {
+  color: var(--c-primary);
+}
+
+/* Apply button: bg=#2a427e, w=356, h=64, r=17px, 36px white text. */
+.hero-apply-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 356px;
+  height: 64px;
+  background: var(--c-primary);
+  border-radius: var(--r-home-btn);
+  font-size: var(--fs-hero-btn);
+  font-weight: var(--fw-regular);
+  color: #fff;
+  font-family: var(--font-main);
+  cursor: pointer;
+  border: none;
+}
+
+.hero-apply-btn:hover {
+  background: #3a529e;
+}
+
+/* ----------------------------------------------------------
+   ABOUT SECTION
+   Left-aligned at x=117 on canvas.
+   Dot + italic heading + body text (22px, max-w 697px).
+   ---------------------------------------------------------- */
+
+.about-section {
+  padding: var(--section-py) var(--page-px) var(--section-py) 117px;
+}
+
+.about-dot-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.about-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c-primary-dark);
+  flex-shrink: 0;
+}
+
+.about-heading {
+  font-size: var(--fs-h2);
+  font-style: italic;
+  font-weight: var(--fw-medium);
+  color: var(--c-primary-dark);
+  line-height: normal;
+}
+
+.about-text {
+  max-width: 697px;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  color: var(--c-text);
+  line-height: 1.4;
+}
+
+.about-text p {
+  margin-bottom: 1em;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------------------------
+   AREAS SECTION
+   4 area images in a flex row, left-offset at canvas x=130.
+   Images: ~194-211px square, gap ~70px.
+   ---------------------------------------------------------- */
+
+.areas-section {
+  padding: 36px var(--page-px) 40px 130px;
+}
+
+.areas-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 70px;
+  flex-wrap: wrap;
+}
+
+.area-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.area-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   QUOTE STRIP
+   Amber rounded-pill bg: x=105, y-offset≈152px from section top,
+   w=1121 (from x=105 to x=1226), h=374, border-radius=118px,
+   fill = rgba(255,179,56,0.8).
+   Large decorative opening-quote mark: Agdasima 500px white,
+   position:absolute overhanging from section top.
+   Quote text: 50px medium white, max-w=503px.
+   Illustration SVG: right side of the amber pill, flipped 180°.
+   ---------------------------------------------------------- */
+
+.quote-strip {
+  position: relative;
+  padding: 180px var(--page-px) 100px;
+  overflow: hidden;
+  min-height: 550px;
+}
+
+/* Rounded amber pill (key fix: border-radius + rgba fill). */
+.quote-amber-bg {
+  position: absolute;
+  left: 7.3%;    /* 105/1440 */
+  right: 14.9%;  /* 214/1440 */
+  top: 152px;
+  height: 374px;
+  background: rgba(255, 179, 56, 0.8);
+  border-radius: 118px;
+  overflow: hidden;
+}
+
+/* Illustration SVG inside the amber pill, right side, flipped 180°. */
+.quote-illus {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 295px;
+  height: 291px;
+  transform: rotate(180deg) scaleY(-1);
+  opacity: 0.9;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Large decorative quote mark: overhangs the top of the amber pill. */
+.quote-deco-mark {
+  position: absolute;
+  left: 120px;
+  top: 0;
+  font-family: var(--font-deco);
+  font-size: clamp(200px, 35vw, 500px);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 0.45;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Quote text: 50px medium white. Left margin places it at canvas x≈367. */
+.quote-text {
+  position: relative;
+  z-index: 3;
+  max-width: 503px;
+  margin-top: 90px;
+  margin-left: calc(367px - var(--page-px));
+  font-size: var(--fs-quote);
+  font-weight: var(--fw-medium);
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* ----------------------------------------------------------
+   STORIES SECTION
+   "Where Curiosity Led" — 3 story cards in a flex row.
+   Section left-padding = 83px (card 1 canvas x).
+   Card 1: 388x391px, no border-radius.
+   Cards 2 & 3: 355x355px, border-radius=10px.
+   ---------------------------------------------------------- */
+
+.stories-section {
+  padding: var(--section-py) 0 0 83px;
+}
+
+.stories-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+/* Navy dot: 32px #2a427e. */
+.stories-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  flex-shrink: 0;
+}
+
+.stories-heading {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary-dark);
+}
+
+.stories-cards {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+/* Card 1: 388x391, no border-radius (sharp square-ish crop). */
+.story-card-1 img {
+  width: 388px;
+  height: 391px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Cards 2 and 3: 355x355, r=10px. */
+.story-card-2 img,
+.story-card-3 img {
+  width: 355px;
+  height: 355px;
+  object-fit: cover;
+  border-radius: var(--r-story);
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   MOMENTS SECTION (story captions)
+   3 caption items directly below story cards.
+   Aligned to matching card centers via matching widths + left-padding.
+   Dot: 14px amber circle above text.
+   Text: 20px medium navy.
+   ---------------------------------------------------------- */
+
+.moments-section {
+  padding: 16px 0 var(--section-py) 83px;
+}
+
+.moments-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.moment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.moment-item:nth-child(1) { width: 388px; }
+.moment-item:nth-child(2) { width: 355px; }
+.moment-item:nth-child(3) { width: 355px; }
+
+.moment-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+}
+
+.moment-text {
+  font-size: 20px;
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: normal;
+}
+
+/* ----------------------------------------------------------
+   HOME CTA
+   Centered tagline (italic 23px #808080) + rocket + apply button.
+   Button: bg=#2a427e, w=234, h=42, r=13px, 23px white.
+   ---------------------------------------------------------- */
+
+.home-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px var(--page-px) 60px;
+  gap: 16px;
+}
+
+.home-cta-tagline {
+  font-size: var(--fs-tagline);
+  font-style: italic;
+  color: var(--c-text-muted);
+  text-align: center;
+}
+
+.home-cta-rocket {
+  width: 234px;
+  height: 165px;
+  object-fit: contain;
+}
+
+.home-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 234px;
+  height: 42px;
+  background: var(--c-primary);
+  border-radius: var(--r-cta-btn);
+  font-size: var(--fs-tagline);
+  font-weight: var(--fw-regular);
+  color: #fff;
+  font-family: var(--font-main);
+  border: none;
+  cursor: pointer;
+}
+
+.home-cta-btn:hover {
+  background: #3a529e;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+   ---------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-portrait {
+    width: 90%;
+    left: 5%;
+  }
+  .hero-deco-circle {
+    left: -80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-left {
+    min-height: 380px;
+  }
+  .hero-portrait {
+    width: 85%;
+    left: 7.5%;
+    top: 80px;
+    height: auto;
+  }
+  .hero-right {
+    padding: 40px 20px 40px 20px;
+  }
+  .hero-apply-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+  .about-section {
+    padding: 40px 20px;
+  }
+  .areas-section {
+    padding: 30px 20px;
+    overflow-x: auto;
+  }
+  .quote-text {
+    margin-left: 0;
+    max-width: 100%;
+  }
+  .stories-section, .moments-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .stories-cards, .moments-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .story-card-1 img,
+  .story-card-2 img,
+  .story-card-3 img {
+    width: 100%;
+    height: auto;
+  }
+  .moment-item:nth-child(1),
+  .moment-item:nth-child(2),
+  .moment-item:nth-child(3) {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-icon" src="assets/images/logo-icon.png" alt="">
+    <img class="nav-logo-text" src="assets/images/logo-text.png" alt="Dr Kasturirangan Trust">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="about.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+        <a href="#">Annual Reports</a>
+        <a href="#">Financial Declarations</a>
+      </div>
+    </li>
+    <li>
+      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="kasturirangan.html">His Life</a>
+        <a href="#">Selected Writings</a>
+        <a href="#">Testimonials</a>
+      </div>
+    </li>
+    <li>
+      <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+        <a href="#">Travel Grants</a>
+        <a href="#">Awards</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Alumni</a>
+      </div>
+    </li>
+    <li>
+      <a href="publications.html">Publications <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Reports</a>
+      </div>
+    </li>
+    <li>
+      <a href="journeys.html">Journeys of Change <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Awardees</a>
+        <a href="#">Media</a>
+      </div>
+    </li>
+    <li>
+      <a href="links.html">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="apply.html">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <img class="hero-deco-circle"
+         src="assets/images/home-ellipse-deco.svg"
+         alt="" aria-hidden="true">
+    <div class="hero-blue-rect"></div>
+    <img class="hero-portrait"
+         src="assets/images/hero-portrait.png"
+         alt="Dr K. Kasturirangan">
+  </div>
+  <div class="hero-right">
+    <div class="hero-headline-wrap">
+      <div class="hero-amber-dot"></div>
+      <h1 class="hero-headline">
+        Cultivating Excellence<br>
+        Futures Thinking<br>
+        Advancing Humanity
+      </h1>
+    </div>
+    <p class="hero-desc">
+      We award fellowships and research support to scholars working
+      at the intersection of education, science, and society.
+    </p>
+    <a href="initiatives.html" class="hero-explore-link">Explore Our Work</a>
+    <button class="hero-apply-btn"
+            onclick="location.href='fellowship.html'">
+      Apply for Fellowships
+    </button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-dot-row">
+    <div class="about-dot"></div>
+    <h2 class="about-heading">Inspired by a life of inquiry</h2>
+  </div>
+  <div class="about-text">
+    <p>
+      <strong>Krishnaswamy Kasturirangan (24 October 1940 &ndash; 25 April 2025)</strong>
+      was one of India&rsquo;s most distinguished space scientists and public
+      intellectuals. Over a career spanning several decades, he played a pivotal
+      role in advancing India&rsquo;s space programme (ISRO), and later contributed
+      significantly to national policy in education and environmental conservation.
+    </p>
+    <p>
+      In recognition of his contributions, he was awarded the Padma Shri, Padma
+      Bhushan, and Padma Vibhushan. His life&rsquo;s work reflects a rare blend of
+      scientific excellence, institution-building, and public service.
+    </p>
+    <p>
+      The Dr Kasturirangan Trust was formed to keep alive his legacy &mdash; his spirit
+      of innovation, interdisciplinary thinking, and commitment to national
+      development through knowledge and education.
+    </p>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas-section">
+  <div class="areas-row">
+    <div class="area-item">
+      <img src="assets/images/area-space.png" alt="Space &amp; Technology">
+    </div>
+    <div class="area-item">
+      <img src="assets/images/area-environment.png" alt="Environment">
+    </div>
+    <div class="area-item">
+      <img src="assets/images/area-education.png" alt="Education">
+    </div>
+    <div class="area-item">
+      <img src="assets/images/area-publiclife.png" alt="Public Life">
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE STRIP -->
+<section class="quote-strip" aria-label="Quote by Dr Kasturirangan">
+  <div class="quote-amber-bg">
+    <img class="quote-illus"
+         src="assets/images/quote-illustration.svg"
+         alt="" aria-hidden="true">
+  </div>
+  <div class="quote-deco-mark" aria-hidden="true">&ldquo;</div>
+  <p class="quote-text">
+    Every phase of work must contribute to a larger national vision
+  </p>
+</section>
+
+<!-- STORIES -->
+<section class="stories-section">
+  <div class="stories-heading-row">
+    <div class="stories-dot"></div>
+    <h2 class="stories-heading">Where Curiosity Led</h2>
+  </div>
+  <div class="stories-cards">
+    <div class="story-card-1">
+      <img src="assets/images/story-card1.png"
+           alt="At crossroads &mdash; Berkeley or ISRO?">
+    </div>
+    <div class="story-card-2">
+      <img src="assets/images/story-card2.png"
+           alt="Unfamiliar terrains">
+    </div>
+    <div class="story-card-3">
+      <img src="assets/images/story-card3.png"
+           alt="Deep respect for fellow scientists">
+    </div>
+  </div>
+</section>
+
+<!-- MOMENTS (captions below story cards) -->
+<section class="moments-section">
+  <div class="moments-row">
+    <div class="moment-item">
+      <div class="moment-dot"></div>
+      <p class="moment-text">At crossroads &mdash; Berkeley or ISRO?</p>
+    </div>
+    <div class="moment-item">
+      <div class="moment-dot"></div>
+      <p class="moment-text">Unfamiliar terrains</p>
+    </div>
+    <div class="moment-item">
+      <div class="moment-dot"></div>
+      <p class="moment-text">Deep respect for fellow scientists</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOME CTA -->
+<div class="home-cta">
+  <p class="home-cta-tagline">
+    Cultivating Excellence. Futures Thinking. Advancing Humanity.
+  </p>
+  <img class="home-cta-rocket"
+       src="assets/images/home-rocket.png" alt="">
+  <button class="home-cta-btn"
+          onclick="location.href='fellowship.html'">
+    Apply for Fellowships
+  </button>
+</div>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="about.html">About Us</a>
+    <a href="kasturirangan.html">K. Kasturirangan</a>
+    <a href="initiatives.html">Initiatives</a>
+    <a href="publications.html">Publications</a>
+    <a href="journeys.html">Journeys of Change</a>
+    <a href="links.html">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <button class="footer-map-btn">&#128205; View on Map</button>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

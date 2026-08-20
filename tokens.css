@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Agdasima&display=swap');
+
+/* --- DESIGN TOKENS ---------------------------------------------
+   All values extracted programmatically from Figma node data.
+   Colors: from fills[].color hex. Sizes: from text-node style.
+   Radius: from cornerRadius. Spacing: from layout coordinates.
+--------------------------------------------------------------- */
+
+:root {
+  /* COLORS */
+  --c-primary:      #2a427e;   /* fills: primary navy */
+  --c-primary-dark: #2e3d63;   /* nav links, subheadings */
+  --c-accent:       #ffb338;   /* amber: borders, pills, footer rule */
+  --c-kicker:       #d39d47;   /* section kicker letter-color */
+  --c-amber-border: #d9982e;   /* application section border */
+  --c-text:         #202020;   /* body text */
+  --c-text-muted:   #808080;   /* explore link, taglines */
+  --c-text-navy:    #162752;   /* application section heading */
+  --c-text-blue:    #405893;   /* date highlight in application */
+  --c-bg-cream:     #fff6e7;   /* exp rows, eligibility boxes */
+  --c-bg-light:     #f7f5f5;   /* fellowship hero background */
+  --c-amber-bg:     rgba(255,179,56,0.8); /* quote strip background */
+
+  /* TYPOGRAPHY */
+  --font-main: 'Afacad', sans-serif;
+  --font-deco: 'Agdasima', sans-serif;
+
+  /* font-size values from Figma text node fontSize */
+  --fs-nav:       16px;   /* nav links */
+  --fs-kicker:    20px;   /* section kicker labels */
+  --fs-body-sm:   18px;   /* hero description */
+  --fs-body:      22px;   /* standard body + bullets */
+  --fs-body-lg:   24px;   /* footer, eligibility text */
+  --fs-tagline:   23px;   /* CTA tagline + button text */
+  --fs-eyebrow:   28px;   /* fellowship "Apply now" text */
+  --fs-h2:        36px;   /* all section h2 headings */
+  --fs-hero:      35px;   /* home hero headline */
+  --fs-quote:     50px;   /* pull quote */
+  --fs-hero-btn:  36px;   /* home apply button text */
+  --fs-banner:    36px;   /* banner strip text */
+
+  /* font-weight from Figma fontStyle (Regular=400, Medium=500, Bold=700) */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-bold:    700;
+
+  --ls-kicker: 2px;  /* letterSpacing on kicker labels */
+
+  /* SPACING (from absolute coordinates converted to logical values) */
+  --nav-h:       101px;  /* home page: separator line at y=101 */
+  --page-px:      58px;  /* leftmost canvas content at x=58 */
+  --section-py:   56px;  /* section vertical padding from Figma */
+
+  /* BORDER RADIUS (from Figma cornerRadius property) */
+  --r-portrait:   71px;   /* hero portrait image */
+  --r-pill:       99px;   /* blue decorative rectangle */
+  --r-banner:     26px;   /* amber banner pills */
+  --r-tab-bar:    27px;   /* fellowship tab nav border */
+  --r-exp-row:    26px;   /* expectation rows */
+  --r-exp-port:   42px;   /* expectations portrait image */
+  --r-story:      10px;   /* story card images */
+  --r-elig-box:   26px;   /* eligibility boxes */
+  --r-cta-btn:    13px;   /* CTA apply button */
+  --r-apply-btn:  12px;   /* fellowship apply button */
+  --r-home-btn:   17px;   /* home apply button */
+  --r-map-btn:     7px;   /* View on Map button */
+
+  /* LAYOUT */
+  --max-w-page:    1440px;
+  --max-w-content: 1324px;  /* tab bar width = widest inner container */
+}
+
+/* RESET */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-main);
+  background: #fff;
+  color: var(--c-text);
+  overflow-x: hidden;
+  max-width: var(--max-w-page);
+  margin: 0 auto;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: var(--font-main); border: none; background: none; }
+ul { list-style: disc; }
+li { margin-bottom: 8px; }

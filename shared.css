@@ -1,0 +1,332 @@
+/* shared.css - nav + footer used on every page
+   Measurements from Figma node coordinates (1440px canvas). */
+
+/* ==========================================================
+   NAV
+   Height 101px: separator line at y=101 in home page canvas.
+   Logo icon: x=40, y=7, w=58, h=74. Logo text: x=101, w=273, h=83.
+   Links: x=638-1363, y=44, font-size=16px, color=#2e3d63.
+   Border-bottom: 3px solid #ffb338 (accent).
+   ========================================================== */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: #fff;
+  border-bottom: 3px solid var(--c-accent);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 3px; /* 101px - (40px + 58px) = 3px between icon right and text left */
+  flex-shrink: 0;
+}
+
+.nav-logo-icon {
+  width: 58px;
+  height: 74px;
+  object-fit: contain;
+}
+
+.nav-logo-text {
+  width: 273px;
+  height: 83px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: var(--nav-h);
+  padding: 0 12px;
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary-dark);
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.nav-links li a:hover {
+  color: var(--c-accent);
+}
+
+/* ----------------------------------------------------------
+   NAV DROPDOWN
+   Each <li> is position:relative. Dropdown sits directly below
+   the nav's amber border (top = nav-h - 3px border).
+   Animation: opacity + translateY, 150ms ease-out ("quick").
+   ---------------------------------------------------------- */
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(var(--nav-h) - 3px);
+  left: 0;
+  background: #fff;
+  border-top: 3px solid var(--c-accent);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  min-width: 220px;
+  padding: 6px 0 10px;
+  z-index: 300;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+
+.nav-links li:hover > .nav-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Higher specificity (0-2-0-1) beats .nav-links li a (0-1-1-1)
+   so height:101px and display:flex do not bleed into dropdown items. */
+.nav-links li .nav-dropdown a {
+  display: block;
+  height: auto;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+  color: var(--c-primary-dark);
+  white-space: nowrap;
+  line-height: 1.4;
+  transition: color 0.1s ease, background 0.1s ease, padding-left 0.1s ease;
+}
+
+.nav-links li .nav-dropdown a:hover {
+  color: var(--c-primary);
+  background: var(--c-bg-cream);
+  padding-left: 26px;
+}
+
+/* Right-align dropdowns for the last 3 nav items so they don't overflow
+   the right edge of the 1440px page (e.g. "Journeys of Change", "Useful Links"). */
+.nav-links li:nth-last-child(-n+3) .nav-dropdown {
+  left: auto;
+  right: 0;
+}
+
+/* Nav search icon button */
+.nav-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 0 12px;
+  display: flex;
+  align-items: center;
+  color: var(--c-primary-dark);
+  flex-shrink: 0;
+}
+
+.nav-search-btn:hover { color: var(--c-accent); }
+
+/* Dropdown chevron: solid CSS downward triangle (▽) */
+.nav-chev {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  margin-left: 3px;
+  opacity: 0.65;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* ==========================================================
+   FOOTER RULE + DOT
+   Line: left=0, top=14px within wrap, w=calc(100%-118px), h=5px.
+   Dot: right=118px, top=2px, w=28, h=28, circle.
+   From Figma: line at x=0 w=1338 on 1440px canvas.
+   1440-1338=102px gap on right; dot at x=1322, size=32px.
+   CSS approximation: right=118px to sit inside line end.
+   ========================================================== */
+
+.footer-rule-wrap {
+  position: relative;
+  height: 32px;
+}
+
+.footer-rule {
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: calc(100% - 118px);
+  height: 5px;
+  background: var(--c-accent);
+}
+
+.footer-dot {
+  position: absolute;
+  right: 90px;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--c-accent);
+}
+
+/* ==========================================================
+   FOOTER
+   3-col grid starting at x=117px on 1440px canvas.
+   Col widths derived from Figma link/address/contact x-positions:
+     Col 1 (nav links): x=117, ends before x=486 -> 369px
+     Col 2 (address):   x=486, ends before x=906 -> 420px
+     Col 3 (contact):   x=906 to x=1440          -> 534px
+   padding-left=117px places grid at the correct canvas offset.
+   Font: 24px medium #2a427e (--fs-body-lg, --fw-medium).
+   ========================================================== */
+
+.site-footer {
+  padding: 40px 40px 60px 117px;
+  display: grid;
+  grid-template-columns: 369px 420px 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-nav a {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: 1.8;
+  display: block;
+}
+
+.footer-nav a:hover {
+  color: var(--c-accent);
+}
+
+.footer-addr {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.footer-addr strong {
+  font-weight: var(--fw-medium);
+}
+
+/* View on Map button: border=2px #ffb338, radius=7px, 24px medium */
+.footer-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 2px solid var(--c-accent);
+  border-radius: var(--r-map-btn);
+  padding: 5px 14px;
+  font-size: 18px;
+  font-weight: var(--fw-medium);
+  color: var(--c-accent);
+  background: none;
+  font-family: var(--font-main);
+  cursor: pointer;
+}
+
+.footer-contact p,
+.footer-contact a {
+  font-size: var(--fs-body-lg);
+  color: var(--c-primary);
+  line-height: 1.8;
+  display: block;
+}
+
+.footer-contact a:hover {
+  color: var(--c-accent);
+}
+
+/* Footer social icons row */
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--c-primary);
+  color: var(--c-primary);
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.footer-social a:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+/* ==========================================================
+   RESPONSIVE BREAKPOINTS
+   At 768px: collapse nav + footer to single column.
+   ========================================================== */
+
+@media (max-width: 900px) {
+  .site-nav {
+    padding: 0 20px;
+    height: auto;
+    min-height: 70px;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .nav-links li a {
+    height: auto;
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+  .nav-logo-text {
+    width: 180px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    grid-template-columns: 1fr;
+    padding: 32px 20px;
+    gap: 24px;
+  }
+  .footer-rule-wrap {
+    display: none;
+  }
+}

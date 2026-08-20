@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply — Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ================================================================
+   APPLY — apply.html
+   From Figma node 846:758 (1439x3934px canvas).
+   ================================================================ */
+
+/* ----------------------------------------------------------
+   DATE STRIP
+   Cream bg #fffcf7, h=459px in Figma.
+   Two staggered date cards with amber pill labels.
+   Left card: top=221, right card: top=313 (staggered 92px).
+   Connecting arrow SVG between them.
+   ---------------------------------------------------------- */
+
+.apply-date-strip {
+  background: #fffcf7;
+  padding: 40px var(--page-px) 60px;
+  position: relative;
+}
+
+.apply-dates-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+/* Each date group: pill + cream box + label. */
+.apply-date-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 0 0 416px;
+}
+
+.apply-date-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 0 0 416px;
+  margin-top: 92px;
+}
+
+/* Amber date pill: bg #e9a22d, r=26px, h=95px. */
+.apply-date-pill {
+  background: #e9a22d;
+  border-radius: 26px;
+  height: 95px;
+  min-width: 274px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: -20px;
+}
+
+.apply-date-pill-right {
+  min-width: 306px;
+}
+
+.apply-date-pill p {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Cream info box behind/below pill. */
+.apply-date-box {
+  background: var(--c-bg-cream);
+  border-radius: 27px;
+  width: 416px;
+  height: 136px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 12px 20px 14px 24px;
+}
+
+.apply-date-box-right {
+  justify-content: flex-end;
+}
+
+.apply-date-label {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-regular);
+  color: #405893;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.apply-date-label-right {
+  text-align: right;
+}
+
+/* Connecting arrow: centred between the two date groups. */
+.apply-arrow-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 48px;
+}
+
+.apply-arrow-wrap img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+/* ----------------------------------------------------------
+   DOCUMENT INSTRUCTION
+   Full-width amber divider line, then centred heading.
+   ---------------------------------------------------------- */
+
+.apply-divider {
+  height: 3px;
+  background: var(--c-accent);
+  margin: 0;
+}
+
+.apply-instruction {
+  padding: 56px var(--page-px) 12px;
+  text-align: center;
+}
+
+.apply-instruction p {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.apply-instruction .apply-email {
+  font-style: italic;
+  font-weight: var(--fw-regular);
+}
+
+/* ----------------------------------------------------------
+   DOCUMENT REQUIREMENT BOXES
+   Each box: amber border 4px, r=27px, max-w=962px, centred.
+   Inner layout: flex row with large number | illustration | text.
+   Gap between boxes: 70px.
+   Large number: 200px Afacad Bold amber, left side.
+   ---------------------------------------------------------- */
+
+.apply-docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  padding: 40px var(--page-px) 60px;
+  align-items: center;
+}
+
+.apply-doc-box {
+  border: 4px solid #e9a22d;
+  border-radius: 27px;
+  width: 100%;
+  max-width: 962px;
+  padding: 32px 48px 32px 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  overflow: visible;
+}
+
+/* Large amber number on far left, overlaps box left edge. */
+.apply-doc-number {
+  font-size: 200px;
+  font-weight: var(--fw-bold);
+  color: #e9a22d;
+  line-height: 0.9;
+  min-width: 140px;
+  text-align: center;
+  flex-shrink: 0;
+  margin-left: -10px;
+}
+
+/* Document illustration. */
+.apply-doc-illus {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.apply-doc-illus img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Text content on right side. */
+.apply-doc-content {
+  flex: 1;
+  padding-left: 24px;
+}
+
+.apply-doc-content p {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.apply-doc-content .apply-doc-tip {
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-h2);
+  color: var(--c-primary);
+  line-height: 1.4;
+}
+
+.apply-doc-content .apply-doc-or {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  margin: 12px 0;
+}
+
+/* ----------------------------------------------------------
+   FOOTER NOTE
+   Rocket image + "incomplete documentation" warning.
+   ---------------------------------------------------------- */
+
+.apply-footer-note {
+  padding: 0 var(--page-px) 56px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.apply-footer-rocket {
+  width: 180px;
+  height: auto;
+}
+
+.apply-footer-note p {
+  font-size: 32px;
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: 1.4;
+  max-width: 580px;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+   ---------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .apply-date-left, .apply-date-right { flex: 0 0 320px; }
+  .apply-date-box { width: 320px; }
+}
+
+@media (max-width: 860px) {
+  .apply-dates-row { flex-direction: column; align-items: center; gap: 24px; }
+  .apply-date-right { margin-top: 0; align-items: flex-start; }
+  .apply-arrow-wrap { display: none; }
+  .apply-doc-box { padding: 24px 20px; flex-wrap: wrap; }
+  .apply-doc-number { font-size: 120px; min-width: 80px; }
+}
+
+@media (max-width: 600px) {
+  .apply-doc-content p, .apply-doc-content .apply-doc-tip { font-size: 22px; }
+  .apply-doc-illus { width: 120px; height: 120px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-icon" src="assets/images/logo-icon.png" alt="">
+    <img class="nav-logo-text" src="assets/images/logo-text.png" alt="Dr Kasturirangan Trust">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="about.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+        <a href="#">Annual Reports</a>
+        <a href="#">Financial Declarations</a>
+      </div>
+    </li>
+    <li>
+      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">His life</a>
+        <a href="#">Selected Writings</a>
+        <a href="#">Testimonials</a>
+      </div>
+    </li>
+    <li>
+      <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+        <a href="#">Travel Grants</a>
+        <a href="#">Awards</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Alumni</a>
+      </div>
+    </li>
+    <li>
+      <a href="publications.html">Publications <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Reports</a>
+      </div>
+    </li>
+    <li>
+      <a href="journeys.html">Journeys of Change <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Awardees</a>
+        <a href="#">Media</a>
+      </div>
+    </li>
+    <li>
+      <a href="links.html">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- DATE STRIP -->
+<section class="apply-date-strip">
+  <div class="apply-dates-row">
+    <div class="apply-date-left">
+      <div class="apply-date-pill">
+        <p>October 25, 2026</p>
+      </div>
+      <div class="apply-date-box">
+        <p class="apply-date-label">Applications open</p>
+      </div>
+    </div>
+    <div class="apply-arrow-wrap">
+      <img src="assets/images/apply-arrow.svg" alt="">
+    </div>
+    <div class="apply-date-right">
+      <p class="apply-date-label apply-date-label-right">Last date for submission</p>
+      <div class="apply-date-pill apply-date-pill-right">
+        <p>December 31, 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="apply-divider"></div>
+
+<!-- DOCUMENT INSTRUCTION -->
+<div class="apply-instruction">
+  <p>Please send the following documents to<br>
+  <span class="apply-email">info@drkasturirangantrust.org</span></p>
+</div>
+
+<!-- DOCUMENT REQUIREMENT BOXES -->
+<div class="apply-docs-list">
+
+  <!-- 1: CV -->
+  <div class="apply-doc-box">
+    <div class="apply-doc-number">1</div>
+    <div class="apply-doc-illus">
+      <img src="assets/images/doc-icon.png" alt="">
+    </div>
+    <div class="apply-doc-content">
+      <p>Curriculum Vitae<br>(maximum 2 pages)</p>
+    </div>
+  </div>
+
+  <!-- 2: PhD proof -->
+  <div class="apply-doc-box">
+    <div class="apply-doc-number">2</div>
+    <div class="apply-doc-illus">
+      <img src="assets/images/icon-training.png" alt="">
+    </div>
+    <div class="apply-doc-content">
+      <p>Proof of PhD completion<br>or current enrolment</p>
+    </div>
+  </div>
+
+  <!-- 3: Statement of Purpose -->
+  <div class="apply-doc-box">
+    <div class="apply-doc-number">3</div>
+    <div class="apply-doc-illus">
+      <img src="assets/images/icon-analyze.png" alt="">
+    </div>
+    <div class="apply-doc-content">
+      <p>A Statement of Purpose (maximum 1000 words) clearly outlining how your research aligns with the Trust&rsquo;s objectives, your motivations, and how the funds can help you</p>
+      <p class="apply-doc-tip">[Tip: Try to demonstrate the interdisciplinarity of your work, its anticipated impact, and its relevance to academic, corporate, or public policy]</p>
+    </div>
+  </div>
+
+  <!-- 4: Nomination / endorsement letters -->
+  <div class="apply-doc-box">
+    <div class="apply-doc-number">4</div>
+    <div class="apply-doc-illus">
+      <img src="assets/images/icon-meeting.png" alt="">
+    </div>
+    <div class="apply-doc-content">
+      <p>A nomination letter from your institution (from the Dean or anyone at a similarly senior position)</p>
+      <p class="apply-doc-or">OR</p>
+      <p>Two letters of endorsement/support by senior collaborators who are familiar with you and your project</p>
+      <p class="apply-doc-tip">[Note: All letters must be on the official letterhead and bear original or authenticated signatures.]</p>
+    </div>
+  </div>
+
+  <!-- 5: Budget proposal -->
+  <div class="apply-doc-box">
+    <div class="apply-doc-number">5</div>
+    <div class="apply-doc-illus">
+      <img src="assets/images/apply-gforms.png" alt="Google Forms budget template">
+    </div>
+    <div class="apply-doc-content">
+      <p>Budget proposal outlining how the funds will be used to support your proposed research and professional development</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER NOTE -->
+<div class="apply-footer-note">
+  <img class="apply-footer-rocket" src="assets/images/apply-rocket.png" alt="">
+  <p>Applications with incomplete documentation will not be eligible for selection</p>
+</div>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="about.html">About Us</a>
+    <a href="kasturirangan.html">K. Kasturirangan</a>
+    <a href="initiatives.html">Initiatives</a>
+    <a href="publications.html">Publications</a>
+    <a href="journeys.html">Journeys of Change</a>
+    <a href="links.html">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <button class="footer-map-btn">&#128205; View on Map</button>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
