@@ -283,11 +283,12 @@
   user-select: none;
 }
 
-/* Quote text: 50px medium white. Left margin places it at canvas x≈367. */
+/* Quote text: 50px medium white. Left margin places it at canvas x≈367.
+   max-width 450px (Figma=503) adds explicit gap before the face illustration. */
 .quote-text {
   position: relative;
   z-index: 3;
-  max-width: 503px;
+  max-width: 450px;
   margin-top: 90px;
   margin-left: calc(367px - var(--page-px));
   font-size: var(--fs-quote);
