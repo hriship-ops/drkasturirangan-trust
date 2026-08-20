@@ -244,7 +244,7 @@
   min-height: 550px;
 }
 
-/* Rounded amber pill (key fix: border-radius + rgba fill). */
+/* Rounded amber pill — no overflow hidden, illustration is a sibling not a child. */
 .quote-amber-bg {
   position: absolute;
   left: 7.3%;    /* 105/1440 */
@@ -253,18 +253,18 @@
   height: 374px;
   background: rgba(255, 179, 56, 0.8);
   border-radius: 118px;
-  overflow: hidden;
+  z-index: 0;
 }
 
-/* Illustration SVG inside the amber pill, right side, flipped 180°. */
+/* Illustration: sibling of amber pill, positioned at Figma coords (left=905, top=235 relative to strip). */
 .quote-illus {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  left: 905px;
+  top: 235px;
   width: 295px;
   height: 291px;
-  transform: rotate(180deg) scaleY(-1);
-  opacity: 0.9;
+  transform: scaleX(-1);
+  z-index: 1;
   pointer-events: none;
   user-select: none;
 }
@@ -606,7 +606,7 @@
       We award fellowships and research support to scholars working
       at the intersection of education, science, and society.
     </p>
-    <a href="initiatives.html" class="hero-explore-link">Explore Our Work</a>
+    <a href="initiatives.html" class="hero-explore-link">Explore Our Work &nbsp;↗</a>
     <button class="hero-apply-btn"
             onclick="location.href='fellowship.html'">
       Apply for Fellowships
@@ -661,11 +661,10 @@
 
 <!-- QUOTE STRIP -->
 <section class="quote-strip" aria-label="Quote by Dr Kasturirangan">
-  <div class="quote-amber-bg">
-    <img class="quote-illus"
-         src="assets/images/quote-illustration.svg"
-         alt="" aria-hidden="true">
-  </div>
+  <div class="quote-amber-bg"></div>
+  <img class="quote-illus"
+       src="assets/images/quote-illustration.svg"
+       alt="" aria-hidden="true">
   <div class="quote-deco-mark" aria-hidden="true">&ldquo;</div>
   <p class="quote-text">
     Every phase of work must contribute to a larger national vision
