@@ -244,7 +244,7 @@
   min-height: 550px;
 }
 
-/* Rounded amber pill — no overflow hidden, illustration is a sibling not a child. */
+/* Rounded amber pill — overflow:hidden clips illustration to pill shape. */
 .quote-amber-bg {
   position: absolute;
   left: 7.3%;    /* 105/1440 */
@@ -253,18 +253,19 @@
   height: 374px;
   background: rgba(255, 179, 56, 0.8);
   border-radius: 118px;
+  overflow: hidden;
   z-index: 0;
 }
 
-/* Illustration: sibling of amber pill, positioned at Figma coords (left=905, top=235 relative to strip). */
+/* Illustration inside pill: Figma canvas (905,1694), pill origin (105,1611)
+   → right: 26px (1226-1200), top: 83px (1694-1611). */
 .quote-illus {
   position: absolute;
-  left: 905px;
-  top: 235px;
+  right: 26px;
+  top: 83px;
   width: 295px;
   height: 291px;
   transform: scaleX(-1);
-  z-index: 1;
   pointer-events: none;
   user-select: none;
 }
@@ -662,10 +663,11 @@
 
 <!-- QUOTE STRIP -->
 <section class="quote-strip" aria-label="Quote by Dr Kasturirangan">
-  <div class="quote-amber-bg"></div>
-  <img class="quote-illus"
-       src="assets/images/quote-illustration.svg"
-       alt="" aria-hidden="true">
+  <div class="quote-amber-bg">
+    <img class="quote-illus"
+         src="assets/images/quote-illustration.svg"
+         alt="" aria-hidden="true">
+  </div>
   <div class="quote-deco-mark" aria-hidden="true">&ldquo;</div>
   <p class="quote-text">
     Every phase of work must contribute to a larger national vision
