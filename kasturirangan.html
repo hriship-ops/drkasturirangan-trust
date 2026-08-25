@@ -18,16 +18,23 @@
 /* ----------------------------------------------------------
    HERO INTRO SECTION
    Left: amber title (50px Afacad Medium #c58316) + body text.
-   Right: illustrated sketch SVG.
+   Right: illustrated sketch SVG (flipped) + amber circle.
    Canvas: title at x=209, y=219; illustration at x=989, y=145.
    ---------------------------------------------------------- */
 
 .kk-hero {
-  padding: 56px var(--page-px) 40px;
+  padding: 56px var(--page-px) 0;
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 40px;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
   align-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* R1: shift text column right, closer to illustration */
+.kk-hero-text {
+  padding-left: 120px;
 }
 
 .kk-hero-title {
@@ -47,10 +54,45 @@
   max-width: 720px;
 }
 
+/* R1: illustration wrapper — holds circle + flipped image */
+.kk-hero-illus-wrap {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  overflow: visible;
+}
+
+/* R1: amber decorative circle behind illustration */
+.kk-illus-circle {
+  position: absolute;
+  width: 403px;
+  height: 403px;
+  border-radius: 50%;
+  background: rgba(217, 152, 46, 0.15);
+  top: -30px;
+  right: -60px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* R1: flip illustration horizontally */
 .kk-hero-illus {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 356px;
   height: auto;
+  transform: scaleX(-1);
+}
+
+/* R2: horizontal lighter line below illustration */
+.kk-hero-hline {
+  position: absolute;
+  bottom: -24px;
+  left: -30px;
+  right: -60px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
 }
 
 /* ----------------------------------------------------------
@@ -64,9 +106,11 @@
   grid-template-columns: 160px 1fr;
 }
 
-/* Sidebar: running year index + amber vertical line */
+/* R3: sidebar sticky so year index stays visible while scrolling */
 .kk-sidebar {
-  position: relative;
+  position: sticky;
+  top: 80px;
+  align-self: start;
   border-right: 3px solid var(--c-accent);
   padding: 0 12px 0 40px;
   display: flex;
@@ -83,7 +127,7 @@
   left: 100%;
 }
 
-/* Year index items: Agdasima 32px navy, dense vertical list */
+/* R3: year index — center-aligned, increased line-height */
 .kk-sidebar ul {
   list-style: none;
   margin: 0;
@@ -95,34 +139,79 @@
   font-family: var(--font-deco);
   font-size: 32px;
   color: var(--c-primary-dark);
-  line-height: 0.95;
+  line-height: 1.4;
   margin-bottom: 0;
+  text-align: center;
 }
 
+/* R3: highlighted years — full-width navy band, white text */
 .kk-sidebar ul li.kk-yr-highlight {
-  color: var(--c-accent);
+  background: var(--c-primary);
+  color: #fff;
+  display: block;
+  margin-left: -40px;
+  margin-right: -12px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
 }
 
 /* Main content column */
 .kk-main {
-  padding-left: 0;
+  position: relative;
+}
+
+/* R5: thin vertical grey line running through all entries at the dot column position.
+   Left = padding-left(50) + year-col-min-width(290) + gap(40) + dot-radius(16) = 396px */
+.kk-main::before {
+  content: '';
+  position: absolute;
+  left: 396px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #808080;
+  z-index: 0;
+}
+
+/* R2: vertical blue connecting line with circle at top — marks timeline start */
+.kk-timeline-vline {
+  position: absolute;
+  left: 396px;
+  top: 0;
+  height: 110px;
+  width: 2px;
+  background: var(--c-primary);
+  transform: translateX(-0.5px);
+  z-index: 1;
+}
+
+.kk-timeline-vline::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  top: -8px;
+  left: -7px;
 }
 
 /* ----------------------------------------------------------
    TIMELINE ENTRY
    Each entry: horizontal amber divider above, then content row.
-   Content row: large amber year (96px Agdasima, left) + text right.
+   Content row: large amber year (96px Agdasima, centre) + text right.
    Photos: rounded 27px, right-aligned, max-w 670px.
    ---------------------------------------------------------- */
 
-/* Horizontal amber line separating entries */
+/* Horizontal amber line separating entries — R6: grey vline intersects here */
 .kk-entry-divider {
   height: 3px;
   background: var(--c-accent);
 }
 
-/* Year + content in a flex row
-   padding-left: 50px positions the large year at canvas-x≈205 (sidebar 155px + 50px offset). */
 .kk-entry-inner {
   display: flex;
   align-items: flex-start;
@@ -130,8 +219,8 @@
   padding: 44px 58px 44px 50px;
 }
 
-/* Large amber year label: Agdasima 96px #ffb338
-   min-width: 290px keeps single years from collapsing; "1940s to 1950s" wraps naturally. */
+/* R4: year label — centered within its column.
+   R5: amber circle behind first digit via ::before. */
 .kk-entry-year {
   font-family: var(--font-deco);
   font-size: 96px;
@@ -139,7 +228,22 @@
   line-height: 1;
   flex-shrink: 0;
   min-width: 290px;
-  text-align: left;
+  text-align: center;
+  position: relative;
+}
+
+/* R5: amber glow circle behind the first character of each year */
+.kk-entry-year::before {
+  content: '';
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(217, 152, 46, 0.28);
+  top: 6px;
+  left: 50%;
+  transform: translateX(calc(-50% - 38px));
+  pointer-events: none;
 }
 
 /* Entry content: text + optional photo */
@@ -149,10 +253,11 @@
   flex-direction: column;
   gap: 24px;
   padding-top: 12px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Amber bullet dot + first text line in a flex row.
-   Figma: 32px amber circle at x=531, text at x=542 — dot sits just left of text. */
+/* Amber bullet dot + first text line in a flex row */
 .kk-entry-dot-row {
   display: flex;
   align-items: flex-start;
@@ -166,6 +271,8 @@
   background: var(--c-accent);
   flex-shrink: 0;
   margin-top: 3px;
+  position: relative;
+  z-index: 1;
 }
 
 .kk-entry-text {
@@ -190,8 +297,6 @@
    Left: text (400px). Right: photo.
    ---------------------------------------------------------- */
 
-/* Full-width dark section — sits OUTSIDE the 2-col timeline grid.
-   Figma: text at canvas-x=49, image at x=575 (w=615), right edge x=1190. */
 .kk-dark-section {
   background: var(--c-primary);
   display: flex;
@@ -221,7 +326,6 @@
    RESPONSIVE
    ---------------------------------------------------------- */
 
-/* Tail section: sidebar + one more content row after the dark section */
 .kk-sidebar-tail {
   min-height: 80px;
 }
@@ -233,7 +337,9 @@
 
 @media (max-width: 1100px) {
   .kk-hero { grid-template-columns: 1fr; }
+  .kk-hero-text { padding-left: 0; }
   .kk-hero-illus { max-width: 260px; }
+  .kk-illus-circle { width: 280px; height: 280px; }
   .kk-dark-section { flex-direction: column; padding: 40px 40px; }
   .kk-dark-photo { width: 100%; }
 }
@@ -244,6 +350,8 @@
   .kk-sidebar ul li { font-size: 20px; }
   .kk-entry-year { font-size: 64px; min-width: 160px; }
   .kk-entry-inner { gap: 20px; }
+  .kk-main::before { left: 246px; }
+  .kk-timeline-vline { left: 246px; }
 }
 
 @media (max-width: 600px) {
@@ -255,6 +363,8 @@
   .kk-hero-title { font-size: 36px; }
   .kk-hero-desc { font-size: 22px; }
   .kk-entry-dot { width: 20px; height: 20px; }
+  .kk-main::before { display: none; }
+  .kk-timeline-vline { display: none; }
 }
 </style>
 </head>
@@ -311,13 +421,17 @@
 
 <!-- HERO INTRO -->
 <section class="kk-hero">
-  <div>
+  <div class="kk-hero-text">
     <h1 class="kk-hero-title">A Many-Splendored Life</h1>
-    <p class="kk-hero-desc">In his book <em>Space and Beyond</em>, K. Kasturirangan reflects on his life as &ldquo;extraordinary and many-splendored.&rdquo; This timeline traces the remarkable journey behind those words.</p>
+    <p class="kk-hero-desc">In his book <em>Space and Beyond</em>, KK. Kasturirangan reflects on his life as &ldquo;extraordinary and many-splendored.&rdquo; This timeline traces the remarkable journey behind those words.</p>
   </div>
-  <img class="kk-hero-illus"
-       src="assets/images/kk-illustration.svg"
-       alt="Sketch portrait of K. Kasturirangan">
+  <div class="kk-hero-illus-wrap">
+    <div class="kk-illus-circle"></div>
+    <img class="kk-hero-illus"
+         src="assets/images/kk-illustration.svg"
+         alt="Sketch portrait of K. Kasturirangan">
+    <div class="kk-hero-hline"></div>
+  </div>
 </section>
 
 <!-- TIMELINE -->
@@ -372,6 +486,9 @@
 
   <!-- MAIN TIMELINE CONTENT -->
   <div class="kk-main">
+
+    <!-- R2: vertical blue connecting line — marks timeline start, circle at top -->
+    <div class="kk-timeline-vline"></div>
 
     <!-- 1940s–1950s -->
     <div class="kk-entry">
