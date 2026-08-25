@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials — Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ================================================================
+   TESTIMONIALS — testimonials.html
+   Figma node 856:1338 (1440×1793px canvas)
+   Heading: "Moments That Stay", 36px bold navy, amber dot 32px.
+   6 cards in 3×2 grid. Card: 393×456px, border 4px #e9a22d, r=27px.
+   Col positions: 78 / 517 / 964px → col-gap ≈ 50px.
+   Row positions: 312px / 847px → row-gap ≈ 79px.
+   ================================================================ */
+
+.testimonials-section {
+  padding: 98px 58px 80px 56px;
+}
+
+/* Heading row: amber dot + "Moments That Stay" */
+.testimonials-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 77px;
+}
+
+.testimonials-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+}
+
+.testimonials-heading-row h1 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+}
+
+/* 3-column fixed-width grid, matching Figma card positions. */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 393px);
+  column-gap: 50px;
+  row-gap: 79px;
+}
+
+/* -------------------------------------------------------
+   TESTIMONIAL CARD
+   Upper white section: large amber quote mark + quote text.
+   Photo (107px circle) floats between white section and wave.
+   Wave SVG (168px tall) transitions white to cream.
+   Cream band (#fcedd6) at bottom with name and email.
+   ------------------------------------------------------- */
+
+.tc-card {
+  width: 393px;
+  height: 456px;
+  border: 4px solid #e9a22d;
+  border-radius: 27px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Upper white section — flex: 1 fills remaining height */
+.tc-upper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 84px;   /* bottom padding reserves space for photo overlap */
+  min-height: 0;
+}
+
+/* 200px Agdasima opening double-quote mark, amber-border color.
+   line-height: 0.55 compresses vertical space so mark sits near top. */
+.tc-quote-mark {
+  font-family: var(--font-deco);
+  font-size: 200px;
+  color: var(--c-amber-border);
+  line-height: 0.55;
+  padding: 14px 0 0 12px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Quote body text — centered, navy, 24px */
+.tc-quote-text {
+  flex: 1;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  text-align: center;
+  line-height: 1.3;
+  padding: 10px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wave + photo zone.
+   position: relative so the photo can be absolute within it.
+   margin-top: -84px pulls the wave up into the padding reserved above. */
+.tc-wave-section {
+  position: relative;
+  height: 168px;
+  flex-shrink: 0;
+  margin-top: -84px;
+}
+
+/* Wave SVG fills the section. z-index: 1 sits behind photo. */
+.tc-wave-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Circular portrait — centered, positioned 30px above wave section top.
+   z-index: 2 floats in front of wave. */
+.tc-photo {
+  position: absolute;
+  width: 107px;
+  height: 107px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -30px;
+  z-index: 2;
+}
+
+/* Cream name band — overlaps bottom 62px of wave via negative margin.
+   z-index: 3 sits above wave. */
+.tc-band {
+  background: #fcedd6;
+  text-align: center;
+  padding: 6px 16px 14px;
+  flex-shrink: 0;
+  margin-top: -62px;
+  position: relative;
+  z-index: 3;
+}
+
+.tc-name {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: 1.4;
+}
+
+.tc-email {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: 1.2;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------- */
+
+@media (max-width: 1350px) {
+  .testimonials-section { padding-left: 32px; }
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+    row-gap: 40px;
+  }
+  .tc-card { width: 100%; }
+}
+
+@media (max-width: 900px) {
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 580px) {
+  .testimonials-section { padding: 48px 20px 48px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-icon" src="assets/images/logo-icon.png" alt="">
+    <img class="nav-logo-text" src="assets/images/logo-text.png" alt="Dr Kasturirangan Trust">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="about.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+        <a href="#">Annual Reports</a>
+        <a href="#">Financial Declarations</a>
+      </div>
+    </li>
+    <li>
+      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="kasturirangan.html">His Life</a>
+        <a href="#">Selected Writings</a>
+        <a href="testimonials.html">Testimonials</a>
+      </div>
+    </li>
+    <li>
+      <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+        <a href="#">Travel Grants</a>
+        <a href="#">Awards</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Alumni</a>
+      </div>
+    </li>
+    <li>
+      <a href="publications.html">Publications <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Reports</a>
+      </div>
+    </li>
+    <li>
+      <a href="journeys.html">Journeys of Change <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Awardees</a>
+        <a href="#">Media</a>
+      </div>
+    </li>
+    <li>
+      <a href="links.html">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="#">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials-section">
+  <div class="testimonials-heading-row">
+    <div class="testimonials-dot"></div>
+    <h1>Moments That Stay</h1>
+  </div>
+
+  <div class="testimonials-grid">
+
+    <!-- Row 1, Card 1 -->
+    <div class="tc-card">
+      <div class="tc-upper">
+        <p class="tc-quote-mark">&ldquo;</p>
+        <p class="tc-quote-text">To work alongside him was to witness grace, intellect, and unwavering integrity. His example continues to guide us.</p>
+      </div>
+      <div class="tc-wave-section">
+        <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
+        <img class="tc-photo" src="assets/images/testimonial-photo-1.png" alt="Arjun Nair">
+      </div>
+      <div class="tc-band">
+        <p class="tc-name">Arjun Nair</p>
+        <p class="tc-email">arjun.nair@example.com</p>
+      </div>
+    </div>
+
+    <!-- Row 1, Card 2 -->
+    <div class="tc-card">
+      <div class="tc-upper">
+        <p class="tc-quote-mark">&ldquo;</p>
+        <p class="tc-quote-text">He believed that science and education were ultimately about people. That belief shaped every conversation and every collaboration.</p>
+      </div>
+      <div class="tc-wave-section">
+        <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
+        <img class="tc-photo" src="assets/images/testimonial-photo-2.png" alt="Arjun Nair">
+      </div>
+      <div class="tc-band">
+        <p class="tc-name">Arjun Nair</p>
+        <p class="tc-email">arjun.nair@example.com</p>
+      </div>
+    </div>
+
+    <!-- Row 1, Card 3 -->
+    <div class="tc-card">
+      <div class="tc-upper">
+        <p class="tc-quote-mark">&ldquo;</p>
+        <p class="tc-quote-text">He had a remarkable ability to make complex ideas feel accessible. More importantly, he made every individual feel valued.</p>
+      </div>
+      <div class="tc-wave-section">
+        <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
+        <img class="tc-photo" src="assets/images/testimonial-photo-3.png" alt="Arjun Nair">
+      </div>
+      <div class="tc-band">
+        <p class="tc-name">Arjun Nair</p>
+        <p class="tc-email">arjun.nair@example.com</p>
+      </div>
+    </div>
+
+    <!-- Row 2, Card 4 -->
+    <div class="tc-card">
+      <div class="tc-upper">
+        <p class="tc-quote-mark">&ldquo;</p>
+        <p class="tc-quote-text">To work alongside him was to witness grace, intellect, and unwavering integrity. His example continues to guide us.</p>
+      </div>
+      <div class="tc-wave-section">
+        <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
+        <img class="tc-photo" src="assets/images/testimonial-photo-4.png" alt="Arjun Nair">
+      </div>
+      <div class="tc-band">
+        <p class="tc-name">Arjun Nair</p>
+        <p class="tc-email">arjun.nair@example.com</p>
+      </div>
+    </div>
+
+    <!-- Row 2, Card 5 -->
+    <div class="tc-card">
+      <div class="tc-upper">
+        <p class="tc-quote-mark">&ldquo;</p>
+        <p class="tc-quote-text">To work alongside him was to witness grace, intellect, and unwavering integrity. His example continues to guide us.</p>
+      </div>
+      <div class="tc-wave-section">
+        <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
+        <img class="tc-photo" src="assets/images/testimonial-photo-5.png" alt="Arjun Nair">
+      </div>
+      <div class="tc-band">
+        <p class="tc-name">Arjun Nair</p>
+        <p class="tc-email">arjun.nair@example.com</p>
+      </div>
+    </div>
+
+    <!-- Row 2, Card 6 -->
+    <div class="tc-card">
+      <div class="tc-upper">
+        <p class="tc-quote-mark">&ldquo;</p>
+        <p class="tc-quote-text">To work alongside him was to witness grace, intellect, and unwavering integrity. His example continues to guide us.</p>
+      </div>
+      <div class="tc-wave-section">
+        <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
+        <img class="tc-photo" src="assets/images/testimonial-photo-6.png" alt="Arjun Nair">
+      </div>
+      <div class="tc-band">
+        <p class="tc-name">Arjun Nair</p>
+        <p class="tc-email">arjun.nair@example.com</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="about.html">About Us</a>
+    <a href="kasturirangan.html">K. Kasturirangan</a>
+    <a href="initiatives.html">Initiatives</a>
+    <a href="publications.html">Publications</a>
+    <a href="journeys.html">Journeys of Change</a>
+    <a href="links.html">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <button class="footer-map-btn">&#128205; View on Map</button>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
