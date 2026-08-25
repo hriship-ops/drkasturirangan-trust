@@ -253,11 +253,30 @@
   align-items: center;
 }
 
-.area-item img {
+/* Wrapper gives the SVG label room to sit on the top arc. */
+.area-circle-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.area-circle-wrap img {
   width: 200px;
   height: 200px;
   object-fit: cover;
   display: block;
+}
+
+/* SVG overlay with curved text along the top arc. */
+.area-label-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  overflow: visible;
+  pointer-events: none;
 }
 
 /* ----------------------------------------------------------
@@ -693,16 +712,48 @@
 <section class="areas-section">
   <div class="areas-row">
     <div class="area-item">
-      <img src="assets/images/area-space.png" alt="Space &amp; Technology">
+      <div class="area-circle-wrap">
+        <img src="assets/images/area-space.png" alt="">
+        <svg class="area-label-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Space &amp; Technology">
+          <defs><path id="arc-space" d="M 14 100 A 86 86 0 0 1 186 100"/></defs>
+          <text font-size="11" fill="#FFB338" font-family="'Inter',sans-serif" font-weight="600" letter-spacing="1.8">
+            <textPath href="#arc-space" startOffset="50%" text-anchor="middle">SPACE &amp; TECHNOLOGY</textPath>
+          </text>
+        </svg>
+      </div>
     </div>
     <div class="area-item">
-      <img src="assets/images/area-environment.png" alt="Environment">
+      <div class="area-circle-wrap">
+        <img src="assets/images/area-environment.png" alt="">
+        <svg class="area-label-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Environment">
+          <defs><path id="arc-env" d="M 14 100 A 86 86 0 0 1 186 100"/></defs>
+          <text font-size="11" fill="#FFB338" font-family="'Inter',sans-serif" font-weight="600" letter-spacing="1.8">
+            <textPath href="#arc-env" startOffset="50%" text-anchor="middle">ENVIRONMENT</textPath>
+          </text>
+        </svg>
+      </div>
     </div>
     <div class="area-item">
-      <img src="assets/images/area-education.png" alt="Education">
+      <div class="area-circle-wrap">
+        <img src="assets/images/area-education.png" alt="">
+        <svg class="area-label-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Education">
+          <defs><path id="arc-edu" d="M 14 100 A 86 86 0 0 1 186 100"/></defs>
+          <text font-size="11" fill="#FFB338" font-family="'Inter',sans-serif" font-weight="600" letter-spacing="1.8">
+            <textPath href="#arc-edu" startOffset="50%" text-anchor="middle">EDUCATION</textPath>
+          </text>
+        </svg>
+      </div>
     </div>
     <div class="area-item">
-      <img src="assets/images/area-publiclife.png" alt="Public Life">
+      <div class="area-circle-wrap">
+        <img src="assets/images/area-publiclife.png" alt="">
+        <svg class="area-label-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Public Life">
+          <defs><path id="arc-pub" d="M 14 100 A 86 86 0 0 1 186 100"/></defs>
+          <text font-size="11" fill="#FFB338" font-family="'Inter',sans-serif" font-weight="600" letter-spacing="1.8">
+            <textPath href="#arc-pub" startOffset="50%" text-anchor="middle">PUBLIC LIFE</textPath>
+          </text>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
