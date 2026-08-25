@@ -232,7 +232,9 @@
   position: relative;
 }
 
-/* R5: amber glow circle behind the first character of each year */
+/* R5: amber glow circle behind the first character of each year.
+   Fixed left:20px so the circle reliably sits behind the first digit
+   for all year labels (left-edge of the year column). */
 .kk-entry-year::before {
   content: '';
   position: absolute;
@@ -241,8 +243,7 @@
   border-radius: 50%;
   background: rgba(217, 152, 46, 0.28);
   top: 6px;
-  left: 50%;
-  transform: translateX(calc(-50% - 38px));
+  left: 20px;
   pointer-events: none;
 }
 
