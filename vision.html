@@ -23,8 +23,9 @@
 
 .vm-quote-strip {
   background: #fffcf7;
-  padding: 56px var(--page-px);
+  padding: 56px var(--page-px) 80px;
   position: relative;
+  overflow: hidden;
   border-top: 3px solid #d9d9d9;
   border-bottom: 3px solid #d9d9d9;
 }
@@ -58,7 +59,7 @@
 }
 
 .vm-deco-open  { top: -10px; left: 0; }
-.vm-deco-close { bottom: 10px; right: var(--page-px); }
+.vm-deco-close { bottom: -30px; right: var(--page-px); transform: rotate(180deg); }
 
 .vm-quote-text {
   font-size: var(--fs-h2);
@@ -519,7 +520,7 @@
     <span class="vm-deco-open">&ldquo;</span>
     <p class="vm-quote-text">To propagate the ideals, vision and<br>life-values of Dr Krishnaswamy Kasturirangan through structured, excellence-driven, ethical and humane initiatives that inspire future humanity and sustainable actions</p>
   </div>
-  <span class="vm-deco-close">&rdquo;</span>
+  <span class="vm-deco-close">&ldquo;</span>
 </section>
 
 <!-- THE LEGACY -->
