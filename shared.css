@@ -48,6 +48,8 @@
   padding: 0;
   margin: 0;
   gap: 0;
+  flex: 1;
+  justify-content: center; /* R6: centre nav categories */
 }
 
 .nav-links li a {
@@ -86,8 +88,8 @@
   border-top: 3px solid var(--c-accent);
   border-radius: 0 0 10px 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  min-width: 220px;
-  padding: 6px 0 10px;
+  min-width: fit-content;
+  padding: 4px 0 8px; /* R5: compact dropdown */
   z-index: 300;
   opacity: 0;
   transform: translateY(-6px);
@@ -106,7 +108,7 @@
 .nav-links li .nav-dropdown a {
   display: block;
   height: auto;
-  padding: 8px 20px;
+  padding: 7px 16px; /* R5: tighter dropdown items */
   font-size: 15px;
   font-weight: var(--fw-regular);
   color: var(--c-primary-dark);
@@ -174,7 +176,7 @@
   position: absolute;
   left: 0;
   top: 14px;
-  width: calc(100% - 118px);
+  width: 100%; /* R7/R23: extend amber rule fully across */
   height: 5px;
   background: var(--c-accent);
 }

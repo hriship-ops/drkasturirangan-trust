@@ -36,15 +36,16 @@
   overflow: hidden;
 }
 
-/* Partially off-screen decorative amber circle (x=-138, y=496, w=274). */
+/* Partially off-screen decorative amber circle (R8: anchored to bottom). */
 .hero-deco-circle {
   position: absolute;
   left: -138px;
-  top: 395px;
+  bottom: 0;
   width: 274px;
   height: 274px;
   pointer-events: none;
   user-select: none;
+  z-index: 2;
 }
 
 /* Navy pill behind portrait: x=58, y=188 (canvas) → hero-relative top=87px. */
@@ -96,12 +97,45 @@
   margin-top: 6px;
 }
 
-/* Headline: 35px Regular black. line-height: 93.52% from Figma. */
+/* Slideshow fills the left hero column; slides cross-fade. */
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--r-portrait);
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+}
+.hero-slide.active { opacity: 1; }
+
+/* Headline: increased line-height (R10). Dot positioned behind "C" via ::before. */
 .hero-headline {
   font-size: var(--fs-hero);
   font-weight: var(--fw-regular);
   color: #000;
-  line-height: 0.935;
+  line-height: 1.15; /* R10: was 0.935 */
+  position: relative;
+}
+
+/* Amber dot behind "C" in "Cultivating" (R10). */
+.hero-headline::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Description: 18px Regular black, max-width 446px. */
@@ -168,7 +202,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--c-primary-dark);
+  background: var(--c-accent); /* R13: was navy */
   flex-shrink: 0;
 }
 
@@ -399,19 +433,43 @@
   font-weight: var(--fw-medium);
   color: var(--c-primary);
   line-height: normal;
+  display: inline-block;
+  position: relative;
+}
+
+/* R19: amber circle highlight behind moment text. */
+.moment-text::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  opacity: 0.4;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* ----------------------------------------------------------
-   HOME CTA
-   Centered tagline (italic 23px #808080) + rocket + apply button.
-   Button: bg=#2a427e, w=234, h=42, r=13px, 23px white.
+   HOME CTA (R21: flex-row — rocket left, tagline+button right)
    ---------------------------------------------------------- */
 
 .home-cta {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 40px var(--page-px) 60px;
+  gap: 48px;
+}
+
+.home-cta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
 }
 
@@ -524,8 +582,7 @@
 <!-- NAV -->
 <nav class="site-nav">
   <a href="index.html" class="nav-logo">
-    <img class="nav-logo-icon" src="assets/images/logo-icon.png" alt="">
-    <img class="nav-logo-text" src="assets/images/logo-text.png" alt="Dr Kasturirangan Trust">
+    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:74px;width:auto;">
   </a>
   <ul class="nav-links">
     <li>
@@ -556,19 +613,6 @@
       </div>
     </li>
     <li>
-      <a href="publications.html">Publications <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="#">Reports</a>
-      </div>
-    </li>
-    <li>
-      <a href="journeys.html">Journeys of Change <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="#">Awardees</a>
-        <a href="#">Media</a>
-      </div>
-    </li>
-    <li>
       <a href="links.html">Useful Links <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="apply.html">Apply</a>
@@ -587,17 +631,19 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
+    <div class="hero-slideshow">
+      <img class="hero-slide active" src="assets/images/slideshow-1.jpg" alt="Dr K. Kasturirangan">
+      <img class="hero-slide" src="assets/images/slideshow-2.jpg" alt="">
+      <img class="hero-slide" src="assets/images/slideshow-3.jpg" alt="">
+      <img class="hero-slide" src="assets/images/slideshow-4.jpg" alt="">
+      <img class="hero-slide" src="assets/images/slideshow-5.jpg" alt="">
+    </div>
     <img class="hero-deco-circle"
          src="assets/images/home-ellipse-deco.svg"
          alt="" aria-hidden="true">
-    <div class="hero-blue-rect"></div>
-    <img class="hero-portrait"
-         src="assets/images/hero-portrait.png"
-         alt="Dr K. Kasturirangan">
   </div>
   <div class="hero-right">
     <div class="hero-headline-wrap">
-      <div class="hero-amber-dot"></div>
       <h1 class="hero-headline">
         Cultivating Excellence<br>
         Futures Thinking<br>
@@ -636,7 +682,7 @@
       scientific excellence, institution-building, and public service.
     </p>
     <p>
-      The Dr Kasturirangan Trust was formed to keep alive his legacy &mdash; his spirit
+      The Dr Kasturirangan Trust was formed to keep alive his legacy, his spirit
       of innovation, interdisciplinary thinking, and commitment to national
       development through knowledge and education.
     </p>
@@ -670,7 +716,7 @@
   </div>
   <div class="quote-deco-mark" aria-hidden="true">&ldquo;</div>
   <p class="quote-text">
-    Every phase of work must contribute to a larger national vision
+    &ldquo;Every phase of work must<br>contribute to a larger<br>national vision&rdquo;
   </p>
 </section>
 
@@ -714,17 +760,17 @@
   </div>
 </section>
 
-<!-- HOME CTA -->
+<!-- HOME CTA (R21: rocket left, tagline+button right) -->
 <div class="home-cta">
-  <p class="home-cta-tagline">
-    Cultivating Excellence. Futures Thinking. Advancing Humanity.
-  </p>
-  <img class="home-cta-rocket"
-       src="assets/images/home-rocket.png" alt="">
-  <button class="home-cta-btn"
-          onclick="location.href='fellowship.html'">
-    Apply for Fellowships
-  </button>
+  <img class="home-cta-rocket" src="assets/images/home-rocket.png" alt="">
+  <div class="home-cta-right">
+    <p class="home-cta-tagline">
+      Cultivating Excellence. Futures Thinking. Advancing Humanity.
+    </p>
+    <button class="home-cta-btn" onclick="location.href='apply.html'">
+      Apply for Fellowships
+    </button>
+  </div>
 </div>
 
 <!-- FOOTER RULE -->
@@ -739,8 +785,6 @@
     <a href="about.html">About Us</a>
     <a href="kasturirangan.html">K. Kasturirangan</a>
     <a href="initiatives.html">Initiatives</a>
-    <a href="publications.html">Publications</a>
-    <a href="journeys.html">Journeys of Change</a>
     <a href="links.html">Useful Links</a>
   </nav>
   <div class="footer-addr-block">
@@ -772,5 +816,17 @@
   </div>
 </footer>
 
+<script>
+(function() {
+  var slides = document.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
+  var current = 0;
+  setInterval(function() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 4000);
+})();
+</script>
 </body>
 </html>
