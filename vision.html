@@ -67,11 +67,11 @@
   padding: var(--section-py) var(--page-px);
 }
 
-/* Amber dot + h2 heading row — used on every section. */
+/* Amber dot behind first letter of heading — used on every section. */
 .vm-heading-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 0;
   margin-bottom: 32px;
 }
 
@@ -81,12 +81,17 @@
   border-radius: 50%;
   background: var(--c-accent);
   flex-shrink: 0;
+  margin-right: -18px;
+  position: relative;
+  z-index: 0;
 }
 
 .vm-heading-row h2 {
   font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
   color: var(--c-primary);
+  position: relative;
+  z-index: 1;
 }
 
 /* ----------------------------------------------------------
@@ -134,7 +139,7 @@
   height: 430px;
 }
 
-/* Navy circle sits to the right behind the portrait. */
+/* Amber circle sits to the right behind the portrait (R7). */
 .vm-portrait-bg-circle {
   position: absolute;
   right: 0;
@@ -142,7 +147,7 @@
   width: 392px;
   height: 392px;
   border-radius: 50%;
-  background: var(--c-primary);
+  background: #E9A22D;
 }
 
 /* Portrait overlaps circle; z-index: 1 brings it forward. */
@@ -213,7 +218,7 @@
   width: 198px;
   height: 197px;
   border-radius: 50%;
-  background: var(--c-primary);
+  background: #E9A22D;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,7 +229,7 @@
 .vm-ethos-circle p {
   font-size: 20px;
   font-weight: var(--fw-bold);
-  color: #fff;
+  color: #3C5EB6;
   text-align: center;
   line-height: 1.3;
 }
@@ -270,7 +275,11 @@
   white-space: nowrap;
   position: relative;
   z-index: 1;
-  margin-bottom: -1px;
+  margin-bottom: -22px;
+}
+
+.vm-obj-box {
+  padding-top: 34px;
 }
 
 .vm-obj-box {
@@ -325,8 +334,8 @@
 .vm-focus-card-4 { background: #fbe7c9; }
 
 .vm-focus-icon {
-  width: 148px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -391,7 +400,7 @@
 .vm-partnerships-heading-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 0;
   margin-bottom: 24px;
 }
 
@@ -494,8 +503,8 @@
 <section class="vm-quote-strip">
   <div class="vm-quote-inner">
     <span class="vm-deco-open">&ldquo;</span>
-    <p class="vm-quote-text">To propagate the ideals, vision and life-values of Dr Krishnaswamy Kasturirangan through structured, excellence-driven, ethical and humane initiatives that inspire future humanity and sustainable actions</p>
-    <span class="vm-deco-close">&ldquo;</span>
+    <p class="vm-quote-text">To propagate the ideals, vision and<br>life-values of Dr Krishnaswamy Kasturirangan through structured, excellence-driven, ethical and humane initiatives that inspire future humanity and sustainable actions</p>
+    <span class="vm-deco-close">&rdquo;</span>
   </div>
 </section>
 
@@ -568,7 +577,7 @@
     </div>
     <div class="vm-obj-item">
       <div class="vm-obj-pill">Policy &amp; Impact</div>
-      <div class="vm-obj-box">Programmes to improve institutional effectiveness and policymaking</div>
+      <div class="vm-obj-box">Programmes to improve institutional<br>effectiveness and policymaking</div>
     </div>
     <div class="vm-obj-item">
       <div class="vm-obj-pill">Advancing Knowledge</div>
@@ -580,7 +589,7 @@
     </div>
     <div class="vm-obj-item vm-obj-center">
       <div class="vm-obj-pill">Futures Institute</div>
-      <div class="vm-obj-box">An institution that advances future thinking, research, and practical solutions for India&rsquo;s long-term development</div>
+      <div class="vm-obj-box">An institution that advances future thinking, research, and practical solutions for India&rsquo;s long-term&nbsp;development</div>
     </div>
   </div>
 </section>
@@ -594,28 +603,24 @@
   <p class="vm-focus-intro">The Trust is a living institution of people active in diverse domains that shaped K. Kasturirangan&rsquo;s remarkable life.</p>
   <div class="vm-focus-grid">
     <div class="vm-focus-card vm-focus-card-1">
-      <p class="vm-focus-label">SPACE TECH</p>
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-1.png" alt="Space and satellite technology">
       </div>
       <p>Satellite applications and space technology for the benefit of humankind</p>
     </div>
     <div class="vm-focus-card vm-focus-card-2">
-      <p class="vm-focus-label">EDUCATION</p>
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-2.png" alt="Education and learning">
       </div>
       <p>Revolutionising learning systems and research frameworks</p>
     </div>
     <div class="vm-focus-card vm-focus-card-3">
-      <p class="vm-focus-label">SUSTAINABILITY</p>
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-3.png" alt="Environment">
       </div>
-      <p>Environmental consciousness and urban/rural transformation</p>
+      <p>Environmental<br>consciousness and urban/rural transformation</p>
     </div>
     <div class="vm-focus-card vm-focus-card-4">
-      <p class="vm-focus-label">PUBLIC POLICY</p>
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-4.png" alt="Public life and governance">
       </div>
@@ -643,8 +648,8 @@
         <h3>Partnerships</h3>
       </div>
       <p>The Trust will partner with government institutions, private enterprises, and nonprofit organisations in India and around the world that share its commitment to scientific excellence and the betterment of humanity.</p>
-      <p><strong>Trustees@drkasturirangantrust.org</strong></p>
-      <p><strong>Registered Office:</strong> Alder 1002, Godrej Woodsman Estate, Hebbal, Bengaluru &ndash; 560045</p>
+      <p>&#8212; <strong>Trustees@drkasturirangantrust.org</strong></p>
+      <p><strong>Registered Office:</strong><br>Alder 1002, Godrej Woodsman Estate, Hebbal, Bengaluru &ndash; 560045</p>
       <p><strong>Sanjay Rangan</strong> | sanjay.rangan@drkasturirangantrust.org</p>
       <p><strong>Mukund Rao</strong> | mukund.rao@drkasturirangantrust.org</p>
       <p><strong>Anurag Behar</strong> | anurag.behar@drkasturirangantrust.org</p>
