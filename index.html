@@ -337,15 +337,14 @@
   user-select: none;
 }
 
-/* Quote text: 50px medium white. Centred in the left ~60% of the amber pill
-   (right portion is taken by the illustration). */
+/* Quote text: 50px medium white. Starts at x≈170px (Figma), max-width 620px
+   keeps each explicit <br>-delimited line on one line without wrapping. */
 .quote-text {
   position: relative;
   z-index: 3;
-  max-width: 500px;
+  max-width: 620px;
   margin-top: 90px;
-  margin-left: calc(7.3% + 40px - var(--page-px));
-  margin-right: auto;
+  margin-left: 110px;
   text-align: center;
   font-size: var(--fs-quote);
   font-weight: var(--fw-medium);
