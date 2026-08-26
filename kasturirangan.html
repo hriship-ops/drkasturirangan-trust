@@ -133,6 +133,18 @@
   margin: 0;
   padding: 0;
   padding-top: 16px;
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+  scrollbar-width: none;
+}
+.kk-sidebar ul::-webkit-scrollbar { display: none; }
+.kk-sidebar ul li.kk-yr-active {
+  color: var(--c-accent);
+  font-weight: 700;
+  font-size: 36px;
+  transform: scale(1.08);
+  display: block;
+  transition: transform 0.2s, color 0.2s;
 }
 
 .kk-sidebar ul li {
@@ -489,13 +501,13 @@
   <div class="kk-sidebar">
     <div class="kk-sidebar-dot"></div>
     <ul>
-      <li>1940</li>
+      <li data-yr="1940">1940</li>
       <li>to</li>
       <li>1950</li>
-      <li>1961</li>
-      <li>1963</li>
-      <li>1969</li>
-      <li class="kk-yr-highlight">1971</li>
+      <li data-yr="1961">1961</li>
+      <li data-yr="1963">1963</li>
+      <li data-yr="1969">1969</li>
+      <li class="kk-yr-highlight" data-yr="1971">1971</li>
       <li>1975</li>
       <li>1976</li>
       <li>1979</li>
@@ -539,7 +551,7 @@
     <div class="kk-timeline-vline"></div>
 
     <!-- 1940s–1950s -->
-    <div class="kk-entry">
+    <div class="kk-entry" data-year="1940">
       <div class="kk-entry-divider"></div>
 
       <div class="kk-entry-inner">
@@ -557,7 +569,7 @@
     </div>
 
     <!-- 1961 -->
-    <div class="kk-entry">
+    <div class="kk-entry" data-year="1961">
       <div class="kk-entry-divider"></div>
 
       <div class="kk-entry-inner">
@@ -575,7 +587,7 @@
     </div>
 
     <!-- 1963 -->
-    <div class="kk-entry">
+    <div class="kk-entry" data-year="1963">
       <div class="kk-entry-divider"></div>
 
       <div class="kk-entry-inner">
@@ -594,7 +606,7 @@
     </div>
 
     <!-- 1969 -->
-    <div class="kk-entry">
+    <div class="kk-entry" data-year="1969">
       <div class="kk-entry-divider"></div>
 
       <div class="kk-entry-inner">
@@ -612,7 +624,7 @@
     </div>
 
     <!-- 1971 -->
-    <div class="kk-entry">
+    <div class="kk-entry" data-year="1971">
       <div class="kk-entry-divider"></div>
 
       <div class="kk-entry-inner">
@@ -692,6 +704,37 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function() {
+  var entries = Array.from(document.querySelectorAll('.kk-entry[data-year]'));
+  var sidebarUl = document.querySelector('.kk-sidebar ul');
+  if (!entries.length || !sidebarUl) return;
+  var activeYr = null;
+
+  function activate(yr) {
+    if (yr === activeYr) return;
+    activeYr = yr;
+    sidebarUl.querySelectorAll('li.kk-yr-active').forEach(function(el) {
+      el.classList.remove('kk-yr-active');
+    });
+    var li = sidebarUl.querySelector('li[data-yr="' + yr + '"]');
+    if (li) {
+      li.classList.add('kk-yr-active');
+      li.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  var obs = new IntersectionObserver(function(changes) {
+    changes.forEach(function(c) {
+      if (c.isIntersecting) activate(c.target.getAttribute('data-year'));
+    });
+  }, { threshold: 0.35, rootMargin: '-80px 0px -20% 0px' });
+
+  entries.forEach(function(e) { obs.observe(e); });
+  if (entries.length) activate(entries[0].getAttribute('data-year'));
+})();
+</script>
 
 </body>
 </html>
