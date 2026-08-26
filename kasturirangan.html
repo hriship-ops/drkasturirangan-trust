@@ -312,7 +312,9 @@
   display: flex;
   align-items: center;
   gap: 40px;
-  padding: 56px 250px 56px 49px;
+  padding: 56px 50px 56px 49px;
+  position: relative;
+  z-index: 1;
 }
 
 .kk-dark-text {
@@ -336,8 +338,7 @@
    RESPONSIVE
    ---------------------------------------------------------- */
 
-.kk-sidebar-tail { min-height: 80px; }
-.kk-entry-tail   { padding-top: 40px; padding-bottom: 60px; }
+.kk-entry-tail { padding-top: 40px; padding-bottom: 60px; }
 
 /* ── Tablet wide (≤1100px): hero collapses to single column ── */
 @media (max-width: 1100px) {
@@ -385,7 +386,6 @@
 
   .kk-timeline-wrap { grid-template-columns: 1fr; }
   .kk-sidebar       { display: none; }
-  .kk-sidebar-tail  { display: none; }
 
   /* Stacked entry: year on top, content below */
   .kk-entry-inner   { flex-direction: column; gap: 8px; padding: 20px 20px; }
@@ -633,29 +633,22 @@
       </div>
     </div>
 
-  </div><!-- /.kk-main -->
-</div><!-- /.kk-timeline-wrap -->
+    <!-- Dark callout and continuation inside right column so sidebar stays visible -->
+    <div class="kk-dark-section">
+      <p class="kk-dark-text">Receives an offer to do postdoctoral work with Nobel Laureate Prof Louis Alvarez at UC Berkeley, but is convinced by Sarabhai to join ISRO instead</p>
+      <img class="kk-dark-photo"
+           src="assets/images/kk-photo-isro.png"
+           alt="Aryabhata satellite launch">
+    </div>
 
-<!-- DARK CALLOUT: full-width navy section — outside the 2-col grid -->
-<div class="kk-dark-section">
-  <p class="kk-dark-text">Receives an offer to do postdoctoral work with Nobel Laureate Prof Louis Alvarez at UC Berkeley, but is convinced by Sarabhai to join ISRO instead</p>
-  <img class="kk-dark-photo"
-       src="assets/images/kk-photo-isro.png"
-       alt="Aryabhata satellite launch">
-</div>
-
-<!-- 1971 CONTINUATION: text that appears after the dark section in Figma -->
-<div class="kk-timeline-wrap">
-  <div class="kk-sidebar kk-sidebar-tail"></div>
-  <div class="kk-main">
     <div class="kk-entry-inner kk-entry-tail">
-      <div class="kk-entry-year"></div>
       <div class="kk-entry-content">
         <p class="kk-entry-text">Takes on systems engineering responsibility for Aryabhata, India&rsquo;s first satellite</p>
       </div>
     </div>
-  </div>
-</div>
+
+  </div><!-- /.kk-main -->
+</div><!-- /.kk-timeline-wrap -->
 
 <!-- FOOTER RULE -->
 <div class="footer-rule-wrap">
