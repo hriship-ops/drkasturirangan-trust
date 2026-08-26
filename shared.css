@@ -394,7 +394,7 @@
   .nav-hamburger { display: flex; }
   .nav-search-btn { display: none; }
   .nav-logo-text  { width: 140px; }
-  .nav-logo img   { height: 48px; width: auto; }
+  .nav-logo img   { height: 48px !important; width: auto !important; }
 }
 
 @media (max-width: 768px) {
