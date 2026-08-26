@@ -594,6 +594,39 @@
   .moment-item:nth-child(3) {
     width: 100%;
   }
+  /* Quote section: hide illustration, stretch amber bg full-width, shrink text */
+  .quote-strip {
+    padding: 60px 20px 48px;
+    min-height: auto;
+  }
+  .quote-amber-bg {
+    left: 0;
+    right: 0;
+    top: 30px;
+    height: auto;
+    bottom: 0;
+    border-radius: 28px;
+  }
+  .quote-illus { display: none; }
+  .quote-deco-mark { left: 16px; font-size: 120px; }
+  .quote-text {
+    font-size: 28px;
+    margin-top: 60px;
+    margin-left: 0;
+    padding: 0 8px;
+    max-width: 100%;
+  }
+  /* CTA: stack vertically, reduce padding */
+  .home-cta {
+    flex-direction: column;
+    padding: 32px 20px 48px;
+    gap: 20px;
+    align-items: center;
+  }
+  .home-cta-right { align-items: center; }
+  .home-cta-tagline { text-align: center; font-size: 18px; }
+  .home-cta-btn { width: 100%; max-width: 280px; font-size: 18px; }
+  .home-cta-rocket { width: 140px; height: auto; }
 }
 </style>
 </head>
@@ -644,6 +677,14 @@
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
       <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
 </nav>
