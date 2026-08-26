@@ -704,7 +704,10 @@
     ul.querySelectorAll('li.kk-yr-active').forEach(function (li) { li.classList.remove('kk-yr-active'); });
     if (yr) {
       var li = ul.querySelector('li[data-yr="' + yr + '"]');
-      if (li) li.classList.add('kk-yr-active');
+      if (li) {
+        li.classList.add('kk-yr-active');
+        ul.scrollTop = li.offsetTop - ul.clientHeight / 2 + li.clientHeight / 2;
+      }
     }
   }
   window.addEventListener('scroll', update, { passive: true });
