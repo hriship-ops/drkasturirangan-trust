@@ -327,45 +327,83 @@
    RESPONSIVE
    ---------------------------------------------------------- */
 
-.kk-sidebar-tail {
-  min-height: 80px;
-}
+.kk-sidebar-tail { min-height: 80px; }
+.kk-entry-tail   { padding-top: 40px; padding-bottom: 60px; }
 
-.kk-entry-tail {
-  padding-top: 40px;
-  padding-bottom: 60px;
-}
-
+/* ── Tablet wide (≤1100px): hero collapses to single column ── */
 @media (max-width: 1100px) {
-  .kk-hero { grid-template-columns: 1fr; }
+  .kk-hero {
+    grid-template-columns: 1fr;
+    padding: 40px var(--page-px) 0;
+    gap: 32px;
+  }
   .kk-hero-text { padding-left: 0; }
-  .kk-hero-illus { max-width: 260px; }
-  .kk-illus-circle { width: 280px; height: 280px; }
-  .kk-dark-section { flex-direction: column; padding: 40px 40px; }
-  .kk-dark-photo { width: 100%; }
+  /* Center illustration + reposition circle so it doesn't escape right edge */
+  .kk-hero-illus-wrap { justify-content: center; }
+  .kk-hero-illus       { max-width: 220px; }
+  .kk-illus-circle {
+    width: 250px; height: 250px;
+    top: -20px; right: auto;
+    left: 50%; transform: translateX(-50%);
+  }
+  /* Horizontal deco line doesn't make sense in stacked layout */
+  .kk-hero-hline { display: none; }
+  .kk-dark-section { flex-direction: column; padding: 40px var(--page-px); }
+  .kk-dark-photo   { width: 100%; max-width: 540px; }
 }
 
+/* ── Tablet narrow (≤900px): shrink sidebar + year labels ── */
 @media (max-width: 900px) {
-  .kk-timeline-wrap { grid-template-columns: 80px 1fr; }
-  .kk-sidebar { padding: 0 8px 0 20px; }
-  .kk-sidebar ul li { font-size: 20px; }
-  .kk-entry-year { font-size: 64px; min-width: 160px; }
-  .kk-entry-inner { gap: 20px; }
-  .kk-main::before { left: 246px; }
-  .kk-timeline-vline { left: 246px; }
+  .kk-timeline-wrap  { grid-template-columns: 72px 1fr; }
+  .kk-sidebar        { padding: 0 6px 0 16px; }
+  .kk-sidebar ul li  { font-size: 18px; }
+  /* Highlighted band must still reach sidebar edges at new padding */
+  .kk-sidebar ul li.kk-yr-highlight { margin-left: -16px; }
+  .kk-entry-inner    { gap: 20px; padding: 32px 20px 32px 16px; }
+  .kk-entry-year     { font-size: 60px; min-width: 140px; }
+  /* grey line = padding-left(16) + year-min(140) + gap(20) + dot-r(16) = 192px */
+  .kk-main::before   { left: 192px; }
+  .kk-timeline-vline { left: 192px; }
 }
 
+/* ── Mobile (≤600px): hide sidebar, stack year above content ── */
 @media (max-width: 600px) {
+  .kk-hero          { padding: 28px 20px 0; }
+  .kk-hero-title    { font-size: 34px; }
+  .kk-hero-desc     { font-size: 20px; }
+  .kk-hero-illus    { max-width: 160px; }
+  .kk-illus-circle  { width: 180px; height: 180px; }
+
   .kk-timeline-wrap { grid-template-columns: 1fr; }
-  .kk-sidebar { display: none; }
-  .kk-entry-inner { flex-direction: column; padding: 24px 20px; }
-  .kk-entry-year { font-size: 56px; min-width: unset; }
-  .kk-hero { padding: 40px 20px; }
-  .kk-hero-title { font-size: 36px; }
-  .kk-hero-desc { font-size: 22px; }
-  .kk-entry-dot { width: 20px; height: 20px; }
-  .kk-main::before { display: none; }
+  .kk-sidebar       { display: none; }
+  .kk-sidebar-tail  { display: none; }
+
+  /* Stacked entry: year on top, content below */
+  .kk-entry-inner   { flex-direction: column; gap: 8px; padding: 20px 20px; }
+  .kk-entry-year    { font-size: 52px; min-width: unset; text-align: left; }
+  /* Reposition amber circle to track the first digit in left-aligned text */
+  .kk-entry-year::before { left: 0; top: 4px; width: 64px; height: 64px; }
+  .kk-entry-content { padding-top: 0; }
+  .kk-entry-text    { font-size: 18px; }
+  .kk-entry-dot     { width: 22px; height: 22px; }
+  .kk-entry-photo   { max-width: 100%; }
+
+  /* Remove decorative lines — too cluttered on narrow screens */
+  .kk-main::before   { display: none; }
   .kk-timeline-vline { display: none; }
+
+  .kk-dark-section { padding: 28px 20px; }
+  .kk-dark-text    { font-size: 18px; }
+}
+
+/* ── Small phones (≤400px) ── */
+@media (max-width: 400px) {
+  .kk-hero-title  { font-size: 26px; }
+  .kk-hero-desc   { font-size: 17px; }
+  .kk-entry-year  { font-size: 40px; }
+  .kk-entry-text  { font-size: 16px; }
+  .kk-hero-illus  { max-width: 120px; }
+  .kk-illus-circle { width: 140px; height: 140px; }
 }
 </style>
 </head>
