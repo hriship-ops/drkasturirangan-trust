@@ -78,6 +78,7 @@ body {
   background: #fff;
   color: var(--c-text);
   overflow-x: hidden;
+  overflow-wrap: break-word;
   max-width: var(--max-w-page);
   margin: 0 auto;
 }
