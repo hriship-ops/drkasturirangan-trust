@@ -108,6 +108,9 @@
 
 /* R3: sidebar sticky so year index stays visible while scrolling */
 .kk-sidebar {
+  position: sticky;
+  top: 80px;
+  align-self: start;
   border-right: 3px solid var(--c-accent);
   padding: 0 12px 0 40px;
   display: flex;
@@ -124,26 +127,30 @@
   left: 100%;
 }
 
-/* R3: year index — center-aligned, increased line-height */
+/* R3: year index — center-aligned */
 .kk-sidebar ul {
   list-style: none;
   margin: 0;
   padding: 0;
   padding-top: 16px;
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+  scrollbar-width: none;
 }
+.kk-sidebar ul::-webkit-scrollbar { display: none; }
 
 .kk-sidebar ul li {
   font-family: var(--font-deco);
   font-size: 32px;
   color: var(--c-primary-dark);
-  line-height: 1.2;
+  line-height: 1.4;
   margin-bottom: 0;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  overflow: hidden;
+}
+
+.kk-sidebar ul li.kk-yr-active {
+  color: var(--c-accent);
+  font-weight: 700;
 }
 
 /* R3: highlighted years — full-width navy band, white text */
@@ -496,6 +503,39 @@
       <li data-yr="1963">1963</li>
       <li data-yr="1969">1969</li>
       <li class="kk-yr-highlight" data-yr="1971">1971</li>
+      <li>1975</li>
+      <li>1976</li>
+      <li>1979</li>
+      <li>1981</li>
+      <li>1982</li>
+      <li>1983</li>
+      <li>1984</li>
+      <li>1986</li>
+      <li class="kk-yr-highlight">1988</li>
+      <li>1990</li>
+      <li>1991</li>
+      <li>1992</li>
+      <li>1993</li>
+      <li class="kk-yr-highlight">1994</li>
+      <li>1999</li>
+      <li>2000</li>
+      <li>2001</li>
+      <li>2002</li>
+      <li class="kk-yr-highlight">2003</li>
+      <li>2004</li>
+      <li>2005</li>
+      <li>2007</li>
+      <li>2008</li>
+      <li class="kk-yr-highlight">2009</li>
+      <li>2012</li>
+      <li class="kk-yr-highlight">2013</li>
+      <li>2014</li>
+      <li class="kk-yr-highlight">2015</li>
+      <li>2017</li>
+      <li class="kk-yr-highlight">2019</li>
+      <li>2021</li>
+      <li>2023</li>
+      <li>2025</li>
     </ul>
   </div>
 
@@ -661,15 +701,31 @@
 </footer>
 
 <script>
-function syncSidebarHeights() {
-  document.querySelectorAll('.kk-entry[data-year]').forEach(function(entry) {
-    var yr = entry.getAttribute('data-year');
-    var li = document.querySelector('.kk-sidebar li[data-yr="' + yr + '"]');
-    if (li) li.style.height = entry.offsetHeight + 'px';
-  });
-}
-window.addEventListener('load', syncSidebarHeights);
-window.addEventListener('resize', syncSidebarHeights);
+(function () {
+  var entries = Array.from(document.querySelectorAll('.kk-entry[data-year]'));
+  var ul = document.querySelector('.kk-sidebar ul');
+  if (!entries.length || !ul) return;
+  var active = null;
+  function update() {
+    var mid = window.innerHeight / 2;
+    var best = null, bestDist = Infinity;
+    entries.forEach(function (e) {
+      var r = e.getBoundingClientRect();
+      var dist = Math.abs((r.top + r.bottom) / 2 - mid);
+      if (dist < bestDist) { bestDist = dist; best = e; }
+    });
+    var yr = best ? best.getAttribute('data-year') : null;
+    if (yr === active) return;
+    active = yr;
+    ul.querySelectorAll('li.kk-yr-active').forEach(function (li) { li.classList.remove('kk-yr-active'); });
+    if (yr) {
+      var li = ul.querySelector('li[data-yr="' + yr + '"]');
+      if (li) li.classList.add('kk-yr-active');
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}());
 </script>
 
 </body>
