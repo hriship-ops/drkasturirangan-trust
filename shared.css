@@ -297,6 +297,18 @@
    At 768px: collapse nav + footer to single column.
    ========================================================== */
 
+/* Hamburger button — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--c-primary-dark);
+  flex-shrink: 0;
+}
+.nav-hamburger:hover { color: var(--c-accent); }
+
 @media (max-width: 900px) {
   .site-nav {
     padding: 0 20px;
@@ -320,6 +332,68 @@
     width: 180px;
     height: auto;
   }
+}
+
+/* ── Hamburger nav for phones ── */
+@media (max-width: 620px) {
+  .site-nav {
+    flex-wrap: nowrap;
+    height: 64px;
+    min-height: 64px;
+    padding: 0 16px;
+    gap: 0;
+  }
+  /* Hide link list until opened */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 3px solid var(--c-accent);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+    padding: 8px 0 16px;
+    z-index: 400;
+  }
+  .nav-links.nav-open {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-links li a {
+    height: auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  /* Drop sub-menus inline on mobile */
+  .nav-dropdown {
+    position: static;
+    box-shadow: none;
+    border-top: none;
+    border-radius: 0;
+    background: var(--c-bg-cream);
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    display: none;
+    padding: 0;
+  }
+  .nav-links li.nav-sub-open > .nav-dropdown {
+    display: block;
+  }
+  .nav-links li .nav-dropdown a {
+    padding: 7px 20px 7px 32px;
+    font-size: 15px;
+  }
+  .nav-hamburger { display: flex; }
+  .nav-search-btn { display: none; }
+  .nav-logo-text  { width: 140px; }
 }
 
 @media (max-width: 768px) {

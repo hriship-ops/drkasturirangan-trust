@@ -456,6 +456,15 @@
       <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
+  <!-- Hamburger — visible only on mobile via shared.css -->
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
 </nav>
 
 <!-- HERO INTRO -->
