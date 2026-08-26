@@ -136,9 +136,10 @@
   font-family: var(--font-deco);
   font-size: 32px;
   color: var(--c-primary-dark);
-  line-height: 1.4;
+  line-height: 1;
   margin-bottom: 0;
   text-align: center;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -692,19 +693,6 @@
   </div>
 </footer>
 
-<script>
-function syncSidebarHeights() {
-  var entries = document.querySelectorAll('.kk-entry[data-year]');
-  entries.forEach(function(entry) {
-    var yr = entry.getAttribute('data-year');
-    var li = document.querySelector('.kk-sidebar li[data-yr="' + yr + '"]');
-    if (!li) return;
-    li.style.height = entry.offsetHeight + 'px';
-  });
-}
-window.addEventListener('load', syncSidebarHeights);
-window.addEventListener('resize', syncSidebarHeights);
-</script>
 
 </body>
 </html>
