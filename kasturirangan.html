@@ -108,9 +108,6 @@
 
 /* R3: sidebar sticky so year index stays visible while scrolling */
 .kk-sidebar {
-  position: sticky;
-  top: 80px;
-  align-self: start;
   border-right: 3px solid var(--c-accent);
   padding: 0 12px 0 40px;
   display: flex;
@@ -133,18 +130,6 @@
   margin: 0;
   padding: 0;
   padding-top: 16px;
-  overflow-y: auto;
-  max-height: calc(100vh - 160px);
-  scrollbar-width: none;
-}
-.kk-sidebar ul::-webkit-scrollbar { display: none; }
-.kk-sidebar ul li.kk-yr-active {
-  color: var(--c-accent);
-  font-weight: 700;
-  font-size: 36px;
-  transform: scale(1.08);
-  display: block;
-  transition: transform 0.2s, color 0.2s;
 }
 
 .kk-sidebar ul li {
@@ -154,6 +139,10 @@
   line-height: 1.4;
   margin-bottom: 0;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 /* R3: highlighted years — full-width navy band, white text */
@@ -501,9 +490,7 @@
   <div class="kk-sidebar">
     <div class="kk-sidebar-dot"></div>
     <ul>
-      <li data-yr="1940">1940</li>
-      <li>to</li>
-      <li>1950</li>
+      <li data-yr="1940">1940<br>to<br>1950</li>
       <li data-yr="1961">1961</li>
       <li data-yr="1963">1963</li>
       <li data-yr="1969">1969</li>
@@ -706,39 +693,17 @@
 </footer>
 
 <script>
-(function() {
-  var entries = Array.from(document.querySelectorAll('.kk-entry[data-year]'));
-  var sidebarUl = document.querySelector('.kk-sidebar ul');
-  if (!entries.length || !sidebarUl) return;
-  var activeYr = null;
-
-  function activate(yr) {
-    if (yr === activeYr) return;
-    activeYr = yr;
-    sidebarUl.querySelectorAll('li.kk-yr-active').forEach(function(el) {
-      el.classList.remove('kk-yr-active');
-    });
-    var li = sidebarUl.querySelector('li[data-yr="' + yr + '"]');
-    if (li) {
-      li.classList.add('kk-yr-active');
-      li.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    }
-  }
-
-  function update() {
-    var winH = window.innerHeight;
-    var best = null, bestPx = -1;
-    entries.forEach(function(e) {
-      var r = e.getBoundingClientRect();
-      var visible = Math.min(r.bottom, winH) - Math.max(r.top, 80);
-      if (visible > bestPx) { bestPx = visible; best = e; }
-    });
-    if (best && bestPx > 0) activate(best.getAttribute('data-year'));
-  }
-
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
+function syncSidebarHeights() {
+  var entries = document.querySelectorAll('.kk-entry[data-year]');
+  entries.forEach(function(entry) {
+    var yr = entry.getAttribute('data-year');
+    var li = document.querySelector('.kk-sidebar li[data-yr="' + yr + '"]');
+    if (!li) return;
+    li.style.height = entry.offsetHeight + 'px';
+  });
+}
+window.addEventListener('load', syncSidebarHeights);
+window.addEventListener('resize', syncSidebarHeights);
 </script>
 
 </body>
