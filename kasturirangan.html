@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="shared.css">
 <style>
+/* overflow-x:hidden on body (from tokens.css) implicitly sets overflow-y:auto,
+   which can make body the scroll container and break position:sticky in Safari.
+   Reset overflow-y so the viewport remains the scroll container. */
+body { overflow-y: visible; }
+
 /* ================================================================
    DR KASTURIRANGAN'S LIFE — kasturirangan.html
    From Figma node 650:56 (1440x4732px canvas).
@@ -127,17 +132,15 @@
   left: 100%;
 }
 
-/* R3: year index — center-aligned */
+/* R3: year index — fully static, no internal scroll ever */
 .kk-sidebar ul {
   list-style: none;
   margin: 0;
   padding: 0;
   padding-top: 16px;
-  overflow-y: auto;
-  max-height: calc(100vh - 160px);
-  scrollbar-width: none;
+  overflow: hidden;
+  max-height: calc(100vh - 140px);
 }
-.kk-sidebar ul::-webkit-scrollbar { display: none; }
 
 .kk-sidebar ul li {
   font-family: var(--font-deco);
