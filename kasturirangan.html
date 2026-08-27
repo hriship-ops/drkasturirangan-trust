@@ -45,7 +45,7 @@ body { overflow-y: visible; }
 .kk-hero-title {
   font-size: 50px;
   font-weight: var(--fw-medium);
-  color: #c58316;
+  color: var(--c-amber-deep);
   font-family: var(--font-main);
   line-height: 1.1;
   margin-bottom: 20px;
@@ -114,7 +114,7 @@ body { overflow-y: visible; }
 /* R3: sidebar sticky so year index stays visible while scrolling */
 .kk-sidebar {
   position: sticky;
-  top: 80px;
+  top: var(--nav-h);
   align-self: start;
   border-right: 3px solid var(--c-accent);
   padding: 0 12px 0 40px;
@@ -151,6 +151,10 @@ body { overflow-y: visible; }
   text-align: center;
 }
 
+.kk-sidebar ul li.kk-yr-lg {
+  font-size: 34px;
+}
+
 .kk-sidebar ul li.kk-yr-active {
   color: var(--c-accent);
   font-weight: 700;
@@ -184,7 +188,7 @@ body { overflow-y: visible; }
   top: 0;
   bottom: 0;
   width: 1px;
-  background: #808080;
+  background: var(--c-text-muted);
   z-index: 0;
 }
 
@@ -424,7 +428,7 @@ body { overflow-y: visible; }
 <!-- NAV -->
 <nav class="site-nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:74px;width:auto;">
+    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust">
   </a>
   <ul class="nav-links">
     <li>
@@ -506,39 +510,39 @@ body { overflow-y: visible; }
       <li data-yr="1963">1963</li>
       <li data-yr="1969">1969</li>
       <li class="kk-yr-highlight" data-yr="1971">1971</li>
-      <li>1975</li>
-      <li>1976</li>
-      <li>1979</li>
-      <li>1981</li>
-      <li>1982</li>
-      <li>1983</li>
-      <li>1984</li>
-      <li>1986</li>
-      <li class="kk-yr-highlight">1988</li>
-      <li>1990</li>
-      <li>1991</li>
-      <li>1992</li>
-      <li>1993</li>
-      <li class="kk-yr-highlight">1994</li>
-      <li>1999</li>
-      <li>2000</li>
-      <li>2001</li>
-      <li>2002</li>
-      <li class="kk-yr-highlight">2003</li>
-      <li>2004</li>
-      <li>2005</li>
-      <li>2007</li>
-      <li>2008</li>
-      <li class="kk-yr-highlight">2009</li>
-      <li>2012</li>
-      <li class="kk-yr-highlight">2013</li>
-      <li>2014</li>
-      <li class="kk-yr-highlight">2015</li>
-      <li>2017</li>
-      <li class="kk-yr-highlight">2019</li>
-      <li>2021</li>
-      <li>2023</li>
-      <li>2025</li>
+      <li data-yr="1975">1975</li>
+      <li data-yr="1976">1976</li>
+      <li data-yr="1979">1979</li>
+      <li data-yr="1981">1981</li>
+      <li data-yr="1982">1982</li>
+      <li data-yr="1983">1983</li>
+      <li data-yr="1984">1984</li>
+      <li data-yr="1986">1986</li>
+      <li class="kk-yr-highlight" data-yr="1988">1988</li>
+      <li data-yr="1990">1990</li>
+      <li data-yr="1991">1991</li>
+      <li data-yr="1992">1992</li>
+      <li data-yr="1993">1993</li>
+      <li class="kk-yr-highlight" data-yr="1994">1994</li>
+      <li data-yr="1999">1999</li>
+      <li data-yr="2000">2000</li>
+      <li data-yr="2001">2001</li>
+      <li data-yr="2002">2002</li>
+      <li class="kk-yr-highlight" data-yr="2003">2003</li>
+      <li data-yr="2004">2004</li>
+      <li data-yr="2005">2005</li>
+      <li data-yr="2007">2007</li>
+      <li data-yr="2008">2008</li>
+      <li class="kk-yr-highlight" data-yr="2009">2009</li>
+      <li class="kk-yr-lg" data-yr="2012">2012</li>
+      <li class="kk-yr-highlight kk-yr-lg" data-yr="2013">2013</li>
+      <li class="kk-yr-lg" data-yr="2014">2014</li>
+      <li class="kk-yr-highlight kk-yr-lg" data-yr="2015">2015</li>
+      <li class="kk-yr-lg" data-yr="2017">2017</li>
+      <li class="kk-yr-highlight kk-yr-lg" data-yr="2019">2019</li>
+      <li class="kk-yr-lg" data-yr="2021">2021</li>
+      <li class="kk-yr-lg" data-yr="2023">2023</li>
+      <li class="kk-yr-lg" data-yr="2025">2025</li>
     </ul>
   </div>
 
@@ -632,10 +636,20 @@ body { overflow-y: visible; }
             <div class="kk-entry-dot"></div>
             <p class="kk-entry-text">Completes doctorate in experimental high-energy astronomy.</p>
           </div>
-          <p class="kk-entry-text">Receives an offer to do postdoctoral work with Nobel Laureate Prof Louis Alvarez at UC Berkeley, but is convinced by Sarabhai to join ISRO instead</p>
-          <img class="kk-entry-photo"
-               src="assets/images/kk-photo-isro.png"
-               alt="Aryabhata satellite launch">
+        </div>
+      </div>
+
+      <!-- Navy callout band: Berkeley offer vs ISRO + Aryabhata photo -->
+      <div class="kk-dark-section">
+        <p class="kk-dark-text">Receives an offer to do postdoctoral work with Nobel Laureate Prof Louis Alvarez at UC Berkeley, but is convinced by Sarabhai to join ISRO instead</p>
+        <img class="kk-dark-photo"
+             src="assets/images/kk-photo-isro.png"
+             alt="Aryabhata satellite launch">
+      </div>
+
+      <div class="kk-entry-inner">
+        <div class="kk-entry-year" aria-hidden="true" style="visibility:hidden">1971</div>
+        <div class="kk-entry-content">
           <p class="kk-entry-text">Takes on systems engineering responsibility for Aryabhata, India&rsquo;s first satellite</p>
         </div>
       </div>

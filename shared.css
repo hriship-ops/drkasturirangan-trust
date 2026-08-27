@@ -41,6 +41,11 @@
   object-fit: contain;
 }
 
+.nav-logo img {
+  height: 74px;
+  width: auto;
+}
+
 .nav-links {
   display: flex;
   align-items: center;

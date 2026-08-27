@@ -11,6 +11,7 @@
   --c-primary:      #2a427e;   /* fills: primary navy */
   --c-primary-dark: #2e3d63;   /* nav links, subheadings */
   --c-accent:       #ffb338;   /* amber: borders, pills, footer rule */
+  --c-amber-deep:   #c58316;   /* darker amber: hero title, kickers */
   --c-kicker:       #d39d47;   /* section kicker letter-color */
   --c-amber-border: #d9982e;   /* application section border */
   --c-text:         #202020;   /* body text */
@@ -77,7 +78,6 @@ body {
   font-family: var(--font-main);
   background: #fff;
   color: var(--c-text);
-  overflow-x: hidden;
   overflow-wrap: break-word;
   max-width: var(--max-w-page);
   margin: 0 auto;
