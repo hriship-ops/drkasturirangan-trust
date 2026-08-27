@@ -374,6 +374,7 @@ body { overflow-y: visible; }
   .kk-timeline-wrap  { grid-template-columns: 72px 1fr; }
   .kk-sidebar        { padding: 0 6px 0 16px; }
   .kk-sidebar ul li  { font-size: 18px; }
+  .kk-sidebar ul li.kk-yr-lg { font-size: 18px; }
   /* Highlighted band must still reach sidebar edges at new padding */
   .kk-sidebar ul li.kk-yr-highlight { margin-left: -16px; }
   .kk-entry-inner    { gap: 20px; padding: 32px 20px 32px 16px; }
@@ -385,6 +386,8 @@ body { overflow-y: visible; }
 
 /* ── Mobile (≤600px): hide sidebar, stack year above content ── */
 @media (max-width: 600px) {
+  /* ghost spacer year for 1971 dark-section layout — remove entirely on mobile */
+  .kk-ghost-year { display: none; }
   .kk-hero          { padding: 28px 20px 0; }
   .kk-hero-title    { font-size: 34px; }
   .kk-hero-desc     { font-size: 18px; }
@@ -648,7 +651,7 @@ body { overflow-y: visible; }
       </div>
 
       <div class="kk-entry-inner">
-        <div class="kk-entry-year" aria-hidden="true" style="visibility:hidden">1971</div>
+        <div class="kk-entry-year kk-ghost-year" aria-hidden="true" style="visibility:hidden">1971</div>
         <div class="kk-entry-content">
           <p class="kk-entry-text">Takes on systems engineering responsibility for Aryabhata, India&rsquo;s first satellite</p>
         </div>
