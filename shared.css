@@ -54,7 +54,7 @@
   margin: 0;
   gap: 0;
   flex: 1;
-  justify-content: center; /* R6: centre nav categories */
+  justify-content: flex-end;
 }
 
 .nav-links li a {

@@ -97,11 +97,17 @@
   margin-top: 6px;
 }
 
-/* Slideshow fills the left hero column; slides cross-fade. */
+/* Slideshow: positioned and sized to match Figma photo frame
+   (canvas: left=167, top=256, w=617, h=416, r=71px; hero-relative top=155px). */
 .hero-slideshow {
   position: absolute;
-  inset: 0;
-  z-index: 0;
+  left: 167px;
+  top: 155px;
+  width: 617px;
+  height: 416px;
+  border-radius: 71px;
+  overflow: hidden;
+  z-index: 1;
 }
 .hero-slide {
   position: absolute;
@@ -109,7 +115,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--r-portrait);
   opacity: 0;
   transition: opacity 0.9s ease-in-out;
 }
@@ -124,14 +129,14 @@
   position: relative;
 }
 
-/* Amber dot behind "C" in "Cultivating" (R10). */
+/* Amber dot behind "C" in "Cultivating": 32px per Figma node 41:27. */
 .hero-headline::before {
   content: '';
   position: absolute;
   left: -14px;
   top: 4px;
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--c-accent);
   z-index: -1;
@@ -148,10 +153,10 @@
   margin-bottom: 16px;
 }
 
-/* "Explore Our Work" link: 16px #808080. */
+/* "Explore Our Work" link: 20px #808080 per Figma node 21:80. */
 .hero-explore-link {
   display: block;
-  font-size: var(--fs-nav);
+  font-size: 20px;
   color: var(--c-text-muted);
   margin-bottom: 28px;
 }
@@ -237,7 +242,7 @@
    ---------------------------------------------------------- */
 
 .areas-section {
-  padding: 36px var(--page-px) 40px 130px;
+  padding: 36px var(--page-px) 0 130px;
 }
 
 .areas-row {
@@ -263,20 +268,10 @@
 }
 
 .area-circle-wrap img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
+  width: 230px;
+  height: auto;
+  object-fit: contain;
   display: block;
-  border-radius: 50%;
-}
-
-.area-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--c-accent);
-  letter-spacing: 1.8px;
-  text-align: center;
-  font-family: var(--font-body), sans-serif;
 }
 
 /* ----------------------------------------------------------
@@ -297,17 +292,25 @@
   min-height: 550px;
 }
 
-/* Rounded amber pill — overflow:hidden clips illustration to pill shape. */
+/* Amber pill: now a PNG asset with quote marks baked in.
+   Normal = quote-box.png; hover = quote-box-flip.png (manual check required). */
 .quote-amber-bg {
   position: absolute;
-  left: 7.3%;    /* 105/1440 */
-  right: 14.9%;  /* 214/1440 */
+  left: 7.3%;
+  right: 14.9%;
   top: 152px;
   height: 374px;
-  background: rgba(255, 179, 56, 0.8);
-  border-radius: 118px;
-  overflow: hidden;
+  background-image: url(assets/images/quote-box.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  overflow: visible;
   z-index: 0;
+  transition: background-image 0s;
+}
+
+.quote-strip:hover .quote-amber-bg {
+  background-image: url(assets/images/quote-box-flip.png);
 }
 
 /* Illustration inside pill: Figma canvas (905,1694), pill origin (105,1611)
@@ -384,6 +387,23 @@
   font-size: var(--fs-h2);
   font-weight: var(--fw-medium);
   color: var(--c-primary-dark);
+  position: relative;
+}
+
+/* Amber highlight dot behind first word of heading (like hero headline). */
+.stories-heading::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  opacity: 0.4;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .stories-cards {
@@ -457,21 +477,7 @@
   position: relative;
 }
 
-/* R19: amber circle highlight behind moment text. */
-.moment-text::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  opacity: 0.4;
-  z-index: -1;
-  pointer-events: none;
-}
+/* amber highlight removed from moment-text per R18 */
 
 /* ----------------------------------------------------------
    HOME CTA (R21: flex-row — rocket left, tagline+button right)
@@ -524,6 +530,14 @@
 
 .home-cta-btn:hover {
   background: #3a529e;
+}
+
+.home-cta-rocket-tagline {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* ----------------------------------------------------------
@@ -652,7 +666,7 @@
       <div class="nav-dropdown">
         <a href="kasturirangan.html">His Life</a>
         <a href="#">Selected Writings</a>
-        <a href="#">Testimonials</a>
+        <a href="testimonials.html">Memories</a>
       </div>
     </li>
     <li>
@@ -692,6 +706,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
+    <div class="hero-blue-rect"></div>
     <div class="hero-slideshow">
       <img class="hero-slide active" src="assets/images/slideshow-1.jpg" alt="Dr K. Kasturirangan">
       <img class="hero-slide" src="assets/images/slideshow-2.jpg" alt="">
@@ -716,10 +731,6 @@
       at the intersection of education, science, and society.
     </p>
     <a href="initiatives.html" class="hero-explore-link">Explore Our Work &nbsp;↗</a>
-    <button class="hero-apply-btn"
-            onclick="location.href='fellowship.html'">
-      Apply for Fellowships
-    </button>
   </div>
 </section>
 
@@ -734,17 +745,20 @@
       <strong>Krishnaswamy Kasturirangan (24 October 1940 &ndash; 25 April 2025)</strong>
       was one of India&rsquo;s most distinguished space scientists and public
       intellectuals. Over a career spanning several decades, he played a pivotal
-      role in advancing India&rsquo;s space programme (ISRO), and later contributed
-      significantly to national policy in education and environmental conservation.
+      role in advancing India&rsquo;s space programme through ISRO and steering
+      national policy&mdash;first as a nominated Member of the Rajya Sabha and
+      later of the Planning Commission. He went on to chair the panels that
+      recommended India&rsquo;s approach to environmental conservation in the
+      Western Ghats and its National Education Policy 2020.
     </p>
     <p>
-      In recognition of his contributions, he was awarded the Padma Shri, Padma
-      Bhushan, and Padma Vibhushan. His life&rsquo;s work reflects a rare blend of
-      scientific excellence, institution-building, and public service.
+      In recognition of his contributions, he has been awarded the Padma Shri,
+      Padma Bhushan, and Padma Vibhushan. His life&rsquo;s work reflects a rare
+      blend of scientific excellence, institution-building, and public service.
     </p>
     <p>
-      The Dr Kasturirangan Trust was formed to keep alive his legacy, his spirit
-      of innovation, interdisciplinary thinking, and commitment to national
+      The Dr Kasturirangan Trust was formed to honor and continue his legacy,
+      spirit of innovation, interdisciplinary thinking, and commitment to national
       development through knowledge and education.
     </p>
   </div>
@@ -755,26 +769,22 @@
   <div class="areas-row">
     <div class="area-item">
       <div class="area-circle-wrap">
-        <span class="area-label">SPACE &amp; TECHNOLOGY</span>
-        <img src="assets/images/area-space.png" alt="Space &amp; Technology">
+        <img src="assets/images/area-space-v2.png" alt="Space &amp; Technology">
       </div>
     </div>
     <div class="area-item">
       <div class="area-circle-wrap">
-        <span class="area-label">ENVIRONMENT</span>
-        <img src="assets/images/area-environment.png" alt="Environment">
+        <img src="assets/images/area-environment-v2-amber.png" alt="Environment">
       </div>
     </div>
     <div class="area-item">
       <div class="area-circle-wrap">
-        <span class="area-label">EDUCATION</span>
-        <img src="assets/images/area-education.png" alt="Education">
+        <img src="assets/images/area-education-v2.png" alt="Education">
       </div>
     </div>
     <div class="area-item">
       <div class="area-circle-wrap">
-        <span class="area-label">PUBLIC LIFE</span>
-        <img src="assets/images/area-publiclife.png" alt="Public Life">
+        <img src="assets/images/area-publiclife-v2.png" alt="Public Life">
       </div>
     </div>
   </div>
@@ -782,14 +792,9 @@
 
 <!-- QUOTE STRIP -->
 <section class="quote-strip" aria-label="Quote by Dr Kasturirangan">
-  <div class="quote-amber-bg">
-    <img class="quote-illus"
-         src="assets/images/quote-illustration.svg"
-         alt="" aria-hidden="true">
-  </div>
-  <div class="quote-deco-mark" aria-hidden="true">&ldquo;</div>
+  <div class="quote-amber-bg"></div>
   <p class="quote-text">
-    &ldquo;Every phase of work must<br>contribute to a larger<br>national vision&rdquo;
+    Every phase of work must<br>contribute to a larger<br>national vision
   </p>
 </section>
 
@@ -819,31 +824,22 @@
 <section class="moments-section">
   <div class="moments-row">
     <div class="moment-item">
-      <div class="moment-dot"></div>
       <p class="moment-text">At crossroads &mdash; Berkeley or ISRO?</p>
     </div>
     <div class="moment-item">
-      <div class="moment-dot"></div>
       <p class="moment-text">Unfamiliar terrains</p>
     </div>
     <div class="moment-item">
-      <div class="moment-dot"></div>
       <p class="moment-text">Deep respect for fellow scientists</p>
     </div>
   </div>
 </section>
 
-<!-- HOME CTA (R21: rocket left, tagline+button right) -->
+<!-- HOME CTA (R20: combined rocket+tagline PNG, no Apply button) -->
 <div class="home-cta">
-  <img class="home-cta-rocket" src="assets/images/home-rocket.png" alt="">
-  <div class="home-cta-right">
-    <p class="home-cta-tagline">
-      Cultivating Excellence. Futures Thinking. Advancing Humanity.
-    </p>
-    <button class="home-cta-btn" onclick="location.href='apply.html'">
-      Apply for Fellowships
-    </button>
-  </div>
+  <img class="home-cta-rocket-tagline"
+       src="assets/images/rocket-tagline.png"
+       alt="Cultivating Excellence. Futures Thinking. Advancing Humanity.">
 </div>
 
 <!-- FOOTER RULE -->

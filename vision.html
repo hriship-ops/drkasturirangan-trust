@@ -58,7 +58,7 @@
 }
 
 .vm-deco-open  { top: -10px; left: 0; }
-.vm-deco-close { bottom: -55px; right: var(--page-px); transform: rotate(180deg); z-index: 2; }
+.vm-deco-close { bottom: 0; right: var(--page-px); transform: rotate(180deg); z-index: 2; }
 
 .vm-quote-text {
   font-size: var(--fs-h2);
@@ -150,24 +150,26 @@
   height: 430px;
 }
 
-/* Amber circle sits to the right behind the portrait (R7). */
+/* Amber circle centred behind the portrait (R9 V2). */
 .vm-portrait-bg-circle {
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 392px;
-  height: 392px;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 340px;
+  height: 340px;
   border-radius: 50%;
   background: #E9A22D;
 }
 
-/* Portrait overlaps circle; z-index: 1 brings it forward. */
+/* Portrait centred, base sits at portrait-container bottom. */
 .vm-portrait-img {
   position: absolute;
-  left: 0;
-  top: 24px;
-  width: calc(100% - 30px);
-  max-width: 585px;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 100%;
   height: 390px;
   object-fit: cover;
   border-radius: var(--r-portrait);
@@ -267,7 +269,7 @@
 
 .vm-obj-center {
   grid-column: 1 / -1;
-  max-width: 570px;
+  max-width: 640px;
   width: 100%;
   margin: 0 auto;
 }
@@ -339,10 +341,10 @@
   min-height: 330px;
 }
 
-.vm-focus-card-1 { background: #fceacd; }
-.vm-focus-card-2 { background: #fdeaca; }
-.vm-focus-card-3 { background: #fbe5c7; }
-.vm-focus-card-4 { background: #fbe7c9; }
+.vm-focus-card-1,
+.vm-focus-card-2,
+.vm-focus-card-3,
+.vm-focus-card-4 { background: #FFF6E7; }
 
 .vm-focus-icon {
   width: 200px;
@@ -481,9 +483,9 @@
     <li>
       <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="#">His life</a>
+        <a href="kasturirangan.html">His Life</a>
         <a href="#">Selected Writings</a>
-        <a href="#">Testimonials</a>
+        <a href="testimonials.html">Memories</a>
       </div>
     </li>
     <li>
@@ -517,7 +519,7 @@
   <img class="vm-walking-figure" src="assets/images/header.png" alt="">
   <div class="vm-quote-inner">
     <span class="vm-deco-open">&ldquo;</span>
-    <p class="vm-quote-text">To propagate the ideals, vision and<br>life-values of Dr Krishnaswamy Kasturirangan through structured, excellence-driven, ethical and humane initiatives that inspire future humanity and sustainable actions</p>
+    <p class="vm-quote-text">To honor and continue the legacy of Krishnaswamy Kasturirangan<br>by inspiring future generations through initiatives that promote<br>scientific excellence, ethical, humane and sustainable action</p>
   </div>
   <span class="vm-deco-close">&ldquo;</span>
 </section>
@@ -530,8 +532,8 @@
   </div>
   <div class="vm-legacy-grid">
     <div class="vm-legacy-text">
-      <p class="vm-body-para">The Dr Kasturirangan Trust was constituted to commemorate the lifelong selfless service by K. Kasturirangan. His contributions across the domains of space, science and technology, education, environment and many other areas has helped shape modern India.</p>
-      <p class="vm-body-para">He leaves behind a spirit of Indianism rooted in inner quest, rightful discovery, committed hard work, and compassion for every human being. He consistently emphasised rigorous inquiry, wide consultation, problem solving, and humane consideration &ndash; qualities that reflected a distinctive systems thinking, anticipated scientifically grounded future action and recognised the interconnectedness of institutions and ideas. His forward-looking approach helped bring together knowledge, research, education, and governance in service of a larger public good.</p>
+      <p class="vm-body-para">The Dr Kasturirangan Trust was constituted to commemorate the lifelong selfless service by K. Kasturirangan. His contributions to space, science and technology, education, environment and other areas have helped shape modern India.</p>
+      <p class="vm-body-para">In addition, he leaves behind a spirit of Indianism rooted in inner quest, rightful discovery, committed hard work, and compassion for every human being. He consistently emphasised rigorous inquiry, wide consultation, problem solving, and humane consideration &ndash; qualities that reflected a distinctive systems thinking, anticipated scientifically grounded future action and recognised the interconnectedness of institutions and ideas. His forward-looking approach helped bring together knowledge, research, education, and governance in service of a larger public good.</p>
       <p class="vm-timeline-link">Go through this <a href="#" class="vm-link-amber">timeline</a> to learn more about his life.</p>
     </div>
     <div class="vm-legacy-portrait">
@@ -549,7 +551,7 @@
     <div class="vm-heading-dot"></div>
     <h2>Ethos</h2>
   </div>
-  <p class="vm-ethos-intro">The Trust is guided by the vision, values and philosophy of K. Kasturirangan &ndash; uniting curiosity with understanding, scientific rigour with ethical responsibility, and envisioning future systems grounded in human values.</p>
+  <p class="vm-ethos-intro">The Trust is guided by the vision, values and philosophy of K. Kasturirangan &ndash; uniting curiosity with understanding, scientific rigour with ethical and social responsibility, while envisioning future systems grounded in human values.</p>
   <div class="vm-ethos-circles">
     <div class="vm-ethos-item">
       <span class="vm-ethos-label">Science with conscience</span>
@@ -603,7 +605,7 @@
     </div>
     <div class="vm-obj-item vm-obj-center">
       <div class="vm-obj-pill">Futures Institute</div>
-      <div class="vm-obj-box">An institution that advances future thinking, research, and practical solutions for India&rsquo;s long&#x2011;term&nbsp;development</div>
+      <div class="vm-obj-box">An institution that advances future thinking, research,<br>and practical solutions for India&rsquo;s long&#x2011;term development</div>
     </div>
   </div>
 </section>
@@ -662,8 +664,8 @@
         <h3>Partnerships</h3>
       </div>
       <p>The Trust will partner with government institutions, private enterprises, and nonprofit organisations in India and around the world that share its commitment to scientific excellence and the betterment of humanity.</p>
-      <p>&#8212; <strong>Trustees@drkasturirangantrust.org</strong></p>
-      <p><strong>Registered Office:</strong><br>Alder 1002, Godrej Woodsman Estate, Hebbal, Bengaluru &ndash; 560045</p>
+      <p style="margin-bottom: 16px;">&#8212; <strong>Trustees@drkasturirangantrust.org</strong></p>
+      <p><strong>Registered Office:</strong><br>Alder 1002,<br>Godrej Woodsman Estate, Hebbal,<br>Bengaluru&nbsp;&ndash;&nbsp;560045</p>
       <p><strong>Sanjay Rangan</strong> | sanjay.rangan@drkasturirangantrust.org</p>
       <p><strong>Mukund Rao</strong> | mukund.rao@drkasturirangantrust.org</p>
       <p><strong>Anurag Behar</strong> | anurag.behar@drkasturirangantrust.org</p>
