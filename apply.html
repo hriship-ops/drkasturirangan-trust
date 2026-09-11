@@ -9,165 +9,140 @@
 <style>
 /* ================================================================
    APPLY — apply.html
-   From Figma node 846:758 (1439x3934px canvas).
+   V2: mirrors fellowship.html nomination band + dates, then
+   4-doc submission requirements, rocket-tagline CTA.
    ================================================================ */
 
 /* ----------------------------------------------------------
-   DATE STRIP
-   Cream bg #fffcf7, h=459px in Figma.
-   Two staggered date cards with amber pill labels.
-   Left card: top=221, right card: top=313 (staggered 92px).
-   Connecting arrow SVG between them.
+   NOMINATION BANNER (same as fell-banner in fellowship.html)
    ---------------------------------------------------------- */
 
-.apply-date-strip {
-  background: #fffcf7;
-  padding: 40px var(--page-px) 60px;
-  position: relative;
-}
-
-.apply-dates-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  max-width: 1100px;
-  margin: 0 auto;
-  gap: 40px;
-}
-
-/* Each date group: pill + cream box + label. */
-.apply-date-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex: 0 0 416px;
-}
-
-.apply-date-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex: 0 0 416px;
-  margin-top: 92px;
-}
-
-/* Amber date pill: bg #e9a22d, r=26px, h=95px. */
-.apply-date-pill {
-  background: #e9a22d;
-  border-radius: 26px;
-  height: 95px;
-  min-width: 274px;
+.app-banner {
+  background: var(--c-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
-  position: relative;
-  z-index: 1;
-  margin-bottom: -20px;
+  padding: 0 96px;
+  min-height: 158px;
 }
 
-.apply-date-pill-right {
-  min-width: 306px;
-}
-
-.apply-date-pill p {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-bold);
-  color: #fff;
-  line-height: 1.2;
-  text-align: center;
-}
-
-/* Cream info box behind/below pill. */
-.apply-date-box {
-  background: var(--c-bg-cream);
-  border-radius: 27px;
-  width: 416px;
-  height: 136px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 12px 20px 14px 24px;
-}
-
-.apply-date-box-right {
-  justify-content: flex-end;
-}
-
-.apply-date-label {
-  font-size: var(--fs-h2);
+.app-banner-notice {
+  font-size: var(--fs-body-lg);
   font-weight: var(--fw-regular);
-  color: #405893;
-  line-height: 1.2;
-  text-align: left;
-}
-
-.apply-date-label-right {
-  text-align: right;
-}
-
-/* Connecting arrow: centred between the two date groups. */
-.apply-arrow-wrap {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 48px;
-}
-
-.apply-arrow-wrap img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
+  color: #fff;
+  text-align: center;
+  max-width: 860px;
+  line-height: 1.5;
 }
 
 /* ----------------------------------------------------------
-   DOCUMENT INSTRUCTION
-   Full-width amber divider line, then centred heading.
+   DATE PILLS (same geometry as fellowship.html fell-dates)
    ---------------------------------------------------------- */
 
-.apply-divider {
+.app-dates-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 64px var(--page-px) 84px;
+}
+
+.app-dates {
+  width: 100%;
+  max-width: var(--max-w-content);
+  position: relative;
+  height: 204px;
+}
+
+.app-date-pill {
+  background: rgba(233, 162, 45, 1.0);
+  width: 456px;
+  height: 129px;
+  border-radius: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 36px;
+  position: absolute;
+}
+
+.app-date-pill:first-child {
+  left: 33px;
+  top: 0;
+}
+
+.app-date-pill:last-child {
+  right: 33px;
+  bottom: 0;
+}
+
+.app-date-label {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: #fff;
+  line-height: 1.3;
+}
+
+.app-date-value {
+  font-size: var(--fs-banner);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* ----------------------------------------------------------
+   AMBER DIVIDER LINE
+   ---------------------------------------------------------- */
+
+.app-divider {
   height: 3px;
   background: var(--c-accent);
   margin: 0;
 }
 
-.apply-instruction {
-  padding: 56px var(--page-px) 12px;
-  text-align: center;
+/* ----------------------------------------------------------
+   DOCUMENT SUBMISSION SECTION
+   ---------------------------------------------------------- */
+
+.app-section {
+  padding: 56px var(--page-px) 24px;
+  max-width: var(--max-w-content);
+  margin: 0 auto;
 }
 
-.apply-instruction p {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-bold);
-  color: var(--c-primary);
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
-
-.apply-instruction .apply-email {
-  font-style: italic;
+.app-closed-notice {
+  font-size: 28px;
   font-weight: var(--fw-regular);
+  color: var(--c-text-navy);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.app-submit-heading {
+  font-size: 26px;
+  font-weight: var(--fw-bold);
+  color: var(--c-amber-border);
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1.4;
 }
 
 /* ----------------------------------------------------------
-   DOCUMENT REQUIREMENT BOXES
-   Each box: amber border 4px, r=27px, max-w=962px, centred.
-   Inner layout: flex row with large number | illustration | text.
-   Gap between boxes: 70px.
-   Large number: 200px Afacad Bold amber, left side.
+   DOC REQUIREMENT BOXES
+   4px amber border, radius=27px, max-w=962px, centred.
+   Number (200px amber) | illustration | text.
    ---------------------------------------------------------- */
 
-.apply-docs-list {
+.app-docs-list {
   display: flex;
   flex-direction: column;
   gap: 70px;
-  padding: 40px var(--page-px) 60px;
+  padding-bottom: 60px;
   align-items: center;
 }
 
-.apply-doc-box {
-  border: 4px solid #e9a22d;
+.app-doc-box {
+  border: 4px solid var(--c-amber-border);
   border-radius: 27px;
   width: 100%;
   max-width: 962px;
@@ -176,14 +151,12 @@
   align-items: center;
   gap: 0;
   position: relative;
-  overflow: visible;
 }
 
-/* Large amber number on far left, overlaps box left edge. */
-.apply-doc-number {
+.app-doc-number {
   font-size: 200px;
   font-weight: var(--fw-bold);
-  color: #e9a22d;
+  color: var(--c-amber-border);
   line-height: 0.9;
   min-width: 140px;
   text-align: center;
@@ -191,78 +164,60 @@
   margin-left: -10px;
 }
 
-/* Document illustration. */
-.apply-doc-illus {
+.app-doc-illus {
   width: 200px;
   height: 200px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
-.apply-doc-illus img {
+.app-doc-illus img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* Text content on right side. */
-.apply-doc-content {
+.app-doc-content {
   flex: 1;
   padding-left: 24px;
 }
 
-.apply-doc-content p {
+.app-doc-content p {
   font-size: var(--fs-h2);
   font-weight: var(--fw-medium);
   color: var(--c-primary);
   line-height: 1.4;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-.apply-doc-content .apply-doc-tip {
+.app-doc-content p:last-child {
+  margin-bottom: 0;
+}
+
+.app-doc-tip {
   font-style: italic;
-  font-weight: var(--fw-regular);
-  font-size: var(--fs-h2);
-  color: var(--c-primary);
-  line-height: 1.4;
-}
-
-.apply-doc-content .apply-doc-or {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  margin: 12px 0;
+  font-weight: var(--fw-regular) !important;
+  font-size: var(--fs-body-lg) !important;
+  color: var(--c-primary) !important;
 }
 
 /* ----------------------------------------------------------
-   FOOTER NOTE
-   Rocket image + "incomplete documentation" warning.
+   ROCKET CTA
    ---------------------------------------------------------- */
 
-.apply-footer-note {
-  padding: 0 var(--page-px) 56px;
-  text-align: center;
+.app-cta {
+  padding: 24px var(--page-px) 56px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  justify-content: center;
 }
 
-.apply-footer-rocket {
-  width: 180px;
+.app-cta-img {
+  width: 100%;
+  max-width: 1100px;
   height: auto;
-}
-
-.apply-footer-note p {
-  font-size: 32px;
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  line-height: 1.4;
-  max-width: 580px;
-  text-align: center;
+  display: block;
 }
 
 /* ----------------------------------------------------------
@@ -270,21 +225,30 @@
    ---------------------------------------------------------- */
 
 @media (max-width: 1100px) {
-  .apply-date-left, .apply-date-right { flex: 0 0 320px; }
-  .apply-date-box { width: 320px; }
+  .app-dates {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .app-date-pill {
+    position: static;
+    width: 100%;
+    max-width: 456px;
+  }
+  .app-doc-number { font-size: 120px; min-width: 80px; }
 }
 
 @media (max-width: 860px) {
-  .apply-dates-row { flex-direction: column; align-items: center; gap: 24px; }
-  .apply-date-right { margin-top: 0; align-items: flex-start; }
-  .apply-arrow-wrap { display: none; }
-  .apply-doc-box { padding: 24px 20px; flex-wrap: wrap; }
-  .apply-doc-number { font-size: 120px; min-width: 80px; }
+  .app-banner { padding: 24px 20px; min-height: auto; }
+  .app-dates-wrap { padding: 32px 20px 48px; }
+  .app-doc-box { padding: 24px 20px; flex-wrap: wrap; }
+  .app-section { padding: 40px 20px 0; }
 }
 
 @media (max-width: 600px) {
-  .apply-doc-content p, .apply-doc-content .apply-doc-tip { font-size: 22px; }
-  .apply-doc-illus { width: 120px; height: 120px; }
+  .app-doc-content p { font-size: 22px; }
+  .app-doc-illus { width: 120px; height: 120px; }
 }
 </style>
 </head>
@@ -301,32 +265,26 @@
       <div class="nav-dropdown">
         <a href="vision.html">Vision &amp; Mission</a>
         <a href="team.html">Team</a>
-        <a href="#">Annual Reports</a>
-        <a href="#">Financial Declarations</a>
       </div>
     </li>
     <li>
       <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="#">His life</a>
+        <a href="kasturirangan.html">His Life</a>
         <a href="#">Selected Writings</a>
-        <a href="#">Testimonials</a>
+        <a href="testimonials.html">Memories</a>
       </div>
     </li>
     <li>
       <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="fellowship.html">Fellowship</a>
-        <a href="#">Travel Grants</a>
-        <a href="#">Awards</a>
-        <a href="#">Scholarships</a>
-        <a href="#">Alumni</a>
       </div>
     </li>
     <li>
       <a href="links.html">Useful Links <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="#">Apply</a>
+        <a href="apply.html">Apply</a>
         <a href="#">Contact Us</a>
       </div>
     </li>
@@ -339,105 +297,90 @@
   </button>
 </nav>
 
-<!-- DATE STRIP -->
-<section class="apply-date-strip">
-  <div class="apply-dates-row">
-    <div class="apply-date-left">
-      <div class="apply-date-pill">
-        <p>October 25, 2026</p>
-      </div>
-      <div class="apply-date-box">
-        <p class="apply-date-label">Applications open</p>
-      </div>
-    </div>
-    <div class="apply-arrow-wrap">
-      <img src="assets/images/apply-arrow.svg" alt="">
-    </div>
-    <div class="apply-date-right">
-      <p class="apply-date-label apply-date-label-right">Last date for submission</p>
-      <div class="apply-date-pill apply-date-pill-right">
-        <p>December 31, 2026</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="apply-divider"></div>
-
-<!-- DOCUMENT INSTRUCTION -->
-<div class="apply-instruction">
-  <p>Please send the following documents to<br>
-  <span class="apply-email">info@drkasturirangantrust.org</span></p>
+<!-- NOMINATION BANNER -->
+<div class="app-banner">
+  <p class="app-banner-notice">Please note that 2026 fellowship application is by nomination only. An invited panel will nominate candidates for consideration.</p>
 </div>
 
-<!-- DOCUMENT REQUIREMENT BOXES -->
-<div class="apply-docs-list">
-
-  <!-- 1: CV -->
-  <div class="apply-doc-box">
-    <div class="apply-doc-number">1</div>
-    <div class="apply-doc-illus">
-      <img src="assets/images/doc-icon.png" alt="">
+<!-- DATE PILLS -->
+<div class="app-dates-wrap">
+  <div class="app-dates">
+    <div class="app-date-pill">
+      <span class="app-date-label">Nominations accepted from:</span>
+      <strong class="app-date-value">October 25, 2026</strong>
     </div>
-    <div class="apply-doc-content">
-      <p>Curriculum Vitae<br>(maximum 2 pages)</p>
-    </div>
-  </div>
-
-  <!-- 2: PhD proof -->
-  <div class="apply-doc-box">
-    <div class="apply-doc-number">2</div>
-    <div class="apply-doc-illus">
-      <img src="assets/images/icon-training.png" alt="">
-    </div>
-    <div class="apply-doc-content">
-      <p>Proof of PhD completion<br>or current enrolment</p>
+    <div class="app-date-pill">
+      <span class="app-date-label">Last date for submission:</span>
+      <strong class="app-date-value">December 31, 2026</strong>
     </div>
   </div>
+</div>
 
-  <!-- 3: Statement of Purpose -->
-  <div class="apply-doc-box">
-    <div class="apply-doc-number">3</div>
-    <div class="apply-doc-illus">
-      <img src="assets/images/icon-analyze.png" alt="">
-    </div>
-    <div class="apply-doc-content">
-      <p>A Statement of Purpose (maximum 1000 words) clearly outlining how your research aligns with the Trust&rsquo;s objectives, your motivations, and how the funds can help you</p>
-      <p class="apply-doc-tip">[Tip: Try to demonstrate the interdisciplinarity of your work, its anticipated impact, and its relevance to academic, corporate, or public policy]</p>
-    </div>
-  </div>
+<div class="app-divider"></div>
 
-  <!-- 4: Nomination / endorsement letters -->
-  <div class="apply-doc-box">
-    <div class="apply-doc-number">4</div>
-    <div class="apply-doc-illus">
+<!-- DOCUMENT SUBMISSION SECTION -->
+<div class="app-section">
+  <p class="app-closed-notice">Please remember that this is a closed call and candidates have to be nominated by an invited panel.</p>
+  <p class="app-submit-heading">Please submit the following documents to<br>
+    <a href="mailto:info@drkasturirangantrust.org" style="color:inherit;">info@drkasturirangantrust.org</a>
+  </p>
+</div>
+
+<div class="app-docs-list" style="padding-left:var(--page-px);padding-right:var(--page-px);">
+
+  <!-- 1: Nomination letter -->
+  <div class="app-doc-box">
+    <div class="app-doc-number">1</div>
+    <div class="app-doc-illus">
       <img src="assets/images/icon-meeting.png" alt="">
     </div>
-    <div class="apply-doc-content">
-      <p>A nomination letter from your institution (from the Dean or anyone at a similarly senior position)</p>
-      <p class="apply-doc-or">OR</p>
-      <p>Two letters of endorsement/support by senior collaborators who are familiar with you and your project</p>
-      <p class="apply-doc-tip">[Note: All letters must be on the official letterhead and bear original or authenticated signatures.]</p>
+    <div class="app-doc-content">
+      <p>Nomination letter on official letterhead and bearing original or authenticated signatures.</p>
     </div>
   </div>
 
-  <!-- 5: Budget proposal -->
-  <div class="apply-doc-box">
-    <div class="apply-doc-number">5</div>
-    <div class="apply-doc-illus">
-      <img src="assets/images/apply-gforms.png" alt="Google Forms budget template">
+  <!-- 2: CV + PhD proof -->
+  <div class="app-doc-box">
+    <div class="app-doc-number">2</div>
+    <div class="app-doc-illus">
+      <img src="assets/images/icon-resume.png" alt="">
     </div>
-    <div class="apply-doc-content">
-      <p>Budget proposal outlining how the funds will be used to support your proposed research and professional development</p>
+    <div class="app-doc-content">
+      <p>Candidate&rsquo;s Curriculum Vitae (maximum 2 pages)</p>
+      <p>Proof of candidate&rsquo;s PhD thesis submission</p>
+    </div>
+  </div>
+
+  <!-- 3: Statement of purpose -->
+  <div class="app-doc-box">
+    <div class="app-doc-number">3</div>
+    <div class="app-doc-illus">
+      <img src="assets/images/icon-analyze.png" alt="">
+    </div>
+    <div class="app-doc-content">
+      <p>Candidate&rsquo;s statement of purpose (maximum 1000 words) clearly outlining how their research aligns with the Trust&rsquo;s objectives, their motivations, and how the funds can help them.</p>
+      <p class="app-doc-tip">Tip for candidate: Try to demonstrate the interdisciplinarity of your work, its anticipated impact, and its relevance to academic, corporate, or public policy</p>
+    </div>
+  </div>
+
+  <!-- 4: Budget proposal -->
+  <div class="app-doc-box">
+    <div class="app-doc-number">4</div>
+    <div class="app-doc-illus">
+      <img src="assets/images/icon-gforms.png" alt="">
+    </div>
+    <div class="app-doc-content">
+      <p>Budget proposal outlining how the funds will be used by the candidate to support their proposed research and professional development.</p>
     </div>
   </div>
 
 </div>
 
-<!-- FOOTER NOTE -->
-<div class="apply-footer-note">
-  <img class="apply-footer-rocket" src="assets/images/apply-rocket.png" alt="">
-  <p>Applications with incomplete documentation will not be eligible for selection</p>
+<!-- ROCKET CTA -->
+<div class="app-cta">
+  <img class="app-cta-img"
+       src="assets/images/rocket-tagline.png"
+       alt="Cultivating Excellence. Futures Thinking. Advancing Humanity.">
 </div>
 
 <!-- FOOTER RULE -->
