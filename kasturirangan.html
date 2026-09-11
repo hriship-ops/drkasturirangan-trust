@@ -67,14 +67,15 @@ body { overflow-y: visible; }
   overflow: visible;
 }
 
-/* R1: amber decorative circle behind illustration */
+/* R1: amber decorative circle behind illustration.
+   Figma V2: Ellipse 8 w=403 h=403, y=153 (nav ends y=101 → top = 153-101 = 52px). */
 .kk-illus-circle {
   position: absolute;
   width: 403px;
   height: 403px;
   border-radius: 50%;
   background: rgba(217, 152, 46, 0.15);
-  top: -90px;
+  top: 52px;
   right: 40px;
   z-index: 0;
   pointer-events: none;
@@ -147,7 +148,7 @@ body { overflow-y: visible; }
   font-size: 32px;
   color: var(--c-primary-dark);
   line-height: 1.4;
-  margin-bottom: 0;
+  margin-bottom: 6px;
   text-align: center;
 }
 
@@ -179,12 +180,13 @@ body { overflow-y: visible; }
   position: relative;
 }
 
-/* R5: thin vertical grey line running through all entries at the dot column position.
-   Left = padding-left(50) + year-col-min-width(290) + gap(40) + dot-radius(16) = 396px */
+/* R5/R13/R15/R17: thin vertical grey line.
+   Figma V2: spine lines at x=496 from page left; sidebar=160px wide,
+   so within kk-main: left = 496-160 = 336px. Sits left of dots (x=531) and photos (x=542+). */
 .kk-main::before {
   content: '';
   position: absolute;
-  left: 396px;
+  left: 336px;
   top: 0;
   bottom: 0;
   width: 1px;
@@ -192,12 +194,13 @@ body { overflow-y: visible; }
   z-index: 0;
 }
 
-/* R2: vertical blue connecting line with circle at top — marks timeline start */
+/* R2/R9: vertical blue connecting line — matches spine x=336px; top=77px aligns
+   dot with first entry content (Figma: hero hline y=502, first spine y=579, gap=77px). */
 .kk-timeline-vline {
   position: absolute;
-  left: 396px;
-  top: 0;
-  height: 110px;
+  left: 336px;
+  top: 77px;
+  height: 33px;
   width: 2px;
   background: var(--c-primary);
   transform: translateX(-0.5px);
@@ -248,19 +251,9 @@ body { overflow-y: visible; }
   position: relative;
 }
 
-/* R5: amber glow circle behind the first character of each year.
-   Fixed left:20px so the circle reliably sits behind the first digit
-   for all year labels (left-edge of the year column). */
+/* R11: amber glow circle removed per V2 design */
 .kk-entry-year::before {
-  content: '';
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: rgba(217, 152, 46, 0.28);
-  top: 6px;
-  left: 20px;
-  pointer-events: none;
+  display: none;
 }
 
 /* Entry content: text + optional photo */
@@ -379,9 +372,9 @@ body { overflow-y: visible; }
   .kk-sidebar ul li.kk-yr-highlight { margin-left: -16px; }
   .kk-entry-inner    { gap: 20px; padding: 32px 20px 32px 16px; }
   .kk-entry-year     { font-size: 60px; min-width: 140px; }
-  /* grey line = padding-left(16) + year-min(140) + gap(20) + dot-r(16) = 192px */
-  .kk-main::before   { left: 192px; }
-  .kk-timeline-vline { left: 192px; }
+  /* grey line = content-start(176px) - 35px (same left-of-dot offset as desktop) = 141px */
+  .kk-main::before   { left: 141px; }
+  .kk-timeline-vline { left: 141px; }
 }
 
 /* ── Mobile (≤600px): hide sidebar, stack year above content ── */
@@ -446,9 +439,9 @@ body { overflow-y: visible; }
     <li>
       <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="#">His life</a>
+        <a href="kasturirangan.html">His Life</a>
         <a href="#">Selected Writings</a>
-        <a href="#">Testimonials</a>
+        <a href="testimonials.html">Memories</a>
       </div>
     </li>
     <li>
@@ -508,7 +501,7 @@ body { overflow-y: visible; }
   <div class="kk-sidebar">
     <div class="kk-sidebar-dot"></div>
     <ul>
-      <li data-yr="1940">1940<br>to<br>1950</li>
+      <li data-yr="1940">1940<br>to 1950</li>
       <li data-yr="1961">1961</li>
       <li data-yr="1963">1963</li>
       <li data-yr="1969">1969</li>
