@@ -50,7 +50,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--c-primary);
+  background: var(--c-accent);
   flex-shrink: 0;
 }
 
@@ -142,10 +142,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 36px;
-  padding: 0 40px;
-  min-height: 95px;
-  flex-wrap: wrap;
+  padding: 0 96px;
+  min-height: 158px;
+}
+
+/* R7: nomination notice text — white, centered */
+.fell-banner-notice {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: #fff;
+  text-align: center;
+  max-width: 860px;
+  line-height: 1.5;
 }
 
 /* Amber pill: bg=#ffb338, radius=26px.
@@ -178,6 +186,82 @@
 
 .fell-banner-pill strong {
   font-weight: var(--fw-bold);
+}
+
+/* ----------------------------------------------------------
+   DATE INFO BOXES — R7/R9
+   Figma Rectangle 116 (x=91,y=865,w=456,h=129,cr=36) and
+   Rectangle 117 (x=893,y=940,w=456,h=129,cr=36).
+   Staggered: right box sits 75px lower than left.
+   Container 204px tall (1069-865). Both boxes 33px from their edge.
+   No border (R9: no thin line beneath).
+   ---------------------------------------------------------- */
+
+.fell-dates-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 64px var(--page-px) 84px;
+}
+
+.fell-dates {
+  width: 100%;
+  max-width: var(--max-w-content);
+  position: relative;
+  height: 204px;
+}
+
+.fell-date-pill {
+  background: rgba(233, 162, 45, 1.0);
+  width: 456px;
+  height: 129px;
+  border-radius: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 32px;
+  position: absolute;
+}
+
+.fell-date-pill:first-child {
+  left: 33px;
+  top: 0;
+}
+
+.fell-date-pill:last-child {
+  right: 33px;
+  bottom: 0;
+}
+
+.fell-date-label {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: #fff;
+  line-height: 1.3;
+}
+
+.fell-date-value {
+  font-size: var(--fs-banner);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: 1.2;
+}
+
+@media (max-width: 1100px) {
+  .fell-dates {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .fell-date-pill {
+    position: static;
+    width: 100%;
+    max-width: 456px;
+  }
+  .fell-date-pill:first-child,
+  .fell-date-pill:last-child {
+    left: auto; right: auto; top: auto; bottom: auto;
+  }
 }
 
 /* ----------------------------------------------------------
@@ -269,6 +353,11 @@
 .fell-section {
   padding: var(--section-py) var(--page-px);
   border-top: 1px solid #e6e6e6;
+}
+
+/* R9: remove thin line on first section below date boxes */
+#objectives.fell-section {
+  border-top: none;
 }
 
 .fell-kicker {
@@ -383,6 +472,7 @@
   object-fit: cover;
   border-radius: var(--r-exp-port);
   display: block;
+  margin-top: 42px; /* R11: Figma portrait (y=2509) starts 42px below kicker (y=2467) */
 }
 
 .fell-exp-right {
@@ -433,11 +523,12 @@
    Layout: use a 3-col grid (box | circle | box) with auto middle.
    ---------------------------------------------------------- */
 
+/* R16: 3-point eligibility layout (V2: no centre circle, 3 equal boxes) */
 .fell-elig-layout {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 0;
-  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
   margin-bottom: 32px;
 }
 
@@ -644,11 +735,10 @@
   padding: 40px 60px;
 }
 
-/* 2 doc cards side by side. */
+/* V2: single doc card centred. */
 .fell-doc-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Each doc card: icon image + label. */
@@ -676,6 +766,18 @@
   max-width: 376px;
 }
 
+.fell-doc-tip {
+  margin-top: 24px;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: 1.5;
+  font-style: italic;
+  max-width: 962px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ----------------------------------------------------------
    FELLOWSHIP CTA
    Tagline: 23px italic #808080.
@@ -691,16 +793,9 @@
   gap: 16px;
 }
 
-.fell-cta-tagline {
-  font-size: var(--fs-tagline);
-  font-style: italic;
-  color: var(--c-text-muted);
-  text-align: center;
-}
-
 .fell-cta-rocket {
-  width: 234px;
-  height: 165px;
+  width: 180px;
+  height: 124px;
   object-fit: contain;
 }
 
@@ -861,9 +956,9 @@
     <li>
       <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="#">His life</a>
+        <a href="kasturirangan.html">His Life</a>
         <a href="#">Selected Writings</a>
-        <a href="#">Testimonials</a>
+        <a href="testimonials.html">Memories</a>
       </div>
     </li>
     <li>
@@ -901,12 +996,10 @@
     </div>
     <h1 class="fell-title">FELLOWSHIP PROGRAMME</h1>
     <ul class="fell-bullets">
-      <li>Nation-building through knowledge and education</li>
+      <li>Honouring Kasturirangan's legacy of nation-building through knowledge and education</li>
       <li>Supporting research that transcends disciplinary boundaries</li>
-      <li>Financial support worth Rs 2 lakh for selected fellows</li>
-      <li>For anyone holding or pursuing a PhD</li>
+      <li>Financial support worth Rs 4 lakh for selected fellows</li>
     </ul>
-    <button class="fell-apply-btn" onclick="location.href='#apply-section'">Apply now</button>
   </div>
   <div class="fell-hero-right">
     <img class="fell-illustration"
@@ -915,13 +1008,22 @@
   </div>
 </section>
 
-<!-- BANNER STRIP -->
+<!-- BANNER STRIP — R7: nomination-only notice (Figma Rectangle 19, h=158, navy) -->
 <div class="fell-banner">
-  <div class="fell-banner-pill">
-    <span>Applications open : </span><strong>October 25, 2026</strong>
-  </div>
-  <div class="fell-banner-pill">
-    <span>Last date for submission : </span><strong>December 31, 2026</strong>
+  <p class="fell-banner-notice">Please note that 2026 fellowship application is by nomination only. An invited panel will nominate candidates for consideration.</p>
+</div>
+
+<!-- DATE INFO BOXES — R9: Figma Rectangle 116 (left) and 117 (right), amber, staggered -->
+<div class="fell-dates-wrap">
+  <div class="fell-dates">
+    <div class="fell-date-pill">
+      <span class="fell-date-label">Nominations accepted from:</span>
+      <strong class="fell-date-value">October 25, 2026</strong>
+    </div>
+    <div class="fell-date-pill">
+      <span class="fell-date-label">Last date for submission:</span>
+      <strong class="fell-date-value">December 31, 2026</strong>
+    </div>
   </div>
 </div>
 
@@ -1014,12 +1116,11 @@
       </div>
       <div class="fell-exp-row">
         <img class="fell-exp-icon" src="assets/images/icon-goal.png" alt="">
-        <p>Uphold and demonstrate the values of Dr Kasturirangan in the
-           professional sphere</p>
+        <p>Uphold and demonstrate the values of<br>Dr Kasturirangan in the professional sphere</p>
       </div>
       <div class="fell-exp-row">
         <img class="fell-exp-icon" src="assets/images/icon-person.png" alt="">
-        <p>Stay engaged with the Trust and support future cohorts of fellows</p>
+        <p>Fellows from prior cohorts are encouraged to continue participating in the Trust's events to build and sustain a lasting community</p>
       </div>
     </div>
   </div>
@@ -1029,17 +1130,16 @@
 <section class="fell-section" id="eligibility">
   <p class="fell-kicker">CURRENT CALL</p>
   <h2 class="fell-h2">Eligibility</h2>
+  <!-- R16: 3-point eligibility (Figma y=3434: no self-nominations; PhD Jan 2025–Dec 2026; peer-reviewed) -->
   <div class="fell-elig-layout">
     <div class="fell-elig-box">
-      Must have been awarded a PhD in the past X years or be in the final stages
-      of a PhD from a recognised state institution.
-    </div>
-    <div class="fell-elig-circle">
-      All ages and all disciplines are welcome to apply
+      No self-nominations are allowed. Candidate must be nominated by someone from the invited pool of experts.
     </div>
     <div class="fell-elig-box">
-      Must have demonstrated research ability through peer-reviewed publications
-      or conference presentations.
+      Nominated candidate must have submitted a PhD thesis between January 01, 2025 to December 31, 2026.
+    </div>
+    <div class="fell-elig-box">
+      Nominated candidate must have demonstrated research ability through peer-reviewed publications or conference presentations.
     </div>
   </div>
 </section>
@@ -1078,7 +1178,7 @@
   <div class="fell-timeline">
     <div class="fell-tl-item">
       <span class="fell-tl-date">Oct 25, 2026</span>
-      <span class="fell-tl-label">Applications open</span>
+      <span class="fell-tl-label">Nomination window opens</span>
     </div>
     <div class="fell-tl-item">
       <span class="fell-tl-date">Dec 31, 2026</span>
@@ -1086,7 +1186,7 @@
     </div>
     <div class="fell-tl-item">
       <span class="fell-tl-date">March 2027</span>
-      <span class="fell-tl-label">Interviews of shortlisted candidates</span>
+      <span class="fell-tl-label">Shortlisted candidates invited for an interview</span>
     </div>
     <div class="fell-tl-item">
       <span class="fell-tl-date">April 25, 2027</span>
@@ -1100,32 +1200,25 @@
   <p class="fell-kicker">HOW TO APPLY</p>
   <h2 class="fell-h2">Application process</h2>
   <p class="fell-app-text">
-    Submit your details on the application portal by
-    <span class="fell-app-date">December 31, 2026.</span>
+    Please remember that this is a closed call and candidates have to be nominated by an invited panel.
   </p>
   <p class="fell-docs-heading">
-    Please keep these supporting documents handy at the time of submission:
+    These are the documents that need to be submitted as part of the nomination:
   </p>
   <div class="fell-doc-box">
     <div class="fell-doc-cards">
       <div class="fell-doc-card">
         <img src="assets/images/doc-icon.png" alt="Document icon">
-        <p class="fell-doc-label">Curriculum Vitae (maximum 2 pages)</p>
-      </div>
-      <div class="fell-doc-card">
-        <img src="assets/images/doc-icon.png" alt="Document icon">
-        <p class="fell-doc-label">Proof of PhD completion or current enrolment</p>
+        <p class="fell-doc-label">Nomination letter on official letterhead and bearing original or authenticated signatures.</p>
       </div>
     </div>
   </div>
+  <p class="fell-doc-tip">Tip for the nominator: The letter must demonstrate the nature of your relationship with the nominee and their familiarity with their work.</p>
 </section>
 
-<!-- FELLOWSHIP CTA -->
+<!-- FELLOWSHIP CTA — R27: rocket-tagline.png replaces rocket.png + tagline text (Figma: w=180, h=124) -->
 <div class="fell-cta">
-  <p class="fell-cta-tagline">
-    Cultivating Excellence. Futures Thinking. Advancing Humanity.
-  </p>
-  <img class="fell-cta-rocket" src="assets/images/rocket.png" alt="">
+  <img class="fell-cta-rocket" src="assets/images/rocket-tagline.png" alt="Cultivating Excellence. Futures Thinking. Advancing Humanity.">
   <button class="fell-cta-btn">Apply for Fellowships</button>
 </div>
 
