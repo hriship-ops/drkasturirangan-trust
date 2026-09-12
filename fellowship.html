@@ -768,22 +768,60 @@
   margin: 32px 0 24px;
 }
 
+/* Carousel outer: arrows on sides of the box. */
+.fell-carousel-outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Arrow buttons: 61px navy circles. */
+.fell-car-arrow {
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  transition: background 0.15s;
+}
+.fell-car-arrow:hover { background: #3a529e; }
+.fell-car-arrow svg { display: block; }
+
 /* Bordered container: 4px #d9982e, radius=27px, max-width=962px. */
 .fell-doc-box {
   border: 4px solid var(--c-amber-border);
   border-radius: 27px;
   max-width: 962px;
-  margin: 0 auto;
-  padding: 40px 60px;
+  width: 100%;
+  overflow: hidden;
+  flex: 1 1 962px;
 }
 
-/* V2: single doc card centred. */
-.fell-doc-cards {
+/* Sliding track. */
+.fell-carousel-track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+/* Each slide = one doc card, full width. */
+.fell-doc-slide {
+  min-width: 100%;
   display: flex;
   justify-content: center;
+  padding: 40px 60px;
+  box-sizing: border-box;
 }
 
-/* Each doc card: icon image + label. */
+/* Each doc card: icon image + label + optional tip. */
 .fell-doc-card {
   display: flex;
   flex-direction: column;
@@ -809,15 +847,36 @@
 }
 
 .fell-doc-tip {
-  margin-top: 24px;
+  margin-top: 4px;
   font-size: var(--fs-body-lg);
   font-weight: var(--fw-regular);
   color: var(--c-primary);
   line-height: 1.5;
   font-style: italic;
-  max-width: 962px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 760px;
+}
+
+/* Dot indicators below carousel. */
+.fell-car-dots {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.fell-car-dot {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.fell-car-dot.active {
+  background: var(--c-primary);
 }
 
 /* ----------------------------------------------------------
@@ -923,8 +982,15 @@
     flex-direction: column;
     gap: 4px;
   }
-  .fell-doc-cards {
-    grid-template-columns: 1fr;
+  .fell-car-arrow {
+    width: 44px;
+    height: 44px;
+  }
+  .fell-carousel-outer {
+    gap: 12px;
+  }
+  .fell-doc-slide {
+    padding: 28px 32px;
   }
   .fell-tabs {
     flex-wrap: wrap;
@@ -1241,16 +1307,81 @@
   <p class="fell-docs-heading">
     These are the documents that need to be submitted as part of the nomination:
   </p>
-  <div class="fell-doc-box">
-    <div class="fell-doc-cards">
-      <div class="fell-doc-card">
-        <img src="assets/images/doc-icon.png" alt="Document icon">
-        <p class="fell-doc-label">Nomination letter on official letterhead and bearing original or authenticated signatures.</p>
+  <div class="fell-carousel-outer">
+    <button class="fell-car-arrow fell-car-prev" aria-label="Previous document">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 5L7 11L13 17" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="fell-doc-box">
+      <div class="fell-carousel-track" id="fellDocTrack">
+        <!-- Slide 1: Nomination letter -->
+        <div class="fell-doc-slide">
+          <div class="fell-doc-card">
+            <img src="assets/images/icon-meeting.png" alt="">
+            <p class="fell-doc-label">Nomination letter on official letterhead and bearing original or authenticated signatures.</p>
+            <p class="fell-doc-tip">Tip for the nominator: The letter must demonstrate the nature of your relationship with the nominee and their familiarity with their work.</p>
+          </div>
+        </div>
+        <!-- Slide 2: CV + PhD -->
+        <div class="fell-doc-slide">
+          <div class="fell-doc-card">
+            <img src="assets/images/icon-resume.png" alt="">
+            <p class="fell-doc-label">Candidate&rsquo;s Curriculum Vitae (maximum 2 pages)</p>
+            <p class="fell-doc-label">Proof of candidate&rsquo;s PhD thesis submission</p>
+          </div>
+        </div>
+        <!-- Slide 3: Statement of purpose -->
+        <div class="fell-doc-slide">
+          <div class="fell-doc-card">
+            <img src="assets/images/icon-analyze.png" alt="">
+            <p class="fell-doc-label">Candidate&rsquo;s statement of purpose (maximum 1000 words) clearly outlining how their research aligns with the Trust&rsquo;s objectives, their motivations, and how the funds can help them.</p>
+            <p class="fell-doc-tip">Tip for candidate: Try to demonstrate the interdisciplinarity of your work, its anticipated impact, and its relevance to academic, corporate, or public policy</p>
+          </div>
+        </div>
+        <!-- Slide 4: Budget proposal -->
+        <div class="fell-doc-slide">
+          <div class="fell-doc-card">
+            <img src="assets/images/icon-gforms.png" alt="">
+            <p class="fell-doc-label">Budget proposal outlining how the funds will be used by the candidate to support their proposed research and professional development.</p>
+          </div>
+        </div>
       </div>
     </div>
+    <button class="fell-car-arrow fell-car-next" aria-label="Next document">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 5L15 11L9 17" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
-  <p class="fell-doc-tip">Tip for the nominator: The letter must demonstrate the nature of your relationship with the nominee and their familiarity with their work.</p>
+  <div class="fell-car-dots" id="fellDocDots">
+    <button class="fell-car-dot active" aria-label="Slide 1"></button>
+    <button class="fell-car-dot" aria-label="Slide 2"></button>
+    <button class="fell-car-dot" aria-label="Slide 3"></button>
+    <button class="fell-car-dot" aria-label="Slide 4"></button>
+  </div>
 </section>
+
+<script>
+(function() {
+  var track = document.getElementById('fellDocTrack');
+  var dots = document.querySelectorAll('#fellDocDots .fell-car-dot');
+  var total = 4;
+  var current = 0;
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  document.querySelector('.fell-car-prev').addEventListener('click', function() { goTo(current - 1); });
+  document.querySelector('.fell-car-next').addEventListener('click', function() { goTo(current + 1); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+})();
+</script>
 
 <!-- FELLOWSHIP CTA — R27: rocket-tagline.png replaces rocket.png + tagline text (Figma: w=180, h=124) -->
 <div class="fell-cta">
