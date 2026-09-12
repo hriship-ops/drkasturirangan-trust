@@ -201,9 +201,9 @@
 
 .vm-ethos-circles {
   display: flex;
-  gap: 26px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  gap: clamp(12px, 2vw, 26px);
+  justify-content: center;
+  flex-wrap: nowrap;
   align-items: flex-end;
 }
 
@@ -249,7 +249,7 @@
 
 /* V2: ethos circles replaced by PNG assets (label + body text baked in) */
 .vm-ethos-img {
-  width: 270px;
+  width: clamp(150px, 19vw, 270px);
   height: auto;
   object-fit: contain;
   flex-shrink: 0;

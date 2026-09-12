@@ -402,6 +402,13 @@
   .nav-logo img   { height: 48px !important; width: auto !important; }
 }
 
+@media (max-width: 960px) {
+  .site-footer {
+    padding-left: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .site-footer {
     grid-template-columns: 1fr;
