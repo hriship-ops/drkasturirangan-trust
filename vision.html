@@ -247,6 +247,14 @@
   line-height: 1.3;
 }
 
+/* V2: ethos circles replaced by PNG assets (label + body text baked in) */
+.vm-ethos-img {
+  width: 270px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 /* ----------------------------------------------------------
    OBJECTIVES
    5 items: 2-col grid (rows 1-2) + 1 centred bottom item.
@@ -476,8 +484,6 @@
       <div class="nav-dropdown">
         <a href="vision.html">Vision &amp; Mission</a>
         <a href="team.html">Team</a>
-        <a href="#">Annual Reports</a>
-        <a href="#">Financial Declarations</a>
       </div>
     </li>
     <li>
@@ -492,16 +498,12 @@
       <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="fellowship.html">Fellowship</a>
-        <a href="#">Travel Grants</a>
-        <a href="#">Awards</a>
-        <a href="#">Scholarships</a>
-        <a href="#">Alumni</a>
       </div>
     </li>
     <li>
       <a href="links.html">Useful Links <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="#">Apply</a>
+        <a href="apply.html">Apply</a>
         <a href="#">Contact Us</a>
       </div>
     </li>
@@ -553,30 +555,10 @@
   </div>
   <p class="vm-ethos-intro">The Trust is guided by the vision, values and philosophy of K. Kasturirangan &ndash; uniting curiosity with understanding, scientific rigour with ethical and social responsibility, while envisioning future systems grounded in human values.</p>
   <div class="vm-ethos-circles">
-    <div class="vm-ethos-item">
-      <span class="vm-ethos-label">Science with conscience</span>
-      <div class="vm-ethos-circle">
-        <p>How can discovery be guided by integrity?</p>
-      </div>
-    </div>
-    <div class="vm-ethos-item">
-      <span class="vm-ethos-label">Knowledge with compassion</span>
-      <div class="vm-ethos-circle">
-        <p>How can knowledge improve lives?</p>
-      </div>
-    </div>
-    <div class="vm-ethos-item">
-      <span class="vm-ethos-label">Excellence with empathy</span>
-      <div class="vm-ethos-circle">
-        <p>How can we excel without losing our humanity?</p>
-      </div>
-    </div>
-    <div class="vm-ethos-item">
-      <span class="vm-ethos-label">Progress in harmony</span>
-      <div class="vm-ethos-circle">
-        <p>How can human progress and nature coexist?</p>
-      </div>
-    </div>
+    <img class="vm-ethos-img" src="assets/images/ethos-1.png" alt="Science with conscience — How can discovery be guided by integrity?">
+    <img class="vm-ethos-img" src="assets/images/ethos-2.png" alt="Knowledge with compassion — How can knowledge improve lives?">
+    <img class="vm-ethos-img" src="assets/images/ethos-3.png" alt="Excellence with empathy — How can we excel without losing our humanity?">
+    <img class="vm-ethos-img" src="assets/images/ethos-4.png" alt="Progress in harmony — How can human progress and nature coexist?">
   </div>
 </section>
 

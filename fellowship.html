@@ -591,7 +591,7 @@
    At <= 1200px, allow wrapping so circles don't squeeze. */
 .fell-review-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 0;
   flex-wrap: wrap;
@@ -641,6 +641,46 @@
   padding: 0 8px;
   flex-shrink: 0;
   line-height: 1;
+  margin-top: 120px;
+}
+
+/* V2: benefit + review circles replaced by PNG assets */
+.fell-benefit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 270px;
+  text-align: center;
+}
+.fell-benefit-img {
+  width: 270px;
+  height: auto;
+  object-fit: contain;
+}
+.fell-benefit-desc {
+  font-size: 18px;
+  color: var(--c-primary);
+  line-height: 1.5;
+}
+.fell-review-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 270px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.fell-review-img {
+  width: 270px;
+  height: auto;
+  object-fit: contain;
+}
+.fell-review-desc {
+  font-size: 18px;
+  color: var(--c-primary);
+  line-height: 1.5;
 }
 
 /* ----------------------------------------------------------
@@ -949,8 +989,6 @@
       <div class="nav-dropdown">
         <a href="vision.html">Vision &amp; Mission</a>
         <a href="team.html">Team</a>
-        <a href="#">Annual Reports</a>
-        <a href="#">Financial Declarations</a>
       </div>
     </li>
     <li>
@@ -965,16 +1003,12 @@
       <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="fellowship.html">Fellowship</a>
-        <a href="#">Travel Grants</a>
-        <a href="#">Awards</a>
-        <a href="#">Scholarships</a>
-        <a href="#">Alumni</a>
       </div>
     </li>
     <li>
       <a href="links.html">Useful Links <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="#">Apply</a>
+        <a href="apply.html">Apply</a>
         <a href="#">Contact Us</a>
       </div>
     </li>
@@ -1081,17 +1115,17 @@
   <p class="fell-kicker">WHAT THE FELLOWSHIP PROVIDES</p>
   <h2 class="fell-h2">Fellowship benefits</h2>
   <div class="fell-benefits-row">
-    <div class="fell-benefit-circle">
-      Each Fellowship will receive a funding of &#8377;2 lakh for one year,
-      with the possibility of renewal for an additional year.
+    <div class="fell-benefit-item">
+      <img class="fell-benefit-img" src="assets/images/fellowship-benefit-1.png" alt="Financial support">
+      <p class="fell-benefit-desc">Each Fellowship will receive a funding of &#8377;2 lakh for one year, with the possibility of renewal for an additional year.</p>
     </div>
-    <div class="fell-benefit-circle">
-      Each fellow will be paired with a mentor, meeting regularly throughout
-      the year to exchange ideas, discuss progress, and receive guidance.
+    <div class="fell-benefit-item">
+      <img class="fell-benefit-img" src="assets/images/fellowship-benefit-2.png" alt="Mentorship">
+      <p class="fell-benefit-desc">Each fellow will be paired with a mentor, meeting regularly throughout the year to exchange ideas, discuss progress, and receive guidance.</p>
     </div>
-    <div class="fell-benefit-circle">
-      There will be two workshops where fellows present their work for an
-      informal review session with invited experts and peers.
+    <div class="fell-benefit-item">
+      <img class="fell-benefit-img" src="assets/images/fellowship-benefit-3.png" alt="Workshops">
+      <p class="fell-benefit-desc">There will be two workshops where fellows present their work for an informal review session with invited experts and peers.</p>
     </div>
   </div>
 </section>
@@ -1149,24 +1183,24 @@
   <p class="fell-kicker">HOW FELLOWS ARE CHOSEN</p>
   <h2 class="fell-h2">Review process</h2>
   <div class="fell-review-row">
-    <div class="fell-review-circle">
-      All applications will be reviewed to ensure they are complete and meet the
-      eligibility criteria before being forwarded to the jury.
+    <div class="fell-review-item">
+      <img class="fell-review-img" src="assets/images/fellowship-review-1.png" alt="Nomination">
+      <p class="fell-review-desc">All applications will be reviewed to ensure they are complete and meet the eligibility criteria before being forwarded to the jury.</p>
     </div>
     <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
-    <div class="fell-review-circle">
-      A distinguished jury of experts will evaluate the applications and prepare
-      a shortlist based on merit and alignment with the trust&rsquo;s values and
-      objectives.
+    <div class="fell-review-item">
+      <img class="fell-review-img" src="assets/images/fellowship-review-2.png" alt="Shortlisting">
+      <p class="fell-review-desc">A distinguished jury of experts will evaluate the applications and prepare a shortlist based on merit and alignment with the trust&rsquo;s values and objectives.</p>
     </div>
     <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
-    <div class="fell-review-circle">
-      Shortlisted candidates will be notified, and interviews will be scheduled
-      with a panel.
+    <div class="fell-review-item">
+      <img class="fell-review-img" src="assets/images/fellowship-review-3.png" alt="Interviews">
+      <p class="fell-review-desc">Shortlisted candidates will be notified, and interviews will be scheduled with a panel.</p>
     </div>
     <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
-    <div class="fell-review-circle accent">
-      Selected fellows will be announced on <strong>April 25, 2027</strong>
+    <div class="fell-review-item">
+      <img class="fell-review-img" src="assets/images/fellowship-review-4.png" alt="Announcement">
+      <p class="fell-review-desc">Selected fellows will be announced on <strong>April 25, 2027</strong></p>
     </div>
   </div>
 </section>

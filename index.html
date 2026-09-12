@@ -260,6 +260,7 @@
 
 /* Wrapper gives the SVG label room to sit on the top arc. */
 .area-circle-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -273,6 +274,22 @@
   object-fit: contain;
   display: block;
 }
+
+/* Hover swap: navy = default, amber = hover (NEEDS MANUAL BROWSER CHECK) */
+.area-img-hover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.area-img-default {
+  transition: opacity 0.2s;
+}
+.area-circle-wrap:hover .area-img-default { opacity: 0; }
+.area-circle-wrap:hover .area-img-hover { opacity: 1; }
 
 /* ----------------------------------------------------------
    QUOTE STRIP
@@ -769,22 +786,26 @@
   <div class="areas-row">
     <div class="area-item">
       <div class="area-circle-wrap">
-        <img src="assets/images/area-space-v2.png" alt="Space &amp; Technology">
+        <img class="area-img-default" src="assets/images/area-space-v2.png" alt="Space &amp; Technology">
+        <img class="area-img-hover" src="assets/images/area-space-v2-hover.png" alt="">
       </div>
     </div>
     <div class="area-item">
       <div class="area-circle-wrap">
-        <img src="assets/images/area-environment-v2-amber.png" alt="Environment">
+        <img class="area-img-default" src="assets/images/area-environment-v2.png" alt="Environment">
+        <img class="area-img-hover" src="assets/images/area-environment-v2-hover.png" alt="">
       </div>
     </div>
     <div class="area-item">
       <div class="area-circle-wrap">
-        <img src="assets/images/area-education-v2.png" alt="Education">
+        <img class="area-img-default" src="assets/images/area-education-v2.png" alt="Education">
+        <img class="area-img-hover" src="assets/images/area-education-v2-hover.png" alt="">
       </div>
     </div>
     <div class="area-item">
       <div class="area-circle-wrap">
-        <img src="assets/images/area-publiclife-v2.png" alt="Public Life">
+        <img class="area-img-default" src="assets/images/area-publiclife-v2.png" alt="Public Life">
+        <img class="area-img-hover" src="assets/images/area-publiclife-v2-hover.png" alt="">
       </div>
     </div>
   </div>
