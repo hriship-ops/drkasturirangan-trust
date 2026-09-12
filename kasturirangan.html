@@ -194,29 +194,6 @@ body { overflow-y: visible; }
   z-index: 0;
 }
 
-/* R2/R9: vertical blue connecting line — matches spine x=336px; top=77px aligns
-   dot with first entry content (Figma: hero hline y=502, first spine y=579, gap=77px). */
-.kk-timeline-vline {
-  position: absolute;
-  left: 336px;
-  top: 77px;
-  height: 33px;
-  width: 2px;
-  background: var(--c-primary);
-  transform: translateX(-0.5px);
-  z-index: 1;
-}
-
-.kk-timeline-vline::before {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--c-primary);
-  top: -8px;
-  left: -7px;
-}
 
 /* ----------------------------------------------------------
    TIMELINE ENTRY
@@ -374,7 +351,6 @@ body { overflow-y: visible; }
   .kk-entry-year     { font-size: 60px; min-width: 140px; }
   /* grey line = content-start(176px) - 35px (same left-of-dot offset as desktop) = 141px */
   .kk-main::before   { left: 141px; }
-  .kk-timeline-vline { left: 141px; }
 }
 
 /* ── Mobile (≤600px): hide sidebar, stack year above content ── */
@@ -402,7 +378,6 @@ body { overflow-y: visible; }
 
   /* Remove decorative lines — too cluttered on narrow screens */
   .kk-main::before   { display: none; }
-  .kk-timeline-vline { display: none; }
 
   .kk-dark-section { padding: 28px 20px; }
   .kk-dark-text    { font-size: 18px; }
@@ -544,9 +519,6 @@ body { overflow-y: visible; }
 
   <!-- MAIN TIMELINE CONTENT -->
   <div class="kk-main">
-
-    <!-- R2: vertical blue connecting line — marks timeline start, circle at top -->
-    <div class="kk-timeline-vline"></div>
 
     <!-- 1940s–1950s -->
     <div class="kk-entry" data-year="1940">
