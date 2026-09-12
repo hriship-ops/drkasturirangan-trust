@@ -242,20 +242,22 @@
    ---------------------------------------------------------- */
 
 .areas-section {
-  padding: 36px var(--page-px) 0 130px;
+  padding: 36px var(--page-px) 0;
 }
 
 .areas-row {
   display: flex;
   align-items: flex-end;
-  gap: 70px;
-  flex-wrap: wrap;
+  gap: clamp(16px, 4vw, 60px);
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
 .area-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
 }
 
 /* Wrapper gives the SVG label room to sit on the top arc. */
@@ -269,7 +271,7 @@
 }
 
 .area-circle-wrap img {
-  width: 230px;
+  width: clamp(150px, 17vw, 230px);
   height: auto;
   object-fit: contain;
   display: block;
@@ -674,8 +676,6 @@
       <div class="nav-dropdown">
         <a href="vision.html">Vision &amp; Mission</a>
         <a href="team.html">Team</a>
-        <a href="#">Annual Reports</a>
-        <a href="#">Financial Declarations</a>
       </div>
     </li>
     <li>
@@ -690,10 +690,6 @@
       <a href="initiatives.html">Initiatives <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="fellowship.html">Fellowship</a>
-        <a href="#">Travel Grants</a>
-        <a href="#">Awards</a>
-        <a href="#">Scholarships</a>
-        <a href="#">Alumni</a>
       </div>
     </li>
     <li>
