@@ -277,7 +277,7 @@
   display: block;
 }
 
-/* Hover swap: navy = default, amber = hover (NEEDS MANUAL BROWSER CHECK) */
+/* Hover swap: navy = default, amber = hover/active */
 .area-img-hover {
   position: absolute;
   top: 0;
@@ -290,8 +290,65 @@
 .area-img-default {
   transition: opacity 0.2s;
 }
-.area-circle-wrap:hover .area-img-default { opacity: 0; }
-.area-circle-wrap:hover .area-img-hover { opacity: 1; }
+.area-circle-wrap:hover .area-img-default,
+.area-circle-wrap.active .area-img-default { opacity: 0; }
+.area-circle-wrap:hover .area-img-hover,
+.area-circle-wrap.active .area-img-hover { opacity: 1; }
+
+/* ----------------------------------------------------------
+   AREA PANEL: expands below circles on click.
+   Two columns: quote (left) + description (right).
+   ---------------------------------------------------------- */
+.area-panel {
+  display: none;
+  max-width: 1151px;
+  margin: 0 auto;
+  padding: 40px var(--page-px) 56px;
+  grid-template-columns: 5fr 7fr;
+  gap: 80px;
+  align-items: start;
+}
+.area-panel.active {
+  display: grid;
+}
+
+/* Quote column: large decorative " and " flank the quote text */
+.area-panel-quote-col {
+  position: relative;
+  padding: 0 0 40px 0;
+}
+.area-panel-qmark {
+  display: block;
+  font-family: var(--font-deco);
+  font-size: 120px;
+  color: var(--c-primary);
+  line-height: 0.5;
+}
+.area-panel-qmark-open { margin-bottom: 12px; }
+.area-panel-qmark-close {
+  text-align: right;
+  margin-top: 8px;
+}
+.area-panel-quote-text {
+  font-size: 22px;
+  font-style: italic;
+  color: var(--c-primary);
+  line-height: 1.55;
+  font-weight: var(--fw-regular);
+}
+
+/* Description column */
+.area-panel-desc {
+  font-size: 18px;
+  color: var(--c-text-navy);
+  line-height: 1.65;
+  font-weight: var(--fw-regular);
+  padding-top: 12px;
+}
+
+@media (max-width: 860px) {
+  .area-panel { grid-template-columns: 1fr; gap: 32px; }
+}
 
 /* ----------------------------------------------------------
    QUOTE STRIP
@@ -780,32 +837,93 @@
 <!-- AREAS -->
 <section class="areas-section">
   <div class="areas-row">
-    <div class="area-item">
-      <div class="area-circle-wrap">
+    <div class="area-item" data-area="space">
+      <div class="area-circle-wrap" style="cursor:pointer;">
         <img class="area-img-default" src="assets/images/area-space-v2.png" alt="Space &amp; Technology">
         <img class="area-img-hover" src="assets/images/area-space-v2-hover.png" alt="">
       </div>
     </div>
-    <div class="area-item">
-      <div class="area-circle-wrap">
+    <div class="area-item" data-area="environment">
+      <div class="area-circle-wrap" style="cursor:pointer;">
         <img class="area-img-default" src="assets/images/area-environment-v2.png" alt="Environment">
         <img class="area-img-hover" src="assets/images/area-environment-v2-hover.png" alt="">
       </div>
     </div>
-    <div class="area-item">
-      <div class="area-circle-wrap">
+    <div class="area-item" data-area="education">
+      <div class="area-circle-wrap" style="cursor:pointer;">
         <img class="area-img-default" src="assets/images/area-education-v2.png" alt="Education">
         <img class="area-img-hover" src="assets/images/area-education-v2-hover.png" alt="">
       </div>
     </div>
-    <div class="area-item">
-      <div class="area-circle-wrap">
+    <div class="area-item" data-area="publiclife">
+      <div class="area-circle-wrap" style="cursor:pointer;">
         <img class="area-img-default" src="assets/images/area-publiclife-v2.png" alt="Public Life">
         <img class="area-img-hover" src="assets/images/area-publiclife-v2-hover.png" alt="">
       </div>
     </div>
   </div>
+
+  <!-- Expand panel: quote (left) + description (right) -->
+  <div class="area-panel" id="areaPanel">
+    <div class="area-panel-quote-col">
+      <span class="area-panel-qmark area-panel-qmark-open">&ldquo;</span>
+      <p class="area-panel-quote-text" id="areaPanelQuote"></p>
+      <span class="area-panel-qmark area-panel-qmark-close">&rdquo;</span>
+    </div>
+    <p class="area-panel-desc" id="areaPanelDesc"></p>
+  </div>
 </section>
+
+<script>
+(function () {
+  var AREAS = {
+    space: {
+      quote: 'I fervently recall the beautiful sight of the Milky Way that strung like a necklace across the night skies of Ernakulam.',
+      desc:  'To meet India’s national requirements, its satellites must deliver the data and services on which weather forecasting, agriculture, disaster management, broadcasting and navigation depend. Under Kasturirangan’s leadership, ISRO operationalised PSLV, consolidated its satellite programme, executed on its launch vehicle technologies, and defined long-term strategic missions such as India’s first mission to the moon.'
+    },
+    environment: {
+      quote: 'Views of the Earth from outer space have intensified an awareness of the interconnectedness of all life and the environment on this beautiful and yet fragile planet.',
+      desc:  'The Western Ghats are one of the world’s richest biodiversity regions, in addition to being the life-support for the whole of peninsular India. Kasturirangan led a landmark effort to balance the preservation of an ecologically sensitive region with the livelihoods of the communities that depend on it. The resulting report offered a science-led framework and sparked critical conversations and a nation-wide debate on conservation, rights, and development.'
+    },
+    education: {
+      quote: 'My education was a merry mix of what happened inside the school, the things that I read, and the wonderful people I interacted with… this broad-based education was the foundation of everything.',
+      desc:  'One morning in May 2017, K. Kasturirangan received a surprise invite to chair a committee that would draft the country’s new education policy, slated to be a blueprint for the next 20 years. He rose to the task. The NEP 2020 promoted formal education down to age three, opened higher education to multidisciplinary study, incorporated Indian knowledge systems and recommended the establishment of a national body to fund research beyond the elite institutions.'
+    },
+    publiclife: {
+      quote: 'Every country needs a vision that stirs the imagination and motivates all segments of society to greater effort. Vision is an essential part of building a consensus on a broad national development strategy.',
+      desc:  'After a record-breaking nine years as the chairman of ISRO, Kasturirangan was nominated a member of the Rajya Sabha, and subsequently the Planning Commission. Deliberating in the parliament on topics such as transport, health, climate change, national security, and education, his understanding of India grew more holistic. He transitioned from the role of technical leader to nation builder.'
+    }
+  };
+
+  var panel     = document.getElementById('areaPanel');
+  var quoteEl   = document.getElementById('areaPanelQuote');
+  var descEl    = document.getElementById('areaPanelDesc');
+  var activeKey = null;
+
+  document.querySelectorAll('.area-item[data-area]').forEach(function (item) {
+    item.querySelector('.area-circle-wrap').addEventListener('click', function () {
+      var key = item.getAttribute('data-area');
+      if (activeKey === key) {
+        // toggle off
+        panel.classList.remove('active');
+        item.querySelector('.area-circle-wrap').classList.remove('active');
+        activeKey = null;
+        return;
+      }
+      // deactivate previous
+      document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
+        w.classList.remove('active');
+      });
+      // activate this
+      this.classList.add('active');
+      quoteEl.textContent = AREAS[key].quote;
+      descEl.textContent  = AREAS[key].desc;
+      panel.classList.add('active');
+      activeKey = key;
+    });
+  });
+})();
+</script>
 
 <!-- QUOTE STRIP -->
 <section class="quote-strip" aria-label="Quote by Dr Kasturirangan">
