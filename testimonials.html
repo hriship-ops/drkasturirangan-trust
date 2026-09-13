@@ -58,73 +58,73 @@
    Cream band (#fcedd6) at bottom with name and email.
    ------------------------------------------------------- */
 
+/* Card: everything absolutely positioned to match Figma's flat layout.
+   Figma card: 393×456px, border 4px #e9a22d, r=27. */
 .tc-card {
   width: 393px;
   height: 456px;
   border: 4px solid #e9a22d;
   border-radius: 27px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   background: #fff;
+  position: relative;
 }
 
-/* Upper white section — flex: 1 fills remaining height */
+/* Upper white zone: 0–276px (Figma wave starts at 276px). */
 .tc-upper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 84px;   /* bottom padding reserves space for photo overlap */
-  min-height: 0;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 276px;
+  overflow: hidden;
 }
 
-/* 200px Agdasima opening double-quote mark, amber-border color.
-   line-height: 0.55 compresses vertical space so mark sits near top. */
+/* 200px Agdasima opening double-quote mark.
+   Figma: glyph starts ~20px above card top; clips at overflow:hidden. */
 .tc-quote-mark {
+  position: absolute;
+  top: -20px;
+  left: 12px;
   font-family: var(--font-deco);
   font-size: 200px;
   color: var(--c-amber-border);
-  line-height: 0.55;
-  padding: 14px 0 0 12px;
-  display: block;
-  flex-shrink: 0;
+  line-height: 0.7;
+  pointer-events: none;
 }
 
-/* Quote body text — centered, navy, 24px */
+/* Quote text: vertically centered in 90–240px zone.
+   Figma text y=99–227px (card 1); hard floor at 240px keeps 14px clear
+   of photo at 254px even for longer quotes. */
 .tc-quote-text {
-  flex: 1;
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  text-align: center;
-  line-height: 1.3;
-  padding: 10px 24px 0;
+  position: absolute;
+  top: 90px;
+  bottom: 36px;   /* 276 – 36 = 240px floor */
+  left: 24px;
+  right: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  color: var(--c-primary);
+  line-height: 1.3;
+  overflow: hidden;
 }
 
-/* Wave + photo zone.
-   position: relative so the photo can be absolute within it.
-   margin-top: -84px pulls the wave up into the padding reserved above. */
+/* Wave fills 276–456px (180px; Figma wave 168px, scales cleanly). */
 .tc-wave-section {
-  position: relative;
-  height: 168px;
-  flex-shrink: 0;
-  margin-top: -84px;
-}
-
-/* Wave SVG fills the section. z-index: 1 sits behind photo. */
-.tc-wave-img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  top: 276px; left: 0; right: 0;
+  height: 180px;
 }
 
-/* Circular portrait — centered, positioned 30px above wave section top.
-   z-index: 2 floats in front of wave. */
+.tc-wave-img {
+  width: 100%; height: 100%;
+  display: block;
+}
+
+/* Circular portrait: Figma photo y=254px from card top, centered.
+   Amber ring via box-shadow (Figma Ellipse 68: 112×112 behind photo). */
 .tc-photo {
   position: absolute;
   width: 107px;
@@ -134,19 +134,19 @@
   object-position: top center;
   left: 50%;
   transform: translateX(-50%);
-  top: -30px;
-  z-index: 2;
+  top: 254px;
+  z-index: 4;
+  box-shadow: 0 0 0 3px var(--c-accent);
 }
 
-/* Cream name band — overlaps bottom 62px of wave via negative margin.
-   z-index: 3 sits above wave. */
+/* Cream name band: Figma y=400–456px from card top. */
 .tc-band {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
   background: #fcedd6;
   text-align: center;
-  padding: 6px 16px 14px;
-  flex-shrink: 0;
-  margin-top: -62px;
-  position: relative;
+  padding: 4px 16px 8px;
   z-index: 3;
 }
 
@@ -256,8 +256,9 @@
       </div>
       <div class="tc-wave-section">
         <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
-        <img class="tc-photo" src="assets/images/testimonial-photo-1.png" alt="Arjun Nair">
+        
       </div>
+            <img class="tc-photo" src="assets/images/testimonial-photo-1.png" alt="Arjun Nair">
       <div class="tc-band">
         <p class="tc-name">Arjun Nair</p>
         <p class="tc-email">arjun.nair@example.com</p>
@@ -272,8 +273,9 @@
       </div>
       <div class="tc-wave-section">
         <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
-        <img class="tc-photo" src="assets/images/testimonial-photo-2.png" alt="Arjun Nair">
+        
       </div>
+            <img class="tc-photo" src="assets/images/testimonial-photo-2.png" alt="Arjun Nair">
       <div class="tc-band">
         <p class="tc-name">Arjun Nair</p>
         <p class="tc-email">arjun.nair@example.com</p>
@@ -288,8 +290,9 @@
       </div>
       <div class="tc-wave-section">
         <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
-        <img class="tc-photo" src="assets/images/testimonial-photo-3.png" alt="Arjun Nair">
+        
       </div>
+            <img class="tc-photo" src="assets/images/testimonial-photo-3.png" alt="Arjun Nair">
       <div class="tc-band">
         <p class="tc-name">Arjun Nair</p>
         <p class="tc-email">arjun.nair@example.com</p>
@@ -304,8 +307,9 @@
       </div>
       <div class="tc-wave-section">
         <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
-        <img class="tc-photo" src="assets/images/testimonial-photo-4.png" alt="Arjun Nair">
+        
       </div>
+            <img class="tc-photo" src="assets/images/testimonial-photo-4.png" alt="Arjun Nair">
       <div class="tc-band">
         <p class="tc-name">Arjun Nair</p>
         <p class="tc-email">arjun.nair@example.com</p>
@@ -320,8 +324,9 @@
       </div>
       <div class="tc-wave-section">
         <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
-        <img class="tc-photo" src="assets/images/testimonial-photo-5.png" alt="Arjun Nair">
+        
       </div>
+            <img class="tc-photo" src="assets/images/testimonial-photo-5.png" alt="Arjun Nair">
       <div class="tc-band">
         <p class="tc-name">Arjun Nair</p>
         <p class="tc-email">arjun.nair@example.com</p>
@@ -336,8 +341,9 @@
       </div>
       <div class="tc-wave-section">
         <img class="tc-wave-img" src="assets/images/testimonial-wave.svg" alt="">
-        <img class="tc-photo" src="assets/images/testimonial-photo-6.png" alt="Arjun Nair">
+        
       </div>
+            <img class="tc-photo" src="assets/images/testimonial-photo-6.png" alt="Arjun Nair">
       <div class="tc-band">
         <p class="tc-name">Arjun Nair</p>
         <p class="tc-email">arjun.nair@example.com</p>
