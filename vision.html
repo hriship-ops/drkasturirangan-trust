@@ -448,6 +448,10 @@
    RESPONSIVE
    ---------------------------------------------------------- */
 
+@media (max-width: 1300px) {
+  .vm-walking-figure { display: none; }
+}
+
 @media (max-width: 1100px) {
   .vm-legacy-grid  { grid-template-columns: 1fr; }
   .vm-legacy-portrait { height: 340px; margin-top: 20px; }
@@ -512,6 +516,15 @@
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
       <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <!-- Hamburger — visible only on mobile via shared.css -->
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
 </nav>
@@ -698,5 +711,6 @@
   </div>
 </footer>
 
+<script src="nav.js"></script>
 </body>
 </html>
