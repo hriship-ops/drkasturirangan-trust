@@ -381,8 +381,9 @@
   min-height: 550px;
 }
 
-/* Amber pill: now a PNG asset with quote marks baked in.
-   Normal = quote-box.png; hover = quote-box-flip.png (manual check required). */
+/* Amber pill: PNG asset with decorative quote marks baked in.
+   Figma: x=105, w=1121, y=1611, h=374 in 1440px frame.
+   No hover state — static only. */
 .quote-amber-bg {
   position: absolute;
   left: 7.3%;
@@ -392,14 +393,7 @@
   background-image: url(assets/images/quote-box.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  border-radius: 0;
-  overflow: visible;
   z-index: 0;
-  transition: background-image 0s;
-}
-
-.quote-strip:hover .quote-amber-bg {
-  background-image: url(assets/images/quote-box-flip.png);
 }
 
 /* Illustration inside pill: Figma canvas (905,1694), pill origin (105,1611)
@@ -429,14 +423,14 @@
   user-select: none;
 }
 
-/* Quote text: 50px medium white. Starts at x≈170px (Figma), max-width 620px
-   keeps each explicit <br>-delimited line on one line without wrapping. */
+/* Quote text: Figma x=367/1440=25.5%, y=1703, pill top=1611, strip top=1459.
+   top = (1703-1459)=244px. width = 503/1440=34.9%. Centered within that zone. */
 .quote-text {
-  position: relative;
+  position: absolute;
+  left: 25.5%;
+  top: 244px;
+  width: 34.9%;
   z-index: 3;
-  max-width: 700px;
-  margin-top: 90px;
-  margin-left: 110px;
   text-align: center;
   font-size: var(--fs-quote);
   font-weight: var(--fw-medium);
