@@ -186,29 +186,39 @@ Before writing any text content in HTML:
 
 ## 5. Layout Model — Figma Absolute vs. HTML Flow
 
-Figma uses a flat/absolute positioning model. HTML defaults to flow/flex.
+**The baseline contract of any website: it must compose correctly at any viewport width, on any device, at any zoom level. Responsive layout is not optional.**
 
-**Rule:** If Figma shows elements at explicit x/y positions that would reorder or collapse in normal flow, use `position: absolute` on all children of that container.
+Figma's absolute pixel coordinates describe where something appears *at 1440px design width* — they are not CSS instructions. Translating them one-to-one as `position: absolute; left: Xpx` is wrong and produces layouts that break at every other viewport.
 
-```css
-/* Pattern: */
-.container {
-  position: relative;
-  width: <frame_width_px>px;
-  height: <frame_height_px>px;
-}
-.child {
-  position: absolute;
-  left: <node_x - frame_x>px;
-  top:  <node_y - frame_y>px;
-  width: <node_w>px;
-  height: <node_h>px;
-}
-```
+### Correct translation table
 
-For widths that should scale with viewport: `width: calc(<node_w> / 1440 * 100%)`.
+| Figma element | Wrong CSS | Correct CSS |
+|---|---|---|
+| Two elements side by side | `position: absolute; left: Xpx` | `display: flex; gap: Xpx` |
+| Text beside image | Absolute coords | `grid-template-columns: 53% 1fr` |
+| Fixed-width column (360px) | `width: 360px` | `flex: 1 1 300px; max-width: 360px` |
+| Font size (36px from Figma) | `font-size: 36px` | `font-size: clamp(22px, 2.5vw, 36px)` |
+| Padding/gap (58px from Figma) | `padding: 58px` | `padding: clamp(16px, 4vw, 58px)` |
+| Decorative overlay element | `left: 154px` | `left: clamp(16px, 10.7vw, 200px)` |
+| Fixed grid columns | `repeat(3, 360px)` | `repeat(3, 1fr)` |
 
-**When flex IS correct:** Figma's `layoutMode: "HORIZONTAL"` or `"VERTICAL"` = use flex/grid. Read `itemSpacing` for gap, `paddingLeft/Right/Top/Bottom` for padding.
+### When to use `position: absolute`
+
+Only for truly decorative elements that float over a background — quote marks, decorative dots, walking figures. Even then:
+- `left` / `top` must use `vw` or `%`, never fixed `px`
+- `width` / `height` must use `clamp()` or `vw`
+
+### When to use flex / grid (structural layout)
+
+Always — for any side-by-side or stacked layout that should reflow. Read from Figma:
+- `layoutMode: "HORIZONTAL"` → `display: flex; flex-direction: row`
+- `layoutMode: "VERTICAL"` → `display: flex; flex-direction: column`
+- `itemSpacing` → `gap`
+- `paddingLeft/Right/Top/Bottom` → `padding`
+
+### Never use `display: none` as a responsive fix
+
+Hiding an element at a breakpoint because it overlaps is a symptom that its positioning is wrong. Fix the positioning with fluid units instead. Only use `display: none` at genuine phone widths (≤480px) for elements that genuinely cannot fit.
 
 ---
 

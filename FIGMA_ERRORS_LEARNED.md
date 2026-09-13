@@ -202,17 +202,44 @@
 
 ---
 
-## CATEGORY 11 — Mobile Responsiveness Gaps
+## CATEGORY 11 — Responsive Layout (Systemic)
+
+**Core principle (user-stated, September 2026):** "Isn't this a rule of website design. Why are you building HTMLs that break basis screen."
+
+Responsive layout is not optional or a post-hoc patch. A browser can be opened at any width on any device, and the page must compose correctly. This is the baseline contract of any website.
+
+### 11.0 The Figma coordinate translation error — root cause of all responsive failures
+
+**What happened:** Figma absolute pixel coordinates (e.g. `left: 154px` on a 1440px canvas) were copied directly into CSS as `position: absolute; left: 154px`. This is wrong. Figma's coordinates describe where something appears *at 1440px design width*, not a CSS instruction. At any other viewport width they produce the wrong position.
+
+**The correct translation table:**
+
+| Figma element | Wrong CSS | Correct CSS |
+|---|---|---|
+| Two elements side by side | `position: absolute; left: Xpx` | `display: flex; gap: Xpx` or `grid-template-columns: Afr Bfr` |
+| Text beside an image | Absolute coords | `display: grid; grid-template-columns: 53% 1fr` |
+| Fixed-width column (360px) | `width: 360px` | `flex: 1 1 300px; max-width: 360px` |
+| Font size (36px from Figma) | `font-size: 36px` | `font-size: clamp(22px, 2.5vw, 36px)` |
+| Padding/gap (58px from Figma) | `padding: 58px` | `padding: clamp(16px, 4vw, 58px)` |
+| Decorative overlay element | `left: 154px` | `left: clamp(16px, 10.7vw, 200px)` — always vw, never px |
+| Fixed grid columns | `repeat(3, 360px)` | `repeat(3, 1fr)` |
+
+**Rule:** `position: absolute` with fixed `px` coordinates is only valid for truly decorative elements floating over a background — and even those must use `vw`/`%`, not `px`. All structural layout uses flex or grid with fluid units.
 
 ### 11.1 Hard-coded px values not responsive
 **What happened:** Circles section at 100% zoom: all 4 circles didn't fit on screen. Other elements (logo, Apply button) clipped at narrower widths.  
 **User:** "you need to make it fit on any screen as it renders"  
-**Rule:** After every major layout addition, test at 1440px, 1280px, 1024px, and 768px. Hard-coded pixel widths must be converted to `max-width` + `%` or `clamp()`.
+**Rule:** After every layout addition, test at 1440px, 1280px, 1024px, 768px, and 375px. Hard-coded pixel widths must be converted to `max-width` + `%` or `clamp()`.
 
 ### 11.2 Fixes applied to one page, not propagated site-wide
 **What happened:** A responsiveness fix (e.g., fluid grid) was applied to the circles section of index.html but not to equivalent sections on other pages.  
 **User:** "this kind of rendering fix should apply to all pages, not just these circles"  
-**Rule:** When a structural fix applies by pattern (e.g., any 4-column grid), audit all pages for the same pattern and apply the fix everywhere before committing.
+**Rule:** When a structural fix applies by pattern (e.g., any multi-column grid), audit all pages for the same pattern and apply the fix everywhere before committing.
+
+### 11.3 Breakpoint hacks instead of fluid layout
+**What happened:** The walking man image on vision.html was hidden at `max-width: 1300px` instead of being given fluid positioning. This caused it to disappear at 100% zoom on common laptop screens.  
+**User:** "it should auto render. mobile, big laptop small laptop os 75 inch screen"  
+**Rule:** Never use `display: none` in a media query to hide an element that should just be smaller. Use `clamp()` for size and position so the element scales fluidly at any viewport. Only use `display: none` on genuine mobile viewports (≤480px) for elements that genuinely don't fit.
 
 ---
 
