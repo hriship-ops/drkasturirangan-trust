@@ -66,16 +66,18 @@ def is_significant(r, g, b, a, width, height):
         return False
     return True
 
-def walk(node, frame_x, frame_y, results, depth=0):
+def walk(node, frame_x, frame_y, results, vectors, depth=0):
     if depth > 10:
         return
     ntype = node.get("type", "")
+    nname = node.get("name", "")
+    cb    = node.get("absoluteBoundingBox") or {}
+    w     = round(cb.get("width",  0))
+    h     = round(cb.get("height", 0))
+    rx    = round(cb.get("x", 0) - frame_x)
+    ry    = round(cb.get("y", 0) - frame_y)
+
     if ntype in ("RECTANGLE", "ELLIPSE"):
-        cb  = node.get("absoluteBoundingBox") or {}
-        w   = round(cb.get("width",  0))
-        h   = round(cb.get("height", 0))
-        rx  = round(cb.get("x", 0) - frame_x)
-        ry  = round(cb.get("y", 0) - frame_y)
         fill = extract_fill(node.get("fills", []))
         if fill:
             r, g, b, a = fill
@@ -85,14 +87,36 @@ def walk(node, frame_x, frame_y, results, depth=0):
                     crs = node.get("rectangleCornerRadii") or [0, 0, 0, 0]
                     cr = max(crs)
                 results.append({
-                    "name":         node.get("name", ""),
+                    "name":         nname,
                     "fill_rgba":    f"rgba({r},{g},{b},{a})",
                     "fill_r": r, "fill_g": g, "fill_b": b, "fill_a": a,
                     "corner_radius": round(cr),
                     "width": w, "height": h, "x": rx, "y": ry,
                 })
+
+    # VECTOR / LINE nodes: decorative connectors, illustrations, path graphics.
+    # Captured at depth <= 2 to exclude icon glyphs nested inside components.
+    # Minimum size 50x50 to skip tiny strokes.
+    elif ntype in ("VECTOR", "LINE", "BOOLEAN_OPERATION") and depth <= 2:
+        if w >= 50 and h >= 50:
+            # skip nodes whose name suggests they are icon glyphs
+            if nname.lower() not in ("icon", "vector", "path"):
+                vectors.append({
+                    "name":  nname,
+                    "node_id": node.get("id", ""),
+                    "width": w, "height": h, "x": rx, "y": ry,
+                })
+            else:
+                # generic name but large — still capture with a flag
+                vectors.append({
+                    "name":    nname,
+                    "node_id": node.get("id", ""),
+                    "width": w, "height": h, "x": rx, "y": ry,
+                    "generic_name": True,
+                })
+
     for child in node.get("children", []):
-        walk(child, frame_x, frame_y, results, depth + 1)
+        walk(child, frame_x, frame_y, results, vectors, depth + 1)
 
 # ── Step 1: discover frame IDs ───────────────────────────────────────────────
 print("Fetching file structure …")
@@ -121,16 +145,20 @@ for name, node_id in name_to_id.items():
     bb  = doc.get("absoluteBoundingBox", {})
     fx, fy = bb.get("x", 0), bb.get("y", 0)
     results = []
-    walk(doc, fx, fy, results)
+    vectors = []
+    walk(doc, fx, fy, results, vectors)
     output[name] = {
         "node_id": node_id,
         "width":   round(bb.get("width",  0)),
         "height":  round(bb.get("height", 0)),
         "shapes":  results,
+        "vectors": vectors,
     }
-    print(f"  {name!r}: {len(results)} significant shapes")
+    print(f"  {name!r}: {len(results)} shapes, {len(vectors)} vectors")
     for s in results:
-        print(f"    {s['name']!r:30s} {s['fill_rgba']} cr={s['corner_radius']} {s['width']}x{s['height']}")
+        print(f"    SHAPE {s['name']!r:28s} {s['fill_rgba']} cr={s['corner_radius']} {s['width']}x{s['height']}")
+    for v in vectors:
+        print(f"    VECT  {v['name']!r:28s} id={v['node_id']} {v['width']}x{v['height']}")
 
 # ── Save ─────────────────────────────────────────────────────────────────────
 out = ROOT / "figma_shapes.json"

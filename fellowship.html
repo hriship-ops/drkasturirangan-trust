@@ -246,6 +246,16 @@
   line-height: 1.2;
 }
 
+/* Figma Vector 1: dashed navy string connecting the two date pills.
+   x=567/1439=39.4%, width=308/1439=21.4%, top=31px below container top. */
+.fell-date-connector {
+  position: absolute;
+  left: 39%;
+  top: 31px;
+  width: 21%;
+  pointer-events: none;
+}
+
 @media (max-width: 1100px) {
   .fell-dates {
     height: auto;
@@ -262,6 +272,7 @@
   .fell-date-pill:last-child {
     left: auto; right: auto; top: auto; bottom: auto;
   }
+  .fell-date-connector { display: none; }
 }
 
 /* ----------------------------------------------------------
@@ -1122,6 +1133,10 @@
       <span class="fell-date-label">Nominations accepted from:</span>
       <strong class="fell-date-value">October 25, 2026</strong>
     </div>
+    <!-- Figma Vector 1: dashed string connecting the two date pills -->
+    <img class="fell-date-connector"
+         src="assets/images/fellowship-connector.png"
+         alt="">
     <div class="fell-date-pill">
       <span class="fell-date-label">Last date for submission:</span>
       <strong class="fell-date-value">December 31, 2026</strong>

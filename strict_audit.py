@@ -1,11 +1,13 @@
 """
 strict_audit.py — three-layer Figma vs HTML audit.
 
-Layer 1 (text)   : Every Figma text string must appear in the HTML.
-                   Structural skips are surfaced as WARN, not silently dropped. [Fix 6]
-Layer 2 (shapes) : Every significant Figma fill colour must appear in the CSS. [Fix 2]
-Layer 3 (reverse): Every non-trivial CSS background colour must have a
-                   Figma shape counterpart (catches invented elements). [Fix 4]
+Layer 1 (text)    : Every Figma text string must appear in the HTML.
+                    Structural skips are surfaced as WARN, not silently dropped. [Fix 6]
+Layer 2 (shapes)  : Every significant Figma fill colour must appear in the CSS. [Fix 2]
+Layer 2b (vectors): VECTOR/LINE nodes from figma_shapes.json reported as WARN for
+                    manual verification (decorative connectors, wave art, etc.).
+Layer 3 (reverse) : Every non-trivial CSS background colour must have a
+                    Figma shape counterpart (catches invented elements). [Fix 4]
 
 State frames (hover / click expansions) are included in every layer. [Fix 3]
 
@@ -197,6 +199,16 @@ def check_shapes(frame: str, html_fname: str) -> list[dict]:
     return missing
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# Layer 2b — Vector audit
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def check_vectors(frame: str) -> list[dict]:
+    """Return VECTOR/LINE nodes for this frame (for manual verification)."""
+    if not SHAPES or frame not in SHAPES:
+        return []
+    return SHAPES[frame].get("vectors", [])
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # Layer 3 — Reverse audit (Fix 4)
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -239,7 +251,7 @@ def check_reverse(html_fname: str) -> list[str]:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 print("=" * 70)
-print("STRICT FIGMA -> HTML AUDIT  (Layers 1, 2, 3)")
+print("STRICT FIGMA -> HTML AUDIT  (Layers 1, 2, 2b, 3)")
 if not SHAPES:
     print("  WARNING: figma_shapes.json not found -- Layer 2 & 3 skipped.")
     print("           Run: python figma_shapes_scraper.py")
@@ -251,9 +263,14 @@ l3_ok   = True
 
 seen_html_l3: set[str] = set()
 
+# Collect vector warnings across all frames (deduped per frame name)
+seen_vector_frames: set[str] = set()
+vector_warns: list[tuple[str, str, list[dict]]] = []  # (frame, html, vectors)
+
 for frame, html_file in FRAME_MAP.items():
     m_text, skip_warns = check_text(frame, html_file)
     m_shapes            = check_shapes(frame, html_file)
+    m_vectors           = check_vectors(frame)
 
     parts = []
     if not m_text and not m_shapes:
@@ -265,6 +282,8 @@ for frame, html_file in FRAME_MAP.items():
         parts.append(f"SHAPE-COLOUR-MISSING:{len(m_shapes)}")
         l2_ok  = False
         all_ok = False
+    if m_vectors:
+        parts.append(f"VECTORS:{len(m_vectors)}")
 
     print(f"\n[{' '.join(parts)}]  {frame}  ->  {html_file}")
 
@@ -275,6 +294,24 @@ for frame, html_file in FRAME_MAP.items():
     for s in m_shapes:
         print(f"  X SHAPE: {s['name']!r:30s} fill={s['fill_rgba']}"
               f"  cr={s['corner_radius']}  {s['width']}x{s['height']}")
+
+    if m_vectors and frame not in seen_vector_frames:
+        seen_vector_frames.add(frame)
+        vector_warns.append((frame, html_file, m_vectors))
+
+
+# Layer 2b: vector nodes — require manual visual verification
+if vector_warns:
+    print("\n" + "=" * 70)
+    print("LAYER 2b -- Decorative VECTOR nodes  (manual verification required)")
+    print("=" * 70)
+    for frame, html_file, vecs in vector_warns:
+        print(f"\n  [WARN - VECTORS]  {frame}  ->  {html_file}:")
+        for v in vecs:
+            flag = "  [generic name]" if v.get("generic_name") else ""
+            print(f"    ~  {v['name']!r:28s} id={v['node_id']}  "
+                  f"{v['width']}x{v['height']} at ({v['x']},{v['y']}){flag}")
+    print("  Verify each vector is present as an <img> or equivalent in the HTML.")
 
 # Layer 3: one check per HTML file
 print("\n" + "=" * 70)
@@ -299,6 +336,7 @@ for frame, html_file in FRAME_MAP.items():
 
 # Summary
 print("\n" + "=" * 70)
-print(f"Layer 1+2 (text + shapes) : {'ALL MATCH' if all_ok else 'ISSUES FOUND'}")
-print(f"Layer 3   (reverse)       : {'OK' if l3_ok else 'WARN - unmatched bg colours (see above)'}")
+print(f"Layer 1+2  (text + shapes) : {'ALL MATCH' if all_ok else 'ISSUES FOUND'}")
+print(f"Layer 2b   (vectors)       : {'none found' if not vector_warns else str(sum(len(v) for _,_,v in vector_warns)) + ' vectors — verify manually'}")
+print(f"Layer 3    (reverse)       : {'OK' if l3_ok else 'WARN - unmatched bg colours (see above)'}")
 print("=" * 70)

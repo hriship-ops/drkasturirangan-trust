@@ -76,6 +76,16 @@
   bottom: 0;
 }
 
+/* Figma Vector 1: dashed navy string connecting the two date pills.
+   Figma: x=526/1439=36.6%, width=386/1439=26.8%, top=-23px above container. */
+.app-date-connector {
+  position: absolute;
+  left: 32%;
+  top: -22px;
+  width: 34%;
+  pointer-events: none;
+}
+
 .app-date-label {
   font-size: var(--fs-body-lg);
   font-weight: var(--fw-regular);
@@ -309,6 +319,10 @@
       <span class="app-date-label">Nominations accepted from:</span>
       <strong class="app-date-value">October 25, 2026</strong>
     </div>
+    <!-- Figma Vector 1: dashed string connecting the two date pills -->
+    <img class="app-date-connector"
+         src="assets/images/apply-date-connector.png"
+         alt="">
     <div class="app-date-pill">
       <span class="app-date-label">Last date for submission:</span>
       <strong class="app-date-value">December 31, 2026</strong>
