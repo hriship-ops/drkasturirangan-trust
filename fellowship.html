@@ -886,9 +886,7 @@
 
 /* ----------------------------------------------------------
    FELLOWSHIP CTA
-   Tagline: 23px italic #808080.
-   Button: bg=#2a427e, w=234, h=42, radius=13, 23px white.
-   Rocket: 234x165px.
+   Figma: rocket (180x124) → tagline text (23px #808080) → button.
    ---------------------------------------------------------- */
 
 .fell-cta {
@@ -903,6 +901,14 @@
   width: 180px;
   height: 124px;
   object-fit: contain;
+}
+
+/* Tagline: 23px regular muted gray — Figma fs=23 fw=400 col=#808080 */
+.fell-cta-tagline {
+  font-size: var(--fs-tagline);
+  font-weight: var(--fw-regular);
+  color: var(--c-text-muted);
+  text-align: center;
 }
 
 /* CTA button: same as home page. */
@@ -1390,9 +1396,10 @@
 })();
 </script>
 
-<!-- FELLOWSHIP CTA — R27: rocket-tagline.png replaces rocket.png + tagline text (Figma: w=180, h=124) -->
+<!-- FELLOWSHIP CTA — Figma: rocket → tagline text → button (all separate elements) -->
 <div class="fell-cta">
-  <img class="fell-cta-rocket" src="assets/images/rocket-tagline.png" alt="Cultivating Excellence. Futures Thinking. Advancing Humanity.">
+  <img class="fell-cta-rocket" src="assets/images/rocket.png" alt="">
+  <p class="fell-cta-tagline">Cultivating Excellence. Futures Thinking. Advancing Humanity.</p>
   <button class="fell-cta-btn">Apply for Fellowships</button>
 </div>
 
