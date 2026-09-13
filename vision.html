@@ -58,7 +58,7 @@
 }
 
 .vm-deco-open  { top: -10px; left: 0; }
-.vm-deco-close { bottom: 0; right: var(--page-px); transform: rotate(180deg); z-index: 2; }
+.vm-deco-close { bottom: 0; right: -60px; transform: rotate(180deg); z-index: 2; }
 
 .vm-quote-text {
   font-size: var(--fs-h2);
@@ -181,7 +181,7 @@
   height: 3px;
   background: var(--c-accent);
   margin: 0 var(--page-px) 0 auto;
-  width: calc(100% - var(--page-px) - 394px);
+  width: clamp(40%, calc(53% - var(--page-px)), 820px);
 }
 
 /* ----------------------------------------------------------
@@ -220,7 +220,7 @@
   font-weight: var(--fw-medium);
   color: var(--c-accent);
   text-align: center;
-  width: 180px;
+  width: clamp(100px, 12.5vw, 180px);
   line-height: 1.3;
   margin-bottom: 6px;
   transform: rotate(-18deg);
@@ -355,12 +355,12 @@
 .vm-focus-card-4 { background: #FFF6E7; }
 
 .vm-focus-icon {
-  width: 200px;
-  height: 200px;
+  width: clamp(100px, 13.9vw, 200px);
+  height: auto;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .vm-focus-icon img {
@@ -535,8 +535,8 @@
   <div class="vm-quote-inner">
     <span class="vm-deco-open">&ldquo;</span>
     <p class="vm-quote-text">To honor and continue the legacy of Krishnaswamy Kasturirangan<br>by inspiring future generations through initiatives that promote<br>scientific excellence, ethical, humane and sustainable action</p>
+    <span class="vm-deco-close">&ldquo;</span>
   </div>
-  <span class="vm-deco-close">&ldquo;</span>
 </section>
 
 <!-- THE LEGACY -->

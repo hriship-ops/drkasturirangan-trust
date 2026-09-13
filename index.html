@@ -51,10 +51,10 @@
 /* Navy pill behind portrait: x=58, y=188 (canvas) → hero-relative top=87px. */
 .hero-blue-rect {
   position: absolute;
-  left: 58px;
-  top: 87px;
-  width: 234px;
-  height: 338px;
+  left: clamp(16px, 4vw, 58px);
+  top: clamp(30px, 6vw, 87px);
+  width: clamp(100px, 16.2vw, 234px);
+  height: clamp(150px, 23.5vw, 338px);
   border-radius: var(--r-pill);
   background: var(--c-primary);
 }
@@ -101,10 +101,11 @@
    (canvas: left=167, top=256, w=617, h=416, r=71px; hero-relative top=155px). */
 .hero-slideshow {
   position: absolute;
-  left: 167px;
-  top: 155px;
-  width: 617px;
-  height: 416px;
+  left: clamp(60px, 11.6vw, 167px);
+  top: clamp(60px, 10.8vw, 155px);
+  width: clamp(300px, 42.8vw, 617px);
+  height: auto;
+  aspect-ratio: 617 / 416;
   border-radius: 71px;
   overflow: hidden;
   z-index: 1;
@@ -170,7 +171,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 356px;
+  width: clamp(200px, 24.7vw, 356px);
   height: 64px;
   background: var(--c-primary);
   border-radius: var(--r-home-btn);
@@ -395,8 +396,8 @@
   position: absolute;
   left: 7.3%;
   right: 14.9%;
-  top: 152px;
-  height: 374px;
+  top: clamp(60px, 10.6vw, 152px);
+  height: clamp(200px, 26vw, 374px);
   background-image: url(assets/images/quote-box.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -407,10 +408,10 @@
    → right: 26px (1226-1200), top: 83px (1694-1611). */
 .quote-illus {
   position: absolute;
-  right: 26px;
-  top: 83px;
-  width: 295px;
-  height: 291px;
+  right: clamp(10px, 1.8vw, 26px);
+  top: clamp(30px, 5.8vw, 83px);
+  width: clamp(120px, 20.5vw, 295px);
+  height: auto;
   transform: scaleX(-1);
   pointer-events: none;
   user-select: none;
@@ -419,7 +420,7 @@
 /* Large decorative quote mark: overhangs the top of the amber pill. */
 .quote-deco-mark {
   position: absolute;
-  left: 120px;
+  left: clamp(20px, 8.3vw, 120px);
   top: 0;
   font-family: var(--font-deco);
   font-size: clamp(200px, 35vw, 500px);
@@ -435,7 +436,7 @@
 .quote-text {
   position: absolute;
   left: 25.5%;
-  top: 244px;
+  top: clamp(100px, 17vw, 244px);
   width: 34.9%;
   z-index: 3;
   text-align: center;
@@ -572,7 +573,7 @@
    ---------------------------------------------------------- */
 
 .moments-section {
-  padding: 16px 0 var(--section-py) 83px;
+  padding: 16px 0 var(--section-py) clamp(16px, 5.8vw, 83px);
 }
 
 .moments-row {
@@ -589,9 +590,9 @@
   text-align: center;
 }
 
-.moment-item:nth-child(1) { width: 388px; }
-.moment-item:nth-child(2) { width: 355px; }
-.moment-item:nth-child(3) { width: 355px; }
+.moment-item:nth-child(1) { flex: 1 1 280px; max-width: 388px; }
+.moment-item:nth-child(2) { flex: 1 1 280px; max-width: 355px; }
+.moment-item:nth-child(3) { flex: 1 1 280px; max-width: 355px; }
 
 .moment-dot {
   width: 14px;

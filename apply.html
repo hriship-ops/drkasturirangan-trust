@@ -49,20 +49,20 @@
   width: 100%;
   max-width: var(--max-w-content);
   position: relative;
-  height: 204px;
+  height: clamp(120px, 14.2vw, 204px);
 }
 
 .app-date-pill {
   background: rgba(233, 162, 45, 1.0);
-  width: 456px;
-  height: 129px;
+  width: clamp(220px, 31.7vw, 456px);
+  height: clamp(80px, 9vw, 129px);
   border-radius: 36px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 4px;
-  padding: 0 36px;
+  padding: 0 clamp(16px, 2.5vw, 36px);
   position: absolute;
   z-index: 1;
 }
@@ -166,11 +166,11 @@
 }
 
 .app-doc-number {
-  font-size: 200px;
+  font-size: clamp(80px, 13.9vw, 200px);
   font-weight: var(--fw-bold);
   color: var(--c-amber-border);
   line-height: 0.9;
-  min-width: 140px;
+  min-width: clamp(60px, 9.7vw, 140px);
   text-align: center;
   flex-shrink: 0;
   margin-left: -10px;
@@ -247,8 +247,9 @@
     position: static;
     width: 100%;
     max-width: 456px;
+    height: auto;
+    min-height: 80px;
   }
-  .app-doc-number { font-size: 120px; min-width: 80px; }
 }
 
 @media (max-width: 860px) {

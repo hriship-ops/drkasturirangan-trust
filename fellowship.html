@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 102px 40px 60px 96px;
+  padding: clamp(48px, 7.1vw, 102px) 40px 60px clamp(32px, 6.7vw, 96px);
 }
 
 /* Eyebrow row: small dot (32px, #2a427e) + "Dr Kasturirangan Trust" text. */
@@ -211,8 +211,8 @@
 
 .fell-date-pill {
   background: rgba(233, 162, 45, 1.0);
-  width: 456px;
-  height: 129px;
+  width: clamp(200px, 31.7vw, 456px);
+  height: clamp(80px, 9vw, 129px);
   border-radius: 36px;
   display: flex;
   flex-direction: column;
@@ -432,14 +432,14 @@
   display: flex;
   justify-content: center;
   gap: clamp(24px, 7vw, 130px);
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   margin-top: 16px;
 }
 
 /* Circle: 270x269px, bg primary, radius 50%. Text white bold 20px. */
 .fell-benefit-circle {
-  width: 270px;
-  height: 269px;
+  width: clamp(150px, 18.8vw, 270px);
+  height: clamp(150px, 18.7vw, 269px);
   border-radius: 50%;
   background: var(--c-primary);
   display: flex;
@@ -451,7 +451,7 @@
   font-weight: var(--fw-bold);
   color: #fff;
   line-height: normal;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 /* ----------------------------------------------------------
@@ -472,12 +472,12 @@
 
 /* Portrait: w=394, h=572, border-radius=42px. */
 .fell-exp-portrait {
-  width: 394px;
-  height: 572px;
+  width: clamp(200px, 27.4vw, 394px);
+  height: auto;
   object-fit: cover;
   border-radius: var(--r-exp-port);
   display: block;
-  margin-top: 42px; /* R11: Figma portrait (y=2509) starts 42px below kicker (y=2467) */
+  margin-top: 42px;
 }
 
 .fell-exp-right {
@@ -646,7 +646,7 @@
   padding: 0 8px;
   flex-shrink: 0;
   line-height: 1;
-  margin-top: 120px;
+  margin-top: clamp(60px, 8.3vw, 120px);
 }
 
 /* V2: benefit + review circles replaced by PNG assets */
