@@ -77,7 +77,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 214px 40px 60px 73px;
+  padding: clamp(60px, 14.9vw, 214px) 40px 60px 73px;
 }
 
 /* Amber marker dot + headline in a flex row. */
@@ -193,7 +193,7 @@
    ---------------------------------------------------------- */
 
 .about-section {
-  padding: var(--section-py) var(--page-px) var(--section-py) 117px;
+  padding: var(--section-py) var(--page-px) var(--section-py) clamp(20px, 8.1vw, 117px);
 }
 
 .about-dot-row {
@@ -454,7 +454,7 @@
    ---------------------------------------------------------- */
 
 .stories-section {
-  padding: var(--section-py) 0 0 83px;
+  padding: var(--section-py) 0 0 clamp(16px, 5.8vw, 83px);
 }
 
 .stories-heading-row {
@@ -509,12 +509,13 @@
 .story-card-3 {
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
+  flex: 1 1 280px;
+  max-width: 355px;
 }
 
-.story-card-1 { width: 354px; height: 354px; border-radius: 15px; }
-.story-card-2 { width: 355px; height: 355px; border-radius: 10px; }
-.story-card-3 { width: 354px; height: 354px; border-radius: 15px; }
+.story-card-1 { height: clamp(220px, 24.6vw, 354px); border-radius: 15px; }
+.story-card-2 { height: clamp(220px, 24.7vw, 355px); border-radius: 10px; }
+.story-card-3 { height: clamp(220px, 24.6vw, 354px); border-radius: 15px; }
 
 .story-img-default,
 .story-img-hover {
@@ -729,11 +730,13 @@
     flex-direction: column;
     gap: 20px;
   }
-  .story-card-1 img,
-  .story-card-2 img,
-  .story-card-3 img {
+  .story-card-1,
+  .story-card-2,
+  .story-card-3 {
     width: 100%;
-    height: auto;
+    max-width: 400px;
+    height: 300px;
+    margin: 0 auto;
   }
   .moment-item:nth-child(1),
   .moment-item:nth-child(2),
