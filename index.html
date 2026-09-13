@@ -296,32 +296,35 @@
 .area-circle-wrap.active .area-img-hover { opacity: 1; }
 
 /* ----------------------------------------------------------
-   AREA PANEL: expands below circles on click.
-   Two columns: quote (left) + description (right).
+   AREA PANEL: amber pill (matches quote-strip), expands below circles.
+   Left col = quote on amber; right col = white card on amber.
+   Figma Rectangle 15: 1121x374, border-radius~118px, rgba(255,179,56,0.8)
+   Figma Rectangle 4 (white card): 598x270 on right half.
    ---------------------------------------------------------- */
 .area-panel {
   display: none;
-  max-width: 1151px;
-  margin: 0 auto;
-  padding: 40px var(--page-px) 56px;
-  grid-template-columns: 5fr 7fr;
-  gap: 80px;
-  align-items: start;
+  max-width: 1121px;
+  margin: 0 auto 40px;
+  background: rgba(255, 179, 56, 0.8);
+  border-radius: 118px;
+  padding: 52px 60px;
+  grid-template-columns: 4fr 5fr;
+  gap: 48px;
+  align-items: center;
 }
 .area-panel.active {
   display: grid;
 }
 
-/* Quote column: large decorative " and " flank the quote text */
+/* Quote column: large decorative " and " in white, text white (on amber) */
 .area-panel-quote-col {
   position: relative;
-  padding: 0 0 40px 0;
 }
 .area-panel-qmark {
   display: block;
   font-family: var(--font-deco);
   font-size: 120px;
-  color: var(--c-primary);
+  color: #fff;
   line-height: 0.5;
 }
 .area-panel-qmark-open { margin-bottom: 12px; }
@@ -332,22 +335,32 @@
 .area-panel-quote-text {
   font-size: 22px;
   font-style: italic;
-  color: var(--c-primary);
+  color: #fff;
   line-height: 1.55;
   font-weight: var(--fw-regular);
 }
 
-/* Description column */
+/* Description column: white card sits on the amber pill */
+.area-panel-desc-wrap {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 36px;
+}
 .area-panel-desc {
   font-size: 18px;
   color: var(--c-text-navy);
   line-height: 1.65;
   font-weight: var(--fw-regular);
-  padding-top: 12px;
+  margin: 0;
 }
 
 @media (max-width: 860px) {
-  .area-panel { grid-template-columns: 1fr; gap: 32px; }
+  .area-panel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    border-radius: 40px;
+    padding: 40px 32px;
+  }
 }
 
 /* ----------------------------------------------------------
@@ -870,7 +883,9 @@
       <p class="area-panel-quote-text" id="areaPanelQuote"></p>
       <span class="area-panel-qmark area-panel-qmark-close">&rdquo;</span>
     </div>
-    <p class="area-panel-desc" id="areaPanelDesc"></p>
+    <div class="area-panel-desc-wrap">
+      <p class="area-panel-desc" id="areaPanelDesc"></p>
+    </div>
   </div>
 </section>
 
@@ -886,7 +901,7 @@
       desc:  'The Western Ghats are one of the world’s richest biodiversity regions, in addition to being the life-support for the whole of peninsular India. Kasturirangan led a landmark effort to balance the preservation of an ecologically sensitive region with the livelihoods of the communities that depend on it. The resulting report offered a science-led framework and sparked critical conversations and a nation-wide debate on conservation, rights, and development.'
     },
     education: {
-      quote: 'My education was a merry mix of what happened inside the school, the things that I read, and the wonderful people I interacted with… this broad-based education was the foundation of everything.',
+      quote: 'My education was a merry mix of what happened inside the school, the things that I read, and the wonderful people I interacted with... this broad-based education was the foundation of everything.',
       desc:  'One morning in May 2017, K. Kasturirangan received a surprise invite to chair a committee that would draft the country’s new education policy, slated to be a blueprint for the next 20 years. He rose to the task. The NEP 2020 promoted formal education down to age three, opened higher education to multidisciplinary study, incorporated Indian knowledge systems and recommended the establishment of a national body to fund research beyond the elite institutions.'
     },
     publiclife: {
