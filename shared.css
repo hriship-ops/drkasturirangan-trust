@@ -400,10 +400,6 @@
   .nav-search-btn { display: none; }
   .nav-logo-text  { width: 140px; }
   .nav-logo img   { height: 48px !important; width: auto !important; }
-  :root {
-    --page-px: 16px;
-    --section-py: 36px;
-  }
 }
 
 @media (max-width: 960px) {

@@ -16,7 +16,7 @@
    ================================================================ */
 
 .team-section {
-  padding: var(--section-py) 0 var(--section-py) 107px;
+  padding: var(--section-py) var(--page-px) var(--section-py) clamp(20px, 7.4vw, 107px);
 }
 
 /* Heading row: amber dot 32px + "Meet our team" 36px bold navy. */
@@ -44,8 +44,8 @@
 /* 3-column card grid. gap=65px from Figma. */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 360px);
-  gap: 40px 65px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px clamp(20px, 4.5vw, 65px);
   margin-bottom: 60px;
 }
 
@@ -58,7 +58,8 @@
    ---------------------------------------------------------- */
 
 .team-card {
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
   border: 4px solid #e9a22d;
   border-radius: 27px;
   overflow: hidden;
@@ -68,7 +69,7 @@
 
 .team-card-photo {
   width: 100%;
-  height: 304px;
+  height: clamp(180px, 21.1vw, 304px);
   object-fit: cover;
   object-position: top center;
   display: block;
@@ -78,7 +79,7 @@
 /* Placeholder for cards without a photo yet. */
 .team-card-photo-placeholder {
   width: 100%;
-  height: 304px;
+  height: clamp(180px, 21.1vw, 304px);
   background: #f0e8d8;
   flex-shrink: 0;
 }
@@ -123,10 +124,7 @@
 
 @media (max-width: 1200px) {
   .team-section { padding-left: 40px; }
-  .team-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .team-card { width: 100%; }
-  .team-card-photo,
-  .team-card-photo-placeholder { height: 260px; }
+  .team-grid { gap: 32px; }
 }
 
 @media (max-width: 800px) {

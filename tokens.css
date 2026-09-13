@@ -49,8 +49,8 @@
 
   /* SPACING (from absolute coordinates converted to logical values) */
   --nav-h:       101px;  /* home page: separator line at y=101 */
-  --page-px:      58px;  /* leftmost canvas content at x=58 */
-  --section-py:   56px;  /* section vertical padding from Figma */
+  --page-px:      clamp(16px, 4vw, 58px);  /* leftmost canvas content at x=58; fluid */
+  --section-py:   clamp(32px, 3.9vw, 56px);  /* section vertical padding; fluid */
 
   /* BORDER RADIUS (from Figma cornerRadius property) */
   --r-portrait:   71px;   /* hero portrait image */

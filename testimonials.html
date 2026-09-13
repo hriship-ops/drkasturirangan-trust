@@ -42,12 +42,12 @@
   color: var(--c-primary);
 }
 
-/* 3-column fixed-width grid, matching Figma card positions. */
+/* 3-column fluid grid. */
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(3, 393px);
-  column-gap: 50px;
-  row-gap: 79px;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: clamp(16px, 3.5vw, 50px);
+  row-gap: clamp(40px, 5.5vw, 79px);
 }
 
 /* -------------------------------------------------------
@@ -58,10 +58,9 @@
    Cream band (#fcedd6) at bottom with name and email.
    ------------------------------------------------------- */
 
-/* Card: everything absolutely positioned to match Figma's flat layout.
-   Figma card: 393×456px, border 4px #e9a22d, r=27. */
+/* Card: fluid width, fixed height (internal layout uses absolute px from top). */
 .tc-card {
-  width: 393px;
+  width: 100%;
   height: 456px;
   border: 4px solid #e9a22d;
   border-radius: 27px;
@@ -170,12 +169,6 @@
 
 @media (max-width: 1350px) {
   .testimonials-section { padding-left: 32px; }
-  .testimonials-grid {
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 24px;
-    row-gap: 40px;
-  }
-  .tc-card { width: 100%; }
 }
 
 @media (max-width: 900px) {
