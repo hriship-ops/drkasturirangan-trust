@@ -302,7 +302,7 @@
    Figma Rectangle 4 (white card): 598x270 on right half.
    ---------------------------------------------------------- */
 .area-panel {
-  display: none;
+  display: grid;
   max-width: 1121px;
   margin: 0 auto 40px;
   background: rgba(255, 179, 56, 0.8);
@@ -312,8 +312,19 @@
   gap: 48px;
   align-items: center;
 }
-.area-panel.active {
-  display: grid;
+/* Default state: only the quote column; right card hidden and grid collapses to 1fr. */
+.area-panel.panel-default {
+  grid-template-columns: 1fr;
+}
+.area-panel.panel-default .area-panel-desc-wrap {
+  display: none;
+}
+.area-panel.panel-default .area-panel-quote-text {
+  text-align: center;
+  font-size: 26px;
+}
+.area-panel.panel-default .area-panel-qmark-close {
+  text-align: center;
 }
 
 /* Quote column: large decorative " and " in white, text white (on amber) */
@@ -946,30 +957,43 @@
     }
   };
 
+  var DEFAULT_QUOTE = 'Every phase of work must contribute to a larger national vision';
+
   var panel     = document.getElementById('areaPanel');
   var quoteEl   = document.getElementById('areaPanelQuote');
   var descEl    = document.getElementById('areaPanelDesc');
   var activeKey = null;
 
+  function showDefault() {
+    document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
+      w.classList.remove('active');
+    });
+    quoteEl.textContent = DEFAULT_QUOTE;
+    descEl.textContent  = '';
+    panel.classList.add('panel-default');
+    activeKey = null;
+  }
+
+  // Start in default state
+  showDefault();
+
   document.querySelectorAll('.area-item[data-area]').forEach(function (item) {
     item.querySelector('.area-circle-wrap').addEventListener('click', function () {
       var key = item.getAttribute('data-area');
       if (activeKey === key) {
-        // toggle off
-        panel.classList.remove('active');
-        item.querySelector('.area-circle-wrap').classList.remove('active');
-        activeKey = null;
+        // toggle off → return to default
+        showDefault();
         return;
       }
       // deactivate previous
       document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
         w.classList.remove('active');
       });
-      // activate this
+      // activate this circle
       this.classList.add('active');
       quoteEl.textContent = AREAS[key].quote;
       descEl.textContent  = AREAS[key].desc;
-      panel.classList.add('active');
+      panel.classList.remove('panel-default');
       activeKey = key;
     });
   });
