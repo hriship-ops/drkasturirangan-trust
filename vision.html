@@ -32,9 +32,9 @@
 .vm-walking-figure {
   position: absolute;
   bottom: 0;
-  left: 154px;
-  width: 95px;
-  height: 204px;
+  left: clamp(16px, 10.7vw, 220px);
+  width: clamp(55px, 6.6vw, 95px);
+  height: auto;
   object-fit: contain;
   object-position: bottom;
 }
@@ -448,7 +448,7 @@
    RESPONSIVE
    ---------------------------------------------------------- */
 
-@media (max-width: 1024px) {
+@media (max-width: 480px) {
   .vm-walking-figure { display: none; }
 }
 
