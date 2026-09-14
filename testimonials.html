@@ -90,13 +90,12 @@
   pointer-events: none;
 }
 
-/* Quote text: vertically centered in 90–240px zone.
-   Figma text y=99–227px (card 1); hard floor at 240px keeps 14px clear
-   of photo at 254px even for longer quotes. */
+/* Quote text: vertically centered in 90–276px zone (white section only).
+   Figma text y=99–227px; wave starts at 276px so bottom = 456-276 = 180px. */
 .tc-quote-text {
   position: absolute;
   top: 90px;
-  bottom: 36px;
+  bottom: 180px;
   left: 24px;
   right: 24px;
   display: flex;
