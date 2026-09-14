@@ -96,17 +96,17 @@
 .tc-quote-text {
   position: absolute;
   top: 90px;
-  bottom: 36px;   /* 276 – 36 = 240px floor */
+  bottom: 36px;
   left: 24px;
   right: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: var(--fs-body-lg);
+  font-size: 24px; /* JS will override to largest size that fits */
   font-weight: var(--fw-regular);
   color: var(--c-primary);
-  line-height: 1.3;
+  line-height: 1.35;
   overflow: hidden;
 }
 
@@ -393,5 +393,44 @@
 </footer>
 
 <script src="nav.js"></script>
+<script>
+(function () {
+  var MAX = 24, MIN = 11;
+
+  function fitOne(el) {
+    /* Reset to max, then step down until content fits the box. */
+    var fs = MAX;
+    el.style.fontSize = fs + 'px';
+
+    /* clientHeight = box height (top/bottom anchored absolute element).
+       scrollHeight = rendered content height inside the flex container.
+       We temporarily switch align-items so scrollHeight is measurable. */
+    el.style.alignItems = 'flex-start';
+    while (fs > MIN && el.scrollHeight > el.clientHeight) {
+      fs -= 0.5;
+      el.style.fontSize = fs + 'px';
+    }
+    el.style.alignItems = 'center'; /* restore vertical centering */
+  }
+
+  function fitAll() {
+    document.querySelectorAll('.tc-quote-text').forEach(fitOne);
+  }
+
+  /* Run after layout is painted so clientHeight is correct. */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fitAll);
+  } else {
+    fitAll();
+  }
+
+  /* Re-fit on resize (debounced 120 ms). */
+  var timer;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(fitAll, 120);
+  });
+})();
+</script>
 </body>
 </html>
