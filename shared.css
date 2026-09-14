@@ -258,6 +258,7 @@
   background: none;
   font-family: var(--font-main);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .footer-contact p,
