@@ -296,8 +296,10 @@
   transition: opacity 0.2s;
 }
 .area-circle-wrap:hover .area-img-default,
+.area-circle-wrap.js-hovered .area-img-default,
 .area-circle-wrap.active .area-img-default { opacity: 0; }
 .area-circle-wrap:hover .area-img-hover,
+.area-circle-wrap.js-hovered .area-img-hover,
 .area-circle-wrap.active .area-img-hover { opacity: 1; }
 
 /* ----------------------------------------------------------
@@ -981,7 +983,17 @@
   showDefault();
 
   document.querySelectorAll('.area-item[data-area]').forEach(function (item) {
-    item.querySelector('.area-circle-wrap').addEventListener('click', function () {
+    var wrap = item.querySelector('.area-circle-wrap');
+
+    // JS hover: reliable on touch-screen laptops where CSS :hover is suppressed
+    wrap.addEventListener('mouseenter', function () {
+      this.classList.add('js-hovered');
+    });
+    wrap.addEventListener('mouseleave', function () {
+      this.classList.remove('js-hovered');
+    });
+
+    wrap.addEventListener('click', function () {
       var key = item.getAttribute('data-area');
       if (activeKey === key) {
         // toggle off → return to default
