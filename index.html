@@ -295,11 +295,10 @@
 .area-img-default {
   transition: opacity 0.2s;
 }
-.area-circle-wrap:hover .area-img-default,
-.area-circle-wrap.js-hovered .area-img-default,
+/* Target .area-item (plain div) — more reliable than :hover on button */
+.area-item:hover .area-img-default,
 .area-circle-wrap.active .area-img-default { opacity: 0; }
-.area-circle-wrap:hover .area-img-hover,
-.area-circle-wrap.js-hovered .area-img-hover,
+.area-item:hover .area-img-hover,
 .area-circle-wrap.active .area-img-hover { opacity: 1; }
 
 /* ----------------------------------------------------------
@@ -972,6 +971,10 @@
   function showDefault() {
     document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
       w.classList.remove('active');
+      var d = w.querySelector('.area-img-default');
+      var h = w.querySelector('.area-img-hover');
+      if (d) d.style.opacity = '1';
+      if (h) h.style.opacity = '0';
     });
     quoteEl.textContent = DEFAULT_QUOTE;
     descEl.textContent  = '';
@@ -985,12 +988,17 @@
   document.querySelectorAll('.area-item[data-area]').forEach(function (item) {
     var wrap = item.querySelector('.area-circle-wrap');
 
-    // JS hover: reliable on touch-screen laptops where CSS :hover is suppressed
-    wrap.addEventListener('mouseenter', function () {
-      this.classList.add('js-hovered');
+    // Inline-style hover: bypasses all CSS cascade and browser quirks
+    var defImg = wrap.querySelector('.area-img-default');
+    var hovImg = wrap.querySelector('.area-img-hover');
+    item.addEventListener('mouseenter', function () {
+      defImg.style.opacity = '0';
+      hovImg.style.opacity = '1';
     });
-    wrap.addEventListener('mouseleave', function () {
-      this.classList.remove('js-hovered');
+    item.addEventListener('mouseleave', function () {
+      if (wrap.classList.contains('active')) return;
+      defImg.style.opacity = '1';
+      hovImg.style.opacity = '0';
     });
 
     wrap.addEventListener('click', function () {
