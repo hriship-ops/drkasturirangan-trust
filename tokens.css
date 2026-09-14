@@ -29,7 +29,7 @@
   /* font-size values from Figma text node fontSize */
   --fs-nav:       16px;   /* nav links */
   --fs-kicker:    20px;   /* section kicker labels */
-  --fs-body-sm:   clamp(14px, 1.25vw, 18px);  /* hero description; 18px @ 1440px */
+  --fs-body-sm:   clamp(18px, 1.25vw, 22px);  /* hero description; 18px @ 1440px, never below Figma value */
   --fs-body:      22px;   /* standard body + bullets */
   --fs-body-lg:   24px;   /* footer, eligibility text */
   --fs-tagline:   23px;   /* CTA tagline + button text */
