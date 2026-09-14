@@ -356,12 +356,18 @@
 .vm-focus-card-3,
 .vm-focus-card-4 { background: #FFF6E7; }
 
-.vm-focus-card:hover {
+.vm-focus-card-1:hover,
+.vm-focus-card-2:hover,
+.vm-focus-card-3:hover,
+.vm-focus-card-4:hover {
   background: var(--c-primary);
   transform: translateY(-4px);
 }
 
-.vm-focus-card:hover p:not(.vm-focus-label) {
+.vm-focus-card-1:hover p,
+.vm-focus-card-2:hover p,
+.vm-focus-card-3:hover p,
+.vm-focus-card-4:hover p {
   color: #fff;
 }
 
@@ -375,7 +381,10 @@
   transition: transform 0.25s;
 }
 
-.vm-focus-card:hover .vm-focus-icon {
+.vm-focus-card-1:hover .vm-focus-icon,
+.vm-focus-card-2:hover .vm-focus-icon,
+.vm-focus-card-3:hover .vm-focus-icon,
+.vm-focus-card-4:hover .vm-focus-icon {
   transform: scale(1.06);
 }
 

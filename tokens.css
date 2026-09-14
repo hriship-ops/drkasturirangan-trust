@@ -29,13 +29,13 @@
   /* font-size values from Figma text node fontSize */
   --fs-nav:       16px;   /* nav links */
   --fs-kicker:    20px;   /* section kicker labels */
-  --fs-body-sm:   18px;   /* hero description */
+  --fs-body-sm:   clamp(14px, 1.25vw, 18px);  /* hero description; 18px @ 1440px */
   --fs-body:      22px;   /* standard body + bullets */
   --fs-body-lg:   24px;   /* footer, eligibility text */
   --fs-tagline:   23px;   /* CTA tagline + button text */
   --fs-eyebrow:   28px;   /* fellowship "Apply now" text */
   --fs-h2:        36px;   /* all section h2 headings */
-  --fs-hero:      35px;   /* home hero headline */
+  --fs-hero:      clamp(22px, 2.43vw, 47px); /* home hero headline; 35px @ 1440px */
   --fs-quote:     50px;   /* pull quote */
   --fs-hero-btn:  36px;   /* home apply button text */
   --fs-banner:    36px;   /* banner strip text */
