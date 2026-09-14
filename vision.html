@@ -347,12 +347,23 @@
   align-items: center;
   gap: 20px;
   min-height: 330px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
 }
 
 .vm-focus-card-1,
 .vm-focus-card-2,
 .vm-focus-card-3,
 .vm-focus-card-4 { background: #FFF6E7; }
+
+.vm-focus-card:hover {
+  background: var(--c-primary);
+  transform: translateY(-4px);
+}
+
+.vm-focus-card:hover p:not(.vm-focus-label) {
+  color: #fff;
+}
 
 .vm-focus-icon {
   width: clamp(100px, 13.9vw, 200px);
@@ -361,6 +372,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.25s;
+}
+
+.vm-focus-card:hover .vm-focus-icon {
+  transform: scale(1.06);
 }
 
 .vm-focus-icon img {
