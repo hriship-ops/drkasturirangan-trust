@@ -986,23 +986,37 @@
   showDefault();
 
   document.querySelectorAll('.area-item[data-area]').forEach(function (item) {
-    var wrap = item.querySelector('.area-circle-wrap');
-
-    // Inline-style hover: bypasses all CSS cascade and browser quirks
+    var wrap   = item.querySelector('.area-circle-wrap');
     var defImg = wrap.querySelector('.area-img-default');
     var hovImg = wrap.querySelector('.area-img-hover');
-    item.addEventListener('mouseenter', function () {
+    var key    = item.getAttribute('data-area');
+
+    function showArea() {
       defImg.style.opacity = '0';
       hovImg.style.opacity = '1';
+      quoteEl.textContent = AREAS[key].quote;
+      descEl.textContent  = AREAS[key].desc;
+      panel.classList.remove('panel-default');
+    }
+
+    // Hover: show this area's quote immediately
+    item.addEventListener('mouseenter', function () {
+      showArea();
     });
     item.addEventListener('mouseleave', function () {
-      if (wrap.classList.contains('active')) return;
+      if (wrap.classList.contains('active')) return; // stay if locked by click
       defImg.style.opacity = '1';
       hovImg.style.opacity = '0';
+      // restore previously clicked area, or default
+      if (activeKey && activeKey !== key) {
+        quoteEl.textContent = AREAS[activeKey].quote;
+        descEl.textContent  = AREAS[activeKey].desc;
+      } else if (!activeKey) {
+        showDefault();
+      }
     });
 
     wrap.addEventListener('click', function () {
-      var key = item.getAttribute('data-area');
       if (activeKey === key) {
         // toggle off → return to default
         showDefault();
@@ -1011,12 +1025,13 @@
       // deactivate previous
       document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
         w.classList.remove('active');
+        var d = w.querySelector('.area-img-default');
+        var h = w.querySelector('.area-img-hover');
+        if (d) d.style.opacity = '1';
+        if (h) h.style.opacity = '0';
       });
-      // activate this circle
+      // lock this circle as active
       this.classList.add('active');
-      quoteEl.textContent = AREAS[key].quote;
-      descEl.textContent  = AREAS[key].desc;
-      panel.classList.remove('panel-default');
       activeKey = key;
     });
   });
