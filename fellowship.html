@@ -592,15 +592,12 @@
    Arrows: CSS right-pointing arrow (or unicode).
    ---------------------------------------------------------- */
 
-/* 4 circles × 270px + 3 arrows = ~1200px minimum.
-   At <= 1200px, allow wrapping so circles don't squeeze. */
 .fell-review-row {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: 0;
-  flex-wrap: wrap;
-  row-gap: 32px;
+  flex-wrap: nowrap;
 }
 
 /* Review circles: 270x269px, radius=50%. flex-shrink:0 at desktop.
@@ -675,12 +672,12 @@
   align-items: center;
   gap: 16px;
   max-width: 270px;
+  min-width: 0;
+  flex: 1 1 0;
   text-align: center;
-  flex-shrink: 1;
 }
 .fell-review-img {
-  width: clamp(130px, 19vw, 270px);
-  max-width: 100%;
+  width: min(100%, 270px);
   height: auto;
   object-fit: contain;
 }
@@ -982,6 +979,11 @@
   .fell-review-row {
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
+  }
+  .fell-review-item {
+    max-width: 270px;
+    flex: 0 0 auto;
   }
   .fell-review-arrow {
     transform: rotate(90deg);

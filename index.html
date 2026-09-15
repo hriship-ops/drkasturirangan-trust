@@ -460,7 +460,7 @@
    ---------------------------------------------------------- */
 
 .stories-section {
-  padding: var(--section-py) 0 0 clamp(16px, 5.8vw, 83px);
+  padding: var(--section-py) 0 var(--section-py) clamp(16px, 5.8vw, 83px);
 }
 
 .stories-heading-row {
@@ -508,6 +508,13 @@
   gap: 28px;
 }
 
+.story-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+  max-width: 355px;
+}
+
 /* Figma: all 3 cards ~354×354px.
    Card 1: cr=15. Cards 2&3: cr=10. */
 .story-card-1,
@@ -515,8 +522,6 @@
 .story-card-3 {
   position: relative;
   overflow: hidden;
-  flex: 1 1 280px;
-  max-width: 355px;
 }
 
 .story-card-1 { height: clamp(220px, 24.6vw, 354px); border-radius: 15px; }
@@ -593,11 +598,9 @@
   align-items: center;
   gap: 10px;
   text-align: center;
+  padding-top: 16px;
+  width: 100%;
 }
-
-.moment-item:nth-child(1) { flex: 1 1 280px; max-width: 388px; }
-.moment-item:nth-child(2) { flex: 1 1 280px; max-width: 355px; }
-.moment-item:nth-child(3) { flex: 1 1 280px; max-width: 355px; }
 
 .moment-dot {
   width: 14px;
@@ -728,26 +731,25 @@
     margin-left: 0;
     max-width: 100%;
   }
-  .stories-section, .moments-section {
+  .stories-section {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .stories-cards, .moments-row {
+  .stories-cards {
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 24px;
+  }
+  .story-col {
+    width: 100%;
+    max-width: 400px;
+    flex: 0 0 auto;
   }
   .story-card-1,
   .story-card-2,
   .story-card-3 {
     width: 100%;
-    max-width: 400px;
-    height: 300px;
-    margin: 0 auto;
-  }
-  .moment-item:nth-child(1),
-  .moment-item:nth-child(2),
-  .moment-item:nth-child(3) {
-    width: 100%;
+    height: 260px;
   }
   /* Quote section: hide illustration, stretch amber bg full-width, shrink text */
   .quote-strip {
@@ -1045,41 +1047,41 @@
     <h2 class="stories-heading">Where Curiosity Led</h2>
   </div>
   <div class="stories-cards">
-    <div class="story-card-1">
-      <img class="story-img-default" src="assets/images/story-card1.png" alt="A scientist&rsquo;s case in Parliament">
-      <img class="story-img-hover"   src="assets/images/story-card1-hover.png" alt="">
-      <div class="story-overlay">
-        <p>In December 2007, Kasturirangan spoke in the Rajya Sabha on the India&ndash;US civil nuclear agreement, then among the most contested questions in Indian politics. He argued it on its technical merits, keeping in mind the country&rsquo;s growth and available natural resources. Beneath his stand lay his conviction that &lsquo;international cooperation in science and technology has always served to enrich and accelerate indigenous efforts.&rsquo;</p>
+    <div class="story-col">
+      <div class="story-card-1">
+        <img class="story-img-default" src="assets/images/story-card1.png" alt="A scientist&rsquo;s case in Parliament">
+        <img class="story-img-hover"   src="assets/images/story-card1-hover.png" alt="">
+        <div class="story-overlay">
+          <p>In December 2007, Kasturirangan spoke in the Rajya Sabha on the India&ndash;US civil nuclear agreement, then among the most contested questions in Indian politics. He argued it on its technical merits, keeping in mind the country&rsquo;s growth and available natural resources. Beneath his stand lay his conviction that &lsquo;international cooperation in science and technology has always served to enrich and accelerate indigenous efforts.&rsquo;</p>
+        </div>
+      </div>
+      <div class="moment-item">
+        <p class="moment-text">A scientist&rsquo;s case in Parliament</p>
       </div>
     </div>
-    <div class="story-card-2">
-      <img class="story-img-default" src="assets/images/story-card2.png" alt="Unfamiliar terrains">
-      <img class="story-img-hover"   src="assets/images/story-card2-new.png" alt="">
-      <div class="story-overlay">
-        <p>At 30, newly married and doctoral studies completed, Kasturirangan was torn between joining Louis Alvarez&rsquo;s prestigious lab at UC Berkeley and the barely months-old ISRO. It was Vikram Sarabhai who pointed out that the physics intuition and systems thinking he cultivated from flying balloon payloads during his thesis was precisely what ISRO needed. He chose India and never looked back.</p>
+    <div class="story-col">
+      <div class="story-card-2">
+        <img class="story-img-default" src="assets/images/story-card2.png" alt="Unfamiliar terrains">
+        <img class="story-img-hover"   src="assets/images/story-card2-new.png" alt="">
+        <div class="story-overlay">
+          <p>At 30, newly married and doctoral studies completed, Kasturirangan was torn between joining Louis Alvarez&rsquo;s prestigious lab at UC Berkeley and the barely months-old ISRO. It was Vikram Sarabhai who pointed out that the physics intuition and systems thinking he cultivated from flying balloon payloads during his thesis was precisely what ISRO needed. He chose India and never looked back.</p>
+        </div>
+      </div>
+      <div class="moment-item">
+        <p class="moment-text">Unfamiliar terrains</p>
       </div>
     </div>
-    <div class="story-card-3">
-      <img class="story-img-default" src="assets/images/story-card3.png" alt="Deep respect for fellow scientists">
-      <img class="story-img-hover"   src="assets/images/story-card3-hover.png" alt="">
-      <div class="story-overlay">
-        <p>Kasturirangan was thrilled when Indian-origin astronaut Kalpana Chawla took her first flight to space in 1997 and devastated by her death six years later in the space shuttle Columbia disaster. &ldquo;She fired the minds of a new generation,&rdquo; he noted at a memorial meeting. He was behind the renaming of METSAT, a meteorological satellite built by ISRO, as KALPANA-1 in her honour.</p>
+    <div class="story-col">
+      <div class="story-card-3">
+        <img class="story-img-default" src="assets/images/story-card3.png" alt="Deep respect for fellow scientists">
+        <img class="story-img-hover"   src="assets/images/story-card3-hover.png" alt="">
+        <div class="story-overlay">
+          <p>Kasturirangan was thrilled when Indian-origin astronaut Kalpana Chawla took her first flight to space in 1997 and devastated by her death six years later in the space shuttle Columbia disaster. &ldquo;She fired the minds of a new generation,&rdquo; he noted at a memorial meeting. He was behind the renaming of METSAT, a meteorological satellite built by ISRO, as KALPANA-1 in her honour.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- MOMENTS (captions below story cards) -->
-<section class="moments-section">
-  <div class="moments-row">
-    <div class="moment-item">
-      <p class="moment-text">A scientist&rsquo;s case in Parliament</p>
-    </div>
-    <div class="moment-item">
-      <p class="moment-text">Unfamiliar terrains</p>
-    </div>
-    <div class="moment-item">
-      <p class="moment-text">Deep respect for fellow scientists</p>
+      <div class="moment-item">
+        <p class="moment-text">Deep respect for fellow scientists</p>
+      </div>
     </div>
   </div>
 </section>
