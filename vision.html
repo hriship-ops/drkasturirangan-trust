@@ -358,8 +358,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  min-height: 330px;
+  gap: 16px;
+  min-height: 240px;
   text-decoration: none;
   color: inherit;
 }
@@ -384,18 +384,7 @@
   object-fit: contain;
 }
 
-/* Category label at the top of each focus area card */
-.vm-focus-label {
-  font-size: 14px;
-  font-weight: var(--fw-medium);
-  color: var(--c-accent);
-  letter-spacing: 1.5px;
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: -8px;
-}
-
-.vm-focus-card p:not(.vm-focus-label) {
+.vm-focus-card p {
   font-size: var(--fs-body-lg);
   color: var(--c-primary);
   text-align: center;
@@ -459,6 +448,15 @@
   font-weight: var(--fw-medium);
 }
 
+/* Legacy section: remove bottom padding so portrait bottom touches the amber divider line */
+.vm-section.vm-legacy-section {
+  padding-bottom: 0;
+}
+/* Keep text column padded so it doesn't feel cramped */
+.vm-legacy-section .vm-legacy-text {
+  padding-bottom: var(--section-py);
+}
+
 /* ----------------------------------------------------------
    RESPONSIVE
    ---------------------------------------------------------- */
@@ -476,7 +474,7 @@
   .vm-ethos-circles { justify-content: center; flex-wrap: wrap; }
   .vm-focus-grid { grid-template-columns: repeat(2, 1fr); }
   .vm-focus-icon { width: 140px; height: auto; aspect-ratio: 1; }
-  .vm-focus-card p:not(.vm-focus-label) { font-size: 20px; }
+  .vm-focus-card p { font-size: 20px; }
   .vm-obj-grid { grid-template-columns: 1fr; }
   .vm-obj-center { grid-column: 1; max-width: 100%; }
 }
@@ -486,7 +484,7 @@
   .vm-quote-inner { padding: 20px 16px; }
   .vm-focus-grid { grid-template-columns: repeat(2, 1fr); }
   .vm-focus-card { min-height: 240px; padding: 20px 12px 24px; gap: 12px; }
-  .vm-focus-card p:not(.vm-focus-label) { font-size: 16px; }
+  .vm-focus-card p { font-size: 16px; }
   .vm-ethos-circle { width: 160px; height: 160px; }
   .vm-ethos-circles { flex-wrap: wrap; }
   .vm-ethos-img { width: clamp(120px, 42vw, 200px); }
@@ -565,7 +563,7 @@
 </section>
 
 <!-- THE LEGACY -->
-<section class="vm-section">
+<section class="vm-section vm-legacy-section">
   <div class="vm-heading-row">
     <div class="vm-heading-dot"></div>
     <h2>The Legacy</h2>
@@ -643,28 +641,24 @@
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-1.png" alt="Space and satellite technology">
       </div>
-      <p class="vm-focus-label">Space and satellite technology</p>
       <p>Satellite applications and space technology for the benefit of humankind</p>
     </a>
     <a href="fellowship.html" class="vm-focus-card vm-focus-card-2">
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-2.png" alt="Education and learning">
       </div>
-      <p class="vm-focus-label">Education and learning</p>
       <p>Revolutionising learning systems and research frameworks</p>
     </a>
     <a href="fellowship.html" class="vm-focus-card vm-focus-card-3">
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-3.png" alt="Environment">
       </div>
-      <p class="vm-focus-label">Environment</p>
       <p>Environmental consciousness and urban/rural transformation</p>
     </a>
     <a href="fellowship.html" class="vm-focus-card vm-focus-card-4">
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-4.png" alt="Public policy and governance">
       </div>
-      <p class="vm-focus-label">Public policy and governance</p>
       <p>Cultivating leadership and ethical governance</p>
     </a>
   </div>
