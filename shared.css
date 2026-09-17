@@ -181,14 +181,14 @@
   position: absolute;
   left: 0;
   top: 14px;
-  width: 100%; /* R7/R23: extend amber rule fully across */
+  width: calc(100% - var(--page-px)); /* ends at page margin, dot sits at that end */
   height: 5px;
   background: var(--c-accent);
 }
 
 .footer-dot {
   position: absolute;
-  right: 90px;
+  right: calc(var(--page-px) - 14px); /* centers 28px dot on the line's right end */
   top: 2px;
   width: 28px;
   height: 28px;

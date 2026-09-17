@@ -319,22 +319,26 @@
 /* Default state: only the quote column; right card hidden and grid collapses to 1fr. */
 .area-panel.panel-default {
   grid-template-columns: 1fr;
+  align-items: flex-start;
+  padding-top: 44px;
 }
 .area-panel.panel-default .area-panel-desc-wrap {
   display: none;
 }
+.area-panel.panel-default .area-panel-qmark {
+  display: none;
+}
 .area-panel.panel-default .area-panel-quote-text {
-  text-align: center;
+  font-size: 50px;
   font-weight: var(--fw-medium);
   font-style: normal;
+  text-align: left;
 }
 
-/* Expanded (hover) state: large quote + brown text */
+/* Expanded (hover) state: quote 36px dark-brown; description stays navy, centered */
 .area-panel:not(.panel-default) .area-panel-quote-text {
-  color: var(--c-amber-deep);
-}
-.area-panel:not(.panel-default) .area-panel-desc {
-  color: var(--c-amber-deep);
+  color: #5c2800;
+  font-size: 36px;
 }
 
 
@@ -370,6 +374,7 @@
   line-height: 1.65;
   font-weight: var(--fw-regular);
   margin: 0;
+  text-align: center;
 }
 
 @media (max-width: 860px) {
@@ -482,16 +487,17 @@
   position: relative;
 }
 
-/* Amber dot above the "W" in "Where Curiosity Led" — matches Figma. */
+/* Amber circle overlapping the "W" — Figma Ellipse 12: x=72, text x=84, both y=2060, size=32px. */
 .stories-heading::before {
   content: '';
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--c-accent);
-  left: 4px;
-  top: 5px;
+  left: -12px;
+  top: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -1041,7 +1047,7 @@
     <div class="story-col">
       <div class="story-card-1">
         <img class="story-img-default" src="assets/images/story-card1.png" alt="A scientist&rsquo;s case in Parliament">
-        <img class="story-img-hover"   src="assets/images/story-card1-hover.png" alt="">
+        <img class="story-img-hover"   src="assets/images/story-card1-new.png" alt="">
         <div class="story-overlay">
           <p>In December 2007, Kasturirangan spoke in the Rajya Sabha on the India&ndash;US civil nuclear agreement, then among the most contested questions in Indian politics. He argued it on its technical merits, keeping in mind the country&rsquo;s growth and available natural resources. Beneath his stand lay his conviction that &lsquo;international cooperation in science and technology has always served to enrich and accelerate indigenous efforts.&rsquo;</p>
         </div>
@@ -1065,7 +1071,7 @@
     <div class="story-col">
       <div class="story-card-3">
         <img class="story-img-default" src="assets/images/story-card3.png" alt="Deep respect for fellow scientists">
-        <img class="story-img-hover"   src="assets/images/story-card3-hover.png" alt="">
+        <img class="story-img-hover"   src="assets/images/story-card3-new.png" alt="">
         <div class="story-overlay">
           <p>Kasturirangan was thrilled when Indian-origin astronaut Kalpana Chawla took her first flight to space in 1997 and devastated by her death six years later in the space shuttle Columbia disaster. &ldquo;She fired the minds of a new generation,&rdquo; he noted at a memorial meeting. He was behind the renaming of METSAT, a meteorological satellite built by ISRO, as KALPANA-1 in her honour.</p>
         </div>
