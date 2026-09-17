@@ -316,11 +316,14 @@
   gap: 48px;
   align-items: center;
 }
-/* Default state: only the quote column; right card hidden and grid collapses to 1fr. */
+/* Default state: quote on left, KK illustration anchored at bottom-right. */
 .area-panel.panel-default {
-  grid-template-columns: 1fr;
-  align-items: flex-start;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
   padding-top: 44px;
+}
+.area-panel.panel-default .area-panel-quote-col {
+  align-self: center;
 }
 .area-panel.panel-default .area-panel-desc-wrap {
   display: none;
@@ -335,10 +338,15 @@
   text-align: left;
 }
 
-/* Expanded (hover) state: quote 36px dark-brown; description stays navy, centered */
+/* Expanded (hover) state: exact Figma values (Space frame 1029:592) */
 .area-panel:not(.panel-default) .area-panel-quote-text {
-  color: #5c2800;
-  font-size: 36px;
+  color: #855404;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+}
+.area-panel:not(.panel-default) .area-panel-illus {
+  display: none;
 }
 
 
@@ -377,12 +385,25 @@
   text-align: center;
 }
 
+/* KK illustration: visible only in default state, sits at bottom-right of amber panel */
+.area-panel-illus {
+  width: clamp(140px, 20.5vw, 295px);
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 860px) {
   .area-panel {
     grid-template-columns: 1fr;
     gap: 32px;
     border-radius: 40px;
     padding: 40px 32px;
+  }
+  .area-panel.panel-default {
+    grid-template-columns: 1fr auto;
+  }
+  .area-panel-illus {
+    width: clamp(80px, 18vw, 140px);
   }
 }
 
@@ -548,8 +569,8 @@
   background: rgba(42, 66, 126, 0.92);
   border-radius: inherit;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   opacity: 0;
   transition: opacity 0.35s ease;
@@ -558,10 +579,10 @@
 
 .story-overlay p {
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: var(--fw-regular);
   line-height: 1.5;
-  text-align: left;
+  text-align: center;
   font-family: var(--font-main);
   margin: 0;
 }
@@ -928,12 +949,13 @@
     </div>
   </div>
 
-  <!-- Expand panel: quote (left) + description (right) -->
+  <!-- Expand panel: quote (left) + description (right); illustration shown in default state only -->
   <div class="area-panel" id="areaPanel">
     <div class="area-panel-quote-col">
       <span class="area-panel-qmark area-panel-qmark-open">&ldquo;</span>
       <p class="area-panel-quote-text" id="areaPanelQuote"></p>
     </div>
+    <img class="area-panel-illus" src="assets/images/kk-illustration.svg" alt="">
     <div class="area-panel-desc-wrap">
       <p class="area-panel-desc" id="areaPanelDesc"></p>
     </div>

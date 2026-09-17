@@ -493,8 +493,13 @@
 @media (max-width: 600px) {
   .vm-quote-text { font-size: 26px; line-height: 36px; }
   .vm-quote-inner { padding: 20px 16px; } /* more text width on mobile */
-  .vm-focus-grid { grid-template-columns: 1fr; }
+  .vm-focus-grid { grid-template-columns: repeat(2, 1fr); }
+  .vm-focus-card { min-height: 240px; padding: 20px 12px 24px; gap: 12px; }
+  .vm-focus-card p:not(.vm-focus-label) { font-size: 16px; }
   .vm-ethos-circle { width: 160px; height: 160px; }
+  /* Ethos: 2×2 wrap so circles don't overflow narrow screens */
+  .vm-ethos-circles { flex-wrap: wrap; }
+  .vm-ethos-img { width: clamp(120px, 42vw, 200px); }
   .vm-deco-open, .vm-deco-close { font-size: 120px; }
 }
 </style>
