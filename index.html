@@ -343,6 +343,8 @@
   font-size: 24px;
   font-weight: 500;
   font-style: normal;
+  text-align: center;
+  white-space: pre-line;
   flex: 1 1 0;
   min-width: 0;
 }
@@ -363,18 +365,6 @@
   flex: 0 0 auto;
   line-height: 0.55;
   margin-bottom: 0;
-}
-.area-panel:not(.panel-default) .area-panel-qmark-close {
-  font-size: clamp(80px, 13.9vw, 200px);
-  color: #d9982e;
-  flex: 0 0 100%;
-  text-align: right;
-  line-height: 0.5;
-  display: block;
-}
-/* Default state: hide closing qmark */
-.area-panel.panel-default .area-panel-qmark-close {
-  display: none;
 }
 
 /* Quote column: large decorative " and " in white, text white (on amber) */
@@ -409,7 +399,7 @@
   line-height: 1.65;
   font-weight: var(--fw-regular);
   margin: 0;
-  text-align: center;
+  text-align: left;
 }
 
 /* KK illustration: visible only in default state, sits at bottom-right of amber panel */
@@ -981,7 +971,6 @@
     <div class="area-panel-quote-col">
       <span class="area-panel-qmark area-panel-qmark-open">&ldquo;</span>
       <p class="area-panel-quote-text" id="areaPanelQuote"></p>
-      <span class="area-panel-qmark area-panel-qmark-close">&rdquo;</span>
     </div>
     <img class="area-panel-illus" src="assets/images/kk-illustration.svg" alt="">
     <div class="area-panel-desc-wrap">
@@ -1006,7 +995,7 @@
       desc:  'One morning in May 2017, K. Kasturirangan received a surprise invite to chair a committee that would draft the country’s new education policy, slated to be a blueprint for the next 20 years. He rose to the task. The NEP 2020 promoted formal education down to age three, opened higher education to multidisciplinary study, incorporated Indian knowledge systems and recommended the establishment of a national body to fund research beyond the elite institutions.'
     },
     publiclife: {
-      quote: 'Every country needs a vision that stirs the imagination and motivates all segments of society to greater effort. Vision is an essential part of building a consensus on a broad national development strategy.',
+      quote: 'Every country needs \na vision that stirs the imagination and motivates all segments of society to greater effort. Vision is an essential part of building a consensus on a broad national development strategy.',
       desc:  'After a record-breaking nine years as the chairman of ISRO, Kasturirangan was nominated a member of the Rajya Sabha, and subsequently the Planning Commission. Deliberating in the parliament on topics such as transport, health, climate change, national security, and education, his understanding of India grew more holistic. He transitioned from the role of technical leader to nation builder.'
     }
   };
