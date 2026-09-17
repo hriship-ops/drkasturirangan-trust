@@ -345,40 +345,40 @@
   font-style: normal;
   text-align: center;
   white-space: pre-line;
-  flex: 1 1 0;
-  min-width: 0;
 }
 .area-panel:not(.panel-default) .area-panel-illus {
   display: none;
 }
-/* Hover: quote col is flex-row — open " left | text right, close " below-right */
-.area-panel:not(.panel-default) .area-panel-quote-col {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0 12px;
-}
+/* Hover: " floats above panel (Figma: 27px above panel exterior, x=50 from panel left) */
 .area-panel:not(.panel-default) .area-panel-qmark-open {
-  font-size: clamp(100px, 16.7vw, 240px);
+  position: absolute;
+  top: -27px;
+  left: 50px;
+  font-size: clamp(100px, 20.3vw, 292px);
   color: #d9982e;
-  flex: 0 0 auto;
   line-height: 0.55;
-  margin-bottom: 0;
 }
 
-/* Quote column: large decorative " and " in white, text white (on amber) */
+/* Quote column — " is always absolute so it doesn't affect in-flow layout */
 .area-panel-quote-col {
   position: relative;
 }
 .area-panel-qmark {
   display: block;
   font-family: var(--font-deco);
-  font-size: 120px;
   color: #fff;
-  line-height: 0.5;
+  line-height: 0.55;
+  margin: 0;
 }
-.area-panel-qmark-open { margin-bottom: 12px; }
+/* Default state: " floats 152px above panel exterior (Figma: y=1459, panel y=1611) */
+.area-panel.panel-default .area-panel-qmark-open {
+  position: absolute;
+  top: -152px;
+  left: 60px;
+  font-size: clamp(200px, 34.7vw, 500px);
+  line-height: 1.18;
+  color: #fff;
+}
 .area-panel-quote-text {
   font-size: 50px;
   font-style: italic;
@@ -402,11 +402,12 @@
   text-align: left;
 }
 
-/* KK illustration: visible only in default state, sits at bottom-right of amber panel */
+/* KK illustration: visible only in default state; face flipped toward the panel text */
 .area-panel-illus {
   width: clamp(140px, 20.5vw, 295px);
   height: auto;
   display: block;
+  transform: scaleX(-1);
 }
 
 @media (max-width: 860px) {
@@ -1000,7 +1001,7 @@
     }
   };
 
-  var DEFAULT_QUOTE = 'Every phase of work must contribute to a larger national vision';
+  var DEFAULT_QUOTE = 'Every phase of work must contribute to a larger national vision';
 
   var panel     = document.getElementById('areaPanel');
   var quoteEl   = document.getElementById('areaPanelQuote');
