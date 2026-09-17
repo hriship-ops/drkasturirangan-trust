@@ -312,7 +312,7 @@
   background: #ffb337;
   border-radius: 118px;
   padding: 52px 60px;
-  grid-template-columns: 4fr 5fr;
+  grid-template-columns: 2fr 3fr;
   position: relative;
   gap: 48px;
   align-items: center;
@@ -343,8 +343,37 @@
   font-size: 24px;
   font-weight: 500;
   font-style: normal;
+  flex: 1 1 0;
+  min-width: 0;
 }
 .area-panel:not(.panel-default) .area-panel-illus {
+  display: none;
+}
+/* Hover: quote col is flex-row — open " left | text right, close " below-right */
+.area-panel:not(.panel-default) .area-panel-quote-col {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 12px;
+}
+.area-panel:not(.panel-default) .area-panel-qmark-open {
+  font-size: clamp(100px, 16.7vw, 240px);
+  color: #d9982e;
+  flex: 0 0 auto;
+  line-height: 0.55;
+  margin-bottom: 0;
+}
+.area-panel:not(.panel-default) .area-panel-qmark-close {
+  font-size: clamp(80px, 13.9vw, 200px);
+  color: #d9982e;
+  flex: 0 0 100%;
+  text-align: right;
+  line-height: 0.5;
+  display: block;
+}
+/* Default state: hide closing qmark */
+.area-panel.panel-default .area-panel-qmark-close {
   display: none;
 }
 
@@ -372,7 +401,7 @@
 .area-panel-desc-wrap {
   background: #fff;
   border-radius: 20px;
-  padding: 32px 36px;
+  padding: 28px 20px;
 }
 .area-panel-desc {
   font-size: 22px;
@@ -952,6 +981,7 @@
     <div class="area-panel-quote-col">
       <span class="area-panel-qmark area-panel-qmark-open">&ldquo;</span>
       <p class="area-panel-quote-text" id="areaPanelQuote"></p>
+      <span class="area-panel-qmark area-panel-qmark-close">&rdquo;</span>
     </div>
     <img class="area-panel-illus" src="assets/images/kk-illustration.svg" alt="">
     <div class="area-panel-desc-wrap">
