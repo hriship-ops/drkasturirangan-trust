@@ -360,31 +360,14 @@
   align-items: center;
   gap: 20px;
   min-height: 330px;
-  cursor: pointer;
   text-decoration: none;
   color: inherit;
-  transition: background 0.25s, transform 0.25s;
 }
 
 .vm-focus-card-1,
 .vm-focus-card-2,
 .vm-focus-card-3,
 .vm-focus-card-4 { background: #FFF6E7; }
-
-.vm-focus-card-1:hover,
-.vm-focus-card-2:hover,
-.vm-focus-card-3:hover,
-.vm-focus-card-4:hover {
-  background: var(--c-primary);
-  transform: translateY(-4px);
-}
-
-.vm-focus-card-1:hover p,
-.vm-focus-card-2:hover p,
-.vm-focus-card-3:hover p,
-.vm-focus-card-4:hover p {
-  color: #fff;
-}
 
 .vm-focus-icon {
   width: clamp(100px, 13.9vw, 200px);
@@ -393,14 +376,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.25s;
-}
-
-.vm-focus-card-1:hover .vm-focus-icon,
-.vm-focus-card-2:hover .vm-focus-icon,
-.vm-focus-card-3:hover .vm-focus-icon,
-.vm-focus-card-4:hover .vm-focus-icon {
-  transform: scale(1.06);
 }
 
 .vm-focus-icon img {
@@ -508,15 +483,20 @@
 
 @media (max-width: 600px) {
   .vm-quote-text { font-size: 26px; line-height: 36px; }
-  .vm-quote-inner { padding: 20px 16px; } /* more text width on mobile */
+  .vm-quote-inner { padding: 20px 16px; }
   .vm-focus-grid { grid-template-columns: repeat(2, 1fr); }
   .vm-focus-card { min-height: 240px; padding: 20px 12px 24px; gap: 12px; }
   .vm-focus-card p:not(.vm-focus-label) { font-size: 16px; }
   .vm-ethos-circle { width: 160px; height: 160px; }
-  /* Ethos: 2×2 wrap so circles don't overflow narrow screens */
   .vm-ethos-circles { flex-wrap: wrap; }
   .vm-ethos-img { width: clamp(120px, 42vw, 200px); }
   .vm-deco-open, .vm-deco-close { font-size: 120px; }
+}
+
+@media (max-width: 480px) {
+  .vm-focus-grid { grid-template-columns: 1fr; }
+  .vm-focus-card { min-height: unset; }
+  .vm-focus-icon { width: 120px; }
 }
 </style>
 </head>
@@ -663,24 +643,28 @@
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-1.png" alt="Space and satellite technology">
       </div>
+      <p class="vm-focus-label">Space and satellite technology</p>
       <p>Satellite applications and space technology for the benefit of humankind</p>
     </a>
     <a href="fellowship.html" class="vm-focus-card vm-focus-card-2">
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-2.png" alt="Education and learning">
       </div>
+      <p class="vm-focus-label">Education and learning</p>
       <p>Revolutionising learning systems and research frameworks</p>
     </a>
     <a href="fellowship.html" class="vm-focus-card vm-focus-card-3">
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-3.png" alt="Environment">
       </div>
-      <p>Environmental<br>consciousness and urban/rural transformation</p>
+      <p class="vm-focus-label">Environment</p>
+      <p>Environmental consciousness and urban/rural transformation</p>
     </a>
     <a href="fellowship.html" class="vm-focus-card vm-focus-card-4">
       <div class="vm-focus-icon">
         <img src="assets/images/vm-focus-4.png" alt="Public policy and governance">
       </div>
+      <p class="vm-focus-label">Public policy and governance</p>
       <p>Cultivating leadership and ethical governance</p>
     </a>
   </div>
