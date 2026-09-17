@@ -197,27 +197,25 @@
   padding: var(--section-py) var(--page-px) var(--section-py) clamp(20px, 8.1vw, 117px);
 }
 
-.about-dot-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.about-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--c-accent); /* R13: was navy */
-  flex-shrink: 0;
-}
-
 .about-heading {
   font-size: var(--fs-h2);
   font-style: italic;
   font-weight: var(--fw-medium);
   color: var(--c-primary-dark);
   line-height: normal;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.about-heading::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  left: 4px;
+  top: 5px;
 }
 
 .about-text {
@@ -873,10 +871,7 @@
 
 <!-- ABOUT -->
 <section class="about-section">
-  <div class="about-dot-row">
-    <div class="about-dot"></div>
-    <h2 class="about-heading">Inspired by a life of inquiry</h2>
-  </div>
+  <h2 class="about-heading">Inspired by a life of inquiry</h2>
   <div class="about-text">
     <p>
       <strong>Krishnaswamy Kasturirangan (24 October 1940 &ndash; 25 April 2025)</strong>
@@ -924,7 +919,7 @@
     </div>
     <div class="area-item" data-area="publiclife">
       <button type="button" class="area-circle-wrap">
-        <img class="area-img-default" src="assets/images/area-publiclife-v2.png" alt="Public Life">
+        <img class="area-img-default" src="assets/images/area-publiclife-v2.png" alt="Public Policy">
         <img class="area-img-hover" src="assets/images/area-publiclife-v2-hover.png" alt="">
       </button>
     </div>
