@@ -67,15 +67,14 @@ body { overflow-y: visible; }
   overflow: visible;
 }
 
-/* R1: amber decorative circle behind illustration.
-   Figma V2: Ellipse 8 w=403 h=403, y=153 (nav ends y=101 → top = 153-101 = 52px). */
+/* Figma V2: Ellipse 8 w=403, illustration y=145, circle y=153 → 8px below illustration top. */
 .kk-illus-circle {
   position: absolute;
   width: clamp(200px, 28vw, 403px);
   height: clamp(200px, 28vw, 403px);
   border-radius: 50%;
   background: rgba(217, 152, 46, 0.15);
-  top: 52px;
+  top: 8px;
   right: clamp(16px, 2.8vw, 40px);
   z-index: 0;
   pointer-events: none;
@@ -91,14 +90,16 @@ body { overflow-y: visible; }
   transform: scaleX(-1);
 }
 
-/* R2: horizontal lighter line below illustration */
+/* Figma Line 27: y=502 (6px below illustration bottom at y=496), x=-57 to x=1197 (~83% of 1440px).
+   Stroke #d9982e a=0.20, sw=3. Positioned in .kk-hero (full-width section). */
 .kk-hero-hline {
   position: absolute;
-  bottom: -24px;
-  left: -30px;
-  right: -60px;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.15);
+  bottom: -3px;
+  left: 0;
+  right: 17%;
+  height: 3px;
+  background: rgba(217, 152, 46, 0.20);
+  z-index: 0;
 }
 
 /* ----------------------------------------------------------
@@ -110,6 +111,7 @@ body { overflow-y: visible; }
 .kk-timeline-wrap {
   display: grid;
   grid-template-columns: 160px 1fr;
+  margin-top: 60px;
 }
 
 /* R3: sidebar sticky so year index stays visible while scrolling */
@@ -180,21 +182,6 @@ body { overflow-y: visible; }
   position: relative;
 }
 
-/* R5/R13/R15/R17: thin vertical grey line.
-   Figma V2: spine lines at x=496 from page left; sidebar=160px wide,
-   so within kk-main: left = 496-160 = 336px. Sits left of dots (x=531) and photos (x=542+). */
-.kk-main::before {
-  content: '';
-  position: absolute;
-  left: 336px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: var(--c-text-muted);
-  z-index: 0;
-}
-
-
 /* ----------------------------------------------------------
    TIMELINE ENTRY
    Each entry: horizontal amber divider above, then content row.
@@ -202,17 +189,30 @@ body { overflow-y: visible; }
    Photos: rounded 27px, right-aligned, max-w 670px.
    ---------------------------------------------------------- */
 
-/* Horizontal amber line separating entries — R6: grey vline intersects here */
+/* Horizontal amber line separating entries */
 .kk-entry-divider {
   height: 3px;
   background: var(--c-accent);
 }
 
+/* Figma V2: per-section grey line at x=496 (sidebar=160 → within kk-main: 336px).
+   Stroke #7f7f7f sw=0.5 — per-section only, not continuous. */
 .kk-entry-inner {
   display: flex;
   align-items: flex-start;
   gap: 40px;
   padding: clamp(20px, 3.1vw, 44px) clamp(20px, 4vw, 58px) clamp(20px, 3.1vw, 44px) clamp(20px, 3.5vw, 50px);
+  position: relative;
+}
+.kk-entry-inner::before {
+  content: '';
+  position: absolute;
+  left: 336px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(127, 127, 127, 0.55);
+  z-index: 0;
 }
 
 /* R4: year label — centered within its column.
@@ -244,11 +244,11 @@ body { overflow-y: visible; }
   z-index: 1;
 }
 
-/* Amber bullet dot + first text line in a flex row */
+/* Figma: dot x=531, text x=542 — dot nearly abuts text (11px from dot left to text). */
 .kk-entry-dot-row {
   display: flex;
   align-items: flex-start;
-  gap: 11px;
+  gap: 4px;
 }
 
 .kk-entry-dot {
@@ -349,8 +349,8 @@ body { overflow-y: visible; }
   .kk-sidebar ul li.kk-yr-highlight { margin-left: -16px; }
   .kk-entry-inner    { gap: 20px; padding: 32px 20px 32px 16px; }
   .kk-entry-year     { font-size: 60px; min-width: 140px; }
-  /* grey line = content-start(176px) - 35px (same left-of-dot offset as desktop) = 141px */
-  .kk-main::before   { left: 141px; }
+  /* grey line: sidebar narrows to 72px, same left-of-dot offset → 72+(290-150)/1 ≈ 141px */
+  .kk-entry-inner::before { left: 141px; }
 }
 
 /* ── Mobile (≤600px): hide sidebar, stack year above content ── */
@@ -377,7 +377,7 @@ body { overflow-y: visible; }
   .kk-entry-photo   { max-width: 100%; }
 
   /* Remove decorative lines — too cluttered on narrow screens */
-  .kk-main::before   { display: none; }
+  .kk-entry-inner::before { display: none; }
 
   .kk-dark-section { padding: 28px 20px; }
   .kk-dark-text    { font-size: 18px; }
@@ -459,8 +459,8 @@ body { overflow-y: visible; }
     <img class="kk-hero-illus"
          src="assets/images/kk-illustration.svg"
          alt="Sketch portrait of K. Kasturirangan">
-    <div class="kk-hero-hline"></div>
   </div>
+  <div class="kk-hero-hline"></div>
 </section>
 
 <!-- TIMELINE -->
