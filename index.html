@@ -325,9 +325,16 @@
 }
 .area-panel.panel-default .area-panel-quote-text {
   text-align: center;
-  font-size: 50px;
   font-weight: var(--fw-medium);
   font-style: normal;
+}
+
+/* Expanded (hover) state: large quote + brown text */
+.area-panel:not(.panel-default) .area-panel-quote-text {
+  color: var(--c-amber-deep);
+}
+.area-panel:not(.panel-default) .area-panel-desc {
+  color: var(--c-amber-deep);
 }
 
 
@@ -344,10 +351,10 @@
 }
 .area-panel-qmark-open { margin-bottom: 12px; }
 .area-panel-quote-text {
-  font-size: 24px;
+  font-size: 50px;
   font-style: italic;
   color: #fff;
-  line-height: 1.55;
+  line-height: 1.3;
   font-weight: var(--fw-regular);
 }
 
@@ -468,15 +475,6 @@
   margin-bottom: 40px;
 }
 
-/* Navy dot: 32px #2a427e. */
-.stories-dot {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--c-primary);
-  flex-shrink: 0;
-}
-
 .stories-heading {
   font-size: var(--fs-h2);
   font-weight: var(--fw-medium);
@@ -484,19 +482,16 @@
   position: relative;
 }
 
-/* Amber highlight dot behind first word of heading (like hero headline). */
+/* Amber dot above the "W" in "Where Curiosity Led" — matches Figma. */
 .stories-heading::before {
   content: '';
   position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 52px;
-  height: 52px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--c-accent);
-  opacity: 0.4;
-  z-index: -1;
+  left: 4px;
+  top: 5px;
   pointer-events: none;
 }
 
@@ -547,20 +542,22 @@
   background: rgba(42, 66, 126, 0.92);
   border-radius: inherit;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
   opacity: 0;
   transition: opacity 0.35s ease;
+  overflow-y: auto;
 }
 
 .story-overlay p {
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: var(--fw-regular);
-  line-height: 1.4;
-  text-align: center;
+  line-height: 1.5;
+  text-align: left;
   font-family: var(--font-main);
+  margin: 0;
 }
 
 .story-card-1:hover .story-img-hover,
@@ -1038,7 +1035,6 @@
 <!-- STORIES -->
 <section class="stories-section">
   <div class="stories-heading-row">
-    <div class="stories-dot"></div>
     <h2 class="stories-heading">Where Curiosity Led</h2>
   </div>
   <div class="stories-cards">
