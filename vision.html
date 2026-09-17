@@ -475,10 +475,6 @@
    RESPONSIVE
    ---------------------------------------------------------- */
 
-@media (max-width: 480px) {
-  .vm-walking-figure { display: none; }
-}
-
 @media (max-width: 1100px) {
   .vm-legacy-grid  { grid-template-columns: 1fr; }
   .vm-legacy-portrait { height: 340px; margin-top: 20px; }
@@ -496,6 +492,7 @@
 
 @media (max-width: 600px) {
   .vm-quote-text { font-size: 26px; line-height: 36px; }
+  .vm-quote-inner { padding: 20px 16px; } /* more text width on mobile */
   .vm-focus-grid { grid-template-columns: 1fr; }
   .vm-ethos-circle { width: 160px; height: 160px; }
   .vm-deco-open, .vm-deco-close { font-size: 120px; }
@@ -561,7 +558,7 @@
   <img class="vm-walking-figure" src="assets/images/header.png" alt="">
   <div class="vm-quote-inner">
     <span class="vm-deco-open">&ldquo;</span>
-    <p class="vm-quote-text">To honor and continue the legacy of Krishnaswamy Kasturirangan<br>by inspiring future generations through initiatives that promote<br>scientific excellence, ethical, humane and sustainable action</p>
+    <p class="vm-quote-text">To honor and continue the legacy of Krishnaswamy Kasturirangan by inspiring future generations through initiatives that promote scientific excellence, ethical, humane and sustainable action</p>
     <span class="vm-deco-close">&ldquo;</span>
   </div>
 </section>
