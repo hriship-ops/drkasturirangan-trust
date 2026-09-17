@@ -36,11 +36,16 @@
   overflow: hidden;
 }
 
-/* Partially off-screen decorative amber circle (R8: anchored to bottom). */
+/* Partially off-screen decorative amber circle — anchored relative to the navy
+   pill so the two shapes always overlap by ~30px regardless of platform DPR or
+   text-rendering differences that affect hero-left's rendered height. */
 .hero-deco-circle {
   position: absolute;
   left: -138px;
-  bottom: 0;
+  /* top = pill-top + pill-height − 30px (30px overlap with the pill).
+     Using the same clamp values as .hero-blue-rect so the positions stay
+     in sync on every viewport/DPR combination. */
+  top: calc(clamp(30px, 6vw, 87px) + clamp(150px, 23.5vw, 338px) - 30px);
   width: 274px;
   height: 274px;
   pointer-events: none;
