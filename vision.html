@@ -147,17 +147,19 @@
 
 .vm-legacy-portrait {
   position: relative;
-  height: clamp(250px, 29.9vw, 430px);
+  min-height: clamp(250px, 29.9vw, 430px);
+  align-self: stretch;
 }
 
-/* Amber circle centred behind the portrait (R9 V2). */
+/* Amber circle centred behind the portrait (R9 V2).
+   Circle is 6px taller than portrait so it peeks above as a halo — Figma: circle=392, portrait=390. */
 .vm-portrait-bg-circle {
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: clamp(200px, 23.6vw, 340px);
-  height: clamp(200px, 23.6vw, 340px);
+  width: clamp(226px, 27.5vw, 396px);
+  height: clamp(226px, 27.5vw, 396px);
   border-radius: 50%;
   background: #E9A22D;
 }
@@ -176,12 +178,23 @@
   z-index: 1;
 }
 
-/* Horizontal amber rule between Legacy and Ethos. */
+/* Horizontal amber rule between Legacy and Ethos. Figma Line 24: starts mid-page, amber dot at left end. */
 .vm-section-divider {
+  position: relative;
   height: 3px;
   background: var(--c-accent);
   margin: 0 var(--page-px) 0 auto;
   width: clamp(40%, calc(53% - var(--page-px)), 820px);
+}
+.vm-section-divider::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: -4px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--c-accent);
 }
 
 /* ----------------------------------------------------------
@@ -477,15 +490,18 @@
 
 @media (max-width: 1100px) {
   .vm-legacy-grid  { grid-template-columns: 1fr; }
-  .vm-legacy-portrait { height: 340px; margin-top: 20px; }
+  .vm-legacy-portrait { height: 340px; min-height: unset; align-self: auto; margin-top: 20px; }
   .vm-portrait-img { max-width: 100%; height: 310px; }
-  .vm-portrait-bg-circle { width: 300px; height: 300px; }
+  .vm-portrait-bg-circle { width: 316px; height: 316px; } /* 6px > portrait height */
   .vm-gov-grid { grid-template-columns: 1fr; }
+  .vm-section-divider { display: none; } /* no room for right-side divider in single-col layout */
 }
 
 @media (max-width: 900px) {
-  .vm-ethos-circles { justify-content: center; }
+  .vm-ethos-circles { justify-content: center; flex-wrap: wrap; }
   .vm-focus-grid { grid-template-columns: repeat(2, 1fr); }
+  .vm-focus-icon { width: 140px; height: auto; aspect-ratio: 1; }
+  .vm-focus-card p:not(.vm-focus-label) { font-size: 20px; }
   .vm-obj-grid { grid-template-columns: 1fr; }
   .vm-obj-center { grid-column: 1; max-width: 100%; }
 }
@@ -588,6 +604,7 @@
     </div>
   </div>
 </section>
+<div class="vm-section-divider" aria-hidden="true"></div>
 
 <!-- ETHOS -->
 <section class="vm-section">

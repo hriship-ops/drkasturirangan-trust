@@ -313,13 +313,14 @@
   border-radius: 118px;
   padding: 52px 60px;
   grid-template-columns: 4fr 5fr;
+  position: relative;
   gap: 48px;
   align-items: center;
 }
 /* Default state: quote on left, KK illustration anchored at bottom-right. */
 .area-panel.panel-default {
   grid-template-columns: 1fr auto;
-  align-items: flex-end;
+  align-items: end;
   padding-top: 44px;
 }
 .area-panel.panel-default .area-panel-quote-col {
@@ -348,7 +349,6 @@
 .area-panel:not(.panel-default) .area-panel-illus {
   display: none;
 }
-
 
 /* Quote column: large decorative " and " in white, text white (on amber) */
 .area-panel-quote-col {
