@@ -355,14 +355,14 @@
 .area-panel:not(.panel-default) .area-panel-illus {
   display: none;
 }
-/* Hover: " inside panel top-left corner */
+/* Hover: " sits inside panel top-left; line-height matches default to prevent overflow above panel */
 .area-panel:not(.panel-default) .area-panel-qmark-open {
   position: absolute;
-  top: 16px;
+  top: 30px;
   left: 50px;
   font-size: clamp(100px, 20.3vw, 292px);
   color: #d9982e;
-  line-height: 0.55;
+  line-height: 0.85;
 }
 
 /* Quote column — " is always absolute so it doesn't affect in-flow layout */
@@ -376,13 +376,13 @@
   line-height: 0.55;
   margin: 0;
 }
-/* Default state: " sits at panel top-left, glyph bottom landing on amber */
+/* Default state: " partially overhangs panel top; only bottom ~70px lands on amber */
 .area-panel.panel-default .area-panel-qmark-open {
   position: absolute;
-  top: -60px;
+  top: -25px;
   left: 60px;
   font-size: clamp(120px, 20.8vw, 300px);
-  line-height: 1.18;
+  line-height: 0.85;
   color: #fff;
 }
 .area-panel-quote-text {
