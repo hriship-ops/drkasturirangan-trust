@@ -476,12 +476,13 @@
   user-select: none;
 }
 
-/* Large decorative quote mark: starts at the pill top so it's fully on amber.
-   top matches .quote-amber-bg so no white-on-white bleed above the pill. */
+/* Large decorative quote mark: top:0 so it bleeds above the pill — only the
+   bottom portion lands on amber. This matches Figma where the mark overhangs
+   the pill's top-left corner with the text sitting lower and to the right. */
 .quote-deco-mark {
   position: absolute;
   left: 7.3%;
-  top: clamp(60px, 10.6vw, 152px);
+  top: 0;
   font-family: var(--font-deco);
   font-size: clamp(200px, 35vw, 500px);
   color: rgba(255, 255, 255, 0.85);
