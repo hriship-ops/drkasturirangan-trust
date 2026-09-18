@@ -368,6 +368,7 @@
 /* Quote column — " is always absolute so it doesn't affect in-flow layout */
 .area-panel-quote-col {
   position: relative;
+  padding-left: clamp(80px, 14vw, 200px); /* indent text right of " marks in both states */
 }
 .area-panel-qmark {
   display: block;
@@ -376,12 +377,12 @@
   line-height: 0.55;
   margin: 0;
 }
-/* Default state: " partially overhangs panel top; only bottom ~70px lands on amber */
+/* Default state: " partially overhangs panel top; only bottom ~50px lands on amber */
 .area-panel.panel-default .area-panel-qmark-open {
   position: absolute;
   top: -25px;
   left: 60px;
-  font-size: clamp(120px, 20.8vw, 300px);
+  font-size: clamp(80px, 13vw, 190px);
   line-height: 0.85;
   color: #fff;
 }
