@@ -42,14 +42,26 @@
 .hero-deco-circle {
   position: absolute;
   left: -138px;
-  /* top = pill-top + pill-height − 30px (30px overlap with the pill).
-     Using the same clamp values as .hero-blue-rect so the positions stay
-     in sync on every viewport/DPR combination. */
   top: calc(clamp(30px, 6vw, 87px) + clamp(150px, 23.5vw, 338px) - 30px);
   width: 274px;
   height: 274px;
+  border-radius: 50%;
+  background: var(--c-accent);
   pointer-events: none;
   user-select: none;
+  z-index: 2;
+}
+
+/* Small amber circle at bottom-right of photo area — Figma/Anima: 103×103px. */
+.hero-deco-circle-sm {
+  position: absolute;
+  top: 443px;
+  left: 592px;
+  width: 103px;
+  height: 103px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  pointer-events: none;
   z-index: 2;
 }
 
@@ -771,6 +783,7 @@
     aspect-ratio: 3/2;
   }
   .hero-deco-circle { display: none; }
+  .hero-deco-circle-sm { display: none; }
   .hero-blue-rect { display: none; }
   .hero-portrait { display: none; }
   .hero-right {
@@ -913,9 +926,8 @@
       <img class="hero-slide" src="assets/images/slideshow-4.jpg" alt="">
       <img class="hero-slide" src="assets/images/slideshow-5.jpg" alt="">
     </div>
-    <img class="hero-deco-circle"
-         src="assets/images/home-ellipse-deco.svg"
-         alt="" aria-hidden="true">
+    <div class="hero-deco-circle" aria-hidden="true"></div>
+    <div class="hero-deco-circle-sm" aria-hidden="true"></div>
   </div>
   <div class="hero-right">
     <div class="hero-headline-wrap">
