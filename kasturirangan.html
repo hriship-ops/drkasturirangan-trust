@@ -215,8 +215,7 @@ body { overflow-y: visible; }
   z-index: 0;
 }
 
-/* R4: year label — centered within its column.
-   R5: amber circle behind first digit via ::before. */
+/* R4: year label — Figma: "1940s to 1950s" CENTER, numeric years LEFT. */
 .kk-entry-year {
   font-family: var(--font-deco);
   font-size: 96px;
@@ -224,9 +223,10 @@ body { overflow-y: visible; }
   line-height: 1;
   flex-shrink: 0;
   min-width: clamp(120px, 20.1vw, 290px);
-  text-align: center;
+  text-align: left;
   position: relative;
 }
+.kk-entry-year-first { text-align: center; }
 
 /* R11: amber glow circle removed per V2 design */
 .kk-entry-year::before {
@@ -369,7 +369,7 @@ body { overflow-y: visible; }
   /* Stacked entry: year on top, content below */
   .kk-entry-inner   { flex-direction: column; gap: 8px; padding: 20px 20px; }
   .kk-entry-year    { font-size: 52px; min-width: unset; text-align: left; }
-  /* Reposition amber circle to track the first digit in left-aligned text */
+  .kk-entry-year-first { text-align: center; }
   .kk-entry-year::before { left: 0; top: 4px; width: 64px; height: 64px; }
   .kk-entry-content { padding-top: 0; }
   .kk-entry-text    { font-size: 18px; }
@@ -486,7 +486,7 @@ body { overflow-y: visible; }
       <div class="kk-entry-divider"></div>
 
       <div class="kk-entry-inner">
-        <div class="kk-entry-year">1940s<br>to<br>1950s</div>
+        <div class="kk-entry-year kk-entry-year-first">1940s<br>to<br>1950s</div>
         <div class="kk-entry-content">
           <div class="kk-entry-dot-row">
             <div class="kk-entry-dot"></div>
