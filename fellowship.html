@@ -146,13 +146,18 @@
   min-height: 158px;
 }
 
-/* R7: nomination notice text — white, centered, 36px fw=600 from Figma */
+/* R7: nomination notice text — white, centered, first line bold */
 .fell-banner-notice {
   font-size: var(--fs-banner);
-  font-weight: 600;
+  font-weight: 400;
   color: #fff;
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.5;
+}
+.fell-banner-notice strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 /* Amber pill: bg=#ffb338, radius=26px.
@@ -503,12 +508,22 @@
   margin-bottom: 0;
 }
 
-/* Icon: 57px x 57px. */
-.fell-exp-icon {
-  width: 57px;
-  height: 57px;
-  object-fit: contain;
+/* Icon wrapped in white circle that cuts into the cream row */
+.fell-exp-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  margin-left: -12px;
+}
+.fell-exp-icon {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
 }
 
 /* Row text: 24px Regular #2a427e — Figma fs=24 fw=400 */
@@ -548,6 +563,8 @@
   min-height: 190px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* Circle: 208x207px, bg=#2a427e, radius=50%. Text white bold 22px.
@@ -646,97 +663,166 @@
   margin-top: clamp(60px, 8.3vw, 120px);
 }
 
-/* V2: benefit + review circles replaced by PNG assets */
+/* V2: benefit + review circles — label arched above PNG, body text overlaid inside circle */
 .fell-benefit-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
   max-width: 270px;
   text-align: center;
 }
-.fell-benefit-img {
+/* Wrapper gives the overlay context */
+.fell-circle-inner {
+  position: relative;
   width: clamp(150px, 19vw, 270px);
-  max-width: 100%;
+}
+.fell-benefit-img {
+  width: 100%;
   height: auto;
-  object-fit: contain;
+  display: block;
 }
+/* Text is centred inside the circle body (below the arc label area ~top 22%) */
 .fell-benefit-desc {
-  font-size: 18px;
-  color: var(--c-primary);
-  line-height: 1.5;
+  position: absolute;
+  top: 55%;
+  left: 8%;
+  right: 8%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #fff;
+  font-size: clamp(11px, 1.05vw, 15px);
+  font-weight: 600;
+  line-height: 1.45;
+  pointer-events: none;
 }
+
 .fell-review-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
   max-width: 270px;
   min-width: 0;
   flex: 1 1 0;
   text-align: center;
 }
-.fell-review-img {
+.fell-review-inner {
+  position: relative;
   width: min(100%, 270px);
+}
+.fell-review-img {
+  width: 100%;
   height: auto;
-  object-fit: contain;
+  display: block;
 }
 .fell-review-desc {
-  font-size: 18px;
-  color: var(--c-primary);
-  line-height: 1.5;
+  position: absolute;
+  top: 55%;
+  left: 8%;
+  right: 8%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #fff;
+  font-size: clamp(10px, 0.95vw, 13px);
+  font-weight: 600;
+  line-height: 1.45;
+  pointer-events: none;
+}
+/* Amber highlight box around announcement date */
+.fell-announce-date {
+  display: inline-block;
+  background: var(--c-accent);
+  color: #fff;
+  padding: 2px 12px;
+  border-radius: 8px;
+  font-weight: 700;
 }
 
 /* ----------------------------------------------------------
-   TIMELINE SECTION
-   Vertical line: border-left=3px #ffb338, from x=412 in canvas.
-   Items: dot on line (35px circle) + date (bold 36px) + label (regular 36px).
-   Items at y=4386, 4544, 4702, 4860 (spacing ~158px).
+   TIMELINE SECTION — horizontal layout
+   Date above circle, amber dot, label below.
+   Connecting amber line drawn via ::before on the container.
    ---------------------------------------------------------- */
 
-.fell-timeline {
+.fell-tl-horiz {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   max-width: 900px;
-  position: relative;
-  padding-left: 60px;
-  border-left: 3px solid var(--c-accent);
   margin: 0 auto;
-}
-
-.fell-tl-item {
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  margin-bottom: 44px;
   position: relative;
 }
 
-/* Bullet dot on the timeline line: 16px circle #ffb338.
-   Positioned to sit ON the left border. */
-.fell-tl-item::before {
+/* Horizontal amber line connecting all four dots.
+   top = date cell min-height(60px) + gap(8px) + dot radius(10px) = 78px */
+.fell-tl-horiz::before {
   content: '';
   position: absolute;
-  left: -68px;
-  top: 6px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
+  left: 12.5%;   /* centre of first column  */
+  right: 12.5%;  /* centre of last column   */
+  top: 78px;
+  height: 3px;
   background: var(--c-accent);
+  z-index: 0;
 }
 
-/* Date column: 36px bold #2a427e, min-width=180px. */
-.fell-tl-date {
-  font-size: 30px;
+.fell-tl-h-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.fell-tl-h-date {
+  font-size: clamp(16px, 1.8vw, 26px);
   font-weight: var(--fw-bold);
   color: var(--c-primary);
-  min-width: 180px;
-  flex-shrink: 0;
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  align-items: flex-end;
+  line-height: 1.2;
+  padding: 0 4px;
 }
 
-/* Label: 30px regular #2a427e. */
-.fell-tl-label {
-  font-size: 30px;
+.fell-tl-h-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.fell-tl-h-label {
+  font-size: clamp(13px, 1.4vw, 20px);
   font-weight: var(--fw-regular);
   color: var(--c-primary);
+  text-align: center;
+  line-height: 1.4;
+  padding: 0 6px;
+}
+
+@media (max-width: 640px) {
+  .fell-tl-horiz {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .fell-tl-horiz::before { display: none; }
+  .fell-tl-h-item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+    text-align: left;
+  }
+  .fell-tl-h-date {
+    min-height: auto;
+    min-width: 130px;
+    align-items: flex-start;
+    font-size: 20px;
+    padding: 0;
+  }
+  .fell-tl-h-dot { margin-top: 4px; }
+  .fell-tl-h-label { text-align: left; padding: 0; font-size: 18px; }
 }
 
 /* ----------------------------------------------------------
@@ -994,10 +1080,6 @@
   .fell-elig-circle {
     margin: 0 auto;
   }
-  .fell-tl-item {
-    flex-direction: column;
-    gap: 4px;
-  }
   .fell-car-arrow {
     width: 44px;
     height: 44px;
@@ -1052,10 +1134,6 @@
     height: 220px;
     font-size: 17px;
     padding: 28px;
-  }
-  .fell-tl-date,
-  .fell-tl-label {
-    font-size: 22px;
   }
 }
 </style>
@@ -1137,7 +1215,10 @@
 
 <!-- BANNER STRIP — R7: nomination-only notice (Figma Rectangle 19, h=158, navy) -->
 <div class="fell-banner">
-  <p class="fell-banner-notice">Please note that 2026 fellowship application is by nomination only. An invited panel will nominate candidates for consideration.</p>
+  <p class="fell-banner-notice">
+    <strong>Please note that 2026 fellowship application is by nomination only.</strong>
+    An invited panel will nominate candidates for consideration.
+  </p>
 </div>
 
 <!-- DATE INFO BOXES — R9: Figma Rectangle 116 (left) and 117 (right), amber, staggered -->
@@ -1211,16 +1292,22 @@
   <h2 class="fell-h2">Fellowship benefits</h2>
   <div class="fell-benefits-row">
     <div class="fell-benefit-item">
-      <img class="fell-benefit-img" src="assets/images/fellowship-benefit-1.png" alt="Financial support">
-      <p class="fell-benefit-desc">Each fellowship will provide funding of &#8377;4 lakh for one year, with the possibility of renewal for an additional year.</p>
+      <div class="fell-circle-inner">
+        <img class="fell-benefit-img" src="assets/images/fellowship-benefit-1.png" alt="Financial support">
+        <p class="fell-benefit-desc">Each fellowship will provide funding of &#8377;4 lakh for one year, with the possibility of renewal for an additional year.</p>
+      </div>
     </div>
     <div class="fell-benefit-item">
-      <img class="fell-benefit-img" src="assets/images/fellowship-benefit-2.png" alt="Mentorship">
-      <p class="fell-benefit-desc">Fellows will have opportunities to talk to/interact with eminent individuals across various fields, throughout the year to exchange ideas, discuss progress, and receive guidance.</p>
+      <div class="fell-circle-inner">
+        <img class="fell-benefit-img" src="assets/images/fellowship-benefit-2.png" alt="Mentorship">
+        <p class="fell-benefit-desc">Fellows will have opportunities to talk to/interact with eminent individuals across various fields, throughout the year to exchange ideas, discuss progress, and receive guidance.</p>
+      </div>
     </div>
     <div class="fell-benefit-item">
-      <img class="fell-benefit-img" src="assets/images/fellowship-benefit-3.png" alt="Workshops">
-      <p class="fell-benefit-desc">Two online/physical workshops where fellows present their work and participate in an informal review session with invited experts and peers.</p>
+      <div class="fell-circle-inner">
+        <img class="fell-benefit-img" src="assets/images/fellowship-benefit-3.png" alt="Workshops">
+        <p class="fell-benefit-desc">Two online/physical workshops where fellows present their work and participate in an informal review session with invited experts and peers.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1235,20 +1322,28 @@
       <p class="fell-kicker">RESPONSIBILITIES</p>
       <h2 class="fell-h2">Expectations from Fellows</h2>
       <div class="fell-exp-row">
-        <img class="fell-exp-icon" src="assets/images/icon-meeting.png" alt="">
+        <div class="fell-exp-icon-wrap">
+          <img class="fell-exp-icon" src="assets/images/icon-meeting.png" alt="">
+        </div>
         <p>Attend and actively participate in workshops and mentoring events
            over the period of fellowship</p>
       </div>
       <div class="fell-exp-row">
-        <img class="fell-exp-icon" src="assets/images/icon-training.png" alt="">
+        <div class="fell-exp-icon-wrap">
+          <img class="fell-exp-icon" src="assets/images/icon-training.png" alt="">
+        </div>
         <p>Present vision and updates on ongoing work during designated times</p>
       </div>
       <div class="fell-exp-row">
-        <img class="fell-exp-icon" src="assets/images/icon-goal.png" alt="">
+        <div class="fell-exp-icon-wrap">
+          <img class="fell-exp-icon" src="assets/images/icon-goal.png" alt="">
+        </div>
         <p>Uphold and demonstrate the values of<br>Dr Kasturirangan in the professional sphere</p>
       </div>
       <div class="fell-exp-row">
-        <img class="fell-exp-icon" src="assets/images/icon-person.png" alt="">
+        <div class="fell-exp-icon-wrap">
+          <img class="fell-exp-icon" src="assets/images/icon-person.png" alt="">
+        </div>
         <p>Fellows from prior cohorts are encouraged to continue participating in the Trust's events to build and sustain a lasting community</p>
       </div>
     </div>
@@ -1279,23 +1374,31 @@
   <h2 class="fell-h2">Review process</h2>
   <div class="fell-review-row">
     <div class="fell-review-item">
-      <img class="fell-review-img" src="assets/images/fellowship-review-1.png" alt="Nomination">
-      <p class="fell-review-desc">Invited individuals who knew Dr. Kasturirangan well and from selected central universities will nominate candidates.</p>
+      <div class="fell-review-inner">
+        <img class="fell-review-img" src="assets/images/fellowship-review-1.png" alt="Nomination">
+        <p class="fell-review-desc">Invited individuals who knew Dr. Kasturirangan well and from selected central universities will nominate candidates.</p>
+      </div>
     </div>
     <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
     <div class="fell-review-item">
-      <img class="fell-review-img" src="assets/images/fellowship-review-2.png" alt="Shortlisting">
-      <p class="fell-review-desc">A distinguished jury of experts will evaluate the applications and prepare a shortlist based on merit and alignment with the trust&rsquo;s values and objectives.</p>
+      <div class="fell-review-inner">
+        <img class="fell-review-img" src="assets/images/fellowship-review-2.png" alt="Shortlisting">
+        <p class="fell-review-desc">A distinguished jury of experts will evaluate the applications and prepare a shortlist based on merit and alignment with the trust&rsquo;s values and objectives.</p>
+      </div>
     </div>
     <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
     <div class="fell-review-item">
-      <img class="fell-review-img" src="assets/images/fellowship-review-3.png" alt="Interviews">
-      <p class="fell-review-desc">Shortlisted candidates will be notified, and interviews will be scheduled with a panel.</p>
+      <div class="fell-review-inner">
+        <img class="fell-review-img" src="assets/images/fellowship-review-3.png" alt="Interviews">
+        <p class="fell-review-desc">Shortlisted candidates will be notified, and interviews will be scheduled with a panel.</p>
+      </div>
     </div>
     <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
     <div class="fell-review-item">
-      <img class="fell-review-img" src="assets/images/fellowship-review-4.png" alt="Announcement">
-      <p class="fell-review-desc">Selected fellows will be announced on <strong>April 25, 2027</strong></p>
+      <div class="fell-review-inner">
+        <img class="fell-review-img" src="assets/images/fellowship-review-4.png" alt="Announcement">
+        <p class="fell-review-desc">Selected fellows will be announced on <span class="fell-announce-date">April 25, 2027</span></p>
+      </div>
     </div>
   </div>
 </section>
@@ -1304,22 +1407,26 @@
 <section class="fell-section" id="timeline">
   <p class="fell-kicker">KEY DATES</p>
   <h2 class="fell-h2">Timeline</h2>
-  <div class="fell-timeline">
-    <div class="fell-tl-item">
-      <span class="fell-tl-date">Oct 25, 2026</span>
-      <span class="fell-tl-label">Nomination window opens</span>
+  <div class="fell-tl-horiz">
+    <div class="fell-tl-h-item">
+      <div class="fell-tl-h-date">Oct 25, 2026</div>
+      <div class="fell-tl-h-dot"></div>
+      <div class="fell-tl-h-label">Nomination window opens</div>
     </div>
-    <div class="fell-tl-item">
-      <span class="fell-tl-date">Dec 31, 2026</span>
-      <span class="fell-tl-label">Last date of submission</span>
+    <div class="fell-tl-h-item">
+      <div class="fell-tl-h-date">Dec 31, 2026</div>
+      <div class="fell-tl-h-dot"></div>
+      <div class="fell-tl-h-label">Last date of submission</div>
     </div>
-    <div class="fell-tl-item">
-      <span class="fell-tl-date">March 2027</span>
-      <span class="fell-tl-label">Shortlisted candidates invited for an interview</span>
+    <div class="fell-tl-h-item">
+      <div class="fell-tl-h-date">March 2027</div>
+      <div class="fell-tl-h-dot"></div>
+      <div class="fell-tl-h-label">Shortlisted candidates invited for an interview</div>
     </div>
-    <div class="fell-tl-item">
-      <span class="fell-tl-date">April 25, 2027</span>
-      <span class="fell-tl-label">Fellows announced</span>
+    <div class="fell-tl-h-item">
+      <div class="fell-tl-h-date">April 25, 2027</div>
+      <div class="fell-tl-h-dot"></div>
+      <div class="fell-tl-h-label">Fellows announced</div>
     </div>
   </div>
 </section>

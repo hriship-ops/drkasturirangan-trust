@@ -476,10 +476,11 @@
   user-select: none;
 }
 
-/* Large decorative quote mark: overhangs the top of the amber pill. */
+/* Large decorative quote mark: overhangs the top of the amber pill.
+   left matches pill's left edge (7.3%) so the mark sits flush against it. */
 .quote-deco-mark {
   position: absolute;
-  left: clamp(20px, 8.3vw, 120px);
+  left: 7.3%;
   top: 0;
   font-family: var(--font-deco);
   font-size: clamp(200px, 35vw, 500px);
