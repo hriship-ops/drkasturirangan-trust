@@ -366,23 +366,38 @@
   padding-top: 48px;
   padding-left: 202px;
 }
-/* Hover: indent text right of the 126px-wide SVG mark */
+/* Hover: Figma text centered at ~280px from panel left; quote-col starts at 60px */
 .area-panel:not(.panel-default) .area-panel-quote-col {
   align-self: center;
-  padding-left: 150px;
+  padding-left: 160px;
 }
 
-/* SVG quote mark — Figma exact: 126×93px, 9px above panel top, 82px from panel left */
-.area-panel-qmark-open {
+/* Default SVG mark — Figma exact: 126×93px, 9px above panel, 82px from panel left */
+.area-panel-qmark-default {
   position: absolute;
   top: -9px;
   left: 82px;
   width: 126px;
   height: 93px;
-  color: #fff; /* default: white */
+  display: block;
 }
-.area-panel:not(.panel-default) .area-panel-qmark-open {
-  color: #d9982e; /* hover: amber */
+.area-panel:not(.panel-default) .area-panel-qmark-default {
+  display: none;
+}
+
+/* Hover font mark — Figma node 1029:602: Agdasima 300px, top:-27px, left:50px */
+.area-panel-qmark-hover {
+  display: none;
+  position: absolute;
+  top: -27px;
+  left: 50px;
+  font-family: var(--font-deco);
+  font-size: 300px;
+  line-height: 1;
+  color: #d9982e;
+}
+.area-panel:not(.panel-default) .area-panel-qmark-hover {
+  display: block;
 }
 .area-panel-quote-text {
   font-size: 50px;
@@ -976,11 +991,12 @@
 
   <!-- Expand panel: quote (left) + description (right); illustration shown in default state only -->
   <div class="area-panel" id="areaPanel">
-    <!-- Figma open-quote SVG (126×93px, white default / amber on hover) -->
-    <svg class="area-panel-qmark-open" width="126" height="93" viewBox="0 0 126 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M125.488 92.5293H71.0449V52.2461L94.4824 0H115.967L96.9238 48.3398H125.488V92.5293Z" fill="currentColor"/>
-      <path d="M54.6875 92.5293H0V52.2461L23.6816 0H45.166L26.123 48.3398H54.6875V92.5293Z" fill="currentColor"/>
+    <!-- Default: exact Figma SVG shape; Hover: Agdasima font char (Figma node 1029:602) -->
+    <svg class="area-panel-qmark-default" width="126" height="93" viewBox="0 0 126 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M125.488 92.5293H71.0449V52.2461L94.4824 0H115.967L96.9238 48.3398H125.488V92.5293Z" fill="white"/>
+      <path d="M54.6875 92.5293H0V52.2461L23.6816 0H45.166L26.123 48.3398H54.6875V92.5293Z" fill="white"/>
     </svg>
+    <span class="area-panel-qmark-hover" aria-hidden="true">&ldquo;</span>
     <div class="area-panel-quote-col">
       <p class="area-panel-quote-text" id="areaPanelQuote"></p>
     </div>
