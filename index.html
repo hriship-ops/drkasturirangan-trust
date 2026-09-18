@@ -343,7 +343,7 @@
   text-align: left;
 }
 
-/* Expanded (hover) state: exact Figma values (Space frame 1029:592) */
+/* Expanded (hover) state */
 .area-panel:not(.panel-default) .area-panel-quote-text {
   color: #855404;
   font-size: 24px;
@@ -355,38 +355,34 @@
 .area-panel:not(.panel-default) .area-panel-illus {
   display: none;
 }
-/* Hover: " sits inside panel top-left, text starts beside it */
-.area-panel:not(.panel-default) .area-panel-qmark-open {
-  position: absolute;
-  top: 20px;
-  left: 50px;
-  font-size: clamp(100px, 20.3vw, 292px);
-  color: #d9982e;
-  line-height: 0.85;
-}
-.area-panel:not(.panel-default) .area-panel-quote-col {
-  padding-left: clamp(60px, 8vw, 115px); /* indent text to clear the marks */
-}
 
-/* Quote column — " is always absolute so it doesn't affect in-flow layout */
+/* Quote column */
 .area-panel-quote-col {
   position: relative;
 }
-.area-panel-qmark {
-  display: block;
-  font-family: var(--font-deco);
-  color: #fff;
-  line-height: 0.55;
-  margin: 0;
+/* Default: Figma exact — text at 92px from panel top, 262px from panel left */
+.area-panel.panel-default .area-panel-quote-col {
+  align-self: start;
+  padding-top: 48px;
+  padding-left: 202px;
 }
-/* Default state: " at panel top-left, inside the amber */
-.area-panel.panel-default .area-panel-qmark-open {
+/* Hover: indent text right of the 126px-wide SVG mark */
+.area-panel:not(.panel-default) .area-panel-quote-col {
+  align-self: center;
+  padding-left: 150px;
+}
+
+/* SVG quote mark — Figma exact: 126×93px, 9px above panel top, 82px from panel left */
+.area-panel-qmark-open {
   position: absolute;
-  top: 5px;
-  left: 60px;
-  font-size: clamp(80px, 13vw, 190px);
-  line-height: 0.85;
-  color: #fff;
+  top: -9px;
+  left: 82px;
+  width: 126px;
+  height: 93px;
+  color: #fff; /* default: white */
+}
+.area-panel:not(.panel-default) .area-panel-qmark-open {
+  color: #d9982e; /* hover: amber */
 }
 .area-panel-quote-text {
   font-size: 50px;
@@ -980,7 +976,11 @@
 
   <!-- Expand panel: quote (left) + description (right); illustration shown in default state only -->
   <div class="area-panel" id="areaPanel">
-    <span class="area-panel-qmark area-panel-qmark-open">&ldquo;</span>
+    <!-- Figma open-quote SVG (126×93px, white default / amber on hover) -->
+    <svg class="area-panel-qmark-open" width="126" height="93" viewBox="0 0 126 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M125.488 92.5293H71.0449V52.2461L94.4824 0H115.967L96.9238 48.3398H125.488V92.5293Z" fill="currentColor"/>
+      <path d="M54.6875 92.5293H0V52.2461L23.6816 0H45.166L26.123 48.3398H54.6875V92.5293Z" fill="currentColor"/>
+    </svg>
     <div class="area-panel-quote-col">
       <p class="area-panel-quote-text" id="areaPanelQuote"></p>
     </div>
