@@ -355,20 +355,22 @@
 .area-panel:not(.panel-default) .area-panel-illus {
   display: none;
 }
-/* Hover: " sits inside panel top-left; line-height matches default to prevent overflow above panel */
+/* Hover: " sits inside panel top-left, text starts beside it */
 .area-panel:not(.panel-default) .area-panel-qmark-open {
   position: absolute;
-  top: 30px;
+  top: 20px;
   left: 50px;
   font-size: clamp(100px, 20.3vw, 292px);
   color: #d9982e;
   line-height: 0.85;
 }
+.area-panel:not(.panel-default) .area-panel-quote-col {
+  padding-left: clamp(60px, 8vw, 115px); /* indent text to clear the marks */
+}
 
 /* Quote column — " is always absolute so it doesn't affect in-flow layout */
 .area-panel-quote-col {
   position: relative;
-  padding-left: clamp(80px, 14vw, 200px); /* indent text right of " marks in both states */
 }
 .area-panel-qmark {
   display: block;
@@ -377,10 +379,10 @@
   line-height: 0.55;
   margin: 0;
 }
-/* Default state: " partially overhangs panel top; only bottom ~50px lands on amber */
+/* Default state: " at panel top-left, inside the amber */
 .area-panel.panel-default .area-panel-qmark-open {
   position: absolute;
-  top: -25px;
+  top: 5px;
   left: 60px;
   font-size: clamp(80px, 13vw, 190px);
   line-height: 0.85;
