@@ -16,11 +16,13 @@
    ================================================================ */
 
 /* ----------------------------------------------------------
-   HERO SECTION
+   HERO SECTION — all coords from Anima export (canvas − 101px nav = hero-relative).
    2-col grid: left col = 784/1440 = 54.44% | right col = 1fr.
-   Left: portrait (x=167, y=287, w=617, h=416, r=71px) layered above
-         blue pill (x=58, y=188, w=234, h=338, r=99px).
-   Right: amber dot + headline + desc + CTA.
+   Left:  blue pill  canvas(58,146) → hero(58,45)  w=234 h=338 r=99
+          slideshow  canvas(167,245) → hero(167,144) w=617 h=416 r=71
+          amber lg   canvas(−138,454) → hero(−138,353) ⌀274
+          amber sm   canvas(592,502) → hero(592,401) ⌀103
+   Right: headline   canvas(858,343) → hero-col(74,242)
    ---------------------------------------------------------- */
 
 .hero {
@@ -36,13 +38,11 @@
   overflow: hidden;
 }
 
-/* Partially off-screen decorative amber circle — anchored relative to the navy
-   pill so the two shapes always overlap by ~30px regardless of platform DPR or
-   text-rendering differences that affect hero-left's rendered height. */
+/* Large amber circle — Anima canvas top=454 → hero-relative 353px. */
 .hero-deco-circle {
   position: absolute;
   left: -138px;
-  top: calc(clamp(30px, 6vw, 87px) + clamp(150px, 23.5vw, 338px) - 30px);
+  top: 353px;
   width: 274px;
   height: 274px;
   border-radius: 50%;
@@ -52,10 +52,10 @@
   z-index: 2;
 }
 
-/* Small amber circle at bottom-right of photo area — Figma/Anima: 103×103px. */
+/* Small amber circle — Anima canvas top=502 → hero-relative 401px. */
 .hero-deco-circle-sm {
   position: absolute;
-  top: 443px;
+  top: 401px;
   left: 592px;
   width: 103px;
   height: 103px;
@@ -65,11 +65,11 @@
   z-index: 2;
 }
 
-/* Navy pill behind portrait: x=58, y=188 (canvas) → hero-relative top=87px. */
+/* Navy pill — Anima canvas top=146 → hero-relative 45px. */
 .hero-blue-rect {
   position: absolute;
   left: clamp(16px, 4vw, 58px);
-  top: clamp(30px, 6vw, 87px);
+  top: 45px;
   width: clamp(100px, 16.2vw, 234px);
   height: clamp(150px, 23.5vw, 338px);
   border-radius: var(--r-pill);
@@ -88,13 +88,13 @@
   z-index: 1;
 }
 
-/* Right column: flex column, content starts at y=315-101=214px from top.
-   padding-left = 857-784 = 73px (canvas gap between cols). */
+/* Right column — Anima headline at canvas(858,343) → hero-relative top=242px.
+   padding-left = 858−784 = 74px from left-col edge. */
 .hero-right {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: clamp(60px, 14.9vw, 214px) 40px 60px 73px;
+  padding: clamp(60px, 16.8vw, 242px) 40px 60px 74px;
 }
 
 /* Amber marker dot + headline in a flex row. */
@@ -114,12 +114,11 @@
   margin-top: 6px;
 }
 
-/* Slideshow: positioned and sized to match Figma photo frame
-   (canvas: left=167, top=256, w=617, h=416, r=71px; hero-relative top=155px). */
+/* Slideshow — Anima canvas top=245 → hero-relative 144px. */
 .hero-slideshow {
   position: absolute;
   left: clamp(60px, 11.6vw, 167px);
-  top: clamp(60px, 10.8vw, 155px);
+  top: clamp(60px, 10vw, 144px);
   width: clamp(300px, 42.8vw, 617px);
   height: auto;
   aspect-ratio: 617 / 416;
