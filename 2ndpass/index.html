@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="../assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:74px;width:auto;">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="../vision.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="../vision.html">Vision &amp; Mission</a>
+        <a href="../team.html">Team</a>
+      </div>
+    </li>
+    <li>
+      <a href="../kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="../kasturirangan.html">His Life</a>
+        <a href="#">Selected Writings</a>
+        <a href="../testimonials.html">Memories</a>
+      </div>
+    </li>
+    <li>
+      <a href="../fellowship.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="../fellowship.html">Fellowship</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="../apply.html">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO
+     2-col grid: left=54.44% (decorative shapes + 3-slide carousel)
+                 right=1fr (headline, desc, explore link)
+     Coords: all Anima canvas minus 101px nav = hero-relative.
+     No Apply button — not in Figma.
+-->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-blue-rect"></div>
+    <div class="hero-slideshow">
+      <img class="hero-slide active" src="../assets/images/slideshow-1.jpg" alt="Dr K. Kasturirangan">
+      <img class="hero-slide" src="../assets/images/slideshow-2.jpg" alt="">
+      <img class="hero-slide" src="../assets/images/slideshow-3.jpg" alt="">
+    </div>
+    <div class="hero-deco-circle" aria-hidden="true"></div>
+    <div class="hero-deco-circle-sm" aria-hidden="true"></div>
+    <div class="hero-dots" aria-hidden="true">
+      <div class="hero-dot active"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-headline-wrap">
+      <h1 class="hero-headline">
+        Cultivating Excellence<br>
+        Futures Thinking<br>
+        Advancing Humanity
+      </h1>
+    </div>
+    <p class="hero-desc">
+      We award fellowships and research support for scholars working
+      at the intersection of education, science, and society.
+    </p>
+    <a href="../fellowship.html" class="hero-explore-link">Explore Our Work &nbsp;↗</a>
+  </div>
+</section>
+
+<!-- ABOUT / BIOGRAPHY
+     Heading: canvas(117,748) → section padding-left=117px.
+     Amber dot: canvas(121,753) → ::before on .about-heading.
+     Body: 24px Afacad regular, max-width 798px.
+-->
+<section class="about-section">
+  <h2 class="about-heading">Inspired by a life of inquiry</h2>
+  <div class="about-text">
+    <p>
+      <strong>Dr Krishnaswamy Kasturirangan (24 October 1940 &ndash; 25 April 2025)</strong>
+      was one of India&rsquo;s most distinguished space scientists and institution builders.
+    </p>
+    <p>
+      Over a career spanning five decades, he played a pivotal role in advancing India&rsquo;s
+      space programme through ISRO and steering national policy&mdash;first as a nominated
+      member of the Rajya Sabha and later as a member of the Planning Commission. He went on
+      to chair the panels that recommended India&rsquo;s approach to environmental conservation
+      in the Western Ghats and its National Education Policy 2020.
+    </p>
+    <p>
+      In recognition of his contributions, he was awarded the Padma Shri, Padma Bhushan, and
+      Padma Vibhushan. His life&rsquo;s work reflects a rare blend of scientific excellence,
+      institution-building, and public service.
+    </p>
+    <p>
+      The Dr Kasturirangan Trust was formed to honour and continue his legacy, his spirit of
+      innovation, interdisciplinary thinking, and commitment to national development through
+      knowledge and education.
+    </p>
+  </div>
+</section>
+
+<!-- FOCUS AREAS
+     4 area images in a flex row. On hover/click: amber panel expands below.
+     Default panel state: large white quote + KK illustration.
+     Hover panel state: brown quote (left) + white desc card (right).
+     Area panel design from Figma node 1029:592 (MCP-verified).
+-->
+<section class="areas-section">
+  <div class="areas-row">
+    <div class="area-item" data-area="space">
+      <button type="button" class="area-circle-wrap">
+        <img class="area-img-default" src="../assets/images/area-space-v2.png" alt="Space &amp; Technology">
+        <img class="area-img-hover" src="../assets/images/area-space-v2-hover.png" alt="">
+      </button>
+    </div>
+    <div class="area-item" data-area="environment">
+      <button type="button" class="area-circle-wrap">
+        <img class="area-img-default" src="../assets/images/area-environment-v2.png" alt="Environment">
+        <img class="area-img-hover" src="../assets/images/area-environment-v2-hover.png" alt="">
+      </button>
+    </div>
+    <div class="area-item" data-area="education">
+      <button type="button" class="area-circle-wrap">
+        <img class="area-img-default" src="../assets/images/area-education-v2.png" alt="Education">
+        <img class="area-img-hover" src="../assets/images/area-education-v2-hover.png" alt="">
+      </button>
+    </div>
+    <div class="area-item" data-area="publiclife">
+      <button type="button" class="area-circle-wrap">
+        <img class="area-img-default" src="../assets/images/area-publiclife-v2.png" alt="Public Policy">
+        <img class="area-img-hover" src="../assets/images/area-publiclife-v2-hover.png" alt="">
+      </button>
+    </div>
+  </div>
+
+  <!-- Area panel: Figma-verified amber pill with quote (left) + desc card (right) -->
+  <div class="area-panel panel-default" id="areaPanel">
+    <!-- Default state: exact Figma SVG quote shape (node 1029:599 equivalent) -->
+    <svg class="area-panel-qmark-default" width="126" height="93" viewBox="0 0 126 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M125.488 92.5293H71.0449V52.2461L94.4824 0H115.967L96.9238 48.3398H125.488V92.5293Z" fill="white"/>
+      <path d="M54.6875 92.5293H0V52.2461L23.6816 0H45.166L26.123 48.3398H54.6875V92.5293Z" fill="white"/>
+    </svg>
+    <!-- Hover state: Agdasima " character (Figma node 1029:602) -->
+    <span class="area-panel-qmark-hover" aria-hidden="true">&ldquo;</span>
+    <div class="area-panel-quote-col">
+      <p class="area-panel-quote-text" id="areaPanelQuote"></p>
+    </div>
+    <img class="area-panel-illus" src="../assets/images/kk-illustration.svg" alt="">
+    <div class="area-panel-desc-wrap">
+      <p class="area-panel-desc" id="areaPanelDesc"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var AREAS = {
+    space: {
+      quote: 'Space technology should not be an ivory tower pursuit; it must be a socio-economic imperative that transforms rural infrastructure.',
+      desc:  'To meet India’s national requirements, its satellites must deliver the data and services on which weather forecasting, agriculture, disaster management, broadcasting and navigation depend. Under Dr. Kasturirangan’s leadership, ISRO consolidated its satellite programme, operationalised the PSLV and flew the GSLV for the first time.'
+    },
+    environment: {
+      quote: 'Views of the Earth from outer space have intensified an awareness of the interconnectedness of all life and the environment on this beautiful and yet fragile planet.',
+      desc:  'The Western Ghats are one of the world’s richest biodiversity regions, in addition to being the life-support for the whole of peninsular India. Dr Kasturirangan led a landmark effort to balance the preservation of an ecologically sensitive region with the livelihoods of the communities that depend on it. The resulting report offered a science-led framework and sparked a nation-wide debate on conservation, rights, and development.'
+    },
+    education: {
+      quote: 'My education was a merry mix of what happened inside the school, the things that I read, and the wonderful people I interacted with... this broad-based education was the foundation of everything.',
+      desc:  'One morning in May 2017, Dr K. Kasturirangan received a surprise invite to chair a committee that would draft the country’s new education policy, intended as a blueprint for the next 20 years. He rose to the task. The NEP 2020 extended formal education down to age three, opened higher education to multidisciplinary study, incorporated Indian knowledge systems, and recommended the establishment of a national body to fund research beyond the elite institutions.'
+    },
+    publiclife: {
+      quote: 'Science and governance have both emerged as decisive influences in shaping our society. Bringing scientific rigour and objective analysis to the floor of Parliament is not a luxury, but a necessity for robust policy formulation.',
+      desc:  'After nine remarkable years as the chairman of ISRO, Dr. Kasturirangan carried the same conviction into the Rajya Sabha and then the Planning Commission: that science and technology were instruments of national development, in health, agriculture, energy, climate, and education. He championed it in Parliament and led the science and technology planning of the 12th Five-Year Plan. He had moved from building technology to shaping public policy.'
+    }
+  };
+
+  var DEFAULT_QUOTE = 'Every phase of work must contribute to a larger national vision';
+
+  var panel     = document.getElementById('areaPanel');
+  var quoteEl   = document.getElementById('areaPanelQuote');
+  var descEl    = document.getElementById('areaPanelDesc');
+  var activeKey = null;
+
+  function showDefault() {
+    document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
+      w.classList.remove('active');
+      var d = w.querySelector('.area-img-default');
+      var h = w.querySelector('.area-img-hover');
+      if (d) d.style.opacity = '1';
+      if (h) h.style.opacity = '0';
+    });
+    panel.style.display = '';
+    panel.classList.add('panel-default');
+    activeKey = null;
+  }
+
+  document.querySelectorAll('.area-item[data-area]').forEach(function (item) {
+    var wrap   = item.querySelector('.area-circle-wrap');
+    var defImg = wrap.querySelector('.area-img-default');
+    var hovImg = wrap.querySelector('.area-img-hover');
+    var key    = item.getAttribute('data-area');
+
+    function showArea() {
+      defImg.style.opacity = '0';
+      hovImg.style.opacity = '1';
+      quoteEl.textContent = AREAS[key].quote;
+      descEl.textContent  = AREAS[key].desc;
+      panel.style.display = '';
+      panel.classList.remove('panel-default');
+    }
+
+    item.addEventListener('mouseenter', function () { showArea(); });
+    item.addEventListener('mouseleave', function () {
+      if (wrap.classList.contains('active')) return;
+      defImg.style.opacity = '1';
+      hovImg.style.opacity = '0';
+      if (activeKey && activeKey !== key) {
+        quoteEl.textContent = AREAS[activeKey].quote;
+        descEl.textContent  = AREAS[activeKey].desc;
+      } else if (!activeKey) {
+        showDefault();
+      }
+    });
+
+    wrap.addEventListener('click', function () {
+      if (activeKey === key) {
+        showDefault();
+        return;
+      }
+      document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
+        w.classList.remove('active');
+        var d = w.querySelector('.area-img-default');
+        var h = w.querySelector('.area-img-hover');
+        if (d) d.style.opacity = '1';
+        if (h) h.style.opacity = '0';
+      });
+      this.classList.add('active');
+      activeKey = key;
+    });
+  });
+})();
+</script>
+
+<!-- QUOTE STRIP
+     Amber pill: canvas(105,1611) w=1121 h=374.
+     Agdasima " overhangs top-left. Quote text canvas(367,1703).
+     KK illustration inside pill, right side.
+-->
+<section class="quote-strip">
+  <img class="quote-deco-mark" src="../assets/images/quote-mark.svg" alt="" aria-hidden="true">
+  <div class="quote-amber-bg">
+    <img class="quote-illus" src="../assets/images/kk-illustration.svg" alt="">
+  </div>
+  <p class="quote-text">Every phase of work must contribute to a larger national vision</p>
+</section>
+
+<!-- STORIES
+     "Where Curiosity Led" — 3 story cards 354×354px.
+     Hover: navy overlay + story text.
+     Captions below each card.
+-->
+<section class="stories-section">
+  <div class="stories-heading-row">
+    <h2 class="stories-heading">Where Curiosity Led</h2>
+  </div>
+  <div class="stories-cards">
+    <div class="story-col">
+      <div class="story-card-1">
+        <img class="story-img-default" src="../assets/images/story-card1.png" alt="A scientist&rsquo;s case in Parliament">
+        <img class="story-img-hover"   src="../assets/images/story-card1-new.png" alt="">
+        <div class="story-overlay">
+          <p>In December 2007, Kasturirangan spoke in the Rajya Sabha on the India&ndash;US civil nuclear agreement, then among the most contested questions in Indian politics. He argued it on its technical merits, keeping in mind the country&rsquo;s growth and available natural resources. Beneath his stand lay his conviction that &lsquo;international cooperation in science and technology has always served to enrich and accelerate indigenous efforts.&rsquo;</p>
+        </div>
+      </div>
+      <div class="moment-item">
+        <p class="moment-text">A scientist&rsquo;s case in Parliament</p>
+      </div>
+    </div>
+    <div class="story-col">
+      <div class="story-card-2">
+        <img class="story-img-default" src="../assets/images/story-card2.png" alt="Unfamiliar terrains">
+        <img class="story-img-hover"   src="../assets/images/story-card2-new.png" alt="">
+        <div class="story-overlay">
+          <p>At 30, newly married and doctoral studies completed, Kasturirangan was torn between joining Louis Alvarez&rsquo;s prestigious lab at UC Berkeley and the barely months-old ISRO. It was Vikram Sarabhai who pointed out that the physics intuition and systems thinking he cultivated from flying balloon payloads during his thesis was precisely what ISRO needed. He chose India and never looked back.</p>
+        </div>
+      </div>
+      <div class="moment-item">
+        <p class="moment-text">Unfamiliar terrains</p>
+      </div>
+    </div>
+    <div class="story-col">
+      <div class="story-card-3">
+        <img class="story-img-default" src="../assets/images/story-card3.png" alt="Deep respect for fellow scientists">
+        <img class="story-img-hover"   src="../assets/images/story-card3-new.png" alt="">
+        <div class="story-overlay">
+          <p>Kasturirangan was thrilled when Indian-origin astronaut Kalpana Chawla took her first flight to space in 1997 and devastated by her death six years later in the space shuttle Columbia disaster. &ldquo;She fired the minds of a new generation,&rdquo; he noted at a memorial meeting. He was behind the renaming of METSAT, a meteorological satellite built by ISRO, as KALPANA-1 in her honour.</p>
+        </div>
+      </div>
+      <div class="moment-item">
+        <p class="moment-text">Deep respect for fellow scientists</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOME CTA — rocket+tagline combined PNG, centered -->
+<div class="home-cta">
+  <img class="home-cta-rocket-tagline"
+       src="../assets/images/rocket-tagline.png"
+       alt="Cultivating Excellence. Futures Thinking. Advancing Humanity.">
+</div>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="../vision.html">About Us</a>
+    <a href="../kasturirangan.html">K. Kasturirangan</a>
+    <a href="../fellowship.html">Initiatives</a>
+    <a href="#">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Slideshow: 3 slides, synced dots. Auto-advances every 4s. */
+(function() {
+  var slides = document.querySelectorAll('.hero-slide');
+  var dots   = document.querySelectorAll('.hero-dot');
+  if (!slides.length) return;
+  var current = 0;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    if (dots[current]) dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    if (dots[current]) dots[current].classList.add('active');
+  }
+
+  var timer = setInterval(advance, 4000);
+
+  function advance() { goTo((current + 1) % slides.length); }
+
+  function restart() { clearInterval(timer); timer = setInterval(advance, 4000); }
+
+  dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() { goTo(i); restart(); });
+  });
+})();
+</script>
+
+<script>
+/* Mobile nav: sub-menu toggle for dropdowns */
+document.querySelectorAll('.nav-links > li > a').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    if (window.innerWidth > 620) return;
+    var li = this.closest('li');
+    if (!li.querySelector('.nav-dropdown')) return;
+    e.preventDefault();
+    var wasOpen = li.classList.contains('nav-sub-open');
+    document.querySelectorAll('.nav-links > li').forEach(function(l) {
+      l.classList.remove('nav-sub-open');
+    });
+    if (!wasOpen) li.classList.add('nav-sub-open');
+  });
+});
+</script>
+
+</body>
+</html>

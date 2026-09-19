@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fellowship Programme | Dr Kasturirangan Trust</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="fellowship.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <a class="nav-logo" href="index.html" aria-label="Dr Kasturirangan Trust home">
+      <img class="nav-logo-icon" src="assets/fellowship/logo-icon.png" alt="">
+      <img class="nav-logo-text" src="assets/fellowship/logo-text.png" alt="Dr Kasturirangan Trust">
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li>
+        <a href="#">About Us <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="#">Our Story</a></div>
+      </li>
+      <li>
+        <a href="#">K. Kasturirangan <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="#">Biography</a></div>
+      </li>
+      <li>
+        <a href="#">Initiatives <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="fellowship.html">Fellowship</a></div>
+      </li>
+      <li>
+        <a href="#">Useful Links <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="#">Resources</a></div>
+      </li>
+    </ul>
+    <button class="nav-search-btn" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="8.5" cy="8.5" r="5.75" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M13 13L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       1. HERO
+       Grey bg. Left: org label + title + bullets. Right: illustration.
+       Navy banner at bottom.
+       ============================================================ -->
+  <section class="fp-hero">
+    <div class="fp-hero-grid">
+      <div class="fp-hero-left">
+        <div class="fp-hero-label">
+          <div class="fp-hero-dot" aria-hidden="true"></div>
+          <div>
+            <div class="fp-hero-org">Dr Kasturirangan Trust</div>
+            <h1 class="fp-hero-prog">FELLOWSHIP PROGRAMME</h1>
+          </div>
+        </div>
+        <ul class="fp-hero-bullets">
+          <li>Honouring Kasturirangan&#8217;s legacy of nation-building through knowledge and education</li>
+          <li>Supporting research that transcends disciplinary boundaries</li>
+          <li>Financial support worth Rs 4 lakh for selected fellows</li>
+        </ul>
+      </div>
+      <div class="fp-hero-illus">
+        <img src="assets/fellowship/hero-illustration.png"
+             alt="Line illustration of Dr K. Kasturirangan surrounded by symbols of science and knowledge">
+      </div>
+    </div>
+    <div class="fp-hero-banner">
+      <p>Please note that 2027 fellowship application is by nomination only.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. NOMINATIONS
+       Intro text + two staggered amber pills + dashed connector.
+       ============================================================ -->
+  <section class="fp-nominations">
+    <p class="fp-noms-intro">
+      Candidates are nominated by invited individuals from two groups:<br>
+      those who knew Dr. Kasturirangan well, and those from selected central universities.
+    </p>
+    <div class="fp-pills-wrap">
+      <div class="fp-pill fp-pill-left">
+        <span class="fp-pill-label">Nominations accepted from:</span>
+        <span class="fp-pill-date">October 25, 2026</span>
+      </div>
+      <div class="fp-conn-wrap" aria-hidden="true">
+        <img src="assets/fellowship/connector.svg" alt="" width="298" height="110">
+      </div>
+      <div class="fp-pill fp-pill-right">
+        <span class="fp-pill-label">Last date for submission:</span>
+        <span class="fp-pill-date">December 31, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. SECTION SUBNAV
+       Bordered box with 7 icon+label items, vertical dividers between.
+       ============================================================ -->
+  <nav class="fp-subnav" aria-label="Fellowship page sections">
+    <div class="fp-subnav-inner">
+      <a href="#objectives" class="fp-snav-item">
+        <img src="assets/fellowship/icon-person.png" class="fp-snav-icon" alt="">
+        <span>Objectives</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#benefits" class="fp-snav-item">
+        <img src="assets/fellowship/icon-gift.png" class="fp-snav-icon" alt="">
+        <span>Benefits</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#expectations" class="fp-snav-item">
+        <img src="assets/fellowship/icon-goal.png" class="fp-snav-icon" alt="">
+        <span>Expectations</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#eligibility" class="fp-snav-item">
+        <img src="assets/fellowship/icon-forms.png" class="fp-snav-icon" alt="">
+        <span>Eligibility</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#review" class="fp-snav-item">
+        <img src="assets/fellowship/icon-analyze.png" class="fp-snav-icon" alt="">
+        <span>Review<br>process</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#timeline" class="fp-snav-item">
+        <img src="assets/fellowship/icon-schedule.png" class="fp-snav-icon" alt="">
+        <span>Timeline</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#application" class="fp-snav-item">
+        <img src="assets/fellowship/icon-resume.png" class="fp-snav-icon" alt="">
+        <span>Application<br>process</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       4. OBJECTIVES
+       ============================================================ -->
+  <section id="objectives" class="fp-section">
+    <div class="fp-inner">
+      <div class="fp-obj-grid">
+        <div class="fp-obj-left">
+          <span class="fp-eyebrow">ABOUT THE FELLOWSHIP</span>
+          <h2 class="fp-h2">Objectives</h2>
+          <ul class="fp-text-bullets">
+            <li>Supports emerging leaders committed to improving existing methods and systems to address educational and societal challenges.</li>
+            <li>Specifically targets individuals working on cross-disciplinary, interdisciplinary, or multidisciplinary topics that connect science, engineering, humanities, and social sciences.</li>
+          </ul>
+        </div>
+        <div class="fp-obj-photo">
+          <img src="assets/fellowship/objectives-photo.png"
+               alt="Researcher looking through a microscope in a laboratory">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       5. BENEFITS  —  3 amber circles with SVG text-path labels
+       Benefit circle arc: M 22 135 A 113 113 0 0 1 248 135
+       sweep=1 (clockwise) traces the top arc; text label at 50% offset
+       appears at top of circle.
+       ============================================================ -->
+  <section id="benefits" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">WHAT THE FELLOWSHIP PROVIDES</span>
+      <h2 class="fp-h2">Fellowship benefits</h2>
+      <div class="fp-circles-row">
+
+        <!-- Circle 1: Financial support -->
+        <div class="fp-circ">
+          <svg class="fp-circ-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Financial support: Each fellowship will provide funding of ₹4 lakh for one year, with the possibility of renewal for an additional year.">
+            <circle cx="135" cy="135" r="134" fill="#d39d47"/>
+            <defs>
+              <path id="b1-arc" d="M 22 135 A 113 113 0 0 1 248 135"/>
+            </defs>
+            <text text-anchor="middle" font-size="18" fill="#2a427e"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#b1-arc" startOffset="50%">Financial support</textPath>
+            </text>
+          </svg>
+          <div class="fp-circ-body" aria-hidden="true">
+            <p>Each fellowship will provide funding of &#x20b9;4 lakh for one year, with the possibility of renewal for an additional year.</p>
+          </div>
+        </div>
+
+        <!-- Circle 2: Mentorship -->
+        <div class="fp-circ">
+          <svg class="fp-circ-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Mentorship: Fellows will have opportunities to interact with eminent individuals across various fields throughout the year.">
+            <circle cx="135" cy="135" r="134" fill="#d39d47"/>
+            <defs>
+              <path id="b2-arc" d="M 22 135 A 113 113 0 0 1 248 135"/>
+            </defs>
+            <text text-anchor="middle" font-size="18" fill="#2a427e"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#b2-arc" startOffset="50%">Mentorship</textPath>
+            </text>
+          </svg>
+          <div class="fp-circ-body" aria-hidden="true">
+            <p>Fellows will have opportunities to talk to/interact with eminent individuals across various fields, throughout the year to exchange ideas, discuss progress, and receive guidance.</p>
+          </div>
+        </div>
+
+        <!-- Circle 3: Workshops -->
+        <div class="fp-circ">
+          <svg class="fp-circ-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Workshops: Two online/physical workshops where fellows present their work with invited experts and peers.">
+            <circle cx="135" cy="135" r="134" fill="#d39d47"/>
+            <defs>
+              <path id="b3-arc" d="M 22 135 A 113 113 0 0 1 248 135"/>
+            </defs>
+            <text text-anchor="middle" font-size="18" fill="#2a427e"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#b3-arc" startOffset="50%">Workshops</textPath>
+            </text>
+          </svg>
+          <div class="fp-circ-body" aria-hidden="true">
+            <p>Two online/physical workshops where fellows present their work and participate in an informal review session with invited experts and peers.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       6. EXPECTATIONS
+       Fellow photo on left; header + 4 rows on right.
+       Each row: amber bullet circle + icon + cream text box.
+       ============================================================ -->
+  <section id="expectations" class="fp-section">
+    <div class="fp-inner">
+      <div class="fp-exp-grid">
+
+        <!-- Left: Dr K photo with ISRO rocket -->
+        <div class="fp-exp-photo">
+          <img src="assets/fellowship/fellow-photo.png"
+               alt="Dr K. Kasturirangan at the ISRO facility">
+        </div>
+
+        <!-- Right: header + 4 expectation rows -->
+        <div class="fp-exp-right">
+          <span class="fp-eyebrow">RESPONSIBILITIES</span>
+          <h2 class="fp-h2">Expectations from Fellows</h2>
+
+          <!-- Row 1 -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <img class="fp-exp-icon" src="assets/fellowship/meeting-room.png" alt="">
+            </div>
+            <div class="fp-exp-text">
+              <p>Attend and actively participate in workshops and mentoring events over the period of fellowship</p>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <img class="fp-exp-icon" src="assets/fellowship/training.png" alt="">
+            </div>
+            <div class="fp-exp-text">
+              <p>Present vision and updates on ongoing work during designated times</p>
+            </div>
+          </div>
+
+          <!-- Row 3: values icon SVG (original 0 bytes — inline star) -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <svg class="fp-exp-icon" viewBox="0 0 60 60" fill="white" aria-hidden="true">
+                <path d="M30 8L34.5 22.5H49.5L38 31L42.5 45L30 36.5L17.5 45L22 31L10.5 22.5H25.5L30 8Z"/>
+              </svg>
+            </div>
+            <div class="fp-exp-text">
+              <p>Uphold and demonstrate the values of Dr Kasturirangan in the professional sphere</p>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <img class="fp-exp-icon" src="assets/fellowship/icon-bucket.png" alt="">
+            </div>
+            <div class="fp-exp-text">
+              <p>Fellows from prior cohorts are encouraged to continue participating in the Trust&#8217;s events to build and sustain a lasting community</p>
+            </div>
+          </div>
+
+        </div><!-- /.fp-exp-right -->
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       7. ELIGIBILITY  —  3 cream boxes (widths ~490:317:396)
+       ============================================================ -->
+  <section id="eligibility" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">CURRENT CALL</span>
+      <h2 class="fp-h2">Eligibility</h2>
+      <div class="fp-elig-row">
+        <div class="fp-elig-box">
+          <p><strong>No self-nominations are allowed.</strong> Candidate must be nominated by invited individuals from two groups: those who knew Dr. Kasturirangan well, and those from selected central universities.</p>
+        </div>
+        <div class="fp-elig-box">
+          <p>Nominated candidate must have submitted a PhD thesis <strong>between January 01, 2025 to October 23, 2026</strong>.</p>
+        </div>
+        <div class="fp-elig-box">
+          <p>Nominated candidate must have demonstrated research ability through peer-reviewed publications or conference presentations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       8. REVIEW PROCESS  —  4 navy circles, arrows between
+       Review circle arc: M 22 135 A 113 113 0 0 1 248 135
+       "Announcement" circle has amber rect near bottom for the date.
+       ============================================================ -->
+  <section id="review" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">HOW FELLOWS ARE CHOSEN</span>
+      <h2 class="fp-h2">Review process</h2>
+      <div class="fp-review-row">
+
+        <!-- Circle 1: Nomination -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 1 Nomination: Candidates are nominated by invited individuals.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r1-arc" d="M 22 135 A 113 113 0 0 1 248 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r1-arc" startOffset="50%">Nomination</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>Candidates are nominated by invited individuals from two groups: those who knew Dr. Kasturirangan well, and those from selected central universities.</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fp-review-arrow" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <path d="M6 20h28M26 12l8 8-8 8" stroke="#2a427e" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Circle 2: Shortlisting -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 2 Shortlisting: A distinguished jury evaluates and shortlists applications.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r2-arc" d="M 18 135 A 117 117 0 0 1 252 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r2-arc" startOffset="50%">Shortlisting</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>A distinguished jury of experts will evaluate the applications and prepare a shortlist based on merit and alignment with the Trust&#8217;s values and objectives.</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fp-review-arrow" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <path d="M6 20h28M26 12l8 8-8 8" stroke="#2a427e" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Circle 3: Interviews -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 3 Interviews: Shortlisted candidates are invited for interviews.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r3-arc" d="M 22 135 A 113 113 0 0 1 248 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r3-arc" startOffset="50%">Interviews</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>Shortlisted candidates will be notified, and interviews will be scheduled with a panel.</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fp-review-arrow" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <path d="M6 20h28M26 12l8 8-8 8" stroke="#2a427e" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Circle 4: Announcement -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 4 Announcement: Selected fellows announced on April 25, 2027.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r4-arc" d="M 12 135 A 123 123 0 0 1 258 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r4-arc" startOffset="50%">Announcement</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>Selected fellows will be announced on <span class="fp-announce-date">April 25, 2027</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       9. TIMELINE  —  vertical line, amber dots, date + label pairs
+       ============================================================ -->
+  <section id="timeline" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">KEY DATES</span>
+      <h2 class="fp-h2">Timeline</h2>
+      <div class="fp-tl-wrap">
+
+        <p class="fp-tl-date">Oct 25, 2026</p>
+        <div class="fp-tl-dot" aria-hidden="true"></div>
+        <p class="fp-tl-label">Nomination window opens</p>
+
+        <p class="fp-tl-date">Dec 31, 2026</p>
+        <div class="fp-tl-dot" aria-hidden="true"></div>
+        <p class="fp-tl-label">Last date of submission</p>
+
+        <p class="fp-tl-date">March 2027</p>
+        <div class="fp-tl-dot" aria-hidden="true"></div>
+        <p class="fp-tl-label">Shortlisted candidates invited for an interview</p>
+
+        <p class="fp-tl-date">April 25, 2027</p>
+        <div class="fp-tl-dot fp-tl-dot-play" aria-hidden="true">
+          <img src="assets/fellowship/icon-play.png" alt="">
+        </div>
+        <p class="fp-tl-label">Fellows announced</p>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       10. APPLICATION
+       Navy left banner → amber-bordered box (intro text + 2 docs + nav)
+       ============================================================ -->
+  <section id="application" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">HOW TO APPLY</span>
+      <h2 class="fp-h2">Application process</h2>
+
+      <!-- Navy left-rounded banner -->
+      <div class="fp-app-banner">
+        <p>Please note that formal applications are only by nomination.</p>
+      </div>
+
+      <!-- Amber-bordered box -->
+      <div class="fp-app-box">
+        <p class="fp-app-intro">
+          The nomination application must include the following documents and must be sent to
+          <strong>info@drkasturirangantrust.org by December 31, 2026</strong>.
+        </p>
+
+        <!-- Both required documents shown -->
+        <div class="fp-app-docs">
+          <div class="fp-app-doc-row">
+            <img class="fp-doc-img" src="assets/fellowship/doc-cv.png" alt="Sample Curriculum Vitae">
+            <div class="fp-doc-text">
+              Curriculum Vitae <span class="fp-doc-sub">(maximum 2 pages)</span>
+            </div>
+          </div>
+          <div class="fp-app-doc-row">
+            <img class="fp-doc-img" src="assets/fellowship/doc-phd.png"
+                 alt="Proof of PhD completion or thesis submission">
+            <div class="fp-doc-text">
+              Proof of PhD completion or thesis submission between January 01, 2025 and October 23, 2026
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel nav row (back / dots / next) -->
+        <div class="fp-app-nav">
+          <button class="fp-carousel-btn" aria-label="Previous">
+            <img src="assets/fellowship/btn-back.png" alt="">
+          </button>
+          <div class="fp-carousel-dots" role="group" aria-label="Document pages">
+            <button class="fp-dot fp-dot-active" aria-label="Page 1"></button>
+            <button class="fp-dot" aria-label="Page 2"></button>
+          </div>
+          <button class="fp-carousel-btn" aria-label="Next">
+            <img src="assets/fellowship/btn-next.png" alt="">
+          </button>
+        </div>
+      </div>
+
+      <p class="fp-app-note">
+        Applications with incomplete documentation or without nomination will be rejected
+        and not be considered any further.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       11. CTA
+       ============================================================ -->
+  <section class="fp-cta">
+    <div class="fp-cta-inner">
+      <img src="assets/fellowship/rocket.png" alt="" class="fp-cta-rocket" aria-hidden="true">
+      <a href="#" class="fp-cta-btn">Apply for Fellowships</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <div class="footer-rule-wrap">
+    <div class="footer-rule"></div>
+    <div class="footer-dot"></div>
+  </div>
+
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#">About Us</a>
+      <a href="#">K. Kasturirangan</a>
+      <a href="#">Initiatives</a>
+      <a href="#">Useful Links</a>
+    </nav>
+
+    <div class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal, Bengaluru &#8211; 560045
+      <a href="#" class="footer-map-btn" style="margin-top:12px;display:inline-flex;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        View on Map
+      </a>
+    </div>
+
+    <div class="footer-contact">
+      <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+      <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Hamburger nav */
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks  = document.getElementById('nav-links');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', String(open));
+      });
+    }
+  </script>
+</body>
+</html>
