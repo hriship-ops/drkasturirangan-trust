@@ -12,15 +12,17 @@
   overflow-x: clip;
 }
 
-/* ── MISSION SECTION (cream bg) ───────────────────────────── */
-.vm-mission-bg {
+/* ── MISSION SECTION ──────────────────────────────────────── */
+/* Section is a positioning context for the quotes; no overflow clip —
+   the gray rule below covers any bleed. */
+.vm-mission-section {
   position: absolute;
   top: 11px; left: 0;
   width: 1440px; height: 461px;
   background: #fffcf6;
 }
 
-/* Large decorative quote marks (Agdasima 300px) */
+/* Large decorative quote marks (Agdasima 300px) — children of vm-mission-section */
 .vm-quote {
   position: absolute;
   width: 93px;
@@ -33,13 +35,11 @@
   margin: 0;
   pointer-events: none;
 }
-.vm-quote-open  { top: 11px;  left: 301px; }
-.vm-quote-close { top: 295px; left: 1070px; transform: rotate(180deg); }
 
-/* Mission statement text */
+/* Mission statement text — section-relative top=112 (7rem) */
 .vm-mission-text {
   position: absolute;
-  top: 123px;
+  top: 112px;
   left: calc(50% - 330px);
   width: 661px;
   font-family: var(--font-main);
@@ -50,10 +50,10 @@
   margin: 0;
 }
 
-/* Decorative layer image (outline portrait, mission section) */
+/* Decorative layer image — section-relative left=154, top=257 */
 .vm-layer {
   position: absolute;
-  top: 268px; left: 154px;
+  top: 257px; left: 154px;
   width: 95px; height: 204px;
   object-fit: cover;
 }

@@ -53,25 +53,26 @@
 <!-- ── VISION & MISSION WRAP ────────────────────────────────── -->
 <div class="vm-wrap">
 
-  <!-- Mission section cream background -->
-  <div class="vm-mission-bg"></div>
+  <!-- Mission section: overflow:hidden clips the 300px quote glyphs exactly as Anima's <section> does -->
+  <section class="vm-mission-section" aria-label="Mission statement">
+    <!-- Opening large quote mark — section-relative left=301, top=0 -->
+    <div class="vm-quote" style="left:301px;top:0">&ldquo;</div>
 
-  <!-- Opening large quote mark -->
-  <div class="vm-quote vm-quote-open">&ldquo;</div>
+    <!-- Mission statement text — section-relative top=112 (7rem) -->
+    <p class="vm-mission-text">
+      To honour and continue the legacy<br>
+      of Dr. Krishnaswamy Kasturirangan by inspiring future generations
+      through initiatives that promote scientific excellence and action that
+      is ethical, humane and sustainable
+    </p>
 
-  <!-- Mission statement text -->
-  <p class="vm-mission-text">
-    To honour and continue the legacy<br>
-    of Dr. Krishnaswamy Kasturirangan by inspiring future generations
-    through initiatives that promote scientific excellence and action that
-    is ethical, humane and sustainable
-  </p>
+    <!-- Closing large quote mark — section-relative left=1070, rotated.
+         top=100 so the rotated glyph lands in the lower half of the 461px section. -->
+    <div class="vm-quote" style="left:1070px;top:100px;transform:rotate(180deg)">&ldquo;</div>
 
-  <!-- Decorative outline portrait (mission section, left side) -->
-  <img class="vm-layer" src="assets/visionmission/layer-1.png" alt="">
-
-  <!-- Closing large quote mark (rotated) -->
-  <div class="vm-quote vm-quote-close">&ldquo;</div>
+    <!-- Decorative outline portrait — section-relative left=154, top=257 -->
+    <img class="vm-layer" src="assets/visionmission/layer-1.png" alt="">
+  </section>
 
   <!-- Gray separator below mission section -->
   <div class="vm-gray-rule" style="top:471px;width:1440px"></div>
@@ -80,7 +81,7 @@
   <div class="vm-dot" style="top:548px;left:56px"></div>
   <h1 class="vm-h1" style="top:548px">The Legacy</h1>
 
-  <p class="vm-body" style="top:629px;left:72px;width:759px;line-height:35px">
+  <p class="vm-body" style="top:629px;left:72px;width:759px;line-height:35px;max-height:390px;overflow:hidden">
     The Dr Kasturirangan Trust was constituted to honour and continue
     the lifelong service of Dr. K. Kasturirangan. His contributions
     across space, science and technology, education, and the environment
