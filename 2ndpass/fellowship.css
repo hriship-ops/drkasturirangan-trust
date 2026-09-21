@@ -120,7 +120,7 @@
 /* Navy full-width banner at bottom of hero */
 .fp-hero-banner {
   background: var(--c-primary);
-  margin-top: clamp(20px, 3.5vw, 44px);
+  margin-top: 0;
   padding: clamp(14px, 1.5vw, 21px) var(--page-px);
 }
 
