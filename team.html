@@ -119,6 +119,37 @@
 }
 
 /* ----------------------------------------------------------
+   HOVER OVERLAY
+   Figma: navy border #2a417d 6px r=27, cream fill #fceacd.
+   Text at left=28px top=65px w=304px, 20px navy.
+   ---------------------------------------------------------- */
+.team-card {
+  position: relative; /* already column-flex; add positioning context */
+}
+
+.team-card-hover {
+  display: none; /* hidden on non-hover-capable devices */
+  position: absolute;
+  inset: -4px; /* expand to cover the amber border */
+  background: #fceacd;
+  border: 6px solid #2a417d;
+  border-radius: 27px;
+  padding: 65px 28px 20px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  z-index: 10;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #2a417d;
+}
+
+@media (hover: hover) {
+  .team-card-hover { display: block; }
+  .team-card:hover .team-card-hover { opacity: 1; }
+}
+
+/* ----------------------------------------------------------
    RESPONSIVE
    ---------------------------------------------------------- */
 
@@ -210,6 +241,12 @@
       <div class="team-card-band">
         <p class="team-card-name">Anurag Behar</p>
         <p class="team-card-email">anurag.behar@drkasturirangantrust.org</p>
+      </div>
+      <div class="team-card-hover" aria-hidden="true">
+        He leaves behind a spirit of Indianism rooted in inner quest, rightful
+        discovery, committed hard work, and compassion for every human being.
+        He consistently emphasised rigorous inquiry, wide consultation, problem
+        solving, and humane consideration.
       </div>
     </div>
 
