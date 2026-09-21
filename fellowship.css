@@ -150,7 +150,11 @@
   color: var(--c-primary);
   text-align: center;
   line-height: 1.6;
-  max-width: 760px;
+  /* Figma text box is 1440px (full canvas) — the second line
+     "those who knew Dr. Kasturirangan well, and those from selected
+     central universities." must fit unbroken at desktop width.
+     max-w-content (1324px) gives it room at 1440px. */
+  max-width: var(--max-w-content);
   margin: 0 auto clamp(30px, 3.9vw, 56px);
   padding: 0 var(--page-px);
 }
