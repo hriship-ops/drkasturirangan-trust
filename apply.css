@@ -143,15 +143,6 @@
   user-select: none;
 }
 
-/* Number "1" is an SVG image (Anima: left 196px, card left 236px → -40px) */
-.ap-num-img {
-  position: absolute;
-  left: -40px;
-  top: 151px;
-  width: 89px;
-  height: 162px;
-}
-
 /* Document photo — coordinates set via inline style per card */
 .ap-card-img {
   position: absolute;
