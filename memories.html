@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memories — Dr Kasturirangan Trust</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="memories.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV (identical across all pages)
+  ============================================================ -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:74px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li>
+        <a href="#">About Us <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="vision.html">Vision &amp; Mission</a>
+          <a href="team.html">Team</a>
+        </div>
+      </li>
+      <li>
+        <a href="hislife.html">K. Kasturirangan <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="hislife.html">His Life</a>
+          <a href="#">Selected Writings</a>
+          <a href="memories.html">Memories</a>
+        </div>
+      </li>
+      <li>
+        <a href="fellowship.html">Initiatives <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="fellowship.html">Fellowship</a>
+        </div>
+      </li>
+      <li>
+        <a href="apply.html">Useful Links <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="apply.html">Apply</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+    <button class="nav-search-btn" aria-label="Search">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+        <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+            onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       CARDS STAGE — heading + 6 memory cards, 3 cols × 2 rows
+       Figma col lefts: 78 / 517 / 964px.  Row tops: 199 / 734px.
+       Each card: 393×456px, 4px amber border, r=27px.
+  ============================================================ -->
+  <div class="mem-stage">
+
+    <!-- heading: Figma H1 left=72 content_top=86, dot left=56 top=93 -->
+    <div class="mem-head-dot" aria-hidden="true"></div>
+    <h1 class="mem-h1" id="mem-heading">Moments That Stay</h1>
+
+    <!-- ── Card 1: col 0, row 0 ── -->
+    <article class="mem-card" data-row="0" data-col="0"
+             aria-label="Memory 1">
+      <img class="mem-wave" src="assets/memories/vector-23.svg" alt="" aria-hidden="true">
+      <span class="mem-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="mem-quote">
+        To work alongside him was to witness grace, intellect, and unwavering
+        integrity. His example continues to guide us.
+      </p>
+      <div class="mem-avatar-ring" aria-hidden="true"></div>
+      <img class="mem-avatar-img" src="assets/memories/ellipse-67.png" alt="">
+      <div class="mem-strip" aria-hidden="true"></div>
+      <p class="mem-name"><strong>Arjun Nair</strong><span>arjun.nair@example.com</span></p>
+    </article>
+
+    <!-- ── Card 2: col 1, row 0 ── -->
+    <article class="mem-card" data-row="0" data-col="1" aria-label="Memory 2">
+      <img class="mem-wave" src="assets/memories/vector-23.svg" alt="" aria-hidden="true">
+      <span class="mem-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="mem-quote">
+        He believed that science and education were ultimately about people.
+        That belief shaped every conversation and every collaboration.
+      </p>
+      <div class="mem-avatar-ring" aria-hidden="true"></div>
+      <img class="mem-avatar-img" src="assets/memories/ellipse-70.png" alt="">
+      <div class="mem-strip" aria-hidden="true"></div>
+      <p class="mem-name"><strong>Arjun Nair</strong><span>arjun.nair@example.com</span></p>
+    </article>
+
+    <!-- ── Card 3: col 2, row 0 ── -->
+    <article class="mem-card" data-row="0" data-col="2" aria-label="Memory 3">
+      <img class="mem-wave" src="assets/memories/vector-23.svg" alt="" aria-hidden="true">
+      <span class="mem-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="mem-quote">
+        He had a remarkable ability to make complex ideas feel accessible.
+        More importantly, he made every individual feel valued.
+      </p>
+      <div class="mem-avatar-ring" aria-hidden="true"></div>
+      <img class="mem-avatar-img" src="assets/memories/ellipse-72.png" alt="">
+      <div class="mem-strip" aria-hidden="true"></div>
+      <p class="mem-name"><strong>Arjun Nair</strong><span>arjun.nair@example.com</span></p>
+    </article>
+
+    <!-- ── Card 4: col 0, row 1 ── -->
+    <article class="mem-card" data-row="1" data-col="0" aria-label="Memory 4">
+      <img class="mem-wave" src="assets/memories/vector-23.svg" alt="" aria-hidden="true">
+      <span class="mem-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="mem-quote">
+        To work alongside him was to witness grace, intellect, and unwavering
+        integrity. His example continues to guide us.
+      </p>
+      <div class="mem-avatar-ring" aria-hidden="true"></div>
+      <img class="mem-avatar-img" src="assets/memories/ellipse-76.png" alt="">
+      <div class="mem-strip" aria-hidden="true"></div>
+      <p class="mem-name"><strong>Arjun Nair</strong><span>arjun.nair@example.com</span></p>
+    </article>
+
+    <!-- ── Card 5: col 1, row 1 ── -->
+    <article class="mem-card" data-row="1" data-col="1" aria-label="Memory 5">
+      <img class="mem-wave" src="assets/memories/vector-23.svg" alt="" aria-hidden="true">
+      <span class="mem-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="mem-quote">
+        To work alongside him was to witness grace, intellect, and unwavering
+        integrity. His example continues to guide us.
+      </p>
+      <div class="mem-avatar-ring" aria-hidden="true"></div>
+      <img class="mem-avatar-img" src="assets/memories/ellipse-77.png" alt="">
+      <div class="mem-strip" aria-hidden="true"></div>
+      <p class="mem-name"><strong>Arjun Nair</strong><span>arjun.nair@example.com</span></p>
+    </article>
+
+    <!-- ── Card 6: col 2, row 1 ── -->
+    <article class="mem-card" data-row="1" data-col="2" aria-label="Memory 6">
+      <img class="mem-wave" src="assets/memories/vector-23.svg" alt="" aria-hidden="true">
+      <span class="mem-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="mem-quote">
+        To work alongside him was to witness grace, intellect, and unwavering
+        integrity. His example continues to guide us.
+      </p>
+      <div class="mem-avatar-ring" aria-hidden="true"></div>
+      <img class="mem-avatar-img" src="assets/memories/ellipse-78.png" alt="">
+      <div class="mem-strip" aria-hidden="true"></div>
+      <p class="mem-name"><strong>Arjun Nair</strong><span>arjun.nair@example.com</span></p>
+    </article>
+
+  </div><!-- /.mem-stage -->
+
+  <!-- ============================================================
+       FOOTER RULE
+  ============================================================ -->
+  <div class="footer-rule-wrap">
+    <div class="footer-rule"></div>
+    <div class="footer-dot"></div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#">About Us</a>
+      <a href="hislife.html">K. Kasturirangan</a>
+      <a href="fellowship.html">Initiatives</a>
+      <a href="apply.html">Useful Links</a>
+    </nav>
+    <div class="footer-addr-block">
+      <p class="footer-addr">
+        <strong>Dr Kasturirangan Trust</strong><br>
+        Alder 1002,<br>
+        Godrej Woodsman Estate, Hebbal,<br>
+        Bengaluru &ndash; 560045
+      </p>
+      <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045"
+         target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
+    </div>
+    <div class="footer-contact" id="contact">
+      <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+      <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
