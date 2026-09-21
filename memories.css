@@ -46,7 +46,16 @@
   border: 4px solid #e9a12d;
   border-radius: 27px;
   background: #fff;
-  overflow: visible;
+  overflow: visible; /* keeps quote mark visible above card */
+}
+
+/* Inner clip: clips wave/strip/avatar to card bounds without
+   cutting the overflowing quote mark that lives outside this div. */
+.mem-card-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 23px; /* 27 outer − 4 border = 23 inner radius */
 }
 
 /* Row / column positions (content_y)
@@ -77,9 +86,9 @@
 /* Wave decoration — behind text */
 .mem-wave {
   position: absolute;
-  left: 4px;
-  top: 276px;
-  width: 386px;
+  left: 0;
+  top: 272px;
+  width: 100%;
   height: 168px;
   pointer-events: none;
   z-index: 0;
@@ -130,15 +139,15 @@
   z-index: 2;
 }
 
-/* Cream strip at card bottom */
+/* Cream strip at card bottom — clipped by .mem-card-clip */
 .mem-strip {
   position: absolute;
-  left: -4px;
-  top: 400px;
-  width: 393px;
-  height: 60px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 56px;
   background: #fcedd6;
-  border-radius: 27px;
+  border-radius: 0 0 23px 23px;
   z-index: 1;
 }
 
