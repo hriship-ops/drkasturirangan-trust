@@ -6,860 +6,7 @@
 <title>Dr Kasturirangan Trust</title>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="shared.css">
-<style>
-/* ================================================================
-   HOME PAGE — index.html
-   Rebuilt from Figma node 1:2 (1440×2888px canvas) with Pro access.
-   Figma Auto Layout → CSS Grid / Flexbox. No structural absolute pos.
-   All decorative shapes are position:absolute within position:relative
-   containers only.
-   ================================================================ */
-
-/* ----------------------------------------------------------
-   HERO SECTION — all coords from Anima export (canvas − 101px nav = hero-relative).
-   2-col grid: left col = 784/1440 = 54.44% | right col = 1fr.
-   Left:  blue pill  canvas(58,146) → hero(58,45)  w=234 h=338 r=99
-          slideshow  canvas(167,245) → hero(167,144) w=617 h=416 r=71
-          amber lg   canvas(−138,454) → hero(−138,353) ⌀274
-          amber sm   canvas(592,502) → hero(592,401) ⌀103
-   Right: headline   canvas(858,343) → hero-col(74,242)
-   ---------------------------------------------------------- */
-
-.hero {
-  display: grid;
-  grid-template-columns: 54.44% 1fr;
-  min-height: 630px;
-}
-
-/* Left column: decorative shapes overlap portrait, clip at column edge. */
-.hero-left {
-  position: relative;
-  min-height: 630px;
-  overflow: hidden;
-}
-
-/* Large amber circle — Anima canvas top=454 → hero-relative 353px. */
-.hero-deco-circle {
-  position: absolute;
-  left: -138px;
-  top: 353px;
-  width: 274px;
-  height: 274px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  pointer-events: none;
-  user-select: none;
-  z-index: 2;
-}
-
-/* Small amber circle — Anima canvas top=502 → hero-relative 401px. */
-.hero-deco-circle-sm {
-  position: absolute;
-  top: 401px;
-  left: 592px;
-  width: 103px;
-  height: 103px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Navy pill — Anima canvas top=146 → hero-relative 45px. */
-.hero-blue-rect {
-  position: absolute;
-  left: clamp(16px, 4vw, 58px);
-  top: 45px;
-  width: clamp(100px, 16.2vw, 234px);
-  height: clamp(150px, 23.5vw, 338px);
-  border-radius: var(--r-pill);
-  background: var(--c-primary);
-}
-
-/* Portrait: x=167, y=287 (canvas) → hero-relative top=186px. */
-.hero-portrait {
-  position: absolute;
-  left: 167px;
-  top: 186px;
-  width: calc(100% - 167px);
-  height: 416px;
-  border-radius: var(--r-portrait);
-  object-fit: cover;
-  z-index: 1;
-}
-
-/* Right column — Anima headline at canvas(858,343) → hero-relative top=242px.
-   padding-left = 858−784 = 74px from left-col edge. */
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: clamp(60px, 16.8vw, 242px) 40px 60px 74px;
-}
-
-/* Amber marker dot + headline in a flex row. */
-.hero-headline-wrap {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 28px;
-}
-
-.hero-amber-dot {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  flex-shrink: 0;
-  margin-top: 6px;
-}
-
-/* Slideshow — Anima canvas top=245 → hero-relative 144px. */
-.hero-slideshow {
-  position: absolute;
-  left: clamp(60px, 11.6vw, 167px);
-  top: clamp(60px, 10vw, 144px);
-  width: clamp(300px, 42.8vw, 617px);
-  height: auto;
-  aspect-ratio: 617 / 416;
-  border-radius: 71px;
-  overflow: hidden;
-  z-index: 1;
-}
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.9s ease-in-out;
-}
-.hero-slide.active { opacity: 1; }
-
-/* Headline: increased line-height (R10). Dot positioned behind "C" via ::before. */
-.hero-headline {
-  font-size: var(--fs-hero);
-  font-weight: var(--fw-regular);
-  color: #000;
-  line-height: 1.15; /* R10: was 0.935 */
-  position: relative;
-}
-
-/* Amber dot behind "C" in "Cultivating": 32px per Figma node 41:27. */
-.hero-headline::before {
-  content: '';
-  position: absolute;
-  left: -14px;
-  top: 4px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Description: 18px Regular black, max-width 446px. */
-.hero-desc {
-  font-size: var(--fs-body-sm);
-  font-weight: var(--fw-regular);
-  color: #000;
-  line-height: 1.32;
-  max-width: 446px;
-  margin-bottom: 16px;
-}
-
-/* "Explore Our Work" link: 20px #808080 per Figma node 21:80. */
-.hero-explore-link {
-  display: block;
-  font-size: 20px;
-  color: var(--c-text-muted);
-  margin-bottom: 28px;
-}
-
-.hero-explore-link:hover {
-  color: var(--c-primary);
-}
-
-/* Apply button: bg=#2a427e, w=356, h=64, r=17px, 36px white text. */
-.hero-apply-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(200px, 24.7vw, 356px);
-  height: 64px;
-  background: var(--c-primary);
-  border-radius: var(--r-home-btn);
-  font-size: var(--fs-hero-btn);
-  font-weight: var(--fw-regular);
-  color: #fff;
-  font-family: var(--font-main);
-  cursor: pointer;
-  border: none;
-}
-
-.hero-apply-btn:hover {
-  background: #3a529e;
-}
-
-/* ----------------------------------------------------------
-   ABOUT SECTION
-   Left-aligned at x=117 on canvas.
-   Dot + italic heading + body text (22px, max-w 697px).
-   ---------------------------------------------------------- */
-
-.about-section {
-  padding: var(--section-py) var(--page-px) var(--section-py) clamp(20px, 8.1vw, 117px);
-}
-
-.about-heading {
-  font-size: var(--fs-h2);
-  font-style: italic;
-  font-weight: var(--fw-medium);
-  color: var(--c-primary-dark);
-  line-height: normal;
-  position: relative;
-  margin-bottom: 8px;
-}
-
-.about-heading::before {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  left: 4px;
-  top: 5px;
-}
-
-.about-text {
-  max-width: 697px;
-  font-size: var(--fs-body);
-  font-weight: var(--fw-regular);
-  color: var(--c-text);
-  line-height: 1.4;
-}
-
-.about-text p {
-  margin-bottom: 1em;
-}
-
-.about-text p:last-child {
-  margin-bottom: 0;
-}
-
-/* ----------------------------------------------------------
-   AREAS SECTION
-   4 area images in a flex row, left-offset at canvas x=130.
-   Images: ~194-211px square, gap ~70px.
-   ---------------------------------------------------------- */
-
-.areas-section {
-  padding: 36px var(--page-px) 0;
-}
-
-.areas-row {
-  display: flex;
-  align-items: flex-end;
-  gap: clamp(16px, 4vw, 60px);
-  flex-wrap: nowrap;
-  justify-content: center;
-}
-
-.area-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 0;
-}
-
-/* Wrapper gives the SVG label room to sit on the top arc. */
-.area-circle-wrap {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.area-circle-wrap img {
-  width: clamp(150px, 17vw, 230px);
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Hover swap: navy = default, amber = hover/active */
-.area-img-hover {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.2s;
-  pointer-events: none;
-}
-.area-img-default {
-  transition: opacity 0.2s;
-}
-/* Target .area-item (plain div) — more reliable than :hover on button */
-.area-item:hover .area-img-default,
-.area-circle-wrap.active .area-img-default { opacity: 0; }
-.area-item:hover .area-img-hover,
-.area-circle-wrap.active .area-img-hover { opacity: 1; }
-
-/* ----------------------------------------------------------
-   AREA PANEL: amber pill (matches quote-strip), expands below circles.
-   Left col = quote on amber; right col = white card on amber.
-   Figma Rectangle 15: 1121x374, border-radius~118px, rgba(255,179,56,0.8)
-   Figma Rectangle 4 (white card): 598x270 on right half.
-   ---------------------------------------------------------- */
-.area-panel {
-  display: grid;
-  max-width: 1121px;
-  margin: 0 auto 40px;
-  background: #ffb337;
-  border-radius: 118px;
-  padding: 52px 60px;
-  grid-template-columns: 2fr 3fr;
-  position: relative;
-  gap: 48px;
-  align-items: center;
-}
-/* Default state: quote on left, KK illustration anchored at bottom-right. */
-.area-panel.panel-default {
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  padding-top: 44px;
-}
-.area-panel.panel-default .area-panel-quote-col {
-  align-self: center;
-  padding-left: clamp(80px, 14vw, 200px); /* indent text right of the " marks */
-}
-.area-panel.panel-default .area-panel-desc-wrap {
-  display: none;
-}
-/* In default state the opening " is shown (matches Figma where it's a standalone element). */
-.area-panel.panel-default .area-panel-quote-text {
-  font-size: 50px;
-  font-weight: var(--fw-medium);
-  font-style: normal;
-  text-align: left;
-}
-
-/* Expanded (hover) state */
-.area-panel:not(.panel-default) .area-panel-quote-text {
-  color: #855404;
-  font-size: 24px;
-  font-weight: 500;
-  font-style: normal;
-  text-align: center;
-  white-space: pre-line;
-}
-.area-panel:not(.panel-default) .area-panel-illus {
-  display: none;
-}
-
-/* Quote column */
-.area-panel-quote-col {
-  position: relative;
-}
-/* Default: Figma exact — text at 92px from panel top, 262px from panel left */
-.area-panel.panel-default .area-panel-quote-col {
-  align-self: start;
-  padding-top: 48px;
-  padding-left: 202px;
-}
-/* Hover: Figma text centered at ~280px from panel left; quote-col starts at 60px */
-.area-panel:not(.panel-default) .area-panel-quote-col {
-  align-self: center;
-  padding-left: 160px;
-}
-
-/* Default SVG mark — Figma exact: 126×93px, 9px above panel, 82px from panel left */
-.area-panel-qmark-default {
-  position: absolute;
-  top: -9px;
-  left: 82px;
-  width: 126px;
-  height: 93px;
-  display: block;
-}
-.area-panel:not(.panel-default) .area-panel-qmark-default {
-  display: none;
-}
-
-/* Hover font mark — Figma node 1029:602: Agdasima 300px, top:-27px, left:50px */
-.area-panel-qmark-hover {
-  display: none;
-  position: absolute;
-  top: -27px;
-  left: 50px;
-  font-family: var(--font-deco);
-  font-size: 300px;
-  line-height: 1;
-  color: #d9982e;
-}
-.area-panel:not(.panel-default) .area-panel-qmark-hover {
-  display: block;
-}
-.area-panel-quote-text {
-  font-size: 50px;
-  font-style: italic;
-  color: #fff;
-  line-height: 1.3;
-  font-weight: var(--fw-regular);
-}
-
-/* Description column: white card sits on the amber pill */
-.area-panel-desc-wrap {
-  background: #fff;
-  border-radius: 20px;
-  padding: 28px 20px;
-}
-.area-panel-desc {
-  font-size: 22px;
-  color: var(--c-text-navy);
-  line-height: 1.65;
-  font-weight: var(--fw-regular);
-  margin: 0;
-  text-align: left;
-}
-
-/* KK illustration: visible only in default state; face flipped toward the panel text */
-.area-panel-illus {
-  width: clamp(140px, 20.5vw, 295px);
-  height: auto;
-  display: block;
-  transform: scaleX(-1);
-}
-
-@media (max-width: 860px) {
-  .area-panel {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    border-radius: 40px;
-    padding: 40px 32px;
-  }
-  .area-panel.panel-default {
-    grid-template-columns: 1fr auto;
-  }
-  .area-panel-illus {
-    width: clamp(80px, 18vw, 140px);
-  }
-}
-
-/* ----------------------------------------------------------
-   QUOTE STRIP
-   Amber rounded-pill bg: x=105, y-offset≈152px from section top,
-   w=1121 (from x=105 to x=1226), h=374, border-radius=118px,
-   fill = rgba(255,179,56,0.8).
-   Large decorative opening-quote mark: Agdasima 500px white,
-   position:absolute overhanging from section top.
-   Quote text: 50px medium white, max-w=503px.
-   Illustration SVG: right side of the amber pill, flipped 180°.
-   ---------------------------------------------------------- */
-
-.quote-strip {
-  position: relative;
-  padding: 180px var(--page-px) 100px;
-  overflow: hidden;
-  min-height: 550px;
-}
-
-/* Amber pill: PNG asset with decorative quote marks baked in.
-   Figma: x=105, w=1121, y=1611, h=374 in 1440px frame.
-   No hover state — static only. */
-.quote-amber-bg {
-  position: absolute;
-  left: 7.3%;
-  right: 14.9%;
-  top: clamp(60px, 10.6vw, 152px);
-  height: clamp(200px, 26vw, 374px);
-  background-image: url(assets/images/quote-box.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  z-index: 0;
-}
-
-/* Illustration inside pill: Figma canvas (905,1694), pill origin (105,1611)
-   → right: 26px (1226-1200), top: 83px (1694-1611). */
-.quote-illus {
-  position: absolute;
-  right: clamp(10px, 1.8vw, 26px);
-  top: clamp(30px, 5.8vw, 83px);
-  width: clamp(120px, 20.5vw, 295px);
-  height: auto;
-  transform: scaleX(-1);
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Large decorative quote mark: top:0 so it bleeds above the pill — only the
-   bottom portion lands on amber. This matches Figma where the mark overhangs
-   the pill's top-left corner with the text sitting lower and to the right. */
-.quote-deco-mark {
-  position: absolute;
-  left: 7.3%;
-  top: 0;
-  font-family: var(--font-deco);
-  font-size: clamp(200px, 35vw, 500px);
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 0.45;
-  z-index: 2;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Quote text: Figma x=367/1440=25.5%, y=1703, pill top=1611, strip top=1459.
-   top = (1703-1459)=244px. width = 503/1440=34.9%. Centered within that zone. */
-.quote-text {
-  position: absolute;
-  left: 25.5%;
-  top: clamp(100px, 17vw, 244px);
-  width: 34.9%;
-  z-index: 3;
-  text-align: center;
-  font-size: var(--fs-quote);
-  font-weight: var(--fw-medium);
-  color: #fff;
-  line-height: 1.2;
-}
-
-/* ----------------------------------------------------------
-   STORIES SECTION
-   "Where Curiosity Led" — 3 story cards in a flex row.
-   Section left-padding = 83px (card 1 canvas x).
-   Card 1: 388x391px, no border-radius.
-   Cards 2 & 3: 355x355px, border-radius=10px.
-   ---------------------------------------------------------- */
-
-.stories-section {
-  padding: var(--section-py) 0 var(--section-py) clamp(16px, 5.8vw, 83px);
-}
-
-.stories-heading-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 40px;
-}
-
-.stories-heading {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary-dark);
-  position: relative;
-}
-
-/* Amber circle overlapping the "W" — Figma Ellipse 12: x=72, text x=84, both y=2060, size=32px. */
-.stories-heading::before {
-  content: '';
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  left: -12px;
-  top: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.stories-cards {
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
-}
-
-.story-col {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 280px;
-  max-width: 355px;
-}
-
-/* Figma: all 3 cards ~354×354px.
-   Card 1: cr=15. Cards 2&3: cr=10. */
-.story-card-1,
-.story-card-2,
-.story-card-3 {
-  position: relative;
-  overflow: hidden;
-}
-
-.story-card-1 { height: clamp(220px, 24.6vw, 354px); border-radius: 15px; }
-.story-card-2 { height: clamp(220px, 24.7vw, 355px); border-radius: 10px; }
-.story-card-3 { height: clamp(220px, 24.6vw, 354px); border-radius: 15px; }
-
-.story-img-default,
-.story-img-hover {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: inherit;
-  transition: opacity 0.35s ease;
-}
-
-.story-img-hover { opacity: 0; }
-
-/* Navy overlay: appears on hover with story text. */
-.story-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(42, 66, 126, 0.92);
-  border-radius: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  overflow-y: auto;
-}
-
-.story-overlay p {
-  color: #fff;
-  font-size: 18px;
-  font-weight: var(--fw-regular);
-  line-height: 1.5;
-  text-align: center;
-  font-family: var(--font-main);
-  margin: 0;
-}
-
-.story-card-1:hover .story-img-hover,
-.story-card-2:hover .story-img-hover,
-.story-card-3:hover .story-img-hover,
-.story-card-1:hover .story-overlay,
-.story-card-2:hover .story-overlay,
-.story-card-3:hover .story-overlay {
-  opacity: 1;
-}
-
-/* ----------------------------------------------------------
-   MOMENTS SECTION (story captions)
-   3 caption items directly below story cards.
-   Aligned to matching card centers via matching widths + left-padding.
-   Dot: 14px amber circle above text.
-   Text: 20px medium navy.
-   ---------------------------------------------------------- */
-
-.moments-section {
-  padding: 16px 0 var(--section-py) clamp(16px, 5.8vw, 83px);
-}
-
-.moments-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
-}
-
-.moment-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-  padding-top: 16px;
-  width: 100%;
-}
-
-.moment-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  flex-shrink: 0;
-}
-
-.moment-text {
-  font-size: 20px;
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  line-height: normal;
-  display: inline-block;
-  position: relative;
-}
-
-/* amber highlight removed from moment-text per R18 */
-
-/* ----------------------------------------------------------
-   HOME CTA (R21: flex-row — rocket left, tagline+button right)
-   ---------------------------------------------------------- */
-
-.home-cta {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 40px var(--page-px) 60px;
-  gap: 48px;
-}
-
-.home-cta-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.home-cta-tagline {
-  font-size: var(--fs-tagline);
-  font-style: italic;
-  color: var(--c-text-muted);
-  text-align: center;
-}
-
-.home-cta-rocket {
-  width: 234px;
-  height: 165px;
-  object-fit: contain;
-}
-
-.home-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 234px;
-  height: 42px;
-  background: var(--c-primary);
-  border-radius: var(--r-cta-btn);
-  font-size: var(--fs-tagline);
-  font-weight: var(--fw-regular);
-  color: #fff;
-  font-family: var(--font-main);
-  border: none;
-  cursor: pointer;
-}
-
-.home-cta-btn:hover {
-  background: #3a529e;
-}
-
-.home-cta-rocket-tagline {
-  width: 100%;
-  max-width: 1100px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* ----------------------------------------------------------
-   RESPONSIVE
-   ---------------------------------------------------------- */
-
-@media (max-width: 1100px) {
-  .hero {
-    grid-template-columns: 1fr 1fr;
-  }
-  .hero-portrait {
-    width: 90%;
-    left: 5%;
-  }
-  .hero-deco-circle {
-    left: -80px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-  .hero-left {
-    min-height: 0;
-    aspect-ratio: 3/2;
-  }
-  .hero-deco-circle { display: none; }
-  .hero-deco-circle-sm { display: none; }
-  .hero-blue-rect { display: none; }
-  .hero-portrait { display: none; }
-  .hero-right {
-    padding: 40px 20px 40px 20px;
-  }
-  .hero-apply-btn {
-    width: 100%;
-    max-width: 320px;
-    font-size: 20px;
-    height: 52px;
-  }
-  .about-section {
-    padding: 40px 20px;
-  }
-  .areas-section {
-    padding: 30px 20px;
-    overflow-x: auto;
-  }
-  .quote-text {
-    margin-left: 0;
-    max-width: 100%;
-  }
-  .stories-section {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .stories-cards {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-  .story-col {
-    width: 100%;
-    max-width: 400px;
-    flex: 0 0 auto;
-  }
-  .story-card-1,
-  .story-card-2,
-  .story-card-3 {
-    width: 100%;
-    height: 260px;
-  }
-  /* Quote section: hide illustration, stretch amber bg full-width, shrink text */
-  .quote-strip {
-    padding: 60px 20px 48px;
-    min-height: auto;
-  }
-  .quote-amber-bg {
-    left: 0;
-    right: 0;
-    top: 30px;
-    height: auto;
-    bottom: 0;
-    border-radius: 28px;
-  }
-  .quote-illus { display: none; }
-  .quote-deco-mark { left: 16px; font-size: 120px; }
-  .quote-text {
-    font-size: 28px;
-    margin-top: 60px;
-    margin-left: 0;
-    padding: 0 8px;
-    max-width: 100%;
-  }
-  /* CTA: stack vertically, reduce padding */
-  .home-cta {
-    flex-direction: column;
-    padding: 32px 20px 48px;
-    gap: 20px;
-    align-items: center;
-  }
-  .home-cta-right { align-items: center; }
-  .home-cta-tagline { text-align: center; font-size: 18px; }
-  .home-cta-btn { width: 100%; max-width: 280px; font-size: 18px; }
-  .home-cta-rocket { display: none; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -870,18 +17,18 @@
   </a>
   <ul class="nav-links">
     <li>
-      <a href="vision.html">About Us <span class="nav-chev"></span></a>
+      <a href="#">About Us <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="vision.html">Vision &amp; Mission</a>
-        <a href="team.html">Team</a>
+        <a href="#">Vision &amp; Mission</a>
+        <a href="#">Team</a>
       </div>
     </li>
     <li>
-      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
+      <a href="hislife.html">K. Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="kasturirangan.html">His Life</a>
+        <a href="hislife.html">His Life</a>
         <a href="#">Selected Writings</a>
-        <a href="testimonials.html">Memories</a>
+        <a href="#">Memories</a>
       </div>
     </li>
     <li>
@@ -893,7 +40,7 @@
     <li>
       <a href="#">Useful Links <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="apply.html">Apply</a>
+        <a href="#">Apply</a>
         <a href="#">Contact Us</a>
       </div>
     </li>
@@ -914,7 +61,12 @@
   </button>
 </nav>
 
-<!-- HERO -->
+<!-- HERO
+     2-col grid: left=54.44% (decorative shapes + 3-slide carousel)
+                 right=1fr (headline, desc, explore link)
+     Coords: all Anima canvas minus 101px nav = hero-relative.
+     No Apply button — not in Figma.
+-->
 <section class="hero">
   <div class="hero-left">
     <div class="hero-blue-rect"></div>
@@ -922,11 +74,14 @@
       <img class="hero-slide active" src="assets/images/slideshow-1.jpg" alt="Dr K. Kasturirangan">
       <img class="hero-slide" src="assets/images/slideshow-2.jpg" alt="">
       <img class="hero-slide" src="assets/images/slideshow-3.jpg" alt="">
-      <img class="hero-slide" src="assets/images/slideshow-4.jpg" alt="">
-      <img class="hero-slide" src="assets/images/slideshow-5.jpg" alt="">
     </div>
     <div class="hero-deco-circle" aria-hidden="true"></div>
     <div class="hero-deco-circle-sm" aria-hidden="true"></div>
+    <div class="hero-dots" aria-hidden="true">
+      <div class="hero-dot active"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+    </div>
   </div>
   <div class="hero-right">
     <div class="hero-headline-wrap">
@@ -937,41 +92,51 @@
       </h1>
     </div>
     <p class="hero-desc">
-      We award fellowships and research support to scholars working
+      We award fellowships and research support for scholars working
       at the intersection of education, science, and society.
     </p>
     <a href="fellowship.html" class="hero-explore-link">Explore Our Work &nbsp;↗</a>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT / BIOGRAPHY
+     Heading: canvas(117,748) → section padding-left=117px.
+     Amber dot: canvas(121,753) → ::before on .about-heading.
+     Body: 24px Afacad regular, max-width 798px.
+-->
 <section class="about-section">
   <h2 class="about-heading">Inspired by a life of inquiry</h2>
   <div class="about-text">
     <p>
-      <strong>Krishnaswamy Kasturirangan (24 October 1940 &ndash; 25 April 2025)</strong>
-      was one of India&rsquo;s most distinguished space scientists and public
-      intellectuals. Over a career spanning several decades, he played a pivotal
-      role in advancing India&rsquo;s space programme through ISRO and steering
-      national policy&mdash;first as a nominated Member of the Rajya Sabha and
-      later of the Planning Commission. He went on to chair the panels that
-      recommended India&rsquo;s approach to environmental conservation in the
-      Western Ghats and its National Education Policy 2020.
+      <strong>Dr Krishnaswamy Kasturirangan (24 October 1940 &ndash; 25 April 2025)</strong>
+      was one of India&rsquo;s most distinguished space scientists and institution builders.
     </p>
     <p>
-      In recognition of his contributions, he has been awarded the Padma Shri,
-      Padma Bhushan, and Padma Vibhushan. His life&rsquo;s work reflects a rare
-      blend of scientific excellence, institution-building, and public service.
+      Over a career spanning five decades, he played a pivotal role in advancing India&rsquo;s
+      space programme through ISRO and steering national policy&mdash;first as a nominated
+      member of the Rajya Sabha and later as a member of the Planning Commission. He went on
+      to chair the panels that recommended India&rsquo;s approach to environmental conservation
+      in the Western Ghats and its National Education Policy 2020.
     </p>
     <p>
-      The Dr Kasturirangan Trust was formed to honor and continue his legacy,
-      spirit of innovation, interdisciplinary thinking, and commitment to national
-      development through knowledge and education.
+      In recognition of his contributions, he was awarded the Padma Shri, Padma Bhushan, and
+      Padma Vibhushan. His life&rsquo;s work reflects a rare blend of scientific excellence,
+      institution-building, and public service.
+    </p>
+    <p>
+      The Dr Kasturirangan Trust was formed to honour and continue his legacy, his spirit of
+      innovation, interdisciplinary thinking, and commitment to national development through
+      knowledge and education.
     </p>
   </div>
 </section>
 
-<!-- AREAS -->
+<!-- FOCUS AREAS
+     4 area images in a flex row. On hover/click: amber panel expands below.
+     Default panel state: large white quote + KK illustration.
+     Hover panel state: brown quote (left) + white desc card (right).
+     Area panel design from Figma node 1029:592 (MCP-verified).
+-->
 <section class="areas-section">
   <div class="areas-row">
     <div class="area-item" data-area="space">
@@ -1000,13 +165,14 @@
     </div>
   </div>
 
-  <!-- Expand panel: quote (left) + description (right); illustration shown in default state only -->
-  <div class="area-panel" id="areaPanel">
-    <!-- Default: exact Figma SVG shape; Hover: Agdasima font char (Figma node 1029:602) -->
+  <!-- Area panel: Figma-verified amber pill with quote (left) + desc card (right) -->
+  <div class="area-panel panel-default" id="areaPanel">
+    <!-- Default state: exact Figma SVG quote shape (node 1029:599 equivalent) -->
     <svg class="area-panel-qmark-default" width="126" height="93" viewBox="0 0 126 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M125.488 92.5293H71.0449V52.2461L94.4824 0H115.967L96.9238 48.3398H125.488V92.5293Z" fill="white"/>
       <path d="M54.6875 92.5293H0V52.2461L23.6816 0H45.166L26.123 48.3398H54.6875V92.5293Z" fill="white"/>
     </svg>
+    <!-- Hover state: Agdasima " character (Figma node 1029:602) -->
     <span class="area-panel-qmark-hover" aria-hidden="true">&ldquo;</span>
     <div class="area-panel-quote-col">
       <p class="area-panel-quote-text" id="areaPanelQuote"></p>
@@ -1022,24 +188,24 @@
 (function () {
   var AREAS = {
     space: {
-      quote: 'I fervently recall the beautiful sight of the Milky Way that strung like a necklace across the night skies of Ernakulam.',
-      desc:  'To meet India’s national requirements, its satellites must deliver the data and services on which weather forecasting, agriculture, disaster management, broadcasting and navigation depend. Under Kasturirangan’s leadership, ISRO operationalised PSLV, consolidated its satellite programme, executed on its launch vehicle technologies, and defined long-term strategic missions such as India’s first mission to the moon.'
+      quote: 'Space technology should not be an ivory tower pursuit; it must be a socio-economic imperative that transforms rural infrastructure.',
+      desc:  'To meet India’s national requirements, its satellites must deliver the data and services on which weather forecasting, agriculture, disaster management, broadcasting and navigation depend. Under Dr. Kasturirangan’s leadership, ISRO consolidated its satellite programme, operationalised the PSLV and flew the GSLV for the first time.'
     },
     environment: {
       quote: 'Views of the Earth from outer space have intensified an awareness of the interconnectedness of all life and the environment on this beautiful and yet fragile planet.',
-      desc:  'The Western Ghats are one of the world’s richest biodiversity regions, in addition to being the life-support for the whole of peninsular India. Kasturirangan led a landmark effort to balance the preservation of an ecologically sensitive region with the livelihoods of the communities that depend on it. The resulting report offered a science-led framework and sparked critical conversations and a nation-wide debate on conservation, rights, and development.'
+      desc:  'The Western Ghats are one of the world’s richest biodiversity regions, in addition to being the life-support for the whole of peninsular India. Dr Kasturirangan led a landmark effort to balance the preservation of an ecologically sensitive region with the livelihoods of the communities that depend on it. The resulting report offered a science-led framework and sparked a nation-wide debate on conservation, rights, and development.'
     },
     education: {
       quote: 'My education was a merry mix of what happened inside the school, the things that I read, and the wonderful people I interacted with... this broad-based education was the foundation of everything.',
-      desc:  'One morning in May 2017, K. Kasturirangan received a surprise invite to chair a committee that would draft the country’s new education policy, slated to be a blueprint for the next 20 years. He rose to the task. The NEP 2020 promoted formal education down to age three, opened higher education to multidisciplinary study, incorporated Indian knowledge systems and recommended the establishment of a national body to fund research beyond the elite institutions.'
+      desc:  'One morning in May 2017, Dr K. Kasturirangan received a surprise invite to chair a committee that would draft the country’s new education policy, intended as a blueprint for the next 20 years. He rose to the task. The NEP 2020 extended formal education down to age three, opened higher education to multidisciplinary study, incorporated Indian knowledge systems, and recommended the establishment of a national body to fund research beyond the elite institutions.'
     },
     publiclife: {
-      quote: 'Every country needs \na vision that stirs the imagination and motivates all segments of society to greater effort. Vision is an essential part of building a consensus on a broad national development strategy.',
-      desc:  'After a record-breaking nine years as the chairman of ISRO, Kasturirangan was nominated a member of the Rajya Sabha, and subsequently the Planning Commission. Deliberating in the parliament on topics such as transport, health, climate change, national security, and education, his understanding of India grew more holistic. He transitioned from the role of technical leader to nation builder.'
+      quote: 'Science and governance have both emerged as decisive influences in shaping our society. Bringing scientific rigour and objective analysis to the floor of Parliament is not a luxury, but a necessity for robust policy formulation.',
+      desc:  'After nine remarkable years as the chairman of ISRO, Dr. Kasturirangan carried the same conviction into the Rajya Sabha and then the Planning Commission: that science and technology were instruments of national development, in health, agriculture, energy, climate, and education. He championed it in Parliament and led the science and technology planning of the 12th Five-Year Plan. He had moved from building technology to shaping public policy.'
     }
   };
 
-  var DEFAULT_QUOTE = 'Every phase of work must contribute to a larger national vision';
+  var DEFAULT_QUOTE = 'Every phase of work must contribute to a larger national vision';
 
   var panel     = document.getElementById('areaPanel');
   var quoteEl   = document.getElementById('areaPanelQuote');
@@ -1054,14 +220,10 @@
       if (d) d.style.opacity = '1';
       if (h) h.style.opacity = '0';
     });
-    quoteEl.textContent = DEFAULT_QUOTE;
-    descEl.textContent  = '';
+    panel.style.display = '';
     panel.classList.add('panel-default');
     activeKey = null;
   }
-
-  // Start in default state
-  showDefault();
 
   document.querySelectorAll('.area-item[data-area]').forEach(function (item) {
     var wrap   = item.querySelector('.area-circle-wrap');
@@ -1074,18 +236,15 @@
       hovImg.style.opacity = '1';
       quoteEl.textContent = AREAS[key].quote;
       descEl.textContent  = AREAS[key].desc;
+      panel.style.display = '';
       panel.classList.remove('panel-default');
     }
 
-    // Hover: show this area's quote immediately
-    item.addEventListener('mouseenter', function () {
-      showArea();
-    });
+    item.addEventListener('mouseenter', function () { showArea(); });
     item.addEventListener('mouseleave', function () {
-      if (wrap.classList.contains('active')) return; // stay if locked by click
+      if (wrap.classList.contains('active')) return;
       defImg.style.opacity = '1';
       hovImg.style.opacity = '0';
-      // restore previously clicked area, or default
       if (activeKey && activeKey !== key) {
         quoteEl.textContent = AREAS[activeKey].quote;
         descEl.textContent  = AREAS[activeKey].desc;
@@ -1096,11 +255,9 @@
 
     wrap.addEventListener('click', function () {
       if (activeKey === key) {
-        // toggle off → return to default
         showDefault();
         return;
       }
-      // deactivate previous
       document.querySelectorAll('.area-circle-wrap.active').forEach(function (w) {
         w.classList.remove('active');
         var d = w.querySelector('.area-img-default');
@@ -1108,7 +265,6 @@
         if (d) d.style.opacity = '1';
         if (h) h.style.opacity = '0';
       });
-      // lock this circle as active
       this.classList.add('active');
       activeKey = key;
     });
@@ -1116,7 +272,24 @@
 })();
 </script>
 
-<!-- STORIES -->
+<!-- QUOTE STRIP
+     Amber pill: canvas(105,1611) w=1121 h=374.
+     Agdasima " overhangs top-left. Quote text canvas(367,1703).
+     KK illustration inside pill, right side.
+-->
+<section class="quote-strip">
+  <img class="quote-deco-mark" src="assets/images/quote-mark.svg" alt="" aria-hidden="true">
+  <div class="quote-amber-bg">
+    <img class="quote-illus" src="assets/images/kk-illustration.svg" alt="">
+  </div>
+  <p class="quote-text">Every phase of work must contribute to a larger national vision</p>
+</section>
+
+<!-- STORIES
+     "Where Curiosity Led" — 3 story cards 354×354px.
+     Hover: navy overlay + story text.
+     Captions below each card.
+-->
 <section class="stories-section">
   <div class="stories-heading-row">
     <h2 class="stories-heading">Where Curiosity Led</h2>
@@ -1161,7 +334,7 @@
   </div>
 </section>
 
-<!-- HOME CTA (R20: combined rocket+tagline PNG, no Apply button) -->
+<!-- HOME CTA — rocket+tagline combined PNG, centered -->
 <div class="home-cta">
   <img class="home-cta-rocket-tagline"
        src="assets/images/rocket-tagline.png"
@@ -1177,8 +350,8 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="vision.html">About Us</a>
-    <a href="kasturirangan.html">K. Kasturirangan</a>
+    <a href="#">About Us</a>
+    <a href="hislife.html">K. Kasturirangan</a>
     <a href="fellowship.html">Initiatives</a>
     <a href="#">Useful Links</a>
   </nav>
@@ -1212,17 +385,49 @@
 </footer>
 
 <script>
+/* Slideshow: 3 slides, synced dots. Auto-advances every 4s. */
 (function() {
   var slides = document.querySelectorAll('.hero-slide');
+  var dots   = document.querySelectorAll('.hero-dot');
   if (!slides.length) return;
   var current = 0;
-  setInterval(function() {
+
+  function goTo(n) {
     slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
+    if (dots[current]) dots[current].classList.remove('active');
+    current = n;
     slides[current].classList.add('active');
-  }, 4000);
+    if (dots[current]) dots[current].classList.add('active');
+  }
+
+  var timer = setInterval(advance, 4000);
+
+  function advance() { goTo((current + 1) % slides.length); }
+
+  function restart() { clearInterval(timer); timer = setInterval(advance, 4000); }
+
+  dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() { goTo(i); restart(); });
+  });
 })();
 </script>
-<script src="nav.js"></script>
+
+<script>
+/* Mobile nav: sub-menu toggle for dropdowns */
+document.querySelectorAll('.nav-links > li > a').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    if (window.innerWidth > 620) return;
+    var li = this.closest('li');
+    if (!li.querySelector('.nav-dropdown')) return;
+    e.preventDefault();
+    var wasOpen = li.classList.contains('nav-sub-open');
+    document.querySelectorAll('.nav-links > li').forEach(function(l) {
+      l.classList.remove('nav-sub-open');
+    });
+    if (!wasOpen) li.classList.add('nav-sub-open');
+  });
+});
+</script>
+
 </body>
 </html>

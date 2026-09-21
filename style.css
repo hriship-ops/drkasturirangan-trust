@@ -1,0 +1,650 @@
+/* ================================================================
+   HOME PAGE — 2ndpass/style.css
+   Desktop-only (1440px canvas). Fixed values from Anima export.
+   No clamp(), no media queries (desktop-first pass).
+   Canvas → hero-relative: subtract 101px (nav height).
+   ================================================================ */
+
+/* ----------------------------------------------------------
+   HERO SECTION
+   2-col grid: left=54.44% (784px) | right=1fr.
+   Left col: position:relative, all shapes position:absolute.
+   Canvas coords → hero-relative (subtract 101px nav height).
+   ---------------------------------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 54.44% 1fr;
+  min-height: 647px;
+}
+
+.hero-left {
+  position: relative;
+  min-height: 647px;
+  overflow: hidden;
+}
+
+/* Navy pill: canvas(58,146) → hero(58,45). w=234 h=338 r=99 */
+.hero-blue-rect {
+  position: absolute;
+  left: 58px;
+  top: 45px;
+  width: 234px;
+  height: 338px;
+  border-radius: var(--r-pill);
+  background: var(--c-primary);
+}
+
+/* Slideshow: canvas(167,245) → hero(167,144). w=617 h=416 r=71
+   clamp() keeps right edge (left+width) ≈ 54.44vw at all widths. */
+.hero-slideshow {
+  position: absolute;
+  left: clamp(60px, 11.6vw, 167px);
+  top: clamp(60px, 10vw, 144px);
+  width: clamp(300px, 42.8vw, 617px);
+  height: auto;
+  aspect-ratio: 617 / 416;
+  border-radius: 71px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+}
+
+.hero-slide.active { opacity: 1; }
+
+/* Large amber circle: canvas(−138,454) → hero(−138,353). ⌀274 */
+.hero-deco-circle {
+  position: absolute;
+  left: -138px;
+  top: 353px;
+  width: 274px;
+  height: 274px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Small amber circle: canvas(592,502) → hero(592,401). ⌀103 */
+.hero-deco-circle-sm {
+  position: absolute;
+  top: 401px;
+  left: 592px;
+  width: 103px;
+  height: 103px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Slideshow dots: canvas(448,676) → hero(448,575). 3 dots, 17px apart. */
+.hero-dots {
+  position: absolute;
+  top: 575px;
+  left: 448px;
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+
+.hero-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(255, 179, 55, 0.5);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.hero-dot.active {
+  background: var(--c-accent);
+}
+
+/* Right column: headline at canvas(858,343) → hero top=242px, left offset 74px. */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 242px 40px 60px 74px;
+}
+
+.hero-headline-wrap {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+/* Headline: 35px Afacad regular, line-height=43.6px (1.245) */
+.hero-headline {
+  font-size: 35px;
+  font-weight: var(--fw-regular);
+  color: #000;
+  line-height: 1.245;
+  position: relative;
+}
+
+/* Amber dot behind "C" in "Cultivating": Figma node 41:27, 32px. */
+.hero-headline::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Description: 18px regular black, max-width 446px, line-height=23.8px. */
+.hero-desc {
+  font-size: 18px;
+  font-weight: var(--fw-regular);
+  color: #000;
+  line-height: 1.322;
+  max-width: 446px;
+  margin-bottom: 16px;
+}
+
+/* Explore link: 20px #808080. canvas(857,554). */
+.hero-explore-link {
+  display: block;
+  font-size: 20px;
+  color: var(--c-text-muted);
+}
+
+.hero-explore-link:hover {
+  color: var(--c-primary);
+}
+
+/* ----------------------------------------------------------
+   ABOUT / BIOGRAPHY SECTION
+   Heading at canvas(117,748): section top = 748 − (hero bottom ~687) = 61px gap.
+   Left padding = 117px per Anima. Body text width = 798px.
+   ---------------------------------------------------------- */
+
+.about-section {
+  padding: 61px 58px 56px 117px;
+}
+
+.about-heading {
+  font-size: 36px;
+  font-style: italic;
+  font-weight: var(--fw-medium);
+  color: var(--c-primary-dark);
+  line-height: normal;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+/* Amber dot: canvas(121,753), 10px circle at heading left+4, top+5. */
+.about-heading::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  left: 4px;
+  top: 5px;
+}
+
+.about-text {
+  max-width: 798px;
+  font-size: 24px;
+  font-weight: var(--fw-regular);
+  color: var(--c-text);
+  line-height: 1.4;
+}
+
+.about-text p {
+  margin-bottom: 1em;
+}
+
+.about-text strong {
+  font-weight: var(--fw-bold);
+}
+
+/* ----------------------------------------------------------
+   FOCUS AREAS SECTION
+   4 area images in a flex row, centered.
+   ---------------------------------------------------------- */
+
+.areas-section {
+  padding: 36px 58px 0;
+}
+
+.areas-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 60px;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.area-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.area-circle-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.area-circle-wrap img {
+  width: 230px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.area-img-hover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.area-img-default {
+  transition: opacity 0.2s;
+}
+
+.area-item:hover .area-img-default,
+.area-circle-wrap.active .area-img-default { opacity: 0; }
+.area-item:hover .area-img-hover,
+.area-circle-wrap.active .area-img-hover { opacity: 1; }
+
+/* ----------------------------------------------------------
+   AREA PANEL — rebuilt from Figma node 1029:592 (MCP-verified).
+   Amber pill: rgba(255,179,56,0.8), w=1121px, h=374px, r=118px.
+   DEFAULT: large white quote (50px) + KK illustration (right).
+   HOVER/ACTIVE: left col=quote(#855404, 24px, 252px) +
+                 right col=white card(r=30px, desc #2a427e, 22px).
+   Agdasima quote mark (300px, #d9982e) in hover state, top-left.
+   ---------------------------------------------------------- */
+
+.area-panel {
+  display: none;
+  position: relative;
+  max-width: 1121px;
+  margin: 0 auto 40px;
+  background: rgba(255, 179, 56, 0.8);
+  border-radius: 118px;
+  overflow: visible;
+  min-height: 374px;
+}
+
+/* DEFAULT: panel is hidden until an area is hovered/clicked */
+.area-panel.panel-default {
+  display: none;
+}
+
+.area-panel.panel-default .area-panel-qmark-hover {
+  display: none;
+}
+
+.area-panel.panel-default .area-panel-quote-col {
+  flex: 1;
+  padding-top: 48px;
+  padding-left: 122px;
+  position: relative;
+  align-self: flex-start;
+}
+
+.area-panel.panel-default .area-panel-quote-text {
+  font-size: 50px;
+  font-weight: var(--fw-medium);
+  font-style: normal;
+  color: #fff;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.area-panel.panel-default .area-panel-desc-wrap {
+  display: none;
+}
+
+/* SVG quote mark: default state only — Figma exact 126×93px */
+.area-panel-qmark-default {
+  position: absolute;
+  top: -9px;
+  left: 82px;
+  width: 126px;
+  height: 93px;
+  display: block;
+}
+
+.area-panel:not(.panel-default) .area-panel-qmark-default {
+  display: none;
+}
+
+/* HOVER state: 2-col grid — 252px quote col + 598px desc col.
+   Left padding 156px so quote col center lands at 282px from pill left (Figma-exact).
+   Gap 45px, right padding 70px → right col = 598px. */
+.area-panel:not(.panel-default) {
+  display: grid;
+  grid-template-columns: 252px 1fr;
+  gap: 45px;
+  align-items: center;
+  padding: 52px 70px 52px 156px;
+}
+
+/* Agdasima quote mark: Figma node 1029:602 — 300px, #d9982e */
+.area-panel-qmark-hover {
+  display: none;
+  position: absolute;
+  top: -27px;
+  left: 50px;
+  font-family: var(--font-deco);
+  font-size: 300px;
+  line-height: 1;
+  color: #d9982e;
+  pointer-events: none;
+  user-select: none;
+}
+
+.area-panel:not(.panel-default) .area-panel-qmark-hover {
+  display: block;
+}
+
+.area-panel-quote-col {
+  position: relative;
+}
+
+.area-panel:not(.panel-default) .area-panel-quote-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Base quote text (default state) */
+.area-panel-quote-text {
+  font-size: 50px;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.3;
+  font-weight: var(--fw-regular);
+}
+
+/* Hover quote override: Afacad Medium 24px, #855404, centered, 252px wide */
+.area-panel:not(.panel-default) .area-panel-quote-text {
+  font-size: 24px;
+  font-weight: var(--fw-medium);
+  font-style: normal;
+  color: #855404;
+  text-align: center;
+  line-height: 1.35;
+  white-space: pre-line;
+  width: 252px;
+}
+
+.area-panel:not(.panel-default) .area-panel-illus {
+  display: none;
+}
+
+/* White desc card: 598×270px, r=30px, 45px/40px padding — Figma node 1029:598 */
+.area-panel-desc-wrap {
+  background: #fff;
+  border-radius: 30px;
+  padding: 45px 40px;
+}
+
+.area-panel-desc {
+  font-size: 22px;
+  color: var(--c-primary);
+  line-height: 1.5;
+  font-weight: var(--fw-regular);
+  margin: 0;
+  text-align: left;
+}
+
+/* KK illustration: default state only, flipped horizontally */
+.area-panel-illus {
+  width: 295px;
+  height: auto;
+  display: block;
+  transform: scaleX(-1);
+  align-self: flex-end;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   QUOTE STRIP
+   Amber pill: canvas(105,1611) w=1121 h=374.
+   Quote-deco-mark (Agdasima ") overhangs pill top at x=105.
+   Quote text: canvas(367,1703) w=503. KK illustration at right.
+   Section canvas top ≈ 1459 (pill top − 152px section padding).
+   ---------------------------------------------------------- */
+
+.quote-strip {
+  position: relative;
+  min-height: 550px;
+  padding: 180px 58px 100px;
+  overflow: hidden;
+}
+
+/* Amber pill: Figma node 259:347 — pure CSS, no baked-in marks. */
+.quote-amber-bg {
+  position: absolute;
+  left: 105px;
+  top: 152px;
+  width: 1121px;
+  height: 374px;
+  background: rgba(255, 179, 56, 0.8);
+  border-radius: 118px;
+  z-index: 0;
+}
+
+/* KK illustration: positioned within .quote-amber-bg (both position:absolute).
+   Pill-relative: right=26px (1121−295−800=26), top=83px. */
+.quote-illus {
+  position: absolute;
+  right: 26px;
+  top: 83px;
+  width: 295px;
+  height: auto;
+  transform: scaleX(-1);
+  pointer-events: none;
+}
+
+/* Quote mark SVG: Anima image.svg — 126×93px at canvas(187,1602).
+   Section-relative: pill at top=152 → mark at top=143 (9px above pill). */
+.quote-deco-mark {
+  position: absolute;
+  left: 187px;
+  top: 143px;
+  width: 125px;
+  height: 93px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Quote text: canvas(367,1703) → strip-relative left=367, top=244. */
+.quote-text {
+  position: absolute;
+  left: 367px;
+  top: 244px;
+  width: 503px;
+  z-index: 3;
+  text-align: center;
+  font-size: 50px;
+  font-weight: var(--fw-medium);
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* ----------------------------------------------------------
+   STORIES SECTION
+   "Where Curiosity Led" — 3 story cards in a flex row.
+   Section left-padding = 83px (card 1 canvas x).
+   Cards: 354px square. Captions below cards.
+   ---------------------------------------------------------- */
+
+.stories-section {
+  padding: 56px 0 56px 83px;
+}
+
+.stories-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.stories-heading {
+  font-size: 36px;
+  font-weight: var(--fw-medium);
+  color: var(--c-primary-dark);
+  position: relative;
+}
+
+/* Amber circle: canvas(72,2060) size=32px, overlaps heading "W". */
+.stories-heading::before {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  left: -12px;
+  top: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.stories-cards {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.story-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+  max-width: 355px;
+}
+
+.story-card-1,
+.story-card-2,
+.story-card-3 {
+  position: relative;
+  overflow: hidden;
+}
+
+.story-card-1 { height: 354px; border-radius: 15px; }
+.story-card-2 { height: 355px; border-radius: 10px; }
+.story-card-3 { height: 354px; border-radius: 15px; }
+
+.story-img-default,
+.story-img-hover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  transition: opacity 0.35s ease;
+}
+
+.story-img-hover { opacity: 0; }
+
+.story-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 66, 126, 0.92);
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  overflow-y: auto;
+}
+
+.story-overlay p {
+  color: #fff;
+  font-size: 18px;
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  text-align: center;
+  font-family: var(--font-main);
+  margin: 0;
+}
+
+.story-card-1:hover .story-img-hover,
+.story-card-2:hover .story-img-hover,
+.story-card-3:hover .story-img-hover,
+.story-card-1:hover .story-overlay,
+.story-card-2:hover .story-overlay,
+.story-card-3:hover .story-overlay {
+  opacity: 1;
+}
+
+/* Story captions below each card. */
+.moment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding-top: 16px;
+  width: 100%;
+}
+
+.moment-text {
+  font-size: 20px;
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: normal;
+  display: inline-block;
+}
+
+/* ----------------------------------------------------------
+   HOME CTA
+   Rocket+tagline combined PNG, centered.
+   ---------------------------------------------------------- */
+
+.home-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 58px 60px;
+}
+
+.home-cta-rocket-tagline {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

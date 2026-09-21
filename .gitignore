@@ -1,4 +1,61 @@
-figma_refs/
+# ── Secrets ────────────────────────────────────────────────────────────
 figma_config.py
+
+# ── Python artifacts ────────────────────────────────────────────────────
 *.pyc
 __pycache__/
+
+# ── Figma API scripts & reference dumps ────────────────────────────────
+figma_refs/
+figma_*.py
+figma_*.json
+figma_*.txt
+fellowship_figma_dump.txt
+
+# ── Debug / audit / crop / screenshot scripts ───────────────────────────
+crop_*.py
+screenshot_*.py
+ss_*.py
+read_*.py
+build_*.py
+update_*.py
+measure_*.py
+download_*.py
+download-assets.ps1
+apply_dates_test.py
+audit_report.html
+2ndpass/screenshot_bottom.js
+2ndpass/hislife_figma_dump.json
+
+# ── Screenshots & debug images ──────────────────────────────────────────
+# Ignore loose debug PNGs; allow everything inside any assets/ subfolder.
+*.png
+*.jpeg
+!assets/**
+
+# ── Office files & lock files ───────────────────────────────────────────
+*.xlsx
+*.xls
+~$*
+
+# ── Archives ────────────────────────────────────────────────────────────
+*.zip
+
+# ── Scratch text / JSON dumps ───────────────────────────────────────────
+*_dump.txt
+*_structure.txt
+commit_msg.txt
+WORKLOG.md
+timeline_structure.txt
+carousel_structure.txt
+
+# ── Dev / audit scratch folders ─────────────────────────────────────────
+troubleshoot/
+screenshots/
+assets-extracted/
+missing assets/
+visual fixes/
+OneDrive_*/
+2ndpass/ss_behavior/
+2ndpass/Animas/
+

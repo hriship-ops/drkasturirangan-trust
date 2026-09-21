@@ -1,1575 +1,616 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fellowship Programme &mdash; Dr Kasturirangan Trust</title>
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="shared.css">
-<style>
-/* ================================================================
-   FELLOWSHIP PAGE — fellowship.html
-   Layout from Figma node 271:987 (1440px canvas).
-   All measurements from absolute coordinates + cornerRadius values.
-   ================================================================ */
-
-/* ----------------------------------------------------------
-   HERO SECTION
-   Background: #f7f5f5 (c-bg-light). Height: 629px canvas rect.
-   2-column grid.
-   Left col (text): content from x=96-723 ~ 51.25% of canvas.
-   Right col (image): from x=738 to x=1383, w=645, h=509.
-   Gap in canvas: 738-723 = 15px (negligible; flex handles it).
-   ---------------------------------------------------------- */
-
-.fell-hero {
-  background: var(--c-bg-light);
-  display: grid;
-  grid-template-columns: 51% 49%;
-  min-height: 629px;
-  padding: 0 0 0 0;
-}
-
-/* Left col: text content starting at x=96 (eyebrow dot), x=108 (text). */
-.fell-hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: clamp(48px, 7.1vw, 102px) 40px 60px clamp(32px, 6.7vw, 96px);
-}
-
-/* Eyebrow row: small dot (32px, #2a427e) + "Dr Kasturirangan Trust" text. */
-.fell-eyebrow-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.fell-eyebrow-dot {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  flex-shrink: 0;
-}
-
-/* Eyebrow: 36px Regular #2a427e. */
-.fell-eyebrow {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  line-height: normal;
-}
-
-/* Title: 36px Bold #2a427e. */
-.fell-title {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-bold);
-  color: var(--c-primary);
-  margin-bottom: 24px;
-  line-height: normal;
-}
-
-/* Bullets: 24px Regular #2a427e, list, max-width=615px. */
-.fell-bullets {
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  line-height: normal;
-  max-width: 615px;
-  padding-left: 22px;
-  margin-bottom: 40px;
-}
-
-.fell-bullets li {
-  margin-bottom: 8px;
-  line-height: 1.6;
-}
-
-/* Apply button: border=2px #2a427e, radius=12px, w=162, h=56. */
-.fell-apply-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 162px;
-  height: 56px;
-  border: 2px solid var(--c-primary);
-  border-radius: var(--r-apply-btn);
-  font-size: var(--fs-eyebrow);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  font-family: var(--font-main);
-  background: none;
-  cursor: pointer;
-}
-
-.fell-apply-btn:hover {
-  background: var(--c-primary);
-  color: #fff;
-}
-
-/* Right col: illustration image w=645, h=509, at x=738. */
-.fell-hero-right {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 69px 57px 60px 0;
-}
-
-/* Illustration: Figma w=603, h=476. No border-radius.
-   width:100% scales with the column; max-width caps at Figma value.
-   height:auto preserves aspect ratio at all viewport widths. */
-.fell-illustration {
-  width: 100%;
-  max-width: 603px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* ----------------------------------------------------------
-   BANNER STRIP
-   Background: #2a427e, height ~95px.
-   Two amber pills (bg=#ffb338, radius=26px) with text.
-   Pill 1: w=274, at x=322. Pill 2: w=304, at x=1084.
-   Text: 36px (Regular label + value), white.
-   Layout: flex row, center, gap between pills.
-   ---------------------------------------------------------- */
-
-.fell-banner {
-  background: var(--c-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 96px;
-  min-height: 158px;
-}
-
-/* R7: nomination notice text — white, centered, first line bold */
-.fell-banner-notice {
-  font-size: var(--fs-banner);
-  font-weight: 400;
-  color: #fff;
-  text-align: center;
-  line-height: 1.5;
-}
-.fell-banner-notice strong {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-/* Amber pill: bg=#ffb338, radius=26px.
-   Font 36px from Figma. Breakpoint below scales it at narrower widths. */
-.fell-banner-pill {
-  background: var(--c-accent);
-  border-radius: var(--r-banner);
-  padding: 14px 28px;
-  font-size: var(--fs-banner);
-  color: #fff;
-  line-height: normal;
-  text-align: center;
-  white-space: nowrap;
-}
-
-@media (max-width: 1300px) {
-  .fell-banner-pill {
-    font-size: 24px;
-    padding: 12px 22px;
-  }
-  .fell-banner {
-    gap: 24px;
-    min-height: 80px;
-  }
-}
-
-.fell-banner-pill span {
-  font-weight: var(--fw-regular);
-}
-
-.fell-banner-pill strong {
-  font-weight: var(--fw-bold);
-}
-
-/* ----------------------------------------------------------
-   DATE INFO BOXES — R7/R9
-   Figma Rectangle 116 (x=91,y=865,w=456,h=129,cr=36) and
-   Rectangle 117 (x=893,y=940,w=456,h=129,cr=36).
-   Staggered: right box sits 75px lower than left.
-   Container 204px tall (1069-865). Both boxes 33px from their edge.
-   No border (R9: no thin line beneath).
-   ---------------------------------------------------------- */
-
-.fell-dates-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 64px var(--page-px) 84px;
-}
-
-.fell-dates {
-  width: 100%;
-  max-width: var(--max-w-content);
-  position: relative;
-  height: 204px;
-}
-
-.fell-date-pill {
-  background: rgba(233, 162, 45, 1.0);
-  width: clamp(200px, 31.7vw, 456px);
-  height: clamp(80px, 9vw, 129px);
-  border-radius: 36px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 16px 32px;
-  position: absolute;
-}
-
-.fell-date-pill:first-child {
-  left: 33px;
-  top: 0;
-}
-
-.fell-date-pill:last-child {
-  right: 33px;
-  bottom: 0;
-}
-
-/* Single pill text: 28px fw=700 white, centered — Figma Groups 106/107 */
-.fell-date-text {
-  font-size: 28px;
-  font-weight: var(--fw-bold);
-  color: #fff;
-  line-height: 1.35;
-  text-align: center;
-}
-
-/* Figma Vector 1: dashed navy string connecting the two date pills.
-   x=567/1439=39.4%, width=308/1439=21.4%, top=31px below container top. */
-.fell-date-connector {
-  position: absolute;
-  left: 39%;
-  top: 31px;
-  width: 21%;
-  pointer-events: none;
-}
-
-@media (max-width: 1100px) {
-  .fell-dates {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .fell-date-pill {
-    position: static;
-    width: 100%;
-    max-width: 456px;
-  }
-  .fell-date-pill:first-child,
-  .fell-date-pill:last-child {
-    left: auto; right: auto; top: auto; bottom: auto;
-  }
-  .fell-date-connector { display: none; }
-}
-
-/* ----------------------------------------------------------
-   TAB NAV
-   Container: border=3px rgba(217,217,217,0.7), radius=27px,
-   max-width=1324px, h=114px, centered.
-   7 tabs, flex row, evenly distributed.
-   Dividers: 1px vertical lines between tabs.
-   Tab text: 24px medium #2a427e. Tab icon: 38-41px.
-   ---------------------------------------------------------- */
-
-.fell-tabs-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 44px var(--page-px) 0;
-}
-
-.fell-tabs {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  max-width: var(--max-w-content);
-  height: 114px;
-  border: 3px solid rgba(217, 217, 217, 0.7);
-  border-radius: var(--r-tab-bar);
-}
-
-.fell-tab {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex: 1;
-  height: 100%;
-  padding: 0 12px;
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  text-decoration: none;
-  border-right: 1px solid rgba(217, 217, 217, 0.7);
-  transition: background 0.15s;
-}
-
-@media (max-width: 1300px) {
-  .fell-tabs {
-    height: auto;
-    min-height: 80px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    border-radius: 16px;
-  }
-  .fell-tab {
-    font-size: 14px;
-    padding: 0 10px;
-    gap: 5px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .fell-tab img {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.fell-tab:last-child {
-  border-right: none;
-}
-
-.fell-tab:hover {
-  background: var(--c-bg-cream);
-  border-radius: 4px;
-}
-
-.fell-tab img {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-/* ----------------------------------------------------------
-   SECTION SHARED STYLES
-   Each section: border-top=1px #e6e6e6, padding=56px.
-   Kicker: 20px bold #d39d47, letter-spacing=2px.
-   H2: 36px bold #2a427e.
-   ---------------------------------------------------------- */
-
-.fell-section {
-  padding: var(--section-py) var(--page-px);
-  border-top: 1px solid #e6e6e6;
-}
-
-/* R9: remove thin line on first section below date boxes */
-#objectives.fell-section {
-  border-top: none;
-}
-
-.fell-kicker {
-  font-size: var(--fs-kicker);
-  font-weight: var(--fw-bold);
-  color: var(--c-kicker);
-  letter-spacing: var(--ls-kicker);
-  margin-bottom: 4px;
-}
-
-.fell-h2 {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-bold);
-  color: var(--c-primary);
-  margin-bottom: 32px;
-}
-
-/* ----------------------------------------------------------
-   OBJECTIVES SECTION
-   2-column grid.
-   Left: bullet list, max-width=608px, 24px Regular #2a427e.
-   Right: image (fellowship-header.png) w=493, h=329, radius top=45px.
-   Grid: left=55%, right=45% (608/1324=45.9% content).
-   ---------------------------------------------------------- */
-
-.fell-obj-grid {
-  display: grid;
-  grid-template-columns: 55% 45%;
-  gap: 40px;
-  align-items: start;
-}
-
-.fell-obj-list {
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  line-height: 1.5;
-  padding-left: 22px;
-  max-width: 608px;
-}
-
-.fell-obj-list li {
-  margin-bottom: 16px;
-}
-
-/* Image: Figma w=493, h=329, top corners rounded 45px.
-   width:100% scales within right column; max-width caps at Figma value. */
-.fell-obj-img {
-  width: 100%;
-  max-width: 493px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 45px 45px 0 0;
-  display: block;
-  justify-self: end;
-}
-
-/* ----------------------------------------------------------
-   BENEFITS SECTION
-   3 circles in a flex row.
-   Each circle: 270x269px, bg=#2a427e, border-radius=50%.
-   Text: 20px bold white, centered, padding=40px.
-   Gap from Figma: 484-84-270=130px between circles.
-   ---------------------------------------------------------- */
-
-.fell-benefits-row {
-  display: flex;
-  justify-content: center;
-  gap: clamp(24px, 7vw, 130px);
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
-
-/* Circle: 270x269px, bg primary, radius 50%. Text white bold 20px. */
-.fell-benefit-circle {
-  width: clamp(150px, 18.8vw, 270px);
-  height: clamp(150px, 18.7vw, 269px);
-  border-radius: 50%;
-  background: var(--c-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 36px;
-  font-size: 20px;
-  font-weight: var(--fw-bold);
-  color: #fff;
-  line-height: normal;
-  flex-shrink: 1;
-}
-
-/* ----------------------------------------------------------
-   EXPECTATIONS SECTION
-   2-column grid.
-   Left: portrait image, w=394, h=572, border-radius=42px.
-   Right: kicker+h2 above 4 rows.
-   Canvas gap: x=718 - (x=157+w=394) = 167px.
-   Grid: left=29.8%, gap=12.6%, right=57.6% of 1324px content.
-   ---------------------------------------------------------- */
-
-.fell-exp-grid {
-  display: grid;
-  grid-template-columns: minmax(280px, 394px) 1fr;
-  column-gap: clamp(40px, 10vw, 167px);
-  align-items: start;
-}
-
-/* Portrait: w=394, h=572, border-radius=42px. */
-.fell-exp-portrait {
-  width: clamp(200px, 27.4vw, 394px);
-  height: auto;
-  object-fit: cover;
-  border-radius: var(--r-exp-port);
-  display: block;
-  margin-top: 42px;
-}
-
-.fell-exp-right {
-  display: flex;
-  flex-direction: column;
-}
-
-/* 4 expectation rows:
-   bg=#fff6e7, radius=26px, h=96px, w=581px.
-   Gap between rows: 2445-2309-96 = 40px in canvas. */
-.fell-exp-row {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: var(--c-bg-cream);
-  border-radius: var(--r-exp-row);
-  padding: 20px 24px;
-  min-height: 96px;
-  margin-bottom: 40px;
-}
-
-.fell-exp-row:last-child {
-  margin-bottom: 0;
-}
-
-/* Icon wrapped in white circle that cuts into the cream row */
-.fell-exp-icon-wrap {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-left: -12px;
-}
-.fell-exp-icon {
-  width: 46px;
-  height: 46px;
-  object-fit: contain;
-}
-
-/* Row text: 24px Regular #2a427e — Figma fs=24 fw=400 */
-.fell-exp-row p {
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  line-height: normal;
-}
-
-/* ----------------------------------------------------------
-   ELIGIBILITY SECTION
-   2 boxes side by side + a centered circle overlapping them.
-   Box 1: bg=#fff6e7, radius=26px, w=643, h=190.
-   Box 2: bg=#fff6e7, radius=26px, w=663, h=190.
-   Circle: 208x207px, bg=#2a427e, centered between boxes.
-   Layout: use a 3-col grid (box | circle | box) with auto middle.
-   ---------------------------------------------------------- */
-
-/* R16: 3-point eligibility layout (V2: no centre circle, 3 equal boxes) */
-.fell-elig-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  align-items: stretch;
-  margin-bottom: 32px;
-}
-
-/* Eligibility boxes: bg=#fff6e7, radius=26px. */
-.fell-elig-box {
-  background: var(--c-bg-cream);
-  border-radius: var(--r-elig-box);
-  padding: 28px 32px;
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  min-height: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-/* Circle: 208x207px, bg=#2a427e, radius=50%. Text white bold 22px.
-   margin: 0 -20px creates the Figma overlap effect at desktop.
-   At <= 900px the grid collapses to 1-col and the circle centres. */
-.fell-elig-circle {
-  width: 208px;
-  height: 207px;
-  border-radius: 50%;
-  background: var(--c-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 28px;
-  font-size: 22px;
-  font-weight: var(--fw-bold);
-  color: #fff;
-  line-height: normal;
-  flex-shrink: 0;
-  margin: 0 -20px;
-  z-index: 1;
-  position: relative;
-}
-
-@media (max-width: 1050px) {
-  .fell-elig-layout {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .fell-elig-circle {
-    margin: 0 auto;
-    order: 2;
-  }
-}
-
-/* ----------------------------------------------------------
-   REVIEW PROCESS SECTION
-   4 circles in a flex row with arrow connectors between them.
-   Circles: 270x269px, bg=#2a427e (first 3), #ffb338 (last).
-   Gap between circles: ~53px in canvas.
-   Arrows: CSS right-pointing arrow (or unicode).
-   ---------------------------------------------------------- */
-
-.fell-review-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0;
-  flex-wrap: nowrap;
-}
-
-/* Review circles: 270x269px, radius=50%. flex-shrink:0 at desktop.
-   At <= 1200px they're allowed to shrink so 4 fit without squeezing. */
-.fell-review-circle {
-  width: 270px;
-  height: 269px;
-  border-radius: 50%;
-  background: var(--c-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 36px;
-  font-size: 19px;
-  font-weight: var(--fw-bold);
-  color: #fff;
-  line-height: 1.3;
-  flex-shrink: 0;
-}
-
-/* Raised to 1300px: at 1280px viewport (1164px content),
-   4 × 270px + arrows = ~1230px which overflows and wraps the 4th circle.
-   At 220px: 4 × 220px + arrows = ~1030px which fits cleanly. */
-@media (max-width: 1300px) {
-  .fell-review-circle {
-    width: 220px;
-    height: 220px;
-    font-size: 16px;
-    padding: 28px;
-  }
-}
-
-/* Last circle: accent background. */
-.fell-review-circle.accent {
-  background: var(--c-accent);
-}
-
-/* Arrow connector between circles: 28px amber. */
-.fell-review-arrow {
-  font-size: 28px;
-  color: var(--c-accent);
-  padding: 0 8px;
-  flex-shrink: 0;
-  line-height: 1;
-  margin-top: clamp(60px, 8.3vw, 120px);
-}
-
-/* V2: benefit + review circles — label arched above PNG, body text overlaid inside circle */
-.fell-benefit-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 270px;
-  text-align: center;
-}
-/* Wrapper gives the overlay context */
-.fell-circle-inner {
-  position: relative;
-  width: clamp(150px, 19vw, 270px);
-}
-.fell-benefit-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-/* Text is centred inside the circle body (below the arc label area ~top 22%) */
-.fell-benefit-desc {
-  position: absolute;
-  top: 55%;
-  left: 8%;
-  right: 8%;
-  transform: translateY(-50%);
-  text-align: center;
-  color: #fff;
-  font-size: clamp(11px, 1.05vw, 15px);
-  font-weight: 600;
-  line-height: 1.45;
-  pointer-events: none;
-}
-
-.fell-review-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 270px;
-  min-width: 0;
-  flex: 1 1 0;
-  text-align: center;
-}
-.fell-review-inner {
-  position: relative;
-  width: min(100%, 270px);
-}
-.fell-review-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.fell-review-desc {
-  position: absolute;
-  top: 55%;
-  left: 8%;
-  right: 8%;
-  transform: translateY(-50%);
-  text-align: center;
-  color: #fff;
-  font-size: clamp(10px, 0.95vw, 13px);
-  font-weight: 600;
-  line-height: 1.45;
-  pointer-events: none;
-}
-/* Amber highlight box around announcement date */
-.fell-announce-date {
-  display: inline-block;
-  background: var(--c-accent);
-  color: #fff;
-  padding: 2px 12px;
-  border-radius: 8px;
-  font-weight: 700;
-}
-
-/* ----------------------------------------------------------
-   TIMELINE SECTION — horizontal layout
-   Date above circle, amber dot, label below.
-   Connecting amber line drawn via ::before on the container.
-   ---------------------------------------------------------- */
-
-.fell-tl-horiz {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* Horizontal amber line connecting all four dots.
-   top = date cell min-height(60px) + gap(8px) + dot radius(10px) = 78px */
-.fell-tl-horiz::before {
-  content: '';
-  position: absolute;
-  left: 12.5%;   /* centre of first column  */
-  right: 12.5%;  /* centre of last column   */
-  top: 78px;
-  height: 3px;
-  background: var(--c-accent);
-  z-index: 0;
-}
-
-.fell-tl-h-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.fell-tl-h-date {
-  font-size: clamp(16px, 1.8vw, 26px);
-  font-weight: var(--fw-bold);
-  color: var(--c-primary);
-  text-align: center;
-  min-height: 60px;
-  display: flex;
-  align-items: flex-end;
-  line-height: 1.2;
-  padding: 0 4px;
-}
-
-.fell-tl-h-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.fell-tl-h-label {
-  font-size: clamp(13px, 1.4vw, 20px);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  text-align: center;
-  line-height: 1.4;
-  padding: 0 6px;
-}
-
-@media (max-width: 640px) {
-  .fell-tl-horiz {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .fell-tl-horiz::before { display: none; }
-  .fell-tl-h-item {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 14px;
-    text-align: left;
-  }
-  .fell-tl-h-date {
-    min-height: auto;
-    min-width: 130px;
-    align-items: flex-start;
-    font-size: 20px;
-    padding: 0;
-  }
-  .fell-tl-h-dot { margin-top: 4px; }
-  .fell-tl-h-label { text-align: left; padding: 0; font-size: 18px; }
-}
-
-/* ----------------------------------------------------------
-   APPLICATION PROCESS SECTION
-   Amber-bordered box: border=4px #d9982e, radius=27px, w=962, centered.
-   Inside: submission text + 2 doc cards side by side.
-   Text: 36px Regular #162752, bold date in #405893.
-   Doc cards: image (327x252px) + text (36px medium #2a427e).
-   ---------------------------------------------------------- */
-
-.fell-app-text {
-  font-size: 28px;
-  font-weight: var(--fw-regular);
-  color: var(--c-text-navy);
-  max-width: 1060px;
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.fell-app-date {
-  font-weight: var(--fw-bold);
-  color: var(--c-text-blue);
-}
-
-/* Docs heading: 26px bold #d9982e, centered. */
-.fell-docs-heading {
-  font-size: 26px;
-  font-weight: var(--fw-bold);
-  color: var(--c-amber-border);
-  text-align: center;
-  margin: 32px 0 24px;
-}
-
-/* Carousel outer: arrows on sides of the box. */
-.fell-carousel-outer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-/* Arrow buttons: 61px navy circles. */
-.fell-car-arrow {
-  width: 61px;
-  height: 61px;
-  border-radius: 50%;
-  background: var(--c-primary);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #fff;
-  transition: background 0.15s;
-}
-.fell-car-arrow:hover { background: #3a529e; }
-.fell-car-arrow svg { display: block; }
-
-/* Bordered container: 4px #d9982e, radius=27px, max-width=962px. */
-.fell-doc-box {
-  border: 4px solid var(--c-amber-border);
-  border-radius: 27px;
-  max-width: 962px;
-  width: 100%;
-  overflow: hidden;
-  flex: 1 1 962px;
-}
-
-/* Sliding track. */
-.fell-carousel-track {
-  display: flex;
-  transition: transform 0.35s ease;
-}
-
-/* Each slide = one doc card, full width. */
-.fell-doc-slide {
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 40px 60px;
-  box-sizing: border-box;
-}
-
-/* Each doc card: icon image + label + optional tip. */
-.fell-doc-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
-}
-
-.fell-doc-card img {
-  width: 260px;
-  height: 200px;
-  object-fit: contain;
-  display: block;
-}
-
-/* Doc label: 36px medium #2a427e. */
-.fell-doc-label {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  line-height: 1.3;
-  max-width: 376px;
-}
-
-.fell-doc-tip {
-  margin-top: 4px;
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  line-height: 1.5;
-  font-style: italic;
-  max-width: 760px;
-}
-
-/* Dot indicators below carousel. */
-.fell-car-dots {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.fell-car-dot {
-  width: 21px;
-  height: 21px;
-  border-radius: 50%;
-  background: #d9d9d9;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-  transition: background 0.2s;
-}
-
-.fell-car-dot.active {
-  background: var(--c-primary);
-}
-
-/* ----------------------------------------------------------
-   FELLOWSHIP CTA
-   Figma: rocket (180x124) → tagline text (23px #808080) → button.
-   ---------------------------------------------------------- */
-
-.fell-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px var(--page-px) 60px;
-  gap: 16px;
-}
-
-.fell-cta-rocket {
-  width: 100%;
-  max-width: 1100px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* CTA button: same as home page. */
-.fell-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 234px;
-  height: 42px;
-  background: var(--c-primary);
-  border-radius: var(--r-cta-btn);
-  font-size: var(--fs-tagline);
-  font-weight: var(--fw-regular);
-  color: #fff;
-  font-family: var(--font-main);
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.fell-cta-btn:hover {
-  background: var(--c-accent);
-  color: var(--c-primary);
-}
-
-/* ----------------------------------------------------------
-   RESPONSIVE ADJUSTMENTS
-   ---------------------------------------------------------- */
-
-@media (max-width: 1100px) {
-  .fell-benefits-row {
-    gap: 40px;
-  }
-  .fell-exp-grid {
-    column-gap: 40px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .fell-review-row {
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .fell-review-item {
-    max-width: 200px;
-    flex: 0 0 auto;
-  }
-  .fell-review-img {
-    width: 160px;
-  }
-  .fell-review-arrow {
-    transform: rotate(90deg);
-  }
-}
-
-@media (max-width: 900px) {
-  .fell-hero {
-    grid-template-columns: 1fr;
-  }
-  .fell-hero-right {
-    padding: 20px 20px 40px;
-    justify-content: center;
-    align-items: center;
-  }
-  .fell-illustration {
-    width: 100%;
-    height: auto;
-  }
-  .fell-obj-grid {
-    grid-template-columns: 1fr;
-  }
-  .fell-obj-img {
-    width: 100%;
-    height: auto;
-    justify-self: start;
-  }
-  .fell-exp-grid {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-    row-gap: 32px;
-  }
-  .fell-exp-portrait {
-    width: 100%;
-    height: auto;
-  }
-  .fell-elig-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .fell-elig-circle {
-    margin: 0 auto;
-  }
-  .fell-car-arrow {
-    width: 44px;
-    height: 44px;
-  }
-  .fell-carousel-outer {
-    gap: 12px;
-  }
-  .fell-doc-slide {
-    padding: 28px 32px;
-  }
-  .fell-tabs {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 12px;
-    gap: 8px;
-  }
-  .fell-tab {
-    border-right: none;
-    border-bottom: 1px solid rgba(217, 217, 217, 0.7);
-    flex: none;
-    width: 100%;
-    height: 48px;
-    justify-content: flex-start;
-    padding: 0 16px;
-  }
-  .fell-tab:last-child {
-    border-bottom: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .fell-hero-left {
-    padding: 40px 20px;
-  }
-  .fell-section {
-    padding: 36px 20px;
-  }
-  .fell-tabs-wrap {
-    padding: 24px 20px 0;
-  }
-  .fell-benefits-row {
-    gap: 32px;
-  }
-  .fell-benefit-circle {
-    width: 220px;
-    height: 220px;
-    font-size: 18px;
-    padding: 28px;
-  }
-  .fell-review-circle {
-    width: 220px;
-    height: 220px;
-    font-size: 17px;
-    padding: 28px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fellowship Programme | Dr Kasturirangan Trust</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="fellowship.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="site-nav">
-  <a href="index.html" class="nav-logo">
-    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:74px;width:auto;">
-  </a>
-  <ul class="nav-links">
-    <li>
-      <a href="vision.html">About Us <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="vision.html">Vision &amp; Mission</a>
-        <a href="team.html">Team</a>
-      </div>
-    </li>
-    <li>
-      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="kasturirangan.html">His Life</a>
-        <a href="#">Selected Writings</a>
-        <a href="testimonials.html">Memories</a>
-      </div>
-    </li>
-    <li>
-      <a href="fellowship.html">Initiatives <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="fellowship.html">Fellowship</a>
-      </div>
-    </li>
-    <li>
-      <a href="#">Useful Links <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="apply.html">Apply</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </li>
-  </ul>
-  <button class="nav-search-btn" aria-label="Search">
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
-      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </button>
-  <!-- Hamburger — visible only on mobile via shared.css -->
-  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
-          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </button>
-</nav>
-
-<!-- HERO -->
-<section class="fell-hero">
-  <div class="fell-hero-left">
-    <div class="fell-eyebrow-row">
-      <div class="fell-eyebrow-dot"></div>
-      <p class="fell-eyebrow">Dr Kasturirangan Trust</p>
-    </div>
-    <h1 class="fell-title">FELLOWSHIP PROGRAMME</h1>
-    <ul class="fell-bullets">
-      <li>Honouring Kasturirangan's legacy of nation-building through knowledge and education</li>
-      <li>Supporting research that transcends disciplinary boundaries</li>
-      <li>Financial support worth Rs 4 lakh for selected fellows</li>
-    </ul>
-  </div>
-  <div class="fell-hero-right">
-    <img class="fell-illustration"
-         src="assets/images/fellowship-illustration.png"
-         alt="Fellowship Programme Illustration">
-  </div>
-</section>
-
-<!-- BANNER STRIP — R7: nomination-only notice (Figma Rectangle 19, h=158, navy) -->
-<div class="fell-banner">
-  <p class="fell-banner-notice">
-    <strong>Please note that 2026 fellowship application is by nomination only.</strong>
-    An invited panel will nominate candidates for consideration.
-  </p>
-</div>
-
-<!-- DATE INFO BOXES — R9: Figma Rectangle 116 (left) and 117 (right), amber, staggered -->
-<div class="fell-dates-wrap">
-  <div class="fell-dates">
-    <div class="fell-date-pill">
-      <p class="fell-date-text">Nominations accepted from:<br>October 25, 2026</p>
-    </div>
-    <!-- Figma Vector 1: dashed string connecting the two date pills -->
-    <img class="fell-date-connector"
-         src="assets/images/fellowship-connector.png"
-         alt="">
-    <div class="fell-date-pill">
-      <p class="fell-date-text">Last date for submission:<br>December 31, 2026</p>
-    </div>
-  </div>
-</div>
-
-<!-- TAB NAV -->
-<div class="fell-tabs-wrap">
-  <nav class="fell-tabs" aria-label="Fellowship sections">
-    <a class="fell-tab" href="#objectives">
-      <img src="assets/images/icon-person.png" alt="">Objectives
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <a class="nav-logo" href="index.html" aria-label="Dr Kasturirangan Trust home">
+      <img class="nav-logo-icon" src="assets/fellowship/logo-icon.png" alt="">
+      <img class="nav-logo-text" src="assets/fellowship/logo-text.png" alt="Dr Kasturirangan Trust">
     </a>
-    <a class="fell-tab" href="#benefits">
-      <img src="assets/images/icon-gift.png" alt="">Benefits
-    </a>
-    <a class="fell-tab" href="#expectations">
-      <img src="assets/images/icon-goal.png" alt="">Expectations
-    </a>
-    <a class="fell-tab" href="#eligibility">
-      <img src="assets/images/icon-gforms.png" alt="">Eligibility
-    </a>
-    <a class="fell-tab" href="#review">
-      <img src="assets/images/icon-analyze.png" alt="">Review process
-    </a>
-    <a class="fell-tab" href="#timeline">
-      <img src="assets/images/icon-schedule.png" alt="">Timeline
-    </a>
-    <a class="fell-tab" href="#apply-section">
-      <img src="assets/images/icon-resume.png" alt="">Application process
-    </a>
-  </nav>
-</div>
-
-<!-- OBJECTIVES -->
-<section class="fell-section" id="objectives">
-  <p class="fell-kicker">ABOUT THE FELLOWSHIP</p>
-  <h2 class="fell-h2">Objectives</h2>
-  <div class="fell-obj-grid">
-    <ul class="fell-obj-list">
+    <ul class="nav-links" id="nav-links">
       <li>
-        Supports emerging leaders committed to improving existing methods and
-        systems to address major educational and societal challenges
+        <a href="#">About Us <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="#">Our Story</a></div>
       </li>
       <li>
-        Specifically targets individuals working on cross-disciplinary,
-        interdisciplinary, or multidisciplinary topics that connect science,
-        engineering, humanities, and social sciences
+        <a href="#">K. Kasturirangan <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="#">Biography</a></div>
+      </li>
+      <li>
+        <a href="#">Initiatives <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="fellowship.html">Fellowship</a></div>
+      </li>
+      <li>
+        <a href="#">Useful Links <span class="nav-chev"></span></a>
+        <div class="nav-dropdown"><a href="#">Resources</a></div>
       </li>
     </ul>
-    <img class="fell-obj-img"
-         src="assets/images/fellowship-header.png"
-         alt="Fellowship overview">
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="fell-section" id="benefits">
-  <p class="fell-kicker">WHAT THE FELLOWSHIP PROVIDES</p>
-  <h2 class="fell-h2">Fellowship benefits</h2>
-  <div class="fell-benefits-row">
-    <div class="fell-benefit-item">
-      <div class="fell-circle-inner">
-        <img class="fell-benefit-img" src="assets/images/fellowship-benefit-1.png" alt="Financial support">
-        <p class="fell-benefit-desc">Each fellowship will provide funding of &#8377;4 lakh for one year, with the possibility of renewal for an additional year.</p>
-      </div>
-    </div>
-    <div class="fell-benefit-item">
-      <div class="fell-circle-inner">
-        <img class="fell-benefit-img" src="assets/images/fellowship-benefit-2.png" alt="Mentorship">
-        <p class="fell-benefit-desc">Fellows will have opportunities to talk to/interact with eminent individuals across various fields, throughout the year to exchange ideas, discuss progress, and receive guidance.</p>
-      </div>
-    </div>
-    <div class="fell-benefit-item">
-      <div class="fell-circle-inner">
-        <img class="fell-benefit-img" src="assets/images/fellowship-benefit-3.png" alt="Workshops">
-        <p class="fell-benefit-desc">Two online/physical workshops where fellows present their work and participate in an informal review session with invited experts and peers.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPECTATIONS -->
-<section class="fell-section" id="expectations">
-  <div class="fell-exp-grid">
-    <img class="fell-exp-portrait"
-         src="assets/images/sir-portrait.png"
-         alt="Dr Kasturirangan">
-    <div class="fell-exp-right">
-      <p class="fell-kicker">RESPONSIBILITIES</p>
-      <h2 class="fell-h2">Expectations from Fellows</h2>
-      <div class="fell-exp-row">
-        <div class="fell-exp-icon-wrap">
-          <img class="fell-exp-icon" src="assets/images/icon-meeting.png" alt="">
-        </div>
-        <p>Attend and actively participate in workshops and mentoring events
-           over the period of fellowship</p>
-      </div>
-      <div class="fell-exp-row">
-        <div class="fell-exp-icon-wrap">
-          <img class="fell-exp-icon" src="assets/images/icon-training.png" alt="">
-        </div>
-        <p>Present vision and updates on ongoing work during designated times</p>
-      </div>
-      <div class="fell-exp-row">
-        <div class="fell-exp-icon-wrap">
-          <img class="fell-exp-icon" src="assets/images/icon-goal.png" alt="">
-        </div>
-        <p>Uphold and demonstrate the values of<br>Dr Kasturirangan in the professional sphere</p>
-      </div>
-      <div class="fell-exp-row">
-        <div class="fell-exp-icon-wrap">
-          <img class="fell-exp-icon" src="assets/images/icon-person.png" alt="">
-        </div>
-        <p>Fellows from prior cohorts are encouraged to continue participating in the Trust's events to build and sustain a lasting community</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ELIGIBILITY -->
-<section class="fell-section" id="eligibility">
-  <p class="fell-kicker">CURRENT CALL</p>
-  <h2 class="fell-h2">Eligibility</h2>
-  <!-- R16: 3-point eligibility (Figma y=3434: no self-nominations; PhD Jan 2025–Dec 2026; peer-reviewed) -->
-  <div class="fell-elig-layout">
-    <div class="fell-elig-box">
-      No self-nominations are allowed. Candidate must be nominated by someone from the invited pool of experts.
-    </div>
-    <div class="fell-elig-box">
-      Nominated candidate must have submitted a PhD thesis between January 01, 2025 to December 31, 2026.
-    </div>
-    <div class="fell-elig-box">
-      Nominated candidate must have demonstrated research ability through peer-reviewed publications or conference presentations.
-    </div>
-  </div>
-</section>
-
-<!-- REVIEW PROCESS -->
-<section class="fell-section" id="review">
-  <p class="fell-kicker">HOW FELLOWS ARE CHOSEN</p>
-  <h2 class="fell-h2">Review process</h2>
-  <div class="fell-review-row">
-    <div class="fell-review-item">
-      <div class="fell-review-inner">
-        <img class="fell-review-img" src="assets/images/fellowship-review-1.png" alt="Nomination">
-        <p class="fell-review-desc">Invited individuals who knew Dr. Kasturirangan well and from selected central universities will nominate candidates.</p>
-      </div>
-    </div>
-    <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
-    <div class="fell-review-item">
-      <div class="fell-review-inner">
-        <img class="fell-review-img" src="assets/images/fellowship-review-2.png" alt="Shortlisting">
-        <p class="fell-review-desc">A distinguished jury of experts will evaluate the applications and prepare a shortlist based on merit and alignment with the trust&rsquo;s values and objectives.</p>
-      </div>
-    </div>
-    <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
-    <div class="fell-review-item">
-      <div class="fell-review-inner">
-        <img class="fell-review-img" src="assets/images/fellowship-review-3.png" alt="Interviews">
-        <p class="fell-review-desc">Shortlisted candidates will be notified, and interviews will be scheduled with a panel.</p>
-      </div>
-    </div>
-    <span class="fell-review-arrow" aria-hidden="true">&rarr;</span>
-    <div class="fell-review-item">
-      <div class="fell-review-inner">
-        <img class="fell-review-img" src="assets/images/fellowship-review-4.png" alt="Announcement">
-        <p class="fell-review-desc">Selected fellows will be announced on <span class="fell-announce-date">April 25, 2027</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TIMELINE -->
-<section class="fell-section" id="timeline">
-  <p class="fell-kicker">KEY DATES</p>
-  <h2 class="fell-h2">Timeline</h2>
-  <div class="fell-tl-horiz">
-    <div class="fell-tl-h-item">
-      <div class="fell-tl-h-date">Oct 25, 2026</div>
-      <div class="fell-tl-h-dot"></div>
-      <div class="fell-tl-h-label">Nomination window opens</div>
-    </div>
-    <div class="fell-tl-h-item">
-      <div class="fell-tl-h-date">Dec 31, 2026</div>
-      <div class="fell-tl-h-dot"></div>
-      <div class="fell-tl-h-label">Last date of submission</div>
-    </div>
-    <div class="fell-tl-h-item">
-      <div class="fell-tl-h-date">March 2027</div>
-      <div class="fell-tl-h-dot"></div>
-      <div class="fell-tl-h-label">Shortlisted candidates invited for an interview</div>
-    </div>
-    <div class="fell-tl-h-item">
-      <div class="fell-tl-h-date">April 25, 2027</div>
-      <div class="fell-tl-h-dot"></div>
-      <div class="fell-tl-h-label">Fellows announced</div>
-    </div>
-  </div>
-</section>
-
-<!-- APPLICATION PROCESS -->
-<section class="fell-section" id="apply-section">
-  <p class="fell-kicker">HOW TO APPLY</p>
-  <h2 class="fell-h2">Application process</h2>
-  <p class="fell-app-text">
-    Please remember that this is a closed call and candidates have to be nominated by an invited panel.
-  </p>
-  <p class="fell-docs-heading">
-    These are the documents that need to be submitted as part of the nomination:
-  </p>
-  <div class="fell-carousel-outer">
-    <button class="fell-car-arrow fell-car-prev" aria-label="Previous document">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13 5L7 11L13 17" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <button class="nav-search-btn" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="8.5" cy="8.5" r="5.75" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M13 13L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </button>
-    <div class="fell-doc-box">
-      <div class="fell-carousel-track" id="fellDocTrack">
-        <!-- Slide 1: Nomination letter -->
-        <div class="fell-doc-slide">
-          <div class="fell-doc-card">
-            <img src="assets/images/icon-meeting.png" alt="">
-            <p class="fell-doc-label">Nomination letter on official letterhead and bearing original or authenticated signatures.</p>
-            <p class="fell-doc-tip">Tip for the nominator: The letter must demonstrate the nature of your relationship with the nominee and their familiarity with their work.</p>
-          </div>
-        </div>
-        <!-- Slide 2: CV + PhD -->
-        <div class="fell-doc-slide">
-          <div class="fell-doc-card">
-            <img src="assets/images/icon-resume.png" alt="">
-            <p class="fell-doc-label">Candidate&rsquo;s Curriculum Vitae (maximum 2 pages)</p>
-            <p class="fell-doc-label">Proof of candidate&rsquo;s PhD thesis submission</p>
-          </div>
-        </div>
-        <!-- Slide 3: Statement of purpose -->
-        <div class="fell-doc-slide">
-          <div class="fell-doc-card">
-            <img src="assets/images/icon-analyze.png" alt="">
-            <p class="fell-doc-label">Candidate&rsquo;s statement of purpose (maximum 1000 words) clearly outlining how their research aligns with the Trust&rsquo;s objectives, their motivations, and how the funds can help them.</p>
-            <p class="fell-doc-tip">Tip for candidate: Try to demonstrate the interdisciplinarity of your work, its anticipated impact, and its relevance to academic, corporate, or public policy</p>
-          </div>
-        </div>
-        <!-- Slide 4: Budget proposal -->
-        <div class="fell-doc-slide">
-          <div class="fell-doc-card">
-            <img src="assets/images/icon-gforms.png" alt="">
-            <p class="fell-doc-label">Budget proposal outlining how the funds will be used by the candidate to support their proposed research and professional development.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="fell-car-arrow fell-car-next" aria-label="Next document">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 5L15 11L9 17" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </button>
-  </div>
-  <div class="fell-car-dots" id="fellDocDots">
-    <button class="fell-car-dot active" aria-label="Slide 1"></button>
-    <button class="fell-car-dot" aria-label="Slide 2"></button>
-    <button class="fell-car-dot" aria-label="Slide 3"></button>
-    <button class="fell-car-dot" aria-label="Slide 4"></button>
-  </div>
-</section>
-
-<script>
-(function() {
-  var track = document.getElementById('fellDocTrack');
-  var dots = document.querySelectorAll('#fellDocDots .fell-car-dot');
-  var total = 4;
-  var current = 0;
-
-  function goTo(idx) {
-    current = (idx + total) % total;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dots.forEach(function(d, i) {
-      d.classList.toggle('active', i === current);
-    });
-  }
-
-  document.querySelector('.fell-car-prev').addEventListener('click', function() { goTo(current - 1); });
-  document.querySelector('.fell-car-next').addEventListener('click', function() { goTo(current + 1); });
-  dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
-})();
-</script>
-
-<!-- FELLOWSHIP CTA — combined rocket+tagline image, then Apply button -->
-<div class="fell-cta">
-  <img class="fell-cta-rocket"
-       src="assets/images/rocket-tagline.png"
-       alt="Cultivating Excellence. Futures Thinking. Advancing Humanity.">
-  <a href="apply.html" class="fell-cta-btn">Apply for Fellowships</a>
-</div>
-
-<!-- FOOTER RULE -->
-<div class="footer-rule-wrap">
-  <div class="footer-rule"></div>
-  <div class="footer-dot"></div>
-</div>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="vision.html">About Us</a>
-    <a href="kasturirangan.html">K. Kasturirangan</a>
-    <a href="fellowship.html">Initiatives</a>
-    <a href="#">Useful Links</a>
   </nav>
-  <div class="footer-addr-block">
-    <p class="footer-addr">
+
+  <!-- ============================================================
+       1. HERO
+       Grey bg. Left: org label + title + bullets. Right: illustration.
+       Navy banner at bottom.
+       ============================================================ -->
+  <section class="fp-hero">
+    <div class="fp-hero-grid">
+      <div class="fp-hero-left">
+        <div class="fp-hero-label">
+          <div class="fp-hero-dot" aria-hidden="true"></div>
+          <div>
+            <div class="fp-hero-org">Dr Kasturirangan Trust</div>
+            <h1 class="fp-hero-prog">FELLOWSHIP PROGRAMME</h1>
+          </div>
+        </div>
+        <ul class="fp-hero-bullets">
+          <li>Honouring Kasturirangan&#8217;s legacy of nation-building through knowledge and education</li>
+          <li>Supporting research that transcends disciplinary boundaries</li>
+          <li>Financial support worth Rs 4 lakh for selected fellows</li>
+        </ul>
+      </div>
+      <div class="fp-hero-illus">
+        <img src="assets/fellowship/hero-illustration.png"
+             alt="Line illustration of Dr K. Kasturirangan surrounded by symbols of science and knowledge">
+      </div>
+    </div>
+    <div class="fp-hero-banner">
+      <p>Please note that 2027 fellowship application is by nomination only.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. NOMINATIONS
+       Intro text + two staggered amber pills + dashed connector.
+       ============================================================ -->
+  <section class="fp-nominations">
+    <p class="fp-noms-intro">
+      Candidates are nominated by invited individuals from two groups:<br>
+      those who knew Dr. Kasturirangan well, and those from selected central universities.
+    </p>
+    <div class="fp-pills-wrap">
+      <div class="fp-pill fp-pill-left">
+        <span class="fp-pill-label">Nominations accepted from:</span>
+        <span class="fp-pill-date">October 25, 2026</span>
+      </div>
+      <div class="fp-conn-wrap" aria-hidden="true">
+        <img src="assets/fellowship/connector.svg" alt="" width="298" height="110">
+      </div>
+      <div class="fp-pill fp-pill-right">
+        <span class="fp-pill-label">Last date for submission:</span>
+        <span class="fp-pill-date">December 31, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. SECTION SUBNAV
+       Bordered box with 7 icon+label items, vertical dividers between.
+       ============================================================ -->
+  <nav class="fp-subnav" aria-label="Fellowship page sections">
+    <div class="fp-subnav-inner">
+      <a href="#objectives" class="fp-snav-item">
+        <img src="assets/fellowship/icon-person.png" class="fp-snav-icon" alt="">
+        <span>Objectives</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#benefits" class="fp-snav-item">
+        <img src="assets/fellowship/icon-gift.png" class="fp-snav-icon" alt="">
+        <span>Benefits</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#expectations" class="fp-snav-item">
+        <img src="assets/fellowship/icon-goal.png" class="fp-snav-icon" alt="">
+        <span>Expectations</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#eligibility" class="fp-snav-item">
+        <img src="assets/fellowship/icon-forms.png" class="fp-snav-icon" alt="">
+        <span>Eligibility</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#review" class="fp-snav-item">
+        <img src="assets/fellowship/icon-analyze.png" class="fp-snav-icon" alt="">
+        <span>Review<br>process</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#timeline" class="fp-snav-item">
+        <img src="assets/fellowship/icon-schedule.png" class="fp-snav-icon" alt="">
+        <span>Timeline</span>
+      </a>
+      <span class="fp-snav-div" aria-hidden="true"></span>
+      <a href="#application" class="fp-snav-item">
+        <img src="assets/fellowship/icon-resume.png" class="fp-snav-icon" alt="">
+        <span>Application<br>process</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       4. OBJECTIVES
+       ============================================================ -->
+  <section id="objectives" class="fp-section">
+    <div class="fp-inner">
+      <div class="fp-obj-grid">
+        <div class="fp-obj-left">
+          <span class="fp-eyebrow">ABOUT THE FELLOWSHIP</span>
+          <h2 class="fp-h2">Objectives</h2>
+          <ul class="fp-text-bullets">
+            <li>Supports emerging leaders committed to improving existing methods and systems to address educational and societal challenges.</li>
+            <li>Specifically targets individuals working on cross-disciplinary, interdisciplinary, or multidisciplinary topics that connect science, engineering, humanities, and social sciences.</li>
+          </ul>
+        </div>
+        <div class="fp-obj-photo">
+          <img src="assets/fellowship/objectives-photo.png"
+               alt="Researcher looking through a microscope in a laboratory">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       5. BENEFITS  —  3 amber circles with SVG text-path labels
+       Benefit circle arc: M 22 135 A 113 113 0 0 1 248 135
+       sweep=1 (clockwise) traces the top arc; text label at 50% offset
+       appears at top of circle.
+       ============================================================ -->
+  <section id="benefits" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">WHAT THE FELLOWSHIP PROVIDES</span>
+      <h2 class="fp-h2">Fellowship benefits</h2>
+      <div class="fp-circles-row">
+
+        <!-- Circle 1: Financial support -->
+        <div class="fp-circ">
+          <svg class="fp-circ-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Financial support: Each fellowship will provide funding of ₹4 lakh for one year, with the possibility of renewal for an additional year.">
+            <circle cx="135" cy="135" r="134" fill="#d39d47"/>
+            <defs>
+              <path id="b1-arc" d="M 22 135 A 113 113 0 0 1 248 135"/>
+            </defs>
+            <text text-anchor="middle" font-size="18" fill="#2a427e"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#b1-arc" startOffset="50%">Financial support</textPath>
+            </text>
+          </svg>
+          <div class="fp-circ-body" aria-hidden="true">
+            <p>Each fellowship will provide funding of &#x20b9;4 lakh for one year, with the possibility of renewal for an additional year.</p>
+          </div>
+        </div>
+
+        <!-- Circle 2: Mentorship -->
+        <div class="fp-circ">
+          <svg class="fp-circ-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Mentorship: Fellows will have opportunities to interact with eminent individuals across various fields throughout the year.">
+            <circle cx="135" cy="135" r="134" fill="#d39d47"/>
+            <defs>
+              <path id="b2-arc" d="M 22 135 A 113 113 0 0 1 248 135"/>
+            </defs>
+            <text text-anchor="middle" font-size="18" fill="#2a427e"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#b2-arc" startOffset="50%">Mentorship</textPath>
+            </text>
+          </svg>
+          <div class="fp-circ-body" aria-hidden="true">
+            <p>Fellows will have opportunities to talk to/interact with eminent individuals across various fields, throughout the year to exchange ideas, discuss progress, and receive guidance.</p>
+          </div>
+        </div>
+
+        <!-- Circle 3: Workshops -->
+        <div class="fp-circ">
+          <svg class="fp-circ-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Workshops: Two online/physical workshops where fellows present their work with invited experts and peers.">
+            <circle cx="135" cy="135" r="134" fill="#d39d47"/>
+            <defs>
+              <path id="b3-arc" d="M 22 135 A 113 113 0 0 1 248 135"/>
+            </defs>
+            <text text-anchor="middle" font-size="18" fill="#2a427e"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#b3-arc" startOffset="50%">Workshops</textPath>
+            </text>
+          </svg>
+          <div class="fp-circ-body" aria-hidden="true">
+            <p>Two online/physical workshops where fellows present their work and participate in an informal review session with invited experts and peers.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       6. EXPECTATIONS
+       Fellow photo on left; header + 4 rows on right.
+       Each row: amber bullet circle + icon + cream text box.
+       ============================================================ -->
+  <section id="expectations" class="fp-section">
+    <div class="fp-inner">
+      <div class="fp-exp-grid">
+
+        <!-- Left: Dr K photo with ISRO rocket -->
+        <div class="fp-exp-photo">
+          <img src="assets/fellowship/fellow-photo.png"
+               alt="Dr K. Kasturirangan at the ISRO facility">
+        </div>
+
+        <!-- Right: header + 4 expectation rows -->
+        <div class="fp-exp-right">
+          <span class="fp-eyebrow">RESPONSIBILITIES</span>
+          <h2 class="fp-h2">Expectations from Fellows</h2>
+
+          <!-- Row 1 -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <img class="fp-exp-icon" src="assets/fellowship/meeting-room.png" alt="">
+            </div>
+            <div class="fp-exp-text">
+              <p>Attend and actively participate in workshops and mentoring events over the period of fellowship</p>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <img class="fp-exp-icon" src="assets/fellowship/training.png" alt="">
+            </div>
+            <div class="fp-exp-text">
+              <p>Present vision and updates on ongoing work during designated times</p>
+            </div>
+          </div>
+
+          <!-- Row 3: values icon SVG (original 0 bytes — inline star) -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <svg class="fp-exp-icon" viewBox="0 0 60 60" fill="white" aria-hidden="true">
+                <path d="M30 8L34.5 22.5H49.5L38 31L42.5 45L30 36.5L17.5 45L22 31L10.5 22.5H25.5L30 8Z"/>
+              </svg>
+            </div>
+            <div class="fp-exp-text">
+              <p>Uphold and demonstrate the values of Dr Kasturirangan in the professional sphere</p>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="fp-exp-row">
+            <div class="fp-exp-bullet">
+              <svg class="fp-exp-circ" viewBox="0 0 136 136" aria-hidden="true">
+                <circle cx="68" cy="68" r="67" fill="#d39d47"/>
+              </svg>
+              <img class="fp-exp-icon" src="assets/fellowship/icon-bucket.png" alt="">
+            </div>
+            <div class="fp-exp-text">
+              <p>Fellows from prior cohorts are encouraged to continue participating in the Trust&#8217;s events to build and sustain a lasting community</p>
+            </div>
+          </div>
+
+        </div><!-- /.fp-exp-right -->
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       7. ELIGIBILITY  —  3 cream boxes (widths ~490:317:396)
+       ============================================================ -->
+  <section id="eligibility" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">CURRENT CALL</span>
+      <h2 class="fp-h2">Eligibility</h2>
+      <div class="fp-elig-row">
+        <div class="fp-elig-box">
+          <p><strong>No self-nominations are allowed.</strong> Candidate must be nominated by invited individuals from two groups: those who knew Dr. Kasturirangan well, and those from selected central universities.</p>
+        </div>
+        <div class="fp-elig-box">
+          <p>Nominated candidate must have submitted a PhD thesis <strong>between January 01, 2025 to October 23, 2026</strong>.</p>
+        </div>
+        <div class="fp-elig-box">
+          <p>Nominated candidate must have demonstrated research ability through peer-reviewed publications or conference presentations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       8. REVIEW PROCESS  —  4 navy circles, arrows between
+       Review circle arc: M 22 135 A 113 113 0 0 1 248 135
+       "Announcement" circle has amber rect near bottom for the date.
+       ============================================================ -->
+  <section id="review" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">HOW FELLOWS ARE CHOSEN</span>
+      <h2 class="fp-h2">Review process</h2>
+      <div class="fp-review-row">
+
+        <!-- Circle 1: Nomination -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 1 Nomination: Candidates are nominated by invited individuals.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r1-arc" d="M 22 135 A 113 113 0 0 1 248 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r1-arc" startOffset="50%">Nomination</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>Candidates are nominated by invited individuals from two groups: those who knew Dr. Kasturirangan well, and those from selected central universities.</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fp-review-arrow" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <path d="M6 20h28M26 12l8 8-8 8" stroke="#2a427e" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Circle 2: Shortlisting -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 2 Shortlisting: A distinguished jury evaluates and shortlists applications.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r2-arc" d="M 18 135 A 117 117 0 0 1 252 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r2-arc" startOffset="50%">Shortlisting</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>A distinguished jury of experts will evaluate the applications and prepare a shortlist based on merit and alignment with the Trust&#8217;s values and objectives.</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fp-review-arrow" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <path d="M6 20h28M26 12l8 8-8 8" stroke="#2a427e" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Circle 3: Interviews -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 3 Interviews: Shortlisted candidates are invited for interviews.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r3-arc" d="M 22 135 A 113 113 0 0 1 248 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r3-arc" startOffset="50%">Interviews</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>Shortlisted candidates will be notified, and interviews will be scheduled with a panel.</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fp-review-arrow" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <path d="M6 20h28M26 12l8 8-8 8" stroke="#2a427e" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Circle 4: Announcement -->
+        <div class="fp-rcirc">
+          <svg class="fp-rcirc-svg" viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Step 4 Announcement: Selected fellows announced on April 25, 2027.">
+            <circle cx="135" cy="135" r="134" fill="#2a427e"/>
+            <defs><path id="r4-arc" d="M 12 135 A 123 123 0 0 1 258 135"/></defs>
+            <text text-anchor="middle" font-size="18" fill="#fff"
+                  font-family="Afacad, sans-serif" font-weight="700" letter-spacing="0.8">
+              <textPath href="#r4-arc" startOffset="50%">Announcement</textPath>
+            </text>
+          </svg>
+          <div class="fp-rcirc-body" aria-hidden="true">
+            <p>Selected fellows will be announced on <span class="fp-announce-date">April 25, 2027</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       9. TIMELINE  —  vertical line, amber dots, date + label pairs
+       ============================================================ -->
+  <section id="timeline" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">KEY DATES</span>
+      <h2 class="fp-h2">Timeline</h2>
+      <div class="fp-tl-wrap">
+
+        <p class="fp-tl-date">Oct 25, 2026</p>
+        <div class="fp-tl-dot" aria-hidden="true"></div>
+        <p class="fp-tl-label">Nomination window opens</p>
+
+        <p class="fp-tl-date">Dec 31, 2026</p>
+        <div class="fp-tl-dot" aria-hidden="true"></div>
+        <p class="fp-tl-label">Last date of submission</p>
+
+        <p class="fp-tl-date">March 2027</p>
+        <div class="fp-tl-dot" aria-hidden="true"></div>
+        <p class="fp-tl-label">Shortlisted candidates invited for an interview</p>
+
+        <p class="fp-tl-date">April 25, 2027</p>
+        <div class="fp-tl-dot fp-tl-dot-play" aria-hidden="true">
+          <img src="assets/fellowship/icon-play.png" alt="">
+        </div>
+        <p class="fp-tl-label">Fellows announced</p>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fp-rule" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       10. APPLICATION
+       Navy left banner → amber-bordered box (intro text + 2 docs + nav)
+       ============================================================ -->
+  <section id="application" class="fp-section">
+    <div class="fp-inner">
+      <span class="fp-eyebrow">HOW TO APPLY</span>
+      <h2 class="fp-h2">Application process</h2>
+
+      <!-- Navy left-rounded banner -->
+      <div class="fp-app-banner">
+        <p>Please note that formal applications are only by nomination.</p>
+      </div>
+
+      <!-- Amber-bordered box -->
+      <div class="fp-app-box">
+        <p class="fp-app-intro">
+          The nomination application must include the following documents and must be sent to
+          <strong>info@drkasturirangantrust.org by December 31, 2026</strong>.
+        </p>
+
+        <!-- Both required documents shown -->
+        <div class="fp-app-docs">
+          <div class="fp-app-doc-row">
+            <img class="fp-doc-img" src="assets/fellowship/doc-cv.png" alt="Sample Curriculum Vitae">
+            <div class="fp-doc-text">
+              Curriculum Vitae <span class="fp-doc-sub">(maximum 2 pages)</span>
+            </div>
+          </div>
+          <div class="fp-app-doc-row">
+            <img class="fp-doc-img" src="assets/fellowship/doc-phd.png"
+                 alt="Proof of PhD completion or thesis submission">
+            <div class="fp-doc-text">
+              Proof of PhD completion or thesis submission between January 01, 2025 and October 23, 2026
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel nav row (back / dots / next) -->
+        <div class="fp-app-nav">
+          <button class="fp-carousel-btn" aria-label="Previous">
+            <img src="assets/fellowship/btn-back.png" alt="">
+          </button>
+          <div class="fp-carousel-dots" role="group" aria-label="Document pages">
+            <button class="fp-dot fp-dot-active" aria-label="Page 1"></button>
+            <button class="fp-dot" aria-label="Page 2"></button>
+          </div>
+          <button class="fp-carousel-btn" aria-label="Next">
+            <img src="assets/fellowship/btn-next.png" alt="">
+          </button>
+        </div>
+      </div>
+
+      <p class="fp-app-note">
+        Applications with incomplete documentation or without nomination will be rejected
+        and not be considered any further.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       11. CTA
+       ============================================================ -->
+  <section class="fp-cta">
+    <div class="fp-cta-inner">
+      <img src="assets/fellowship/rocket.png" alt="" class="fp-cta-rocket" aria-hidden="true">
+      <a href="#" class="fp-cta-btn">Apply for Fellowships</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <div class="footer-rule-wrap">
+    <div class="footer-rule"></div>
+    <div class="footer-dot"></div>
+  </div>
+
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#">About Us</a>
+      <a href="#">K. Kasturirangan</a>
+      <a href="#">Initiatives</a>
+      <a href="#">Useful Links</a>
+    </nav>
+
+    <div class="footer-addr">
       <strong>Dr Kasturirangan Trust</strong><br>
       Alder 1002,<br>
-      Godrej Woodsman Estate, Hebbal,<br>
-      Bengaluru &ndash; 560045
-    </p>
-    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
-  </div>
-  <div class="footer-contact">
-    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
-    <a href="mailto:info@drkasturirangantrust.org">
-      info@drkasturirangantrust.org
-    </a>
-    <div class="footer-social">
-      <a href="#" aria-label="Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+      Godrej Woodsman Estate, Hebbal, Bengaluru &#8211; 560045
+      <a href="#" class="footer-map-btn" style="margin-top:12px;display:inline-flex;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
         </svg>
-      </a>
-      <a href="#" aria-label="Facebook">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        View on Map
       </a>
     </div>
-  </div>
-</footer>
 
-<script src="nav.js"></script>
+    <div class="footer-contact">
+      <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+      <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Hamburger nav */
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks  = document.getElementById('nav-links');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', String(open));
+      });
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,199 @@
+/* vision.css — Vision & Mission page
+   Pixel positions from Figma node yv1BNsSxoz6yRcWDqqDxyi / 1029:890
+   and Anima export. Y-coords: Anima y − 101px (nav height). X unchanged.
+   Page canvas: 1440px wide × ~3960px content height. */
+
+/* ── PAGE WRAPPER ─────────────────────────────────────────── */
+.vm-wrap {
+  position: relative;
+  width: 1440px;
+  min-height: 3960px;
+  background: #fff;
+  overflow-x: clip;
+}
+
+/* ── MISSION SECTION ──────────────────────────────────────── */
+/* Section is a positioning context for the quotes; no overflow clip —
+   the gray rule below covers any bleed. */
+.vm-mission-section {
+  position: absolute;
+  top: 11px; left: 0;
+  width: 1440px; height: 461px;
+  background: #fffcf6;
+}
+
+/* Large decorative quote marks (Agdasima 300px) — children of vm-mission-section */
+.vm-quote {
+  position: absolute;
+  width: 93px;
+  font-family: var(--font-deco);
+  font-size: 300px;
+  font-weight: 400;
+  color: #d9982e;
+  line-height: 1;
+  white-space: nowrap;
+  margin: 0;
+  pointer-events: none;
+}
+
+/* Mission statement text — section-relative top=112 (7rem) */
+.vm-mission-text {
+  position: absolute;
+  top: 112px;
+  left: calc(50% - 330px);
+  width: 661px;
+  font-family: var(--font-main);
+  font-size: 36px;
+  color: #b37a1e;
+  line-height: 46px;
+  text-align: center;
+  margin: 0;
+}
+
+/* Decorative layer image — section-relative left=154, top=257 */
+.vm-layer {
+  position: absolute;
+  top: 257px; left: 154px;
+  width: 95px; height: 204px;
+  object-fit: cover;
+}
+
+/* ── HORIZONTAL RULES ─────────────────────────────────────── */
+.vm-gray-rule {
+  position: absolute;
+  left: 0; height: 3px;
+  background: #e4e4e4;
+}
+.vm-amber-rule {
+  position: absolute;
+  height: 3px;
+  background: #ffb338;
+}
+
+/* ── AMBER SECTION DOTS (heading markers) ─────────────────── */
+.vm-dot {
+  position: absolute;
+  width: 32px; height: 32px;
+  border-radius: 16px;
+  background: #ffb337;
+}
+
+/* ── HEADINGS ─────────────────────────────────────────────── */
+.vm-h1, .vm-h2 {
+  position: absolute;
+  left: 72px;
+  font-family: var(--font-main);
+  font-size: 36px;
+  font-weight: 700;
+  color: #2a417d;
+  line-height: normal;
+  margin: 0;
+}
+
+/* ── BODY TEXT ────────────────────────────────────────────── */
+.vm-body {
+  position: absolute;
+  font-family: var(--font-main);
+  font-size: 24px;
+  color: #2a417d;
+  line-height: 35px;
+  margin: 0;
+}
+.vm-body a {
+  font-weight: 700;
+  color: #cd850f;
+}
+.vm-body a:hover { text-decoration: underline; }
+
+/* ── LEGACY SECTION ───────────────────────────────────────── */
+.vm-deco-circle {
+  position: absolute;
+  left: 916px; top: 774px;
+  width: 392px; height: 392px;
+  border-radius: 50%;
+  background: #ffb337;
+}
+.vm-legacy-photo {
+  position: absolute;
+  top: 798px; left: 791px;
+  width: 585px; height: 390px;
+  object-fit: cover;
+}
+
+/* ── ETHOS SECTION ────────────────────────────────────────── */
+.vm-ethos-ellipse {
+  position: absolute;
+  top: 1537px;
+  width: 198px; height: 197px;
+}
+.vm-ethos-title  { position: absolute; }
+.vm-ethos-quest  { position: absolute; }
+
+/* ── OBJECTIVE CARDS ──────────────────────────────────────── */
+.vm-obj-card {
+  position: absolute;
+  border-radius: 26px;
+  background: #fff6e6;
+}
+.vm-obj-tag {
+  position: absolute;
+  height: 45px; width: 223px;
+  border-radius: 15px;
+  background: #2a417d;
+}
+.vm-obj-label {
+  position: absolute;
+  width: 223px;
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 45px;
+  margin: 0;
+  white-space: nowrap;
+}
+.vm-obj-desc {
+  position: absolute;
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 24px;
+  color: #2a417d;
+  line-height: normal;
+  margin: 0;
+}
+
+/* ── FOCUS AREA CARDS ─────────────────────────────────────── */
+.vm-focus-card {
+  position: absolute;
+  top: 2754px;
+  height: 330px; width: 274px;
+  border-radius: 27px;
+  background: #fff6e6;
+}
+.vm-focus-img {
+  position: absolute;
+  top: 2770px;
+  height: 197px; width: 191px;
+  object-fit: cover;
+}
+.vm-focus-text {
+  position: absolute;
+  top: 2976px;
+  width: 261px;
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 24px;
+  color: #2a417d;
+  line-height: normal;
+  margin: 0;
+}
+
+/* ── PARTNERSHIPS BOX ─────────────────────────────────────── */
+.vm-partner-box {
+  position: absolute;
+  left: 740px; top: 3327px;
+  width: 754px; height: 575px;
+  border-radius: 27px;
+  background: #fff6e6;
+}
