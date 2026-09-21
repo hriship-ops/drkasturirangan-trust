@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Agdasima&display=swap');
-
-/* --- DESIGN TOKENS ---------------------------------------------
+﻿/* --- DESIGN TOKENS ---------------------------------------------
    All values extracted programmatically from Figma node data.
    Colors: from fills[].color hex. Sizes: from text-node style.
    Radius: from cornerRadius. Spacing: from layout coordinates.
