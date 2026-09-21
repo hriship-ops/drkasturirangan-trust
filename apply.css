@@ -1,0 +1,210 @@
+/* apply.css — Apply / nomination page
+   All coordinates from Anima React export (Apply.tsx) + Figma.
+   wrap_y = Anima_absolute_y − 113 (nav height).
+   1440px fixed canvas, desktop-first. */
+
+/* ─── 1. NOMINATION DATES ──────────────────────────────────────
+   Figma: section top 113px (after nav), h 459px, bg #fffcf6.
+   Two staggered label+date pairs connected by an arrow SVG.
+   ─────────────────────────────────────────────────────────────── */
+.ap-dates {
+  position: relative;
+  height: 459px;
+  background: #fffcf6;
+  border-bottom: 3px solid #e9a12d;
+}
+
+/* Soft amber pill behind each label+date pair */
+.ap-dates-pill {
+  position: absolute;
+  height: 136px;
+  width: 416px;
+  background: #fff6e6;
+  border-radius: 27px;
+}
+.ap-dates-pill--left  { left: 88px;  top: 88px; }
+.ap-dates-pill--right { left: 933px; top: 200px; }
+
+/* "Nominations accepted from:" / "Last date for submission:" */
+.ap-dates-label {
+  position: absolute;
+  width: 416px;
+  font-size: 32px;
+  font-weight: 400;
+  color: #405893;       /* --c-text-blue */
+  text-align: center;
+  line-height: 1.3;
+  margin: 0;
+}
+.ap-dates-label--left  { left: 88px;  top: 107px; }
+.ap-dates-label--right { left: 933px; top: 218px; }
+
+/* Amber rounded date pill (October 25 / December 31) */
+.ap-date-box {
+  position: absolute;
+  height: 95px;
+  background: #e9a12d;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ap-date-box--left  { left: 159px; top: 169px; width: 276px; }
+.ap-date-box--right { left: 988px; top: 280px; width: 308px; }
+
+.ap-date-box time {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+/* Connector arrow between the two date groups */
+.ap-dates-connector {
+  position: absolute;
+  left: 526px;
+  top: 145px;
+  width: 387px;
+  height: 142px;
+}
+
+/* ─── 2. NOTICE BANNER ─────────────────────────────────────────
+   Figma: top 575px, h 74px, bg #2a417d, text 32px bold white.
+   ─────────────────────────────────────────────────────────────── */
+.ap-banner {
+  height: 74px;
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  padding: 0 var(--page-px);
+}
+
+/* ─── 3. INTRO TEXT ────────────────────────────────────────────
+   Figma: top 703px (57px below banner bottom), w 962px centred,
+   32px normal, color #d9982e, email link in bold.
+   ─────────────────────────────────────────────────────────────── */
+.ap-intro {
+  width: 962px;
+  margin: 0 auto;
+  padding: 57px 0 30px;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--c-amber-border);   /* #d9982e */
+  text-align: center;
+  line-height: 1.4;
+}
+.ap-intro a {
+  font-weight: 700;
+  color: var(--c-amber-border);
+  text-decoration: none;
+}
+.ap-intro a:hover { text-decoration: underline; }
+
+/* ─── 4. DOCUMENT CARDS ────────────────────────────────────────
+   Six cards, each: 962px wide centred, 4px amber border, r=27px.
+   Large decorative number overflows card left edge.
+   ─────────────────────────────────────────────────────────────── */
+.ap-docs {
+  padding-bottom: 81px;
+}
+
+.ap-card {
+  position: relative;
+  overflow: visible;          /* lets number overflow card left */
+  width: 962px;
+  margin: 0 auto;
+  border: 4px solid #e9a12d;
+  border-radius: 27px;
+  background: #fff;
+}
+
+/* Gaps between cards (from Figma absolute-y diff between consecutive cards) */
+.ap-card + .ap-card           { margin-top: 65px; }  /* card 2 */
+.ap-card:nth-child(3)         { margin-top: 74px; }  /* card 3 */
+.ap-card:nth-child(4)         { margin-top: 87px; }  /* card 4 */
+.ap-card:nth-child(5)         { margin-top: 82px; }  /* card 5 */
+.ap-card:nth-child(6)         { margin-top: 101px; } /* card 6 */
+
+/* Large CSS number (cards 2–6): position driven by per-card custom props */
+.ap-card-num {
+  position: absolute;
+  left: var(--num-left, -153px);
+  top:  var(--num-top,   61px);
+  font-size: 250px;
+  font-weight: 700;
+  color: #e9a12d;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Number "1" is an SVG image (Anima: left 196px, card left 236px → -40px) */
+.ap-num-img {
+  position: absolute;
+  left: -40px;
+  top: 151px;
+  width: 89px;
+  height: 162px;
+}
+
+/* Document photo — coordinates set via inline style per card */
+.ap-card-img {
+  position: absolute;
+  object-fit: cover;
+}
+
+/* Right-side text block */
+.ap-card-text {
+  position: absolute;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--c-primary);
+  line-height: 1.35;
+}
+/* Card 1 CV uses 36px per Anima (text-4xl) */
+.ap-card:first-child .ap-card-text { font-size: 36px; }
+
+.ap-card-text .ap-amber { color: #d9982e; }
+.ap-card-text .ap-navy  { color: var(--c-primary); }
+
+/* Italic tip / note text at bottom of card */
+.ap-card-tip {
+  position: absolute;
+  font-size: 32px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--c-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* ─── 5. DISCLAIMER ────────────────────────────────────────────
+   Rocket image left + disclaimer SVG text right.
+   Figma: container 631×153px centred, gap 78px to footer.
+   ─────────────────────────────────────────────────────────────── */
+.ap-disclaimer {
+  position: relative;
+  width: 631px;
+  height: 153px;
+  margin: 0 auto 78px;
+}
+.ap-disclaimer-rocket {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 222px;
+  height: 153px;
+  object-fit: contain;
+}
+.ap-disclaimer-text {
+  position: absolute;
+  left: 37px;
+  top: 70px;
+  width: 584px;
+  height: 53px;
+}

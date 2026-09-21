@@ -1,489 +1,282 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply — Dr Kasturirangan Trust</title>
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="shared.css">
-<style>
-/* ================================================================
-   APPLY — apply.html
-   V2: mirrors fellowship.html nomination band + dates, then
-   4-doc submission requirements, rocket-tagline CTA.
-   ================================================================ */
-
-/* ----------------------------------------------------------
-   NOMINATION BANNER (same as fell-banner in fellowship.html)
-   ---------------------------------------------------------- */
-
-.app-banner {
-  background: var(--c-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 96px;
-  min-height: 158px;
-}
-
-.app-banner-notice {
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-regular);
-  color: #fff;
-  text-align: center;
-  max-width: 860px;
-  line-height: 1.5;
-}
-
-/* ----------------------------------------------------------
-   DATE PILLS (same geometry as fellowship.html fell-dates)
-   ---------------------------------------------------------- */
-
-.app-dates-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 64px var(--page-px) 84px;
-}
-
-.app-dates {
-  width: 100%;
-  max-width: var(--max-w-content);
-  position: relative;
-  height: clamp(120px, 14.2vw, 204px);
-}
-
-.app-date-pill {
-  background: rgba(233, 162, 45, 1.0);
-  width: clamp(220px, 31.7vw, 456px);
-  height: clamp(80px, 9vw, 129px);
-  border-radius: 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 4px;
-  padding: 0 clamp(16px, 2.5vw, 36px);
-  position: absolute;
-  z-index: 1;
-}
-
-.app-date-pill:first-child {
-  left: 33px;
-  top: 0;
-}
-
-.app-date-pill:last-child {
-  right: 33px;
-  bottom: 0;
-}
-
-/* Figma Vector 1: dashed navy string connecting the two date pills.
-   Figma: x=526/1439=36.6%, width=386/1439=26.8%, top=-23px above container. */
-.app-date-connector {
-  position: absolute;
-  left: 32%;
-  top: -22px;
-  width: 34%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.app-date-label {
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-regular);
-  color: #fff;
-  line-height: 1.3;
-}
-
-.app-date-value {
-  font-size: var(--fs-banner);
-  font-weight: var(--fw-bold);
-  color: #fff;
-  line-height: 1.2;
-}
-
-/* ----------------------------------------------------------
-   AMBER DIVIDER LINE
-   ---------------------------------------------------------- */
-
-.app-divider {
-  height: 3px;
-  background: var(--c-accent);
-  margin: 0;
-}
-
-/* ----------------------------------------------------------
-   DOCUMENT SUBMISSION SECTION
-   ---------------------------------------------------------- */
-
-.app-section {
-  padding: 56px var(--page-px) 24px;
-  max-width: var(--max-w-content);
-  margin: 0 auto;
-}
-
-.app-closed-notice {
-  font-size: 28px;
-  font-weight: var(--fw-regular);
-  color: var(--c-text-navy);
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-
-.app-submit-heading {
-  font-size: 26px;
-  font-weight: var(--fw-bold);
-  color: var(--c-amber-border);
-  text-align: center;
-  margin-bottom: 40px;
-  line-height: 1.4;
-}
-
-/* ----------------------------------------------------------
-   DOC REQUIREMENT BOXES
-   4px amber border, radius=27px, max-w=962px, centred.
-   Number (200px amber) | illustration | text.
-   ---------------------------------------------------------- */
-
-.app-docs-list {
-  display: flex;
-  flex-direction: column;
-  gap: 70px;
-  padding-bottom: 60px;
-  align-items: center;
-}
-
-.app-doc-box {
-  border: 4px solid var(--c-amber-border);
-  border-radius: 27px;
-  width: 100%;
-  max-width: 962px;
-  padding: 32px 48px 32px 0;
-  display: flex;
-  align-items: center;
-  gap: 0;
-  position: relative;
-}
-
-.app-doc-number {
-  font-size: clamp(80px, 13.9vw, 200px);
-  font-weight: var(--fw-bold);
-  color: var(--c-amber-border);
-  line-height: 0.9;
-  min-width: clamp(60px, 9.7vw, 140px);
-  text-align: center;
-  flex-shrink: 0;
-  margin-left: -10px;
-}
-
-.app-doc-illus {
-  width: 200px;
-  height: 200px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.app-doc-illus img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.app-doc-content {
-  flex: 1;
-  padding-left: 24px;
-}
-
-.app-doc-content p {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  line-height: 1.4;
-  margin-bottom: 12px;
-}
-
-.app-doc-content p:last-child {
-  margin-bottom: 0;
-}
-
-.app-doc-tip {
-  font-style: italic;
-  font-weight: var(--fw-regular) !important;
-  font-size: var(--fs-body-lg) !important;
-  color: var(--c-primary) !important;
-}
-
-/* ----------------------------------------------------------
-   ROCKET CTA
-   ---------------------------------------------------------- */
-
-.app-cta {
-  padding: 24px var(--page-px) 56px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.app-cta-img {
-  width: 100%;
-  max-width: 1100px;
-  height: auto;
-  display: block;
-}
-
-/* ----------------------------------------------------------
-   RESPONSIVE
-   ---------------------------------------------------------- */
-
-@media (max-width: 1100px) {
-  .app-dates {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .app-date-pill {
-    position: static;
-    width: 100%;
-    max-width: 456px;
-    height: auto;
-    min-height: 80px;
-  }
-}
-
-@media (max-width: 860px) {
-  .app-banner { padding: 24px 20px; min-height: auto; }
-  .app-dates-wrap { padding: 32px 20px 48px; }
-  .app-doc-box { padding: 24px 20px; flex-wrap: wrap; }
-  .app-section { padding: 40px 20px 0; }
-}
-
-@media (max-width: 600px) {
-  .app-doc-content p { font-size: 22px; }
-  .app-doc-illus { width: 120px; height: 120px; }
-}
-
-.app-mailto-btn {
-  display: block;
-  margin: 24px auto 0;
-  width: fit-content;
-  background: var(--c-primary);
-  color: #fff;
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-bold);
-  padding: 16px 48px;
-  border-radius: 40px;
-  text-decoration: none;
-  text-align: center;
-  letter-spacing: 0.02em;
-  transition: background 0.2s;
-}
-.app-mailto-btn:hover {
-  background: var(--c-accent);
-  color: var(--c-primary);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply — Dr Kasturirangan Trust</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="apply.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="site-nav">
-  <a href="index.html" class="nav-logo">
-    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:74px;width:auto;">
-  </a>
-  <ul class="nav-links">
-    <li>
-      <a href="vision.html">About Us <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="vision.html">Vision &amp; Mission</a>
-        <a href="team.html">Team</a>
-      </div>
-    </li>
-    <li>
-      <a href="kasturirangan.html">K. Kasturirangan <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="kasturirangan.html">His Life</a>
-        <a href="#">Selected Writings</a>
-        <a href="testimonials.html">Memories</a>
-      </div>
-    </li>
-    <li>
-      <a href="fellowship.html">Initiatives <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="fellowship.html">Fellowship</a>
-      </div>
-    </li>
-    <li>
-      <a href="#">Useful Links <span class="nav-chev"></span></a>
-      <div class="nav-dropdown">
-        <a href="apply.html">Apply</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </li>
-  </ul>
-  <button class="nav-search-btn" aria-label="Search">
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
-      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </button>
-  <!-- Hamburger — visible only on mobile via shared.css -->
-  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
-          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </button>
-</nav>
-
-<!-- DATE PILLS -->
-<div class="app-dates-wrap">
-  <div class="app-dates">
-    <div class="app-date-pill">
-      <span class="app-date-label">Nominations accepted from:</span>
-      <strong class="app-date-value">October 25, 2026</strong>
-    </div>
-    <!-- Figma Vector 1: dashed string connecting the two date pills -->
-    <img class="app-date-connector"
-         src="assets/images/apply-date-connector.png"
-         alt="">
-    <div class="app-date-pill">
-      <span class="app-date-label">Last date for submission:</span>
-      <strong class="app-date-value">December 31, 2026</strong>
-    </div>
-  </div>
-</div>
-
-<div class="app-divider"></div>
-
-<!-- NOMINATION BANNER — appears AFTER dates per Figma -->
-<div class="app-banner">
-  <p class="app-banner-notice">Please remember that this is a closed call and candidates have to be nominated by an invited panel.</p>
-</div>
-
-<!-- DOCUMENT SUBMISSION SECTION -->
-<div class="app-section">
-  <p class="app-submit-heading">Please submit the following documents to<br>
-    <a href="mailto:info@drkasturirangantrust.org" style="color:inherit;">info@drkasturirangantrust.org</a>
-  </p>
-</div>
-
-<div class="app-docs-list" style="padding-left:var(--page-px);padding-right:var(--page-px);">
-
-  <!-- 1: Nomination letter -->
-  <div class="app-doc-box">
-    <div class="app-doc-number">1</div>
-    <div class="app-doc-illus">
-      <img src="assets/images/icon-meeting.png" alt="">
-    </div>
-    <div class="app-doc-content">
-      <p>Nomination letter on official letterhead and bearing original or authenticated signatures.</p>
-      <p class="app-doc-tip">Tip for the nominator: The letter must demonstrate the nature of your relationship with the nominee and their familiarity with their work.</p>
-    </div>
-  </div>
-
-  <!-- 2: CV -->
-  <div class="app-doc-box">
-    <div class="app-doc-number">2</div>
-    <div class="app-doc-illus">
-      <img src="assets/images/icon-resume.png" alt="">
-    </div>
-    <div class="app-doc-content">
-      <p>Candidate&rsquo;s Curriculum Vitae (maximum 2 pages)</p>
-    </div>
-  </div>
-
-  <!-- 3: PhD proof -->
-  <div class="app-doc-box">
-    <div class="app-doc-number">3</div>
-    <div class="app-doc-illus">
-      <img src="assets/images/icon-resume.png" alt="">
-    </div>
-    <div class="app-doc-content">
-      <p>Proof of candidate&rsquo;s PhD thesis submission</p>
-    </div>
-  </div>
-
-  <!-- 4: Statement of purpose -->
-  <div class="app-doc-box">
-    <div class="app-doc-number">4</div>
-    <div class="app-doc-illus">
-      <img src="assets/images/icon-analyze.png" alt="">
-    </div>
-    <div class="app-doc-content">
-      <p>Candidate&rsquo;s statement of purpose (maximum 1000 words) clearly outlining how their research aligns with the Trust&rsquo;s objectives, their motivations, and how the funds can help them.</p>
-      <p class="app-doc-tip">Tip for candidate: Try to demonstrate the interdisciplinarity of your work, its anticipated impact, and its relevance to academic, corporate, or public policy</p>
-    </div>
-  </div>
-
-  <!-- 5: Budget proposal -->
-  <div class="app-doc-box">
-    <div class="app-doc-number">5</div>
-    <div class="app-doc-illus">
-      <img src="assets/images/icon-gforms.png" alt="">
-    </div>
-    <div class="app-doc-content">
-      <p>Budget proposal outlining how the funds will be used by the candidate to support their proposed research and professional development.</p>
-    </div>
-  </div>
-
-</div>
-
-<!-- ROCKET CTA -->
-<div class="app-cta">
-  <img class="app-cta-img"
-       src="assets/images/apply-rocket-tagline.png"
-       alt="">
-  <a href="mailto:info@drkasturirangantrust.org" class="app-mailto-btn">Email your application &#8594;</a>
-</div>
-
-<!-- FOOTER RULE -->
-<div class="footer-rule-wrap">
-  <div class="footer-rule"></div>
-  <div class="footer-dot"></div>
-</div>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="vision.html">About Us</a>
-    <a href="kasturirangan.html">K. Kasturirangan</a>
-    <a href="fellowship.html">Initiatives</a>
-    <a href="#">Useful Links</a>
+  <!-- ============================================================
+       NAV (identical across all pages)
+  ============================================================ -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:74px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li>
+        <a href="#">About Us <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="#">Vision &amp; Mission</a>
+          <a href="#">Team</a>
+        </div>
+      </li>
+      <li>
+        <a href="hislife.html">K. Kasturirangan <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="hislife.html">His Life</a>
+          <a href="#">Selected Writings</a>
+          <a href="#">Memories</a>
+        </div>
+      </li>
+      <li>
+        <a href="fellowship.html">Initiatives <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="fellowship.html">Fellowship</a>
+        </div>
+      </li>
+      <li>
+        <a href="apply.html">Useful Links <span class="nav-chev"></span></a>
+        <div class="nav-dropdown">
+          <a href="apply.html">Apply</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+    <button class="nav-search-btn" aria-label="Search">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+        <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+            onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
   </nav>
-  <div class="footer-addr-block">
-    <p class="footer-addr">
-      <strong>Dr Kasturirangan Trust</strong><br>
-      Alder 1002,<br>
-      Godrej Woodsman Estate, Hebbal,<br>
-      Bengaluru &ndash; 560045
-    </p>
-    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
-  </div>
-  <div class="footer-contact">
-    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
-    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
-    <div class="footer-social">
-      <a href="#" aria-label="Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
-        </svg>
-      </a>
-      <a href="#" aria-label="Facebook">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-</footer>
 
-<script src="nav.js"></script>
+  <!-- ============================================================
+       1. NOMINATION DATES
+       Figma: bg #fffcf6, h 459px. Two staggered label+date pairs.
+       Left pair: x=88, y=107 (section-relative).
+       Right pair: x=933, y=218.
+       Connector arrow: x=526, y=145, 387x142px.
+  ============================================================ -->
+  <section class="ap-dates" aria-label="Nomination dates">
+    <div class="ap-dates-pill ap-dates-pill--left"  aria-hidden="true"></div>
+    <div class="ap-dates-pill ap-dates-pill--right" aria-hidden="true"></div>
+
+    <p class="ap-dates-label ap-dates-label--left">Nominations accepted from:</p>
+    <div class="ap-date-box ap-date-box--left">
+      <time datetime="2026-10-25">October 25, 2026</time>
+    </div>
+
+    <p class="ap-dates-label ap-dates-label--right">Last date for submission:</p>
+    <div class="ap-date-box ap-date-box--right">
+      <time datetime="2026-12-31">December 31, 2026</time>
+    </div>
+
+    <img class="ap-dates-connector" src="assets/apply/dates-connector.svg" alt="" aria-hidden="true">
+  </section>
+
+  <!-- ============================================================
+       2. NOTICE BANNER
+       Figma: h 74px, bg #2a417d, 32px bold white centered.
+  ============================================================ -->
+  <div class="ap-banner" role="note">
+    Please note that formal applications are only by nomination
+  </div>
+
+  <!-- ============================================================
+       3. INTRO TEXT
+       Figma: w 962px centred, 32px #d9982e. Email link in bold.
+  ============================================================ -->
+  <p class="ap-intro">
+    The nomination application must include the following documents and
+    must be sent to
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org
+    by December 31, 2026</a>.
+  </p>
+
+  <!-- ============================================================
+       4. DOCUMENT CARDS  (1 of 6)
+       Each: 962px centred, 4px amber border, radius 27px.
+       Large decorative number overflows left edge of card.
+       Card-relative coords: page_abs_y − cardTop, page_abs_x − cardLeft.
+  ============================================================ -->
+  <section class="ap-docs" aria-label="Required application documents">
+
+    <!-- Card 1 — Curriculum Vitae
+         cardTop 817px, h 306px, cardLeft 236px.
+         Num SVG: page left 196 → card -40px, page top 968 → card 151px.
+         Image: left 329→93px, top 847→30px, 311x248.
+         Text: left 684→448px, top 932→115px, w 415px, 36px. -->
+    <div class="ap-card" style="min-height:306px;">
+      <img class="ap-num-img" src="assets/apply/num-1.svg" alt="" aria-hidden="true">
+      <img class="ap-card-img" style="left:93px;top:30px;width:311px;height:248px;"
+           src="assets/apply/cv-1.png" alt="Curriculum vitae document">
+      <div class="ap-card-text" style="left:448px;top:115px;width:415px;">
+        <p>Curriculum Vitae<br><span class="ap-amber">(maximum 2 pages)</span></p>
+      </div>
+    </div>
+
+    <!-- Card 2 — PhD proof
+         cardTop 1188px, h 303px, cardLeft 238px.
+         Num "2": left 85→-153px, top 1249→61px.
+         Image: left 327→89px, top 1215→27px, 313x250.
+         Text: left 684→446px, top 1268→80px, w 430px. -->
+    <div class="ap-card" style="min-height:303px;--num-left:-153px;--num-top:61px;">
+      <span class="ap-card-num" aria-hidden="true">2</span>
+      <img class="ap-card-img" style="left:89px;top:27px;width:313px;height:250px;"
+           src="assets/apply/phd-1.png" alt="PhD completion proof">
+      <div class="ap-card-text" style="left:446px;top:80px;width:430px;">
+        <p>Proof of PhD completion or thesis submission between
+           January 01, 2025 and October 23, 2026</p>
+      </div>
+    </div>
+
+    <!-- Card 3 — Statement of purpose
+         cardTop 1565px, h 478px, cardLeft 238px.
+         Num "3": left 90→-148px, top 1809→244px.
+         Image: left 341→103px, top 1619→54px, 303x242.
+         Text: left 684→446px, top 1600→35px, w 482px.
+         Tip: left 340→102px, top 1884→319px, w 798px. -->
+    <div class="ap-card" style="min-height:478px;--num-left:-148px;--num-top:244px;">
+      <span class="ap-card-num" aria-hidden="true">3</span>
+      <img class="ap-card-img" style="left:103px;top:54px;width:303px;height:242px;"
+           src="assets/apply/statement-of-purpose-1.png" alt="Statement of purpose">
+      <div class="ap-card-text" style="left:446px;top:35px;width:482px;">
+        <p><span class="ap-navy">Statement of purpose </span><span class="ap-amber">(maximum 1000 words)</span><span class="ap-navy"> clearly outlining how your proposed research aligns with the Trust&rsquo;s objectives; your motivations, and how the Fellowship funds would help you.</span></p>
+      </div>
+      <p class="ap-card-tip" style="left:102px;top:319px;width:798px;">
+        Tip: Try to demonstrate the interdisciplinarity of your work, its anticipated
+        impact, and its relevance to academic, corporate, or public policy
+      </p>
+    </div>
+
+    <!-- Card 4 — Nomination letter
+         cardTop 2130px, h 451px, cardLeft 238px.
+         Num "4": left 78→-160px, top 2352→222px.
+         Image: left 327→89px, top 2166→36px, 309x246.
+         Text: left 684→446px, top 2229→99px, w 462px.
+         Tip: left 340→102px, top 2419→289px, w 819px. -->
+    <div class="ap-card" style="min-height:451px;--num-left:-160px;--num-top:222px;">
+      <span class="ap-card-num" aria-hidden="true">4</span>
+      <img class="ap-card-img" style="left:89px;top:36px;width:309px;height:246px;"
+           src="assets/apply/nomination-letter-1.png" alt="Nomination letter">
+      <div class="ap-card-text" style="left:446px;top:99px;width:462px;">
+        <p>A nomination letter from NOMINATING GROUP (TBD)</p>
+      </div>
+      <p class="ap-card-tip" style="left:102px;top:289px;width:819px;">
+        Tip for the nominator: The letter must demonstrate the nature of your
+        relationship with the nominee and their familiarity with their work.
+      </p>
+    </div>
+
+    <!-- Card 5 — Endorsement letters
+         cardTop 2663px, h 419px, cardLeft 232px (calc 50%-488px).
+         Num "5": left 92→-140px, top 2850→187px.
+         Image: left 326→94px, top 2693→30px, 311x250.
+         Text: left 683→451px, top 2732→69px, w 476px.
+         Tip: left 340→108px, top 2961→298px, w 816px. -->
+    <div class="ap-card" style="min-height:419px;--num-left:-140px;--num-top:187px;">
+      <span class="ap-card-num" aria-hidden="true">5</span>
+      <img class="ap-card-img" style="left:94px;top:30px;width:311px;height:250px;"
+           src="assets/apply/endorsement-letter-2.png" alt="Two endorsement letters">
+      <div class="ap-card-text" style="left:451px;top:69px;width:476px;">
+        <p><span class="ap-amber">Two letters</span><span class="ap-navy"> of endorsement/support by Institution Head/Professor/Senior collaborators who are familiar with you and your project.</span></p>
+      </div>
+      <p class="ap-card-tip" style="left:108px;top:298px;width:816px;">
+        Note: All letters must be on official letterhead and bear original or
+        authenticated signatures.
+      </p>
+    </div>
+
+    <!-- Card 6 — Budget proposal
+         cardTop 3183px, h 319px, cardLeft 232px.
+         Num "6": left 92→-140px, top 3284→101px.
+         Image: left 326→94px, top 3220→37px, 308x246.
+         Text: left 683→451px, top 3252→69px, w 476px. -->
+    <div class="ap-card" style="min-height:319px;--num-left:-140px;--num-top:101px;">
+      <span class="ap-card-num" aria-hidden="true">6</span>
+      <img class="ap-card-img" style="left:94px;top:37px;width:308px;height:246px;"
+           src="assets/apply/budget-1.png" alt="Budget proposal">
+      <div class="ap-card-text" style="left:451px;top:69px;width:476px;">
+        <p>Budget proposal outlining how the funds will be used to support
+           your proposed research and professional development.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       5. DISCLAIMER
+       Figma: container 631x153px centred. Rocket (222x153) left.
+       Disclaimer SVG: left 37px, top 70px, 584x53px.
+  ============================================================ -->
+  <div class="ap-disclaimer">
+    <img class="ap-disclaimer-rocket" src="assets/apply/rocket.png"
+         alt="" aria-hidden="true">
+    <img class="ap-disclaimer-text" src="assets/apply/disclaimer.svg"
+         alt="Applications with incomplete documentation or without nomination will be rejected and no further correspondence will be entertained.">
+  </div>
+
+  <!-- ============================================================
+       FOOTER RULE
+  ============================================================ -->
+  <div class="footer-rule-wrap">
+    <div class="footer-rule"></div>
+    <div class="footer-dot"></div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#">About Us</a>
+      <a href="hislife.html">K. Kasturirangan</a>
+      <a href="fellowship.html">Initiatives</a>
+      <a href="apply.html">Useful Links</a>
+    </nav>
+    <div class="footer-addr-block">
+      <p class="footer-addr">
+        <strong>Dr Kasturirangan Trust</strong><br>
+        Alder 1002,<br>
+        Godrej Woodsman Estate, Hebbal,<br>
+        Bengaluru &ndash; 560045
+      </p>
+      <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045"
+         target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
+    </div>
+    <div class="footer-contact">
+      <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+      <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
