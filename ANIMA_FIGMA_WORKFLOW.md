@@ -485,11 +485,25 @@ The `min-height` should equal the Anima frame height minus nav (101 px) minus th
 
 ---
 
-### B-10 Speculative margin between hero content and adjacent banner
-**Symptom:** `fellowship.html` — visible gap between the last bullet ("Financial support worth Rs 4 lakh for selected fellows") and the full-width navy banner immediately below. Gap absent in both Figma and Anima export.  
-**Root cause:** `margin-top: clamp(20px, 3.5vw, 44px)` was written onto `.fp-hero-banner` during initial implementation to add visual breathing room, without verifying that spacing against the Figma design. In Figma, the banner abuts the hero grid directly with no gap.  
-**Fix:** `margin-top: 0` on `.fp-hero-banner`.  
-**Rule:** Never add `margin-top`/`padding-bottom` between adjacent layout sections without first reading the Figma y-coordinates to confirm the gap is intentional. Speculative whitespace is a common source of layout drift.
+### B-10 Fellowship hero: cascading coordinate mismatches between flex layout and Figma absolute layout
+**Symptom:** `fellowship.html` — visible ~100px grey gap between the last hero bullet ("Financial support worth Rs 4 lakh for selected fellows") and the full-width navy banner. Figma shows only ~44px of intentional background colour between them.  
+**Root cause:** Figma uses fully absolute-positioned elements; the HTML uses flex layout. Six independent mismatches compounded to create a 102px gap vs Figma's intended 44px:
+1. `fp-hero` `padding-top` was 44px; Figma's grid starts at wrap y=58 (14px short)
+2. `fp-hero-left` `padding-top` was 40px; Figma title starts at wrap y=112 (14px short)
+3. `fp-hero-label` `margin-bottom` was 24px; Figma gap is 50px (26px short)
+4. Bullet text column was 691px wide (flex fill of available space); Figma text is `w-[613px]` — the wider column caused less text wrapping, so bullets ended 98px higher on the page
+5. Illustration PNG (1438×1093) rendered at 458px tall at 603px display width; Figma specifies `h-[476px]` (18px short)
+6. `fp-hero-banner` `margin-top` was clamp(20–44px); Figma has 8px clearance below the illustration  
+
+**Fix:** Correct all six values to match Figma coordinates:
+- `fp-hero` padding-top: `clamp(32px, 4.0vw, 58px)`
+- `fp-hero-left` padding-top: `clamp(12px, 3.75vw, 54px)`
+- `fp-hero-label` margin-bottom: `clamp(14px, 3.5vw, 50px)`
+- `fp-hero-bullets` `max-width: 613px` (Figma's `w-[613px]`)
+- `fp-hero-illus` explicit `height: clamp(300px, 33.06vw, 476px)` + `object-fit: contain; object-position: bottom` on img
+- `fp-hero-banner` `margin-top: 8px`  
+
+**Rule:** When a section uses flex layout to approximate an absolute-positioned Figma design, check EVERY coordinate: padding-top, padding-bottom, element gaps, text column widths, and image heights. Any one mismatch is hidden; six together produce a large visible discrepancy. Always cross-check by reading Anima's `top-[Npx]` values for each element and verifying the rendered position matches `wrap y = Anima absolute y − 101`.
 
 ---
 
