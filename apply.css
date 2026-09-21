@@ -94,13 +94,13 @@
   padding: 57px 0 30px;
   font-size: 32px;
   font-weight: 400;
-  color: var(--c-amber-border);   /* #d9982e */
+  color: var(--c-primary);
   text-align: center;
   line-height: 1.4;
 }
 .ap-intro a {
   font-weight: 700;
-  color: var(--c-amber-border);
+  color: var(--c-primary);
   text-decoration: none;
 }
 .ap-intro a:hover { text-decoration: underline; }

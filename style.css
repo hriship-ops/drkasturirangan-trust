@@ -75,7 +75,9 @@
   z-index: 2;
 }
 
-/* Small amber circle: canvas(592,502) → hero(592,401). ⌀103 */
+/* Small amber circle: canvas(592,502) → hero(592,401). ⌀103
+   z-index 0 keeps it behind the slideshow (z-index:1); the circle
+   lands within the image bounds so it must render beneath it. */
 .hero-deco-circle-sm {
   position: absolute;
   top: 401px;
@@ -85,7 +87,7 @@
   border-radius: 50%;
   background: var(--c-accent);
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
 }
 
 /* Slideshow dots: canvas(448,676) → hero(448,575). 3 dots, 17px apart. */
