@@ -55,39 +55,22 @@
 
   <!-- Mission section: overflow:hidden clips the 300px quote glyphs exactly as Anima's <section> does -->
   <section class="vm-mission-section" aria-label="Mission statement">
-    <!-- Opening large quote mark — positioned by JS to bottom-align with first text line -->
-    <div class=”vm-quote” id=”vmQuoteOpen”  style=”left:301px;top:0”>&ldquo;</div>
+    <!-- Opening quote: top=-8px so visual bottom (−8+166=158px) aligns with first line bottom -->
+    <div class=”vm-quote” style=”left:301px;top:-8px”>&ldquo;</div>
 
     <!-- Mission statement text — section-relative top=112 -->
-    <p class=”vm-mission-text” id=”vmMissionText”>
+    <p class=”vm-mission-text”>
       To honour and continue the legacy<br>
       of Dr. Krishnaswamy Kasturirangan by inspiring future generations
       through initiatives that promote scientific excellence and action that
       is ethical, humane and sustainable
     </p>
 
-    <!-- Closing large quote mark — positioned by JS to top-align with last text line -->
-    <div class=”vm-quote” id=”vmQuoteClose” style=”left:1070px;top:100px;transform:rotate(180deg)”>&ldquo;</div>
+    <!-- Closing quote: top=150px so visual top (150+134=284px) aligns with last line top (Figma) -->
+    <div class=”vm-quote” style=”left:1070px;top:150px;transform:rotate(180deg)”>&ldquo;</div>
 
     <!-- Decorative outline portrait — section-relative left=154, top=257 -->
     <img class=”vm-layer” src=”assets/visionmission/layer-1.png” alt=””>
-
-    <script>
-    /* Position quote marks after fonts render.
-       Opening  : visual bottom  = bottom of first text line
-       Closing  : visual top     = top of last text line
-       Agdasima “ at 300px: glyph occupies top 166px of the 300px line box.
-       Closing is rotated 180° so its visual top = CSS top + (300 − 166) = CSS top + 134. */
-    document.fonts.ready.then(function () {
-      var text   = document.getElementById('vmMissionText');
-      var openQ  = document.getElementById('vmQuoteOpen');
-      var closeQ = document.getElementById('vmQuoteClose');
-      var lh     = parseFloat(getComputedStyle(text).lineHeight);
-      var GLYPH  = 166;
-      openQ.style.top  = Math.round(text.offsetTop + lh - GLYPH) + 'px';
-      closeQ.style.top = Math.round(text.offsetTop + text.offsetHeight - lh - (300 - GLYPH)) + 'px';
-    });
-    </script>
   </section>
 
   <!-- Gray separator below mission section -->
