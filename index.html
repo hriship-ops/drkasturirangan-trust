@@ -217,7 +217,7 @@
       if (d) d.style.opacity = '1';
       if (h) h.style.opacity = '0';
     });
-    panel.style.display = '';
+    quoteEl.textContent = DEFAULT_QUOTE;
     panel.classList.add('panel-default');
     activeKey = null;
   }
@@ -233,7 +233,6 @@
       hovImg.style.opacity = '1';
       quoteEl.textContent = AREAS[key].quote;
       descEl.textContent  = AREAS[key].desc;
-      panel.style.display = '';
       panel.classList.remove('panel-default');
     }
 
@@ -266,6 +265,9 @@
       activeKey = key;
     });
   });
+
+  // Set default quote on load
+  quoteEl.textContent = DEFAULT_QUOTE;
 })();
 </script>
 

@@ -294,16 +294,17 @@
 .area-panel {
   position: relative;
   max-width: 1121px;
-  margin: 0 auto 0;
+  margin: 0 auto 40px;
   background: rgba(255, 179, 56, 0.8);
   border-radius: 118px;
   overflow: hidden;
-  display: none;
+  min-height: 374px;
 }
 
-/* DEFAULT: hidden */
+/* DEFAULT: always visible — shows "Every phase of work" quote */
 .area-panel.panel-default {
-  display: none;
+  display: flex;
+  align-items: center;
 }
 
 .area-panel.panel-default .area-panel-qmark-hover {
