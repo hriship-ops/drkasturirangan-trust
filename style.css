@@ -298,16 +298,12 @@
   background: rgba(255, 179, 56, 0.8);
   border-radius: 118px;
   overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.35s ease, opacity 0.25s ease, margin-bottom 0.35s ease;
+  display: none;
 }
 
-/* DEFAULT: collapsed — animates open when an area is hovered/clicked */
+/* DEFAULT: hidden */
 .area-panel.panel-default {
-  max-height: 0;
-  opacity: 0;
-  margin-bottom: 0;
+  display: none;
 }
 
 .area-panel.panel-default .area-panel-qmark-hover {
@@ -349,16 +345,14 @@
   display: none;
 }
 
-/* HOVER state: expands smoothly via max-height transition */
+/* HOVER state: instant show */
 .area-panel:not(.panel-default) {
   display: grid;
   grid-template-columns: 252px 1fr;
   gap: 45px;
   align-items: center;
   padding: 52px 70px 52px 156px;
-  max-height: 500px;
   min-height: 374px;
-  opacity: 1;
   margin-bottom: 40px;
 }
 
@@ -442,69 +436,6 @@
   flex-shrink: 0;
 }
 
-/* ----------------------------------------------------------
-   QUOTE STRIP
-   Amber pill: canvas(105,1611) w=1121 h=374.
-   Quote-deco-mark (Agdasima ") overhangs pill top at x=105.
-   Quote text: canvas(367,1703) w=503. KK illustration at right.
-   Section canvas top ≈ 1459 (pill top − 152px section padding).
-   ---------------------------------------------------------- */
-
-.quote-strip {
-  position: relative;
-  min-height: 420px;
-  padding: 22px 58px 24px;
-  overflow: hidden;
-}
-
-/* Amber pill: Figma node 259:347 — 22px below area circles (Figma gap). */
-.quote-amber-bg {
-  position: absolute;
-  left: 105px;
-  top: 22px;
-  width: 1121px;
-  height: 374px;
-  background: rgba(255, 179, 56, 0.8);
-  border-radius: 118px;
-  z-index: 0;
-}
-
-/* KK illustration: positioned within .quote-amber-bg (both position:absolute).
-   Pill-relative: right=26px (1121−295−800=26), top=83px. */
-.quote-illus {
-  position: absolute;
-  right: 26px;
-  top: 83px;
-  width: 295px;
-  height: auto;
-  transform: scaleX(-1);
-  pointer-events: none;
-}
-
-/* Quote mark SVG: 9px above amber pill top. */
-.quote-deco-mark {
-  position: absolute;
-  left: 187px;
-  top: 13px;
-  width: 125px;
-  height: 93px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Quote text: 92px below amber pill top (22+92=114). */
-.quote-text {
-  position: absolute;
-  left: 367px;
-  top: 114px;
-  width: 503px;
-  z-index: 3;
-  text-align: center;
-  font-size: 50px;
-  font-weight: var(--fw-medium);
-  color: #fff;
-  line-height: 1.2;
-}
 
 /* ----------------------------------------------------------
    STORIES SECTION

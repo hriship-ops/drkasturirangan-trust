@@ -217,6 +217,7 @@
       if (d) d.style.opacity = '1';
       if (h) h.style.opacity = '0';
     });
+    panel.style.display = '';
     panel.classList.add('panel-default');
     activeKey = null;
   }
@@ -232,6 +233,7 @@
       hovImg.style.opacity = '1';
       quoteEl.textContent = AREAS[key].quote;
       descEl.textContent  = AREAS[key].desc;
+      panel.style.display = '';
       panel.classList.remove('panel-default');
     }
 
@@ -267,18 +269,6 @@
 })();
 </script>
 
-<!-- QUOTE STRIP
-     Amber pill: canvas(105,1611) w=1121 h=374.
-     Agdasima " overhangs top-left. Quote text canvas(367,1703).
-     KK illustration inside pill, right side.
--->
-<section class="quote-strip">
-  <img class="quote-deco-mark" src="assets/images/quote-mark.svg" alt="" aria-hidden="true">
-  <div class="quote-amber-bg">
-    <img class="quote-illus" src="assets/images/kk-illustration.svg" alt="">
-  </div>
-  <p class="quote-text">Every phase of work must contribute to a larger national vision</p>
-</section>
 
 <!-- STORIES
      "Where Curiosity Led" — 3 story cards 354×354px.
