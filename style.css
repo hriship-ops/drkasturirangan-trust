@@ -292,19 +292,22 @@
    ---------------------------------------------------------- */
 
 .area-panel {
-  display: none;
   position: relative;
   max-width: 1121px;
-  margin: 0 auto 40px;
+  margin: 0 auto 0;
   background: rgba(255, 179, 56, 0.8);
   border-radius: 118px;
-  overflow: visible;
-  min-height: 374px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease, margin-bottom 0.35s ease;
 }
 
-/* DEFAULT: panel is hidden until an area is hovered/clicked */
+/* DEFAULT: collapsed — animates open when an area is hovered/clicked */
 .area-panel.panel-default {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
 }
 
 .area-panel.panel-default .area-panel-qmark-hover {
@@ -346,15 +349,17 @@
   display: none;
 }
 
-/* HOVER state: 2-col grid — 252px quote col + 598px desc col.
-   Left padding 156px so quote col center lands at 282px from pill left (Figma-exact).
-   Gap 45px, right padding 70px → right col = 598px. */
+/* HOVER state: expands smoothly via max-height transition */
 .area-panel:not(.panel-default) {
   display: grid;
   grid-template-columns: 252px 1fr;
   gap: 45px;
   align-items: center;
   padding: 52px 70px 52px 156px;
+  max-height: 500px;
+  min-height: 374px;
+  opacity: 1;
+  margin-bottom: 40px;
 }
 
 /* Agdasima quote mark: Figma node 1029:602 — 300px, #d9982e */

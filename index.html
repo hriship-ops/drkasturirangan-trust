@@ -217,7 +217,6 @@
       if (d) d.style.opacity = '1';
       if (h) h.style.opacity = '0';
     });
-    panel.style.display = '';
     panel.classList.add('panel-default');
     activeKey = null;
   }
@@ -233,7 +232,6 @@
       hovImg.style.opacity = '1';
       quoteEl.textContent = AREAS[key].quote;
       descEl.textContent  = AREAS[key].desc;
-      panel.style.display = '';
       panel.classList.remove('panel-default');
     }
 
