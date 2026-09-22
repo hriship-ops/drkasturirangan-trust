@@ -447,16 +447,16 @@
 
 .quote-strip {
   position: relative;
-  min-height: 550px;
-  padding: 180px 58px 100px;
+  min-height: 420px;
+  padding: 22px 58px 24px;
   overflow: hidden;
 }
 
-/* Amber pill: Figma node 259:347 — pure CSS, no baked-in marks. */
+/* Amber pill: Figma node 259:347 — 22px below area circles (Figma gap). */
 .quote-amber-bg {
   position: absolute;
   left: 105px;
-  top: 152px;
+  top: 22px;
   width: 1121px;
   height: 374px;
   background: rgba(255, 179, 56, 0.8);
@@ -476,23 +476,22 @@
   pointer-events: none;
 }
 
-/* Quote mark SVG: Anima image.svg — 126×93px at canvas(187,1602).
-   Section-relative: pill at top=152 → mark at top=143 (9px above pill). */
+/* Quote mark SVG: 9px above amber pill top. */
 .quote-deco-mark {
   position: absolute;
   left: 187px;
-  top: 143px;
+  top: 13px;
   width: 125px;
   height: 93px;
   z-index: 1;
   pointer-events: none;
 }
 
-/* Quote text: canvas(367,1703) → strip-relative left=367, top=244. */
+/* Quote text: 92px below amber pill top (22+92=114). */
 .quote-text {
   position: absolute;
   left: 367px;
-  top: 244px;
+  top: 114px;
   width: 503px;
   z-index: 3;
   text-align: center;
