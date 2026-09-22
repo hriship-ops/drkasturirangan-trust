@@ -55,22 +55,23 @@
 
   <!-- Mission section: overflow:hidden clips the 300px quote glyphs exactly as Anima's <section> does -->
   <section class="vm-mission-section" aria-label="Mission statement">
-    <!-- Opening quote: top=-8px so visual bottom (−8+166=158px) aligns with first line bottom -->
-    <div class=”vm-quote” style=”left:301px;top:-8px”>&ldquo;</div>
+    <!-- Opening large quote mark â€” section-relative left=301, top=0 -->
+    <div class="vm-quote" style="left:301px;top:0">&ldquo;</div>
 
-    <!-- Mission statement text — section-relative top=112 -->
-    <p class=”vm-mission-text”>
+    <!-- Mission statement text â€” section-relative top=112 (7rem) -->
+    <p class="vm-mission-text">
       To honour and continue the legacy<br>
       of Dr. Krishnaswamy Kasturirangan by inspiring future generations
       through initiatives that promote scientific excellence and action that
       is ethical, humane and sustainable
     </p>
 
-    <!-- Closing quote: top=150px so visual top (150+134=284px) aligns with last line top (Figma) -->
-    <div class=”vm-quote” style=”left:1070px;top:150px;transform:rotate(180deg)”>&ldquo;</div>
+    <!-- Closing large quote mark â€” section-relative left=1070, rotated.
+         top=100 so the rotated glyph lands in the lower half of the 461px section. -->
+    <div class="vm-quote" style="left:1070px;top:150px;transform:rotate(180deg)">&ldquo;</div>
 
-    <!-- Decorative outline portrait — section-relative left=154, top=257 -->
-    <img class=”vm-layer” src=”assets/visionmission/layer-1.png” alt=””>
+    <!-- Decorative outline portrait â€” section-relative left=154, top=257 -->
+    <img class="vm-layer" src="assets/visionmission/layer-1.png" alt="">
   </section>
 
   <!-- Gray separator below mission section -->
