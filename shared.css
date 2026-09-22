@@ -135,19 +135,6 @@
   right: 0;
 }
 
-/* Nav search icon button */
-.nav-search-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0 0 0 12px;
-  display: flex;
-  align-items: center;
-  color: var(--c-primary-dark);
-  flex-shrink: 0;
-}
-
-.nav-search-btn:hover { color: var(--c-accent); }
 
 /* Dropdown chevron: solid CSS downward triangle (▽) */
 .nav-chev {
@@ -398,7 +385,6 @@
     font-size: 15px;
   }
   .nav-hamburger { display: flex; }
-  .nav-search-btn { display: none; }
   .nav-logo-text  { width: 140px; }
   .nav-logo img   { height: 48px !important; width: auto !important; }
 }
