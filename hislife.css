@@ -77,7 +77,8 @@
   width: 8px;
   height: 8px;
   background: #2e3d63;
-  border-radius: 2px;
+  border-radius: 0;
+  z-index: 1;
 }
 
 .hl-spine {
@@ -87,6 +88,7 @@
   width: 2px;
   height: 17193px;
   background: rgba(46, 61, 99, 0.8);
+  z-index: 1;
 }
 
 /* ── ERA LABEL (large "1940s to 1950s") ───────────────────── */
@@ -111,9 +113,10 @@
   font-family: var(--font-deco);
   font-size: 32px;
   line-height: 30.4px;
+  z-index: 1;
 }
 .hl-year-col .navy { color: #2e3d63; }
-.hl-year-col .wht  { color: #fff; }
+.hl-year-col .wht  { color: #fff; background-color: #2a417d; border-radius: 3px; }
 
 /* ── AMBER DOTS (timeline event markers) ──────────────────── */
 .hl-dot {
