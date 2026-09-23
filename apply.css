@@ -106,73 +106,21 @@
 .ap-intro a:hover { text-decoration: underline; }
 
 /* ─── 4. DOCUMENT CARDS ────────────────────────────────────────
-   Six cards, each: 962px wide centred, 4px amber border, r=27px.
-   Large decorative number overflows card left edge.
+   Six full-image cards (designer assets), each 1010px wide centred.
+   Number is baked into each card image.
    ─────────────────────────────────────────────────────────────── */
 .ap-docs {
   padding-bottom: 81px;
 }
 
-.ap-card {
-  position: relative;
-  overflow: visible;          /* lets number overflow card left */
-  width: 962px;
+.ap-card-full {
+  display: block;
+  width: 1010px;
+  height: auto;
   margin: 0 auto;
-  border: 4px solid #e9a12d;
-  border-radius: 27px;
-  background: #fff;
 }
 
-/* Gaps between cards (from Figma absolute-y diff between consecutive cards) */
-.ap-card + .ap-card           { margin-top: 65px; }  /* card 2 */
-.ap-card:nth-child(3)         { margin-top: 74px; }  /* card 3 */
-.ap-card:nth-child(4)         { margin-top: 87px; }  /* card 4 */
-.ap-card:nth-child(5)         { margin-top: 82px; }  /* card 5 */
-.ap-card:nth-child(6)         { margin-top: 101px; } /* card 6 */
-
-/* Large CSS number (cards 2–6): position driven by per-card custom props */
-.ap-card-num {
-  position: absolute;
-  left: var(--num-left, -153px);
-  top:  var(--num-top,   61px);
-  font-size: 250px;
-  font-weight: 700;
-  color: #e9a12d;
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Document photo — coordinates set via inline style per card */
-.ap-card-img {
-  position: absolute;
-  object-fit: cover;
-}
-
-/* Right-side text block */
-.ap-card-text {
-  position: absolute;
-  font-size: 32px;
-  font-weight: 500;
-  color: var(--c-primary);
-  line-height: 1.35;
-}
-/* Card 1 CV uses 36px per Anima (text-4xl) */
-.ap-card:first-child .ap-card-text { font-size: 36px; }
-
-.ap-card-text .ap-amber { color: #d9982e; }
-.ap-card-text .ap-navy  { color: var(--c-primary); }
-
-/* Italic tip / note text at bottom of card */
-.ap-card-tip {
-  position: absolute;
-  font-size: 32px;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--c-primary);
-  line-height: 1.35;
-  margin: 0;
-}
+.ap-card-full + .ap-card-full { margin-top: 48px; }
 
 /* ─── 5. DISCLAIMER ────────────────────────────────────────────
    Rocket image left + disclaimer SVG text right.
