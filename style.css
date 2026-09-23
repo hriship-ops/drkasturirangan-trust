@@ -459,7 +459,7 @@
 .stories-heading {
   font-size: 36px;
   font-weight: var(--fw-medium);
-  color: var(--c-primary-dark);
+  color: var(--c-primary);
   position: relative;
 }
 
@@ -480,14 +480,14 @@
 .stories-cards {
   display: flex;
   align-items: flex-start;
-  gap: 28px;
+  gap: 41px;
 }
 
 .story-col {
   display: flex;
   flex-direction: column;
   flex: 1 1 280px;
-  max-width: 355px;
+  max-width: 370px;
 }
 
 .story-card-1,
@@ -495,14 +495,11 @@
 .story-card-3 {
   position: relative;
   overflow: hidden;
+  height: 370px;
+  border-radius: 15px;
 }
 
-.story-card-1 { height: 354px; border-radius: 15px; }
-.story-card-2 { height: 355px; border-radius: 10px; }
-.story-card-3 { height: 354px; border-radius: 15px; }
-
-.story-img-default,
-.story-img-hover {
+.story-img-default {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -513,35 +510,31 @@
   transition: opacity 0.35s ease;
 }
 
-.story-img-hover { opacity: 0; }
-
 .story-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(42, 66, 126, 0.92);
+  background: rgba(42, 65, 125, 0.92);
   border-radius: inherit;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 24px 8px 12px;
   opacity: 0;
   transition: opacity 0.35s ease;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .story-overlay p {
   color: #fff;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: var(--fw-regular);
-  line-height: 1.5;
+  line-height: 1.33;
   text-align: center;
   font-family: var(--font-main);
   margin: 0;
+  width: 100%;
 }
 
-.story-card-1:hover .story-img-hover,
-.story-card-2:hover .story-img-hover,
-.story-card-3:hover .story-img-hover,
 .story-card-1:hover .story-overlay,
 .story-card-2:hover .story-overlay,
 .story-card-3:hover .story-overlay {
@@ -560,7 +553,7 @@
 }
 
 .moment-text {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: var(--fw-medium);
   color: var(--c-primary);
   line-height: normal;
