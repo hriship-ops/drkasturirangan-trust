@@ -49,8 +49,8 @@
   align-items: center;
   justify-content: center;
 }
-.ap-date-box--left  { left: 159px; top: 169px; width: 276px; }
-.ap-date-box--right { left: 988px; top: 280px; width: 308px; }
+.ap-date-box--left  { left: 159px; top: 169px; width: fit-content; min-width: 180px; padding: 0 28px; }
+.ap-date-box--right { left: 988px; top: 280px; width: fit-content; min-width: 180px; padding: 0 28px; }
 
 .ap-date-box time {
   font-size: 36px;

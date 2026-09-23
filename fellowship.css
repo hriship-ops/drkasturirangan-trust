@@ -29,10 +29,10 @@
   margin-bottom: clamp(20px, 2.8vw, 40px);
 }
 
-/* Thin amber section dividers */
+/* Thin section dividers */
 .fp-rule {
-  height: 4px;
-  background: var(--c-accent);
+  height: 1px;
+  background: #E4E4E4;
   margin: 0 var(--page-px);
 }
 
@@ -70,12 +70,7 @@
 }
 
 .fp-hero-dot {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  flex-shrink: 0;
-  margin-top: 7px;
+  display: none;
 }
 
 .fp-hero-org {
@@ -83,6 +78,21 @@
   font-weight: var(--fw-regular);
   color: var(--c-primary);
   line-height: 1.2;
+  position: relative;
+}
+
+/* Amber dot overlapping behind the 'D' in "Dr Kasturirangan Trust" */
+.fp-hero-org::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 3px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .fp-hero-prog {
@@ -101,8 +111,8 @@
 .fp-hero-bullets li {
   font-size: var(--fs-body-lg);
   font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  line-height: 2.08;
+  color: #202020;
+  line-height: 1.5;
   margin-bottom: 0;
 }
 
@@ -143,6 +153,7 @@
 
 .fp-nominations {
   padding: clamp(30px, 3.9vw, 56px) 0;
+  background: #f6f6f6;
 }
 
 .fp-noms-intro {
@@ -172,7 +183,7 @@
 .fp-pill {
   background: #e9a22d;
   border-radius: 36px;
-  width: clamp(220px, 31.7vw, 456px);
+  width: fit-content;
   min-height: clamp(70px, 8.96vw, 129px);
   display: flex;
   flex-direction: column;
@@ -322,11 +333,25 @@
   flex-wrap: wrap;
 }
 
-/* Each circle: SVG provides fill + curved label; body text overlaid via absolute */
+/* Each circle: label above SVG + body text overlaid via absolute */
 .fp-circ {
   position: relative;
   width: clamp(170px, 18.75vw, 270px);
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fp-circ-label {
+  text-align: center;
+  color: #3c5eb6;
+  font-size: clamp(12px, 1.25vw, 18px);
+  font-weight: 700;
+  font-family: var(--font-main);
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+  line-height: 1.2;
 }
 
 .fp-circ-svg { display: block; width: 100%; height: auto; }
@@ -437,6 +462,7 @@
   color: var(--c-primary);
   line-height: 1.5;
   flex: 317 1 160px;   /* base ratio = narrowest box */
+  text-align: center;
 }
 
 .fp-elig-box:nth-child(1) { flex: 490 1 200px; }  /* widest */
@@ -458,6 +484,21 @@
   position: relative;
   width: clamp(130px, 15.6vw, 225px);
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fp-rcirc-label {
+  text-align: center;
+  color: #e9a22d;
+  font-size: clamp(11px, 1.1vw, 16px);
+  font-weight: 700;
+  font-family: var(--font-main);
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+  line-height: 1.2;
+  width: 100%;
 }
 
 .fp-rcirc-svg { display: block; width: 100%; height: auto; }
@@ -506,7 +547,7 @@
   grid-template-columns: clamp(80px, 20.8vw, 300px) clamp(22px, 2.4vw, 35px) 1fr;
   grid-auto-rows: auto;
   column-gap: clamp(14px, 2.5vw, 36px);
-  row-gap: clamp(22px, 3.5vw, 50px);
+  row-gap: clamp(36px, 5vw, 72px);
   position: relative;
 }
 
@@ -519,7 +560,7 @@
   top: calc(clamp(22px, 2.4vw, 35px) / 2);
   bottom: calc(clamp(22px, 2.4vw, 35px) / 2);
   width: 4px;
-  background: var(--c-primary);
+  background: #FFB338;
   transform: translateX(-50%);
   z-index: 0;
 }
@@ -527,7 +568,7 @@
 .fp-tl-date {
   font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
-  color: var(--c-primary);
+  color: #202020;
   text-align: right;
   line-height: 1.2;
   align-self: center;
@@ -537,7 +578,7 @@
   width: clamp(22px, 2.4vw, 35px);
   height: clamp(22px, 2.4vw, 35px);
   border-radius: 50%;
-  background: var(--c-kicker);
+  background: #FFB338;
   justify-self: center;
   align-self: center;
   position: relative;
@@ -561,7 +602,7 @@
 .fp-tl-label {
   font-size: var(--fs-h2);
   font-weight: var(--fw-regular);
-  color: var(--c-primary);
+  color: #202020;
   line-height: 1.3;
   align-self: center;
 }
@@ -584,6 +625,7 @@
   font-weight: var(--fw-bold);
   color: #fff;
   line-height: 1.3;
+  white-space: nowrap;
 }
 
 /* Amber-bordered box */
@@ -601,10 +643,11 @@
 
 .fp-app-intro {
   font-size: var(--fs-body-lg);
-  color: var(--c-primary);
+  color: #D9982E;
   text-align: center;
   line-height: 1.5;
   max-width: 710px;
+  margin: 0 auto clamp(16px, 2.5vw, 36px);
 }
 
 .fp-app-intro strong { font-weight: var(--fw-bold); }
@@ -707,9 +750,9 @@
 
 .fp-cta-inner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: clamp(10px, 1.5vw, 20px);
+  gap: clamp(16px, 2.5vw, 36px);
 }
 
 .fp-cta-rocket {
