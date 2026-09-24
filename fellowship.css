@@ -343,18 +343,9 @@
   align-items: center;
 }
 
-.fp-circ-label {
-  text-align: center;
-  color: #3c5eb6;
-  font-size: clamp(12px, 1.25vw, 18px);
-  font-weight: 700;
-  font-family: var(--font-main);
-  letter-spacing: 0.8px;
-  margin-bottom: 6px;
-  line-height: 1.2;
-}
+.fp-circ-img { display: block; width: 100%; height: auto; }
 
-.fp-circ-svg { display: block; width: 100%; height: auto; }
+
 
 .fp-circ-body {
   position: absolute;
@@ -489,19 +480,9 @@
   align-items: center;
 }
 
-.fp-rcirc-label {
-  text-align: center;
-  color: #e9a22d;
-  font-size: clamp(11px, 1.1vw, 16px);
-  font-weight: 700;
-  font-family: var(--font-main);
-  letter-spacing: 0.8px;
-  margin-bottom: 4px;
-  line-height: 1.2;
-  width: 100%;
-}
+.fp-rcirc-img { display: block; width: 100%; height: auto; }
 
-.fp-rcirc-svg { display: block; width: 100%; height: auto; }
+
 
 .fp-rcirc-body {
   position: absolute;
