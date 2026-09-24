@@ -400,7 +400,7 @@
 .fp-exp-row {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.4vw, 20px);
+  gap: 0;
   margin-bottom: clamp(8px, 1.2vw, 16px);
 }
 
@@ -409,11 +409,12 @@
   flex-shrink: 0;
   width: clamp(55px, 9.44vw, 136px);
   height: clamp(55px, 9.44vw, 136px);
+  margin-right: clamp(-42px, -2.9vw, -17px);
+  z-index: 2;
 }
 
 .fp-exp-circ { display: block; width: 100%; height: auto; }
 
-/* Icon sits centered over the amber circle */
 .fp-exp-icon {
   position: absolute;
   inset: 0;
@@ -426,9 +427,11 @@
 
 .fp-exp-text {
   flex: 1 1 auto;
+  position: relative;
+  z-index: 1;
   background: var(--c-bg-cream);
   border-radius: var(--r-exp-row);
-  padding: clamp(10px, 1.4vw, 20px) clamp(12px, 2vw, 28px);
+  padding: clamp(10px, 1.4vw, 20px) clamp(12px, 2vw, 28px) clamp(10px, 1.4vw, 20px) clamp(30px, 4vw, 57px);
   font-size: var(--fs-body-lg);
   color: var(--c-primary);
   line-height: 1.45;
