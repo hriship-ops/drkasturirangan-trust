@@ -723,9 +723,16 @@
     var items = Array.from(nav.querySelectorAll('.hl-yn-item'));
 
     function setActive(id) {
+      var activeItem = null;
       items.forEach(function (item) {
-        item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+        var isActive = item.getAttribute('href') === '#' + id;
+        item.classList.toggle('active', isActive);
+        if (isActive) activeItem = item;
       });
+      if (activeItem && nav.classList.contains('is-fixed')) {
+        var target = activeItem.offsetTop - nav.offsetHeight / 2 + activeItem.offsetHeight / 2;
+        nav.scrollTop = Math.max(0, target);
+      }
     }
 
     function updateSticky() {
