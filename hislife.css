@@ -223,16 +223,14 @@
 }
 .hl-yn-item:hover { background-color: rgba(42, 65, 125, 0.12); }
 .hl-yn-item.active { color: #fff; background-color: #2a417d; }
+.hl-yn-track {
+  transition: transform 0.25s ease;
+}
 .hl-year-col.is-fixed {
   position: fixed !important;
   top: 101px;
-  max-height: calc(100vh - 120px);
-  overflow-y: scroll;
-  overflow-x: visible;
-  scrollbar-width: none;
   pointer-events: none;
 }
-.hl-year-col.is-fixed::-webkit-scrollbar { display: none; }
 
 /* ── PHOTOS ───────────────────────────────────────────────── */
 .hl-photo {

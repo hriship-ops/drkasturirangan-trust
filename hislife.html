@@ -90,7 +90,8 @@
 
   <!-- ══ SMALL YEAR INDEX COLUMN (x=67, all years) ═════════════ -->
   <div class="hl-year-col" id="hl-year-nav">
-    <a href="#yr-1940" class="hl-yn-item">1940<br>to 1950</a>
+  <div class="hl-yn-track">
+    <a href="#yr-1940" class="hl-yn-item">1940</a>
     <a href="#yr-1961" class="hl-yn-item">1961</a>
     <a href="#yr-1963" class="hl-yn-item">1963</a>
     <a href="#yr-1969" class="hl-yn-item">1969</a>
@@ -129,6 +130,7 @@
     <a href="#yr-2021" class="hl-yn-item">2021</a>
     <a href="#yr-2023" class="hl-yn-item">2023</a>
     <a href="#yr-2025" class="hl-yn-item">2025</a>
+    </div>
   </div>
 
   <!-- ══ NAVY LEFT STRIP BARS (early era markers) ═════════════ -->
@@ -707,20 +709,24 @@
 
   <script>
   (function () {
-    var nav = document.getElementById('hl-year-nav');
-    var wrap = document.querySelector('.hl-wrap');
-    if (!nav || !wrap) return;
+    var nav   = document.getElementById('hl-year-nav');
+    var track = nav ? nav.querySelector('.hl-yn-track') : null;
+    var wrap  = document.querySelector('.hl-wrap');
+    if (!nav || !track || !wrap) return;
 
-    var NAV_H = 101;
+    var NAV_H       = 101;
     var INITIAL_TOP = 484;
 
-    // Collect all year anchor elements sorted by top value
     var yearEls = Array.from(document.querySelectorAll('.hl-year[id], .hl-dot[id^="yr-"]'));
     yearEls.sort(function (a, b) {
       return parseInt(a.style.top) - parseInt(b.style.top);
     });
+    var lastYearTop = yearEls.length
+      ? parseInt(yearEls[yearEls.length - 1].style.top)
+      : 17474;
 
     var items = Array.from(nav.querySelectorAll('.hl-yn-item'));
+    var navH  = 0; // cached after first fix
 
     function setActive(id) {
       var activeItem = null;
@@ -730,61 +736,58 @@
         if (isActive) activeItem = item;
       });
       if (activeItem && nav.classList.contains('is-fixed')) {
-        var target = activeItem.offsetTop - nav.offsetHeight / 2 + activeItem.offsetHeight / 2;
-        nav.scrollTop = Math.max(0, target);
+        if (!navH) navH = window.innerHeight - NAV_H - 20;
+        var offset = activeItem.offsetTop - navH / 2 + activeItem.offsetHeight / 2;
+        track.style.transform = 'translateY(-' + Math.max(0, offset) + 'px)';
+      } else if (!nav.classList.contains('is-fixed')) {
+        track.style.transform = '';
       }
     }
 
     function updateSticky() {
       var scrollY = window.scrollY || window.pageYOffset;
-      var startT = INITIAL_TOP - NAV_H;
-      var endT   = wrap.offsetHeight - window.innerHeight - 50;
-      if (scrollY >= startT && scrollY < endT) {
+      var startT  = INITIAL_TOP - NAV_H;
+      var endT    = lastYearTop - NAV_H;
+
+      if (scrollY > endT) {
+        nav.style.visibility = 'hidden';
+        return;
+      }
+      nav.style.visibility = '';
+
+      if (scrollY >= startT) {
         nav.classList.add('is-fixed');
         nav.style.left = (wrap.getBoundingClientRect().left + 67) + 'px';
         nav.style.top  = '';
-      } else if (scrollY >= endT) {
-        nav.classList.remove('is-fixed');
-        nav.style.left = '';
-        nav.style.top  = (endT + NAV_H) + 'px';
       } else {
         nav.classList.remove('is-fixed');
         nav.style.left = '';
         nav.style.top  = '';
+        track.style.transform = '';
       }
     }
 
     function updateActive() {
-      var viewTop = (window.scrollY || window.pageYOffset) + NAV_H + 40;
+      var viewTop  = (window.scrollY || window.pageYOffset) + NAV_H + 40;
       var activeId = yearEls.length ? yearEls[0].id : null;
       for (var i = 0; i < yearEls.length; i++) {
-        if (viewTop >= parseInt(yearEls[i].style.top)) {
-          activeId = yearEls[i].id;
-        }
+        if (viewTop >= parseInt(yearEls[i].style.top)) activeId = yearEls[i].id;
       }
       if (activeId) setActive(activeId);
     }
 
-    // Smooth scroll on click (needed because elements are absolutely positioned)
     items.forEach(function (item) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        var targetId = item.getAttribute('href').slice(1);
-        var target = document.getElementById(targetId);
+        var target = document.getElementById(item.getAttribute('href').slice(1));
         if (target) {
-          var top = parseInt(target.style.top) - NAV_H - 20;
-          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+          window.scrollTo({ top: Math.max(0, parseInt(target.style.top) - NAV_H - 20), behavior: 'smooth' });
         }
       });
     });
 
-    window.addEventListener('scroll', function () {
-      updateSticky();
-      updateActive();
-    }, { passive: true });
-
+    window.addEventListener('scroll', function () { updateSticky(); updateActive(); }, { passive: true });
     window.addEventListener('resize', updateSticky, { passive: true });
-
     updateSticky();
     updateActive();
   })();
