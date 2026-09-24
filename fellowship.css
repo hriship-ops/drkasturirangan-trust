@@ -636,11 +636,27 @@
 
 .fp-app-intro strong { font-weight: var(--fw-bold); }
 
-/* Documents: show both stacked vertically */
+/* Carousel wrapper: arrows outside the card on each side */
+.fp-app-carousel-wrap {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.5vw, 22px);
+}
+
+.fp-app-carousel-wrap .fp-app-box { flex: 1 1 auto; min-width: 0; }
+
+/* Dots row below the card */
+.fp-carousel-dots {
+  display: flex;
+  gap: clamp(14px, 2vw, 28px);
+  justify-content: center;
+  margin-top: clamp(14px, 2vw, 28px);
+}
+
+/* Documents: carousel — one slide at a time */
 .fp-app-docs {
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 2.8vw, 40px);
   width: 100%;
 }
 
@@ -649,6 +665,8 @@
   align-items: center;
   gap: clamp(16px, 2.5vw, 36px);
 }
+
+.fp-doc-hidden { display: none; }
 
 .fp-doc-img {
   width: clamp(160px, 21.7vw, 313px);
@@ -668,14 +686,6 @@
 
 .fp-doc-sub { color: var(--c-amber-border); }
 
-/* Carousel nav row */
-.fp-app-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .fp-carousel-btn {
   width: clamp(36px, 4.24vw, 61px);
   height: clamp(36px, 4.24vw, 61px);
@@ -691,13 +701,6 @@
 
 .fp-carousel-btn img { width: 100%; height: auto; }
 
-/* Pagination dots */
-.fp-carousel-dots {
-  display: flex;
-  gap: clamp(18px, 2.6vw, 37px);
-  justify-content: center;
-}
-
 .fp-dot {
   width: 21px;
   height: 21px;
@@ -711,37 +714,36 @@
 
 .fp-dot-active { background: var(--c-primary); }
 
-/* Note below box */
-.fp-app-note {
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  text-align: center;
-  line-height: 1.5;
-  max-width: 595px;
-  margin: clamp(14px, 2vw, 28px) auto 0;
-}
-
-/* ================================================================
-   CTA
-   ================================================================ */
-
-.fp-cta {
-  padding: clamp(20px, 2.8vw, 40px) var(--page-px) clamp(30px, 4vw, 56px);
+/* CTA area: rocket + note + button */
+.fp-app-cta-area {
   display: flex;
-  justify-content: center;
-}
-
-.fp-cta-inner {
-  display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: clamp(16px, 2.5vw, 36px);
+  margin: clamp(24px, 3.5vw, 50px) auto 0;
 }
 
 .fp-cta-rocket {
   width: clamp(100px, 15.4vw, 222px);
   height: auto;
+  flex-shrink: 0;
+}
+
+.fp-app-cta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(12px, 1.5vw, 20px);
+}
+
+/* Note text */
+.fp-app-note {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 0;
 }
 
 .fp-cta-btn {

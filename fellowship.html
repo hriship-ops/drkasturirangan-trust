@@ -452,57 +452,53 @@
         <strong>info@drkasturirangantrust.org by December 31, 2026</strong>.
       </p>
 
-      <!-- Amber-bordered box -->
-      <div class="fp-app-box">
-
-        <!-- Both required documents shown -->
-        <div class="fp-app-docs">
-          <div class="fp-app-doc-row">
-            <img class="fp-doc-img" src="assets/fellowship/doc-cv.png" alt="Sample Curriculum Vitae">
-            <div class="fp-doc-text">
-              Curriculum Vitae <span class="fp-doc-sub">(maximum 2 pages)</span>
+      <!-- Carousel: arrows outside the amber card -->
+      <div class="fp-app-carousel-wrap">
+        <button class="fp-carousel-btn fp-carousel-prev" aria-label="Previous">
+          <img src="assets/fellowship/btn-back.png" alt="">
+        </button>
+        <div class="fp-app-box">
+          <div class="fp-app-docs">
+            <div class="fp-app-doc-row">
+              <img class="fp-doc-img" src="assets/fellowship/doc-cv.png" alt="Sample Curriculum Vitae">
+              <div class="fp-doc-text">
+                Curriculum Vitae <span class="fp-doc-sub">(maximum 2 pages)</span>
+              </div>
             </div>
-          </div>
-          <div class="fp-app-doc-row">
-            <img class="fp-doc-img" src="assets/fellowship/doc-phd.png"
-                 alt="Proof of PhD completion or thesis submission">
-            <div class="fp-doc-text">
-              Proof of PhD completion or thesis submission between January 01, 2025 and October 23, 2026
+            <div class="fp-app-doc-row fp-doc-hidden">
+              <img class="fp-doc-img" src="assets/fellowship/doc-phd.png"
+                   alt="Proof of PhD completion or thesis submission">
+              <div class="fp-doc-text">
+                Proof of PhD completion or thesis submission between January 01, 2025 and October 23, 2026
+              </div>
             </div>
           </div>
         </div>
-
-        <!-- Carousel nav row (back / dots / next) -->
-        <div class="fp-app-nav">
-          <button class="fp-carousel-btn" aria-label="Previous">
-            <img src="assets/fellowship/btn-back.png" alt="">
-          </button>
-          <div class="fp-carousel-dots" role="group" aria-label="Document pages">
-            <button class="fp-dot fp-dot-active" aria-label="Page 1"></button>
-            <button class="fp-dot" aria-label="Page 2"></button>
-          </div>
-          <button class="fp-carousel-btn" aria-label="Next">
-            <img src="assets/fellowship/btn-next.png" alt="">
-          </button>
-        </div>
+        <button class="fp-carousel-btn fp-carousel-next" aria-label="Next">
+          <img src="assets/fellowship/btn-next.png" alt="">
+        </button>
       </div>
 
-      <p class="fp-app-note">
-        Applications with incomplete documentation or without nomination will be rejected
-        and not be considered any further.
-      </p>
+      <!-- Dots below the card -->
+      <div class="fp-carousel-dots" role="group" aria-label="Document pages">
+        <button class="fp-dot fp-dot-active" aria-label="Page 1"></button>
+        <button class="fp-dot" aria-label="Page 2"></button>
+      </div>
+
+      <!-- Rocket + note + Apply button -->
+      <div class="fp-app-cta-area">
+        <img src="assets/fellowship/rocket.png" alt="" class="fp-cta-rocket" aria-hidden="true">
+        <div class="fp-app-cta-right">
+          <p class="fp-app-note">
+            Applications with incomplete documentation or without nomination will be rejected
+            and not be considered any further.
+          </p>
+          <a href="apply.html" class="fp-cta-btn">Apply for Fellowships</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       11. CTA
-       ============================================================ -->
-  <section class="fp-cta">
-    <div class="fp-cta-inner">
-      <img src="assets/fellowship/rocket.png" alt="" class="fp-cta-rocket" aria-hidden="true">
-      <a href="apply.html" class="fp-cta-btn">Apply for Fellowships</a>
-    </div>
-  </section>
 
   <!-- ============================================================
        FOOTER
@@ -560,6 +556,28 @@
         hamburger.setAttribute('aria-expanded', String(open));
       });
     }
+
+    /* Document carousel */
+    (function () {
+      const slides = document.querySelectorAll('.fp-app-doc-row');
+      const dots   = document.querySelectorAll('.fp-dot');
+      const prev   = document.querySelector('.fp-carousel-prev');
+      const next   = document.querySelector('.fp-carousel-next');
+      if (!slides.length) return;
+      let cur = 0;
+
+      function show(i) {
+        slides[cur].classList.add('fp-doc-hidden');
+        dots[cur].classList.remove('fp-dot-active');
+        cur = (i + slides.length) % slides.length;
+        slides[cur].classList.remove('fp-doc-hidden');
+        dots[cur].classList.add('fp-dot-active');
+      }
+
+      if (prev) prev.addEventListener('click', () => show(cur - 1));
+      if (next) next.addEventListener('click', () => show(cur + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+    })();
   </script>
 </body>
 </html>
