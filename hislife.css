@@ -219,6 +219,7 @@
   border-radius: 3px;
   cursor: pointer;
   pointer-events: auto;
+  white-space: nowrap;
 }
 .hl-yn-item:hover { background-color: rgba(42, 65, 125, 0.12); }
 .hl-yn-item.active { color: #fff; background-color: #2a417d; }

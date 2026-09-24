@@ -737,12 +737,20 @@
 
     function updateSticky() {
       var scrollY = window.scrollY || window.pageYOffset;
-      if (scrollY >= INITIAL_TOP - NAV_H) {
+      var startT = INITIAL_TOP - NAV_H;
+      var endT   = wrap.offsetHeight - window.innerHeight - 50;
+      if (scrollY >= startT && scrollY < endT) {
         nav.classList.add('is-fixed');
         nav.style.left = (wrap.getBoundingClientRect().left + 67) + 'px';
+        nav.style.top  = '';
+      } else if (scrollY >= endT) {
+        nav.classList.remove('is-fixed');
+        nav.style.left = '';
+        nav.style.top  = (endT + NAV_H) + 'px';
       } else {
         nav.classList.remove('is-fixed');
         nav.style.left = '';
+        nav.style.top  = '';
       }
     }
 
