@@ -16,10 +16,10 @@
 /* ── HERO SECTION ─────────────────────────────────────────── */
 .hl-amber-circle {
   position: absolute;
-  top: 52px;
-  left: 1155px;
-  width: 403px;
-  height: 403px;
+  top: 57px;
+  left: 1127px;
+  width: 369px;
+  height: 369px;
   background: rgba(217, 152, 46, 0.15);
   border-radius: 50%;
 }
@@ -53,11 +53,11 @@
 
 .hl-portrait {
   position: absolute;
-  top: 44px;
-  left: 989px;
-  width: 356px;
-  height: 351px;
-  object-fit: cover;
+  top: 47px;
+  left: 982px;
+  width: 304px;
+  height: 300px;
+  object-fit: contain;
 }
 
 .hl-hero-line {
@@ -113,6 +113,7 @@
   font-family: var(--font-deco);
   font-size: 32px;
   line-height: 30.4px;
+  text-align: center;
   z-index: 1;
 }
 .hl-year-col .navy { color: #2e3d63; }
@@ -193,10 +194,10 @@
   margin: 0;
 }
 
-/* ── BLUE BAND TEXT (white, 24px Afacad, x=49) ───────────── */
+/* ── BLUE BAND TEXT (white, 24px Afacad) ─────────────────── */
 .hl-bbtext {
   position: absolute;
-  left: 49px;
+  left: 170px;
   font-family: var(--font-main);
   font-size: 24px;
   color: #fff;

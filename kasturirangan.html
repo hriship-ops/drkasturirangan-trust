@@ -1,0 +1,664 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr K. Kasturirangan &mdash; A Many-Splendored Life</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* overflow-x:hidden on body (from tokens.css) implicitly sets overflow-y:auto,
+   which can make body the scroll container and break position:sticky in Safari.
+   Reset overflow-y so the viewport remains the scroll container. */
+body { overflow-y: visible; }
+
+/* ================================================================
+   DR KASTURIRANGAN'S LIFE — kasturirangan.html
+   From Figma node 650:56 (1440x4732px canvas).
+   Two-column timeline layout:
+     Left sidebar (160px): amber vertical line + year index list
+     Main content: hero intro + stacked timeline entries
+   ================================================================ */
+
+/* ----------------------------------------------------------
+   HERO INTRO SECTION
+   Left: amber title (50px Afacad Medium #c58316) + body text.
+   Right: illustrated sketch SVG (flipped) + amber circle.
+   Canvas: title at x=209, y=219; illustration at x=989, y=145.
+   ---------------------------------------------------------- */
+
+.kk-hero {
+  padding: 56px var(--page-px) 0;
+  display: grid;
+  grid-template-columns: 1fr clamp(240px, 29.2vw, 420px);
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* R1: shift text column right, closer to illustration */
+.kk-hero-text {
+  padding-left: clamp(24px, 8.3vw, 120px);
+}
+
+.kk-hero-title {
+  font-size: 50px;
+  font-weight: var(--fw-medium);
+  color: var(--c-amber-deep);
+  font-family: var(--font-main);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.kk-hero-desc {
+  font-size: 30px;
+  font-weight: var(--fw-regular);
+  color: var(--c-primary-dark);
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+/* R1: illustration wrapper — holds circle + flipped image */
+.kk-hero-illus-wrap {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  overflow: visible;
+}
+
+/* Figma V2: Ellipse 8 w=403, illustration y=145, circle y=153 → 8px below illustration top. */
+.kk-illus-circle {
+  position: absolute;
+  width: clamp(200px, 28vw, 403px);
+  height: clamp(200px, 28vw, 403px);
+  border-radius: 50%;
+  background: rgba(217, 152, 46, 0.15);
+  top: 8px;
+  right: clamp(16px, 2.8vw, 40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* R1: flip illustration horizontally */
+.kk-hero-illus {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 356px;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+/* Figma Line 27: y=502 (6px below illustration bottom at y=496), x=-57 to x=1197 (~83% of 1440px).
+   Stroke #d9982e a=0.20, sw=3. Positioned in .kk-hero (full-width section). */
+.kk-hero-hline {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 17%;
+  height: 3px;
+  background: rgba(217, 152, 46, 0.20);
+  z-index: 0;
+}
+
+/* ----------------------------------------------------------
+   TIMELINE WRAPPER
+   Left sidebar: 160px wide, amber vertical line (border-left 3px).
+   Main: all timeline entries stacked.
+   ---------------------------------------------------------- */
+
+.kk-timeline-wrap {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  margin-top: 60px;
+}
+
+/* R3: sidebar sticky so year index stays visible while scrolling */
+.kk-sidebar {
+  position: sticky;
+  top: var(--nav-h);
+  align-self: start;
+  border-right: 3px solid var(--c-accent);
+  padding: 0 12px 0 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kk-sidebar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  margin-left: -5.5px;
+  position: absolute;
+  left: 100%;
+}
+
+/* R3: year index — fully static, no internal scroll ever */
+.kk-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 16px;
+  overflow: hidden;
+  max-height: calc(100vh - 140px);
+}
+
+.kk-sidebar ul li {
+  font-family: var(--font-deco);
+  font-size: 32px;
+  color: var(--c-primary-dark);
+  line-height: 1.4;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.kk-sidebar ul li.kk-yr-lg {
+  font-size: 34px;
+}
+
+.kk-sidebar ul li.kk-yr-active {
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* R3: highlighted years — full-width navy band, white text */
+.kk-sidebar ul li.kk-yr-highlight {
+  background: var(--c-primary);
+  color: #fff;
+  display: block;
+  margin-left: -40px;
+  margin-right: -12px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+}
+
+/* Main content column */
+.kk-main {
+  position: relative;
+}
+
+/* ----------------------------------------------------------
+   TIMELINE ENTRY
+   Each entry: horizontal amber divider above, then content row.
+   Content row: large amber year (96px Agdasima, centre) + text right.
+   Photos: rounded 27px, right-aligned, max-w 670px.
+   ---------------------------------------------------------- */
+
+/* Horizontal amber line separating entries */
+.kk-entry-divider {
+  height: 3px;
+  background: var(--c-accent);
+}
+
+/* Figma V2: per-section grey line at x=496 (sidebar=160 → within kk-main: 336px).
+   Stroke #7f7f7f sw=0.5 — per-section only, not continuous. */
+.kk-entry-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: clamp(20px, 3.1vw, 44px) clamp(20px, 4vw, 58px) clamp(20px, 3.1vw, 44px) clamp(20px, 3.5vw, 50px);
+  position: relative;
+}
+.kk-entry-inner::before {
+  content: '';
+  position: absolute;
+  left: 336px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(127, 127, 127, 0.55);
+  z-index: 0;
+}
+
+/* R4: year label — Figma: "1940s to 1950s" CENTER, numeric years LEFT. */
+.kk-entry-year {
+  font-family: var(--font-deco);
+  font-size: 96px;
+  color: var(--c-accent);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: clamp(120px, 20.1vw, 290px);
+  text-align: left;
+  position: relative;
+}
+.kk-entry-year-first { text-align: center; }
+
+/* R11: amber glow circle removed per V2 design */
+.kk-entry-year::before {
+  display: none;
+}
+
+/* Entry content: text + optional photo */
+.kk-entry-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Figma: dot x=531, text x=542 — dot nearly abuts text (11px from dot left to text). */
+.kk-entry-dot-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.kk-entry-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.kk-entry-text {
+  font-size: 24px;
+  font-weight: var(--fw-regular);
+  color: #000;
+  line-height: 1.5;
+}
+
+.kk-entry-photo {
+  border-radius: 27px;
+  object-fit: cover;
+  width: 100%;
+  max-width: 670px;
+  height: auto;
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   DARK NAVY CALLOUT SECTION
+   Navy bg #2a427e, white text, used for the Berkeley/ISRO story.
+   Left: text (400px). Right: photo.
+   ---------------------------------------------------------- */
+
+.kk-dark-section {
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 50px 56px 49px;
+  position: relative;
+  z-index: 1;
+}
+
+.kk-dark-text {
+  font-size: 24px;
+  font-weight: var(--fw-regular);
+  color: #fff;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.kk-dark-photo {
+  border-radius: 27px;
+  object-fit: cover;
+  width: clamp(280px, 42.7vw, 615px);
+  flex-shrink: 1;
+  height: auto;
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+   ---------------------------------------------------------- */
+
+.kk-entry-tail { padding-top: 40px; padding-bottom: 60px; }
+
+/* ── Tablet wide (≤1100px): hero collapses to single column ── */
+@media (max-width: 1100px) {
+  .kk-hero {
+    grid-template-columns: 1fr;
+    padding: 40px var(--page-px) 0;
+    gap: 32px;
+  }
+  .kk-hero-text { padding-left: 0; }
+  /* Center illustration + reposition circle so it doesn't escape right edge */
+  .kk-hero-illus-wrap { justify-content: center; }
+  .kk-hero-illus       { max-width: 220px; }
+  .kk-illus-circle {
+    width: 250px; height: 250px;
+    top: -20px; right: auto;
+    left: 50%; transform: translateX(-50%);
+  }
+  /* Horizontal deco line doesn't make sense in stacked layout */
+  .kk-hero-hline { display: none; }
+  .kk-dark-section { flex-direction: column; padding: 40px var(--page-px); }
+  .kk-dark-photo   { width: 100%; max-width: 540px; }
+}
+
+/* ── Tablet narrow (≤900px): shrink sidebar + year labels ── */
+@media (max-width: 900px) {
+  .kk-timeline-wrap  { grid-template-columns: 72px 1fr; }
+  .kk-sidebar        { padding: 0 6px 0 16px; }
+  .kk-sidebar ul li  { font-size: 18px; }
+  .kk-sidebar ul li.kk-yr-lg { font-size: 18px; }
+  /* Highlighted band must still reach sidebar edges at new padding */
+  .kk-sidebar ul li.kk-yr-highlight { margin-left: -16px; }
+  .kk-entry-inner    { gap: 20px; padding: 32px 20px 32px 16px; }
+  .kk-entry-year     { font-size: 60px; min-width: 140px; }
+  /* grey line: sidebar narrows to 72px, same left-of-dot offset → 72+(290-150)/1 ≈ 141px */
+  .kk-entry-inner::before { left: 141px; }
+}
+
+/* ── Mobile (≤600px): hide sidebar, stack year above content ── */
+@media (max-width: 600px) {
+  /* ghost spacer year for 1971 dark-section layout — remove entirely on mobile */
+  .kk-ghost-year { display: none; }
+  .kk-hero          { padding: 28px 20px 0; }
+  .kk-hero-title    { font-size: 34px; }
+  .kk-hero-desc     { font-size: 18px; }
+  .kk-hero-illus    { max-width: 160px; }
+  .kk-illus-circle  { width: 180px; height: 180px; }
+
+  .kk-timeline-wrap { grid-template-columns: 1fr; }
+  .kk-sidebar       { display: none; }
+
+  /* Stacked entry: year on top, content below */
+  .kk-entry-inner   { flex-direction: column; gap: 8px; padding: 20px 20px; }
+  .kk-entry-year    { font-size: 52px; min-width: unset; text-align: left; }
+  .kk-entry-year-first { text-align: center; }
+  .kk-entry-year::before { left: 0; top: 4px; width: 64px; height: 64px; }
+  .kk-entry-content { padding-top: 0; }
+  .kk-entry-text    { font-size: 18px; }
+  .kk-entry-dot     { width: 22px; height: 22px; }
+  .kk-entry-photo   { max-width: 100%; }
+
+  /* Remove decorative lines — too cluttered on narrow screens */
+  .kk-entry-inner::before { display: none; }
+
+  .kk-dark-section { padding: 28px 20px; }
+  .kk-dark-text    { font-size: 18px; }
+}
+
+/* ── Small phones (≤400px) ── */
+@media (max-width: 400px) {
+  .kk-hero-title  { font-size: 26px; }
+  .kk-hero-desc   { font-size: 17px; }
+  .kk-entry-year  { font-size: 40px; }
+  .kk-entry-text  { font-size: 16px; }
+  .kk-hero-illus  { max-width: 120px; }
+  .kk-illus-circle { width: 140px; height: 140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="vision.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+      </div>
+    </li>
+    <li>
+      <a href="kasturirangan.html">Dr K. Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="kasturirangan.html">His Life</a>
+        <a href="#">Selected Writings</a>
+        <a href="memories.html">Memories</a>
+      </div>
+    </li>
+    <li>
+      <a href="fellowship.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="apply.html">Apply</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-search-btn" aria-label="Search">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <!-- Hamburger — visible only on mobile via shared.css -->
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO INTRO -->
+<section class="kk-hero">
+  <div class="kk-hero-text">
+    <h1 class="kk-hero-title">A Many-Splendored Life</h1>
+    <p class="kk-hero-desc">In his book <em>Space and Beyond</em>, KK. Kasturirangan reflects on his life as &ldquo;extraordinary and many-splendored.&rdquo; This timeline traces the remarkable journey behind those words.</p>
+  </div>
+  <div class="kk-hero-illus-wrap">
+    <div class="kk-illus-circle"></div>
+    <img class="kk-hero-illus"
+         src="assets/images/kk-illustration.svg"
+         alt="Sketch portrait of K. Kasturirangan">
+  </div>
+  <div class="kk-hero-hline"></div>
+</section>
+
+<!-- TIMELINE -->
+<div class="kk-timeline-wrap">
+
+  <!-- LEFT SIDEBAR: year index + amber vertical line -->
+  <div class="kk-sidebar">
+    <div class="kk-sidebar-dot"></div>
+    <ul>
+      <li data-yr="1940">1940<br>to 1950</li>
+      <li data-yr="1961">1961</li>
+      <li data-yr="1963">1963</li>
+      <li data-yr="1969">1969</li>
+      <li class="kk-yr-highlight" data-yr="1971">1971</li>
+    </ul>
+  </div>
+
+  <!-- MAIN TIMELINE CONTENT -->
+  <div class="kk-main">
+
+    <!-- 1940s–1950s -->
+    <div class="kk-entry" data-year="1940">
+      <div class="kk-entry-divider"></div>
+
+      <div class="kk-entry-inner">
+        <div class="kk-entry-year kk-entry-year-first">1940s<br>to<br>1950s</div>
+        <div class="kk-entry-content">
+          <div class="kk-entry-dot-row">
+            <div class="kk-entry-dot"></div>
+            <p class="kk-entry-text">K. Kasturirangan is born on October 24, 1940, in Ernakulam, Kerala, to C.M. Krishnaswamy Iyer and Visalakshi. He attends Sree Rama Varma High School, Ernakulam, and later South Indian Education Society High School, in Bombay.</p>
+          </div>
+          <img class="kk-entry-photo"
+               src="assets/images/kk-photo-school.png"
+               alt="School era photograph">
+        </div>
+      </div>
+    </div>
+
+    <!-- 1961 -->
+    <div class="kk-entry" data-year="1961">
+      <div class="kk-entry-divider"></div>
+
+      <div class="kk-entry-inner">
+        <div class="kk-entry-year">1961</div>
+        <div class="kk-entry-content">
+          <div class="kk-entry-dot-row">
+            <div class="kk-entry-dot"></div>
+            <p class="kk-entry-text">Completes BSc (Honours) in Physics at Ramnarain Ruia College, Mumbai</p>
+          </div>
+          <img class="kk-entry-photo"
+               src="assets/images/kk-photo-1961.png"
+               alt="Ramnarain Ruia College">
+        </div>
+      </div>
+    </div>
+
+    <!-- 1963 -->
+    <div class="kk-entry" data-year="1963">
+      <div class="kk-entry-divider"></div>
+
+      <div class="kk-entry-inner">
+        <div class="kk-entry-year">1963</div>
+        <div class="kk-entry-content">
+          <div class="kk-entry-dot-row">
+            <div class="kk-entry-dot"></div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <p class="kk-entry-text">Completes MSc in Physics from Bombay University</p>
+              <p class="kk-entry-text">Joins Physical Research Laboratory (PRL) for his doctoral work in cosmic X-rays in Vikram Sarabhai&rsquo;s laboratory</p>
+            </div>
+          </div>
+          <img class="kk-entry-photo"
+               src="assets/images/kk-photo-1963.png"
+               alt="Physical Research Laboratory">
+        </div>
+      </div>
+    </div>
+
+    <!-- 1969 -->
+    <div class="kk-entry" data-year="1969">
+      <div class="kk-entry-divider"></div>
+
+      <div class="kk-entry-inner">
+        <div class="kk-entry-year">1969</div>
+        <div class="kk-entry-content">
+          <div class="kk-entry-dot-row">
+            <div class="kk-entry-dot"></div>
+            <p class="kk-entry-text">Marries Lakshmi. They have two sons, Rajesh and Sanjay</p>
+          </div>
+          <img class="kk-entry-photo"
+               src="assets/images/kk-photo-1969.png"
+               alt="K. Kasturirangan and Lakshmi">
+        </div>
+      </div>
+    </div>
+
+    <!-- 1971 -->
+    <div class="kk-entry" data-year="1971">
+      <div class="kk-entry-divider"></div>
+
+      <div class="kk-entry-inner">
+        <div class="kk-entry-year">1971</div>
+        <div class="kk-entry-content">
+          <div class="kk-entry-dot-row">
+            <div class="kk-entry-dot"></div>
+            <p class="kk-entry-text">Completes doctorate in experimental high-energy astronomy.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navy callout band: Berkeley offer vs ISRO + Aryabhata photo -->
+      <div class="kk-dark-section">
+        <p class="kk-dark-text">Receives an offer to do postdoctoral work with Nobel Laureate Prof Louis Alvarez at UC Berkeley, but is convinced by Sarabhai to join ISRO instead</p>
+        <img class="kk-dark-photo"
+             src="assets/images/kk-photo-isro.png"
+             alt="">
+      </div>
+
+      <div class="kk-entry-inner">
+        <div class="kk-entry-year kk-ghost-year" aria-hidden="true" style="visibility:hidden">1971</div>
+        <div class="kk-entry-content">
+          <p class="kk-entry-text">Takes on systems engineering responsibility for Aryabhata, India&rsquo;s first satellite</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.kk-main -->
+</div><!-- /.kk-timeline-wrap -->
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="vision.html">About Us</a>
+    <a href="kasturirangan.html">Dr K. Kasturirangan</a>
+    <a href="fellowship.html">Initiatives</a>
+    <a href="#">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
+  </div>
+  <div class="footer-contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var entries = Array.from(document.querySelectorAll('.kk-entry[data-year]'));
+  var ul = document.querySelector('.kk-sidebar ul');
+  if (!entries.length || !ul) return;
+  var active = null;
+  function update() {
+    var mid = window.innerHeight / 2;
+    var best = null, bestDist = Infinity;
+    entries.forEach(function (e) {
+      var r = e.getBoundingClientRect();
+      var dist = Math.abs((r.top + r.bottom) / 2 - mid);
+      if (dist < bestDist) { bestDist = dist; best = e; }
+    });
+    var yr = best ? best.getAttribute('data-year') : null;
+    if (yr === active) return;
+    active = yr;
+    ul.querySelectorAll('li.kk-yr-active').forEach(function (li) { li.classList.remove('kk-yr-active'); });
+    if (yr) {
+      var li = ul.querySelector('li[data-yr="' + yr + '"]');
+      if (li) li.classList.add('kk-yr-active');
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}());
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
