@@ -552,7 +552,7 @@
 .fp-tl-date {
   font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
-  color: #202020;
+  color: var(--c-primary);
   text-align: right;
   line-height: 1.2;
   align-self: center;
@@ -586,7 +586,7 @@
 .fp-tl-label {
   font-size: var(--fs-h2);
   font-weight: var(--fw-regular);
-  color: #202020;
+  color: var(--c-primary);
   line-height: 1.3;
   align-self: center;
 }
