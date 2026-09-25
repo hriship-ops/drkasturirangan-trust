@@ -176,8 +176,8 @@
 /* ── BLUE BANDS (full-width navy) ─────────────────────────── */
 .hl-band {
   position: absolute;
-  left: 0;
-  width: 1440px;
+  left: 155px;
+  width: 1285px;
   height: 517px;
   background: #2a417d;
 }

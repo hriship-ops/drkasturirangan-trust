@@ -166,20 +166,20 @@
 /* ── FOCUS AREA CARDS ─────────────────────────────────────── */
 .vm-focus-card {
   position: absolute;
-  top: 2754px;
+  top: 2674px;
   height: 330px; width: 274px;
   border-radius: 27px;
   background: #fff6e6;
 }
 .vm-focus-img {
   position: absolute;
-  top: 2770px;
+  top: 2690px;
   height: 197px; width: 191px;
   object-fit: cover;
 }
 .vm-focus-text {
   position: absolute;
-  top: 2976px;
+  top: 2896px;
   width: 261px;
   text-align: center;
   font-family: var(--font-main);
