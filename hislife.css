@@ -104,12 +104,12 @@
   line-height: normal;
 }
 
-/* ── SMALL YEAR INDEX COLUMN (left sidebar, x=67) ─────────── */
+/* ── SMALL YEAR INDEX COLUMN (left sidebar, x=0, w=154) ────── */
 .hl-year-col {
   position: absolute;
   top: 484px;
-  left: 67px;
-  width: 56px;
+  left: 0;
+  width: 154px;
   font-family: var(--font-deco);
   font-size: 32px;
   line-height: 30.4px;
@@ -197,7 +197,7 @@
 /* ── BLUE BAND TEXT (white, 24px Afacad) ─────────────────── */
 .hl-bbtext {
   position: absolute;
-  left: 170px;
+  left: 218px;
   font-family: var(--font-main);
   font-size: 24px;
   color: #fff;
