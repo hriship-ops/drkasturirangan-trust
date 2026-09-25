@@ -671,9 +671,14 @@
 
 .fp-doc-hidden { display: none; }
 
-/* Full-card slides (3-6): image fills the entire box */
-.fp-doc-card-full { padding: 0; }
-.fp-doc-card-img  { width: 100%; height: auto; object-fit: contain; border-radius: 20px; display: block; }
+/* Tip/note text below icon+text row */
+.fp-doc-tip {
+  font-style: italic;
+  font-size: clamp(14px, 1.4vw, 20px);
+  color: var(--c-primary);
+  margin: clamp(12px, 1.5vw, 24px) 0 0;
+  line-height: 1.5;
+}
 
 .fp-doc-img {
   width: clamp(160px, 21.7vw, 313px);

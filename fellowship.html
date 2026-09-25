@@ -472,17 +472,32 @@
                 Proof of PhD completion or thesis submission between January 01, 2025 and October 23, 2026
               </div>
             </div>
-            <div class="fp-app-doc-row fp-doc-hidden fp-doc-card-full">
-              <img class="fp-doc-card-img" src="assets/apply/card-3.png" alt="Statement of purpose">
+            <div class="fp-app-doc-row fp-doc-hidden">
+              <img class="fp-doc-img" src="assets/fellowship/doc-statement.png" alt="Statement of purpose">
+              <div class="fp-doc-text">
+                Statement of purpose <span class="fp-doc-sub">(maximum 1000 words)</span> clearly outlining how your proposed research aligns with the Trust&rsquo;s objectives; your motivations, and how the Fellowship funds would help you.
+              </div>
             </div>
-            <div class="fp-app-doc-row fp-doc-hidden fp-doc-card-full">
-              <img class="fp-doc-card-img" src="assets/apply/card-4.png" alt="Nomination letter">
+            <p class="fp-doc-tip fp-doc-hidden">Tip: Try to demonstrate the interdisciplinarity of your work, its anticipated impact, and its relevance to academic, corporate, or public policy.</p>
+            <div class="fp-app-doc-row fp-doc-hidden">
+              <img class="fp-doc-img" src="assets/fellowship/doc-nomination.png" alt="Nomination letter">
+              <div class="fp-doc-text">
+                A nomination letter from NOMINATING GROUP (TBD)
+              </div>
             </div>
-            <div class="fp-app-doc-row fp-doc-hidden fp-doc-card-full">
-              <img class="fp-doc-card-img" src="assets/apply/card-5.png" alt="Two letters of endorsement or support">
+            <p class="fp-doc-tip fp-doc-hidden">Tip for the nominator: The letter must demonstrate the nature of your relationship with the nominee and their familiarity with their work.</p>
+            <div class="fp-app-doc-row fp-doc-hidden">
+              <img class="fp-doc-img" src="assets/fellowship/doc-endorsement.png" alt="Two letters of endorsement or support">
+              <div class="fp-doc-text">
+                <span class="fp-doc-sub">Two letters</span> of endorsement/support by Institution Head/Professor/Senior collaborators who are familiar with you and your project.
+              </div>
             </div>
-            <div class="fp-app-doc-row fp-doc-hidden fp-doc-card-full">
-              <img class="fp-doc-card-img" src="assets/apply/card-6.png" alt="Budget proposal">
+            <p class="fp-doc-tip fp-doc-hidden">Note: All letters must be on official letterhead and bear original or authenticated signatures.</p>
+            <div class="fp-app-doc-row fp-doc-hidden">
+              <img class="fp-doc-img" src="assets/fellowship/doc-budget.png" alt="Budget proposal">
+              <div class="fp-doc-text">
+                Budget proposal outlining how the funds will be used to support your proposed research and professional development.
+              </div>
             </div>
           </div>
         </div>
@@ -580,11 +595,19 @@
       if (!slides.length) return;
       let cur = 0;
 
+      function tipOf(slide) {
+        const next = slide.nextElementSibling;
+        return (next && next.classList.contains('fp-doc-tip')) ? next : null;
+      }
       function show(i) {
         slides[cur].classList.add('fp-doc-hidden');
+        const oldTip = tipOf(slides[cur]);
+        if (oldTip) oldTip.classList.add('fp-doc-hidden');
         dots[cur].classList.remove('fp-dot-active');
         cur = (i + slides.length) % slides.length;
         slides[cur].classList.remove('fp-doc-hidden');
+        const newTip = tipOf(slides[cur]);
+        if (newTip) newTip.classList.remove('fp-doc-hidden');
         dots[cur].classList.add('fp-dot-active');
       }
 
