@@ -580,8 +580,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-self: start;
-  margin-left: calc(clamp(22px, 2.4vw, 35px) / 2);
+  justify-self: center;
 }
 
 .fp-tl-dot-play img { width: 100%; height: auto; object-fit: contain; }
