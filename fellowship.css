@@ -575,8 +575,8 @@
 .fp-tl-dot-play {
   background: none;
   border-radius: 0;
-  width: clamp(32px, 3.9vw, 56px);
-  height: clamp(24px, 3.3vw, 47px);
+  width: clamp(22px, 2.4vw, 35px);
+  height: clamp(22px, 2.4vw, 35px);
   display: flex;
   align-items: center;
   justify-content: center;
