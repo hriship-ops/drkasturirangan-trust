@@ -212,8 +212,8 @@
   width: 100%;
   text-align: center;
   font-family: var(--font-deco);
-  font-size: 32px;
-  line-height: 30.4px;
+  font-size: 18px;
+  line-height: 17px;
   color: #2e3d63;
   text-decoration: none;
   padding: 4px 2px;
@@ -231,6 +231,8 @@
   position: fixed !important;
   top: 101px;
   pointer-events: none;
+  max-height: calc(100vh - 121px);
+  overflow: hidden;
 }
 
 /* ── PHOTOS ───────────────────────────────────────────────── */
