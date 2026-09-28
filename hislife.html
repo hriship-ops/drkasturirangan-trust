@@ -731,8 +731,8 @@
 
     function updateSticky() {
       var scrollY = window.scrollY || window.pageYOffset;
-      var startT  = INITIAL_TOP - NAV_H;
-      var endT    = lastYearTop - NAV_H;
+      var startT  = INITIAL_TOP;
+      var endT    = lastYearTop;
 
       if (scrollY > endT) {
         nav.style.visibility = 'hidden';

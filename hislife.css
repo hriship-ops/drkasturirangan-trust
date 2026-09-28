@@ -11,6 +11,7 @@
   min-height: 17860px;
   background: #fff;
   overflow-x: clip;
+  overflow-y: clip;
 }
 
 /* ── HERO SECTION ─────────────────────────────────────────── */
