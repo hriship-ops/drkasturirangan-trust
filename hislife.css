@@ -32,8 +32,8 @@
   width: 596px;
   font-family: var(--font-main);
   font-weight: var(--fw-medium);
-  font-size: 50px;
-  color: #c58216;
+  font-size: 44px;
+  color: #D9982E;
   line-height: normal;
   white-space: nowrap;
   margin: 0;
@@ -46,7 +46,7 @@
   width: 734px;
   font-family: var(--font-main);
   font-weight: var(--fw-regular);
-  font-size: 30px;
+  font-size: 24px;
   color: #2e3d63;
   line-height: normal;
   margin: 0;
@@ -99,8 +99,8 @@
   left: 205px;
   width: 190px;
   font-family: var(--font-deco);
-  font-size: 96px;
-  color: #ffb337;
+  font-size: 80px;
+  color: #FFB338;
   text-align: center;
   line-height: normal;
 }
@@ -112,8 +112,8 @@
   left: 0;
   width: 154px;
   font-family: var(--font-deco);
-  font-size: 32px;
-  line-height: 30.4px;
+  font-size: 36px;
+  line-height: 34px;
   text-align: center;
   z-index: 1;
 }
@@ -130,12 +130,12 @@
   border-radius: 50%;
 }
 
-/* ── YEAR LABELS (large 96px Agdasima, amber) ─────────────── */
+/* ── YEAR LABELS (large 80px Agdasima, amber) ─────────────── */
 .hl-year {
   position: absolute;
   font-family: var(--font-deco);
-  font-size: 96px;
-  color: #ffb337;
+  font-size: 80px;
+  color: #FFB338;
   white-space: nowrap;
   line-height: normal;
 }
@@ -212,8 +212,8 @@
   width: 100%;
   text-align: center;
   font-family: var(--font-deco);
-  font-size: 18px;
-  line-height: 17px;
+  font-size: 36px;
+  line-height: 34px;
   color: #2e3d63;
   text-decoration: none;
   padding: 4px 2px;

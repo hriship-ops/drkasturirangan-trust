@@ -34,13 +34,14 @@
   --fs-eyebrow:   28px;   /* fellowship "Apply now" text */
   --fs-h2:        36px;   /* all section h2 headings */
   --fs-hero:      clamp(22px, 2.43vw, 47px); /* home hero headline; 35px @ 1440px */
-  --fs-quote:     50px;   /* pull quote */
+  --fs-quote:     44px;   /* pull quote */
   --fs-hero-btn:  36px;   /* home apply button text */
   --fs-banner:    36px;   /* banner strip text */
 
   /* font-weight from Figma fontStyle (Regular=400, Medium=500, Bold=700) */
   --fw-regular: 400;
   --fw-medium:  500;
+  --fw-semibold: 600;
   --fw-bold:    700;
 
   --ls-kicker: 2px;  /* letterSpacing on kicker labels */

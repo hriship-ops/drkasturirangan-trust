@@ -65,7 +65,7 @@
   padding: 0 12px;
   font-size: var(--fs-nav);
   font-weight: var(--fw-regular);
-  color: var(--c-primary-dark);
+  color: var(--c-primary);
   white-space: nowrap;
   transition: color 0.15s;
 }
@@ -116,7 +116,7 @@
   padding: 7px 16px; /* R5: tighter dropdown items */
   font-size: 15px;
   font-weight: var(--fw-regular);
-  color: var(--c-primary-dark);
+  color: var(--c-primary);
   white-space: nowrap;
   line-height: 1.4;
   transition: color 0.1s ease, background 0.1s ease, padding-left 0.1s ease;

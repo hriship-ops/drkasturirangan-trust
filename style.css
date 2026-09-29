@@ -127,9 +127,9 @@
   margin-bottom: 28px;
 }
 
-/* Headline: 35px Afacad regular, line-height=43.6px (1.245) */
+/* Headline: 44px Afacad regular, line-height=43.6px (1.245) */
 .hero-headline {
-  font-size: 35px;
+  font-size: 44px;
   font-weight: var(--fw-regular);
   color: #000;
   line-height: 1.245;
@@ -160,10 +160,10 @@
   margin-bottom: 16px;
 }
 
-/* Explore link: 20px #808080. canvas(857,554). */
+/* Explore link: 24px #808080. canvas(857,554). */
 .hero-explore-link {
   display: block;
-  font-size: 20px;
+  font-size: 24px;
   color: var(--c-text-muted);
 }
 
@@ -184,8 +184,8 @@
 .about-heading {
   font-size: 36px;
   font-style: italic;
-  font-weight: var(--fw-medium);
-  color: var(--c-primary-dark);
+  font-weight: var(--fw-semibold);
+  color: var(--c-primary);
   line-height: normal;
   position: relative;
   margin-bottom: 8px;
@@ -320,7 +320,7 @@
 }
 
 .area-panel.panel-default .area-panel-quote-text {
-  font-size: 50px;
+  font-size: 44px;
   font-weight: var(--fw-medium);
   font-style: normal;
   color: #fff;
@@ -388,7 +388,7 @@
 
 /* Base quote text (default state) */
 .area-panel-quote-text {
-  font-size: 50px;
+  font-size: 44px;
   font-style: italic;
   color: #fff;
   line-height: 1.3;
@@ -458,7 +458,7 @@
 
 .stories-heading {
   font-size: 36px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-bold);
   color: var(--c-primary);
   position: relative;
 }

@@ -74,7 +74,7 @@
 }
 
 .fp-hero-org {
-  font-size: var(--fs-h2);
+  font-size: 44px;
   font-weight: var(--fw-regular);
   color: var(--c-primary);
   line-height: 1.2;
@@ -97,7 +97,7 @@
 }
 
 .fp-hero-prog {
-  font-size: var(--fs-h2);
+  font-size: 44px;
   font-weight: var(--fw-bold);
   color: var(--c-primary);
   line-height: 1.2;
@@ -359,8 +359,8 @@
   justify-content: center;
   text-align: center;
   color: #fff;
-  font-size: clamp(11px, 1.25vw, 18px);
-  font-weight: var(--fw-bold);
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
   line-height: 1.4;
   font-family: var(--font-main);
 }
@@ -499,7 +499,8 @@
   justify-content: center;
   text-align: center;
   color: #fff;
-  font-size: clamp(9px, 0.97vw, 14px);
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
   line-height: 1.38;
   font-family: var(--font-main);
 }
