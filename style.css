@@ -562,20 +562,41 @@
 
 /* ----------------------------------------------------------
    HOME CTA
-   Rocket+tagline combined PNG, centered.
+   Rocket arc (180×124) + tagline text at Figma-spec offsets.
+   Bounding box: 631×124px centered.
    ---------------------------------------------------------- */
 
 .home-cta {
   display: flex;
-  align-items: center;
   justify-content: center;
   padding: 40px 58px 60px;
 }
 
-.home-cta-rocket-tagline {
-  width: 100%;
-  max-width: 1100px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+.home-cta-inner {
+  position: relative;
+  width: 631px;
+  height: 124px;
+  flex-shrink: 0;
+}
+
+.home-cta-rocket {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 180px;
+  height: 124px;
+}
+
+/* Figma: 24px Afacad Italic #808080, offset (45, 62) from rocket origin */
+.home-cta-tagline {
+  position: absolute;
+  left: 45px;
+  top: 62px;
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  color: #808080;
+  white-space: nowrap;
 }
