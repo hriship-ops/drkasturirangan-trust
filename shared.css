@@ -42,7 +42,7 @@
 }
 
 .nav-logo img {
-  height: 74px;
+  height: 86px;
   width: auto;
 }
 
@@ -114,7 +114,7 @@
   display: block;
   height: auto;
   padding: 7px 16px; /* R5: tighter dropdown items */
-  font-size: 15px;
+  font-size: 22px;
   font-weight: var(--fw-regular);
   color: var(--c-primary);
   white-space: nowrap;
@@ -382,7 +382,7 @@
   }
   .nav-links li .nav-dropdown a {
     padding: 7px 20px 7px 32px;
-    font-size: 15px;
+    font-size: 18px;
   }
   .nav-hamburger { display: flex; }
   .nav-logo-text  { width: 140px; }

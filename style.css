@@ -127,7 +127,7 @@
   margin-bottom: 28px;
 }
 
-/* Headline: 44px Afacad regular, line-height=43.6px (1.245) */
+/* Headline: 44px Afacad regular */
 .hero-headline {
   font-size: 44px;
   font-weight: var(--fw-regular);
@@ -150,17 +150,17 @@
   pointer-events: none;
 }
 
-/* Description: 18px regular black, max-width 446px, line-height=23.8px. */
+/* Description: 24px regular black, max-width 446px. */
 .hero-desc {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: var(--fw-regular);
   color: #000;
-  line-height: 1.322;
+  line-height: 1.4;
   max-width: 446px;
   margin-bottom: 16px;
 }
 
-/* Explore link: 24px #808080. canvas(857,554). */
+/* Explore link: 24px #808080. */
 .hero-explore-link {
   display: block;
   font-size: 24px;
@@ -182,10 +182,10 @@
 }
 
 .about-heading {
-  font-size: 36px;
-  font-style: italic;
-  font-weight: var(--fw-semibold);
-  color: var(--c-primary);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: var(--fw-bold);
+  color: #D9982E;
   line-height: normal;
   position: relative;
   margin-bottom: 8px;
@@ -320,12 +320,13 @@
 }
 
 .area-panel.panel-default .area-panel-quote-text {
-  font-size: 44px;
-  font-weight: var(--fw-medium);
+  font-size: 22px;
+  font-weight: var(--fw-regular);
   font-style: normal;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.4;
   text-align: left;
+  white-space: pre-line;
 }
 
 .area-panel.panel-default .area-panel-desc-wrap {
@@ -392,13 +393,13 @@
   font-style: italic;
   color: #fff;
   line-height: 1.3;
-  font-weight: var(--fw-regular);
+  font-weight: 600;
 }
 
 /* Hover quote override: Afacad Medium 24px, #855404, centered, 252px wide */
 .area-panel:not(.panel-default) .area-panel-quote-text {
   font-size: 24px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   font-style: normal;
   color: #855404;
   text-align: center;
@@ -419,8 +420,8 @@
 }
 
 .area-panel-desc {
-  font-size: 22px;
-  color: var(--c-primary);
+  font-size: 24px;
+  color: #202020;
   line-height: 1.5;
   font-weight: var(--fw-regular);
   margin: 0;
@@ -457,9 +458,9 @@
 }
 
 .stories-heading {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: var(--fw-bold);
-  color: var(--c-primary);
+  color: #D9982E;
   position: relative;
 }
 
@@ -554,7 +555,7 @@
 
 .moment-text {
   font-size: 24px;
-  font-weight: var(--fw-medium);
+  font-weight: 600;
   color: var(--c-primary);
   line-height: normal;
   display: inline-block;

@@ -11,7 +11,6 @@
   min-height: 17860px;
   background: #fff;
   overflow-x: clip;
-  overflow-y: clip;
 }
 
 /* ── HERO SECTION ─────────────────────────────────────────── */
@@ -33,7 +32,7 @@
   font-family: var(--font-main);
   font-weight: var(--fw-medium);
   font-size: 44px;
-  color: #D9982E;
+  color: #d9982e;
   line-height: normal;
   white-space: nowrap;
   margin: 0;
@@ -41,13 +40,13 @@
 
 .hl-subtitle {
   position: absolute;
-  top: 212px;
+  top: 180px;
   left: 209px;
   width: 734px;
   font-family: var(--font-main);
   font-weight: var(--fw-regular);
   font-size: 24px;
-  color: #2e3d63;
+  color: #202020;
   line-height: normal;
   margin: 0;
 }
@@ -118,7 +117,7 @@
   background: #fff;
   z-index: 2;
 }
-.hl-year-col .navy { color: #2e3d63; }
+.hl-year-col .navy { color: #2a427e; }
 .hl-year-col .wht  { color: #fff; background-color: #2a417d; border-radius: 3px; }
 
 /* ── AMBER DOTS (timeline event markers) ──────────────────── */
@@ -188,10 +187,10 @@
 .hl-event {
   position: absolute;
   left: 542px;
-  width: 691px;
+  width: 620px;
   font-family: var(--font-main);
   font-size: 24px;
-  color: #000;
+  color: #202020;
   line-height: normal;
   margin: 0;
 }
