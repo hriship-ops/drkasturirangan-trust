@@ -320,8 +320,8 @@
 }
 
 .area-panel.panel-default .area-panel-quote-text {
-  font-size: 22px;
-  font-weight: var(--fw-regular);
+  font-size: 44px;
+  font-weight: var(--fw-semibold);
   font-style: normal;
   color: #fff;
   line-height: 1.4;
