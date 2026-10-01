@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,162 +12,184 @@
 <style>
 /* ================================================================
    TEAM — team.html
-   From Figma node 852:1273 (1439x1726px canvas).
-   6 team cards in 2 rows of 3.
-   Card: 360x360px, border 4px #e9a22d, r=27px.
-   Column gap: 65px (532-107-360). Left margin: 107px.
+   From Figma node 1029:1114 (1440x1429px canvas).
+   3 trustee cards with category filter tabs and expandable bios.
+   Cards: 404x676px, bg #fff6e6, r=27px.
+   Photo frame: 319x326px, border 5px #ffb337, r=27px.
+   Content not yet finalised — layout faithful to Figma.
    ================================================================ */
 
 .team-section {
-  padding: var(--section-py) var(--page-px) var(--section-py) clamp(20px, 7.4vw, 107px);
+  position: relative;
+  min-height: 960px;
+  padding-bottom: 80px;
 }
 
-/* Heading row: amber dot 32px + "Meet our team" 36px bold navy. */
-.team-heading-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 48px;
-}
-
-.team-heading-dot {
+/* Amber heading dot — Figma: left-14 (56px), top-[170px] from canvas → 53px from section top */
+.team-dot {
+  position: absolute;
+  top: 53px;
+  left: 56px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--c-accent);
+  background: #ffb337;
+}
+
+/* Section heading — Figma: left-[72px], top-[170px] from canvas */
+.team-heading {
+  position: absolute;
+  top: 53px;
+  left: 72px;
+  font-family: var(--font-main);
+  font-size: 36px;
+  font-weight: var(--fw-bold);
+  color: #2a417d;
+  line-height: normal;
+  margin: 0;
+}
+
+/* Category filter tabs — Figma: top-[228px] from canvas (111px from section top).
+   Tabs right edge at 1360px on 1440px canvas → right: 80px. */
+.team-tabs {
+  position: absolute;
+  top: 111px;
+  right: 80px;
+  display: flex;
+  gap: 20px;
+}
+
+.team-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 71px;
+  border-radius: 13px;
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.team-tab--trustees { width: 116px; background: #e9a12d; }
+.team-tab--council  { width: 114px; background: #2a417d; }
+.team-tab--exec     { width: 200px; background: #2a417d; padding: 0 8px; }
+
+/* Cards container — Figma: top-[358px] from canvas → 241px from section top, left-[75px].
+   Flex gap of 39px yields card 2 start at 518px, card 3 start at 961px (matches Figma). */
+.team-cards-row {
+  position: absolute;
+  top: 241px;
+  left: 75px;
+  display: flex;
+  gap: 39px;
+}
+
+/* Individual card — Figma: 404×676px, rounded-[27px], bg-[#fff6e6], no outer border */
+.team-card {
+  position: relative;
+  width: 404px;
+  height: 676px;
+  border-radius: 27px;
+  background: #fff6e6;
   flex-shrink: 0;
 }
 
-.team-heading-row h1 {
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-bold);
-  color: var(--c-primary);
-}
-
-/* 3-column card grid. gap=65px from Figma. */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px clamp(20px, 4.5vw, 65px);
-  margin-bottom: 60px;
-}
-
-/* ----------------------------------------------------------
-   TEAM CARD
-   Outer: amber border 4px, r=27px, overflow hidden.
-   Photo: fills top portion, object-fit: cover.
-   Wave SVG: 85px tall, spans full width above cream band.
-   Cream band: #fcedd6, h=56px, r bottom only (27px).
-   ---------------------------------------------------------- */
-
-.team-card {
-  width: 100%;
-  max-width: 360px;
-  border: 4px solid #e9a22d;
+/* Photo placeholder frame — Figma: top-[31px] left-[43px], 319×326px, border 5px #ffb337 */
+.team-card-frame {
+  position: absolute;
+  top: 31px;
+  left: 43px;
+  width: 319px;
+  height: 326px;
   border-radius: 27px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  border: 5px solid #ffb337;
+  box-sizing: border-box;
 }
 
+/* Actual photo (Mukund) — same geometry as frame */
 .team-card-photo {
-  width: 100%;
-  height: clamp(180px, 21.1vw, 304px);
+  position: absolute;
+  top: 31px;
+  left: 43px;
+  width: 319px;
+  height: 326px;
+  border-radius: 27px;
   object-fit: cover;
   object-position: top center;
   display: block;
-  flex-shrink: 0;
 }
 
-/* Placeholder for cards without a photo yet. */
-.team-card-photo-placeholder {
-  width: 100%;
-  height: clamp(180px, 21.1vw, 304px);
-  background: #f0e8d8;
-  flex-shrink: 0;
-}
-
-/* Wave SVG overlaps the bottom of photo + top of band.
-   Pulled up by negative margin so it overlaps the photo. */
-.team-card-wave {
-  width: 100%;
-  height: 85px;
-  display: block;
-  margin-top: -40px;
-  position: relative;
-  z-index: 1;
-}
-
-/* Cream name/email band at bottom. */
-.team-card-band {
-  background: #fcedd6;
-  text-align: center;
-  padding: 8px 12px 14px;
-  flex-shrink: 0;
-}
-
+/* Member name — Figma: top-[370px] left-[73px] w-[259px], centered, 24px medium navy */
 .team-card-name {
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-medium);
-  color: var(--c-primary);
-  line-height: 1.3;
-  margin-bottom: 2px;
-}
-
-.team-card-email {
-  font-size: var(--fs-body-sm);
-  font-weight: var(--fw-regular);
-  color: var(--c-primary);
-  line-height: 1.4;
-}
-
-/* ----------------------------------------------------------
-   HOVER OVERLAY
-   Figma: navy border #2a417d 6px r=27, cream fill #fceacd.
-   Text at left=28px top=65px w=304px, 20px navy.
-   ---------------------------------------------------------- */
-.team-card {
-  position: relative; /* already column-flex; add positioning context */
-}
-
-.team-card-hover {
-  display: none; /* hidden on non-hover-capable devices */
   position: absolute;
-  inset: -4px; /* expand to cover the amber border */
-  background: #fceacd;
-  border: 6px solid #2a417d;
-  border-radius: 27px;
-  padding: 65px 28px 20px;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.18s ease;
-  z-index: 10;
-  font-size: 20px;
-  line-height: 1.5;
+  top: 370px;
+  left: 73px;
+  width: 259px;
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: var(--fw-medium);
   color: #2a417d;
+  line-height: normal;
+  margin: 0;
 }
 
-@media (hover: hover) {
-  .team-card-hover { display: block; }
-  .team-card:hover .team-card-hover { opacity: 1; }
+/* Amber divider — Figma: top-[413px] left-[119px], 166×1px */
+.team-card-divider {
+  position: absolute;
+  top: 413px;
+  left: 119px;
+  width: 166px;
+  height: 1px;
+  background: #ffb337;
 }
 
-/* ----------------------------------------------------------
-   RESPONSIVE
-   ---------------------------------------------------------- */
-
-@media (max-width: 1200px) {
-  .team-section { padding-left: 40px; }
-  .team-grid { gap: 32px; }
+/* Description — Figma: top-[424px] left-[22px] w-[368px], 24px/33.6px, #202020 */
+.team-card-desc {
+  position: absolute;
+  top: 424px;
+  left: 22px;
+  width: 362px;
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 400;
+  color: #202020;
+  line-height: 33.6px;
+  margin: 0;
+  overflow: hidden;
+  max-height: 192px; /* ~5.7 lines collapsed */
 }
 
-@media (max-width: 800px) {
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
+/* Expanded: overlays below card with tinted bg for readability */
+.team-card-desc.is-expanded {
+  max-height: 800px;
+  overflow: visible;
+  background: #fff6e6;
+  border-radius: 6px;
+  z-index: 10;
 }
 
-@media (max-width: 540px) {
-  .team-section { padding-left: 20px; padding-right: 20px; }
-  .team-grid { grid-template-columns: 1fr; }
+/* Read more/less button — Figma: top-[627px] left-[247px], 20px #7f7f7f */
+.team-card-readmore {
+  position: absolute;
+  top: 627px;
+  left: 247px;
+  width: 157px;
+  height: 42px;
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 400;
+  color: #7f7f7f;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 0;
 }
 </style>
 </head>
@@ -207,7 +229,6 @@
       </div>
     </li>
   </ul>
-  <!-- Hamburger — visible only on mobile via shared.css -->
   <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
           onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -219,88 +240,73 @@
 </nav>
 
 <!-- TEAM SECTION -->
-<section class="team-section">
-  <div class="team-heading-row">
-    <div class="team-heading-dot"></div>
-    <h1>Meet our team</h1>
+<section class="team-section" aria-label="Meet our Team">
+
+  <div class="team-dot" aria-hidden="true"></div>
+  <h1 class="team-heading">Meet our Team</h1>
+
+  <!-- Category filter tabs -->
+  <div class="team-tabs" role="group" aria-label="Team categories">
+    <button class="team-tab team-tab--trustees" aria-pressed="true">Trustees</button>
+    <button class="team-tab team-tab--council" aria-pressed="false">Council<br>Members</button>
+    <button class="team-tab team-tab--exec" aria-pressed="false">Executive Steering Committee</button>
   </div>
 
-  <div class="team-grid">
-    <!-- Row 1 -->
-    <div class="team-card">
+  <!-- Cards row — 3 trustees -->
+  <div class="team-cards-row">
+
+    <!-- Anurag Behar -->
+    <article class="team-card" aria-labelledby="name-anurag">
+      <div class="team-card-frame" aria-hidden="true"></div>
+      <h2 id="name-anurag" class="team-card-name">Anurag Behar</h2>
+      <div class="team-card-divider" aria-hidden="true"></div>
+      <p class="team-card-desc" id="desc-anurag">
+        He has been responsible for the
+        Foundation as its CEO since 2010, leading its development across
+        multiple areas of work, as it has grown to become one of
+        the largest philanthropic institutions in the world.
+      </p>
+      <button class="team-card-readmore"
+              aria-expanded="false"
+              aria-controls="desc-anurag"
+              onclick="toggleDesc(this)">Read more...</button>
+    </article>
+
+    <!-- Mukund Kadursrinivas Rao -->
+    <article class="team-card" aria-labelledby="name-mukund">
       <img class="team-card-photo"
-           src="assets/images/team-photo-1.png"
-           alt="Anurag Behar">
-      <img class="team-card-wave"
-           src="assets/images/team-card-wave.svg"
-           alt="">
-      <div class="team-card-band">
-        <p class="team-card-name">Anurag Behar</p>
-        <p class="team-card-email">anurag.behar@drkasturirangantrust.org</p>
-      </div>
-      <div class="team-card-hover" aria-hidden="true">
-        He leaves behind a spirit of Indianism rooted in inner quest, rightful
-        discovery, committed hard work, and compassion for every human being.
-        He consistently emphasised rigorous inquiry, wide consultation, problem
-        solving, and humane consideration.
-      </div>
-    </div>
+           src="assets/images/team-mukund.png"
+           alt="Mukund Kadursrinivas Rao">
+      <h2 id="name-mukund" class="team-card-name">Mukund Kadursrinivas Rao</h2>
+      <div class="team-card-divider" aria-hidden="true"></div>
+      <p class="team-card-desc" id="desc-mukund">
+        He is expert in space technology and information systems,
+        specializing in Earth Observation, GIS, data science, policy, and
+        Futures. He holds a PhD and MPhil in Remote Sensing and GIS, and a
+        Master's in Geology.
+      </p>
+      <button class="team-card-readmore"
+              aria-expanded="false"
+              aria-controls="desc-mukund"
+              onclick="toggleDesc(this)">Read more...</button>
+    </article>
 
-    <div class="team-card">
-      <div class="team-card-photo-placeholder"></div>
-      <img class="team-card-wave"
-           src="assets/images/team-card-wave.svg"
-           alt="">
-      <div class="team-card-band">
-        <p class="team-card-name">Sanjay Rangan</p>
-        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
-      </div>
-    </div>
+    <!-- Sanjay Rangan -->
+    <article class="team-card" aria-labelledby="name-sanjay">
+      <div class="team-card-frame" aria-hidden="true"></div>
+      <h2 id="name-sanjay" class="team-card-name">Sanjay Rangan</h2>
+      <div class="team-card-divider" aria-hidden="true"></div>
+      <p class="team-card-desc" id="desc-sanjay">
+        He has led initiatives at the intersection of education, society,
+        and policy, bringing together diverse stakeholders to advance the
+        mission of the Trust and its programmes.
+      </p>
+      <button class="team-card-readmore"
+              aria-expanded="false"
+              aria-controls="desc-sanjay"
+              onclick="toggleDesc(this)">Read more...</button>
+    </article>
 
-    <div class="team-card">
-      <div class="team-card-photo-placeholder"></div>
-      <img class="team-card-wave"
-           src="assets/images/team-card-wave.svg"
-           alt="">
-      <div class="team-card-band">
-        <p class="team-card-name">Sanjay Rangan</p>
-        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
-      </div>
-    </div>
-
-    <!-- Row 2 -->
-    <div class="team-card">
-      <div class="team-card-photo-placeholder"></div>
-      <img class="team-card-wave"
-           src="assets/images/team-card-wave.svg"
-           alt="">
-      <div class="team-card-band">
-        <p class="team-card-name">Anurag Behar</p>
-        <p class="team-card-email">anurag.behar@drkasturirangantrust.org</p>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-card-photo-placeholder"></div>
-      <img class="team-card-wave"
-           src="assets/images/team-card-wave.svg"
-           alt="">
-      <div class="team-card-band">
-        <p class="team-card-name">Sanjay Rangan</p>
-        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-card-photo-placeholder"></div>
-      <img class="team-card-wave"
-           src="assets/images/team-card-wave.svg"
-           alt="">
-      <div class="team-card-band">
-        <p class="team-card-name">Sanjay Rangan</p>
-        <p class="team-card-email">sanjay.rangan@drkasturirangantrust.org</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -330,9 +336,24 @@
   <div class="footer-contact" id="contact">
     <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
     <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
-</div>
+  </div>
 </footer>
 
 <script src="nav.js"></script>
+<script>
+function toggleDesc(btn) {
+  var desc = document.getElementById(btn.getAttribute('aria-controls'));
+  var expanded = btn.getAttribute('aria-expanded') === 'true';
+  if (expanded) {
+    desc.classList.remove('is-expanded');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'Read more...';
+  } else {
+    desc.classList.add('is-expanded');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.textContent = 'Read less...';
+  }
+}
+</script>
 </body>
 </html>
