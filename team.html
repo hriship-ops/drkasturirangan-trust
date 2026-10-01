@@ -12,20 +12,22 @@
 <style>
 /* ================================================================
    TEAM — team.html
-   From Figma node 1029:1114 (1440x1429px canvas).
-   3 trustee cards with category filter tabs and expandable bios.
-   Cards: 404x676px, bg #fff6e6, r=27px.
-   Photo frame: 319x326px, border 5px #ffb337, r=27px.
-   Content not yet finalised — layout faithful to Figma.
+   Figma node 1029:1114 (cards view, canvas 1440×1429px)
+   Figma node 1714:1293 (profile view, canvas 1440×2008px)
    ================================================================ */
 
 .team-section {
   position: relative;
   min-height: 960px;
   padding-bottom: 80px;
+  transition: min-height 0.3s ease;
 }
 
-/* Amber heading dot — Figma: left-14 (56px), top-[170px] from canvas → 53px from section top */
+.team-section.profile-open {
+  min-height: 1680px;
+}
+
+/* Amber heading dot */
 .team-dot {
   position: absolute;
   top: 53px;
@@ -36,7 +38,7 @@
   background: #ffb337;
 }
 
-/* Section heading — Figma: left-[72px], top-[170px] from canvas */
+/* Section heading */
 .team-heading {
   position: absolute;
   top: 53px;
@@ -49,8 +51,7 @@
   margin: 0;
 }
 
-/* Category filter tabs — Figma: top-[228px] from canvas (111px from section top).
-   Tabs right edge at 1360px on 1440px canvas → right: 80px. */
+/* Category filter tabs */
 .team-tabs {
   position: absolute;
   top: 111px;
@@ -79,8 +80,11 @@
 .team-tab--council  { width: 114px; background: #2a417d; }
 .team-tab--exec     { width: 200px; background: #2a417d; padding: 0 8px; }
 
-/* Cards container — Figma: top-[358px] from canvas → 241px from section top, left-[75px].
-   Flex gap of 39px yields card 2 start at 518px, card 3 start at 961px (matches Figma). */
+/* ================================================================
+   CARDS VIEW
+   ================================================================ */
+
+/* Cards container — Figma: top-[358px]→241px from section, left-[75px] */
 .team-cards-row {
   position: absolute;
   top: 241px;
@@ -89,7 +93,7 @@
   gap: 39px;
 }
 
-/* Individual card — Figma: 404×676px, rounded-[27px], bg-[#fff6e6], no outer border */
+/* Individual card */
 .team-card {
   position: relative;
   width: 404px;
@@ -99,7 +103,7 @@
   flex-shrink: 0;
 }
 
-/* Photo placeholder frame — Figma: top-[31px] left-[43px], 319×326px, border 5px #ffb337 */
+/* Photo placeholder frame */
 .team-card-frame {
   position: absolute;
   top: 31px;
@@ -111,7 +115,7 @@
   box-sizing: border-box;
 }
 
-/* Actual photo (Mukund) — same geometry as frame */
+/* Actual photo */
 .team-card-photo {
   position: absolute;
   top: 31px;
@@ -124,7 +128,7 @@
   display: block;
 }
 
-/* Member name — Figma: top-[370px] left-[73px] w-[259px], centered, 24px medium navy */
+/* Member name */
 .team-card-name {
   position: absolute;
   top: 370px;
@@ -139,7 +143,7 @@
   margin: 0;
 }
 
-/* Amber divider — Figma: top-[413px] left-[119px], 166×1px */
+/* Amber divider */
 .team-card-divider {
   position: absolute;
   top: 413px;
@@ -149,7 +153,7 @@
   background: #ffb337;
 }
 
-/* Description — Figma: top-[424px] left-[22px] w-[368px], 24px/33.6px, #202020 */
+/* Description — collapsed */
 .team-card-desc {
   position: absolute;
   top: 424px;
@@ -162,19 +166,10 @@
   line-height: 33.6px;
   margin: 0;
   overflow: hidden;
-  max-height: 192px; /* ~5.7 lines collapsed */
+  max-height: 192px;
 }
 
-/* Expanded: overlays below card with tinted bg for readability */
-.team-card-desc.is-expanded {
-  max-height: 800px;
-  overflow: visible;
-  background: #fff6e6;
-  border-radius: 6px;
-  z-index: 10;
-}
-
-/* Read more/less button — Figma: top-[627px] left-[247px], 20px #7f7f7f */
+/* Read more button on card */
 .team-card-readmore {
   position: absolute;
   top: 627px;
@@ -189,6 +184,95 @@
   border: none;
   cursor: pointer;
   text-align: center;
+  padding: 0;
+}
+
+/* ================================================================
+   PROFILE VIEW  (Figma node 1714:1293)
+   Shown when a card's "Read more" is clicked.
+   Panel: top-[353px]→236px from section, left-[79px], w-[1281px]
+   ================================================================ */
+
+.team-profile-panel {
+  position: absolute;
+  top: 236px;
+  left: 79px;
+  width: 1281px;
+  min-height: 500px;
+  background: #fff6e6;
+  border-radius: 27px;
+  padding-bottom: 60px;
+}
+
+/* Photo (members with image) */
+.team-profile-photo {
+  position: absolute;
+  top: 76px;
+  left: 72px;
+  width: 320px;
+  height: 326px;
+  border-radius: 27px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Photo placeholder frame */
+.team-profile-frame {
+  position: absolute;
+  top: 76px;
+  left: 72px;
+  width: 320px;
+  height: 326px;
+  border-radius: 27px;
+  border: 5px solid #ffb337;
+  box-sizing: border-box;
+}
+
+/* Name — centered under photo: photo left=72, w=320, center=232px; name w≈259px → left≈103px */
+.team-profile-name {
+  position: absolute;
+  top: 423px;
+  left: 72px;
+  width: 320px;
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: var(--fw-medium);
+  color: #2a417d;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Full bio text */
+.team-profile-bio {
+  position: absolute;
+  top: 81px;
+  left: 458px;
+  width: 759px;
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 400;
+  color: #202020;
+  line-height: 33.6px;
+  margin: 0;
+}
+
+.team-profile-bio p { margin: 0 0 1em; }
+.team-profile-bio p:last-child { margin-bottom: 0; }
+
+/* Read less button — top-right of panel */
+.team-profile-back {
+  position: absolute;
+  top: 28px;
+  right: 36px;
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 400;
+  color: #7f7f7f;
+  background: none;
+  border: none;
+  cursor: pointer;
   padding: 0;
 }
 </style>
@@ -240,7 +324,7 @@
 </nav>
 
 <!-- TEAM SECTION -->
-<section class="team-section" aria-label="Meet our Team">
+<section class="team-section" id="team-section" aria-label="Meet our Team">
 
   <div class="team-dot" aria-hidden="true"></div>
   <h1 class="team-heading">Meet our Team</h1>
@@ -252,62 +336,77 @@
     <button class="team-tab team-tab--exec" aria-pressed="false">Executive Steering Committee</button>
   </div>
 
-  <!-- Cards row — 3 trustees -->
-  <div class="team-cards-row">
+  <!-- ── CARDS VIEW (default) ── -->
+  <div id="team-cards-row" class="team-cards-row" role="list">
 
     <!-- Anurag Behar -->
-    <article class="team-card" aria-labelledby="name-anurag">
+    <article class="team-card" role="listitem" aria-labelledby="name-anurag">
       <div class="team-card-frame" aria-hidden="true"></div>
       <h2 id="name-anurag" class="team-card-name">Anurag Behar</h2>
       <div class="team-card-divider" aria-hidden="true"></div>
-      <p class="team-card-desc" id="desc-anurag">
-        He has been responsible for the
-        Foundation as its CEO since 2010, leading its development across
-        multiple areas of work, as it has grown to become one of
-        the largest philanthropic institutions in the world.
+      <p class="team-card-desc">
+        He has been responsible for the Foundation as its CEO since 2010,
+        leading its development across multiple areas of work, as it has
+        grown to become one of the largest philanthropic institutions in
+        the world.
       </p>
       <button class="team-card-readmore"
               aria-expanded="false"
-              aria-controls="desc-anurag"
-              onclick="toggleDesc(this)">Read more...</button>
+              onclick="openProfile('anurag')">Read more...</button>
     </article>
 
     <!-- Mukund Kadursrinivas Rao -->
-    <article class="team-card" aria-labelledby="name-mukund">
+    <article class="team-card" role="listitem" aria-labelledby="name-mukund">
       <img class="team-card-photo"
            src="assets/images/team-mukund.png"
            alt="Mukund Kadursrinivas Rao">
       <h2 id="name-mukund" class="team-card-name">Mukund Kadursrinivas Rao</h2>
       <div class="team-card-divider" aria-hidden="true"></div>
-      <p class="team-card-desc" id="desc-mukund">
+      <p class="team-card-desc">
         He is expert in space technology and information systems,
         specializing in Earth Observation, GIS, data science, policy, and
-        Futures. He holds a PhD and MPhil in Remote Sensing and GIS, and a
-        Master's in Geology.
+        Futures. He holds a PhD and MPhil in Remote Sensing and GIS, and
+        a Master's in Geology.
       </p>
       <button class="team-card-readmore"
               aria-expanded="false"
-              aria-controls="desc-mukund"
-              onclick="toggleDesc(this)">Read more...</button>
+              onclick="openProfile('mukund')">Read more...</button>
     </article>
 
     <!-- Sanjay Rangan -->
-    <article class="team-card" aria-labelledby="name-sanjay">
+    <article class="team-card" role="listitem" aria-labelledby="name-sanjay">
       <div class="team-card-frame" aria-hidden="true"></div>
       <h2 id="name-sanjay" class="team-card-name">Sanjay Rangan</h2>
       <div class="team-card-divider" aria-hidden="true"></div>
-      <p class="team-card-desc" id="desc-sanjay">
+      <p class="team-card-desc">
         He has led initiatives at the intersection of education, society,
         and policy, bringing together diverse stakeholders to advance the
         mission of the Trust and its programmes.
       </p>
       <button class="team-card-readmore"
               aria-expanded="false"
-              aria-controls="desc-sanjay"
-              onclick="toggleDesc(this)">Read more...</button>
+              onclick="openProfile('sanjay')">Read more...</button>
     </article>
 
   </div>
+
+  <!-- ── PROFILE VIEW (hidden until Read more clicked) ── -->
+  <article id="team-profile-panel" class="team-profile-panel" hidden aria-labelledby="profile-heading">
+
+    <!-- Photo or placeholder frame, set by JS -->
+    <div id="profile-photo-slot"></div>
+
+    <!-- Name -->
+    <h2 id="profile-heading" class="team-profile-name"></h2>
+
+    <!-- Full bio -->
+    <div class="team-profile-bio" id="profile-bio"></div>
+
+    <!-- Read less -->
+    <button class="team-profile-back" onclick="closeProfile()">Read less...</button>
+
+  </article>
+
 </section>
 
 <!-- FOOTER RULE -->
@@ -341,18 +440,76 @@
 
 <script src="nav.js"></script>
 <script>
-function toggleDesc(btn) {
-  var desc = document.getElementById(btn.getAttribute('aria-controls'));
-  var expanded = btn.getAttribute('aria-expanded') === 'true';
-  if (expanded) {
-    desc.classList.remove('is-expanded');
-    btn.setAttribute('aria-expanded', 'false');
-    btn.textContent = 'Read more...';
-  } else {
-    desc.classList.add('is-expanded');
-    btn.setAttribute('aria-expanded', 'true');
-    btn.textContent = 'Read less...';
+/* ── Member data ── */
+var members = {
+  anurag: {
+    name: 'Anurag Behar',
+    hasPhoto: false,
+    bio: [
+      'He has been responsible for the Foundation as its CEO since 2010, leading its development across multiple areas of work, as it has grown to become one of the largest philanthropic institutions in the world.'
+    ]
+  },
+  mukund: {
+    name: 'Mukund Kadursrinivas Rao',
+    hasPhoto: true,
+    photoSrc: 'assets/images/team-mukund.png',
+    bio: [
+      'Mukund is a distinguished expert in space technology and information systems, specializing in Earth Observation (EO), Geographical Information Systems (GIS), data science, Policy studies and Futures. He holds a PhD and MPhil in Remote Sensing and GIS, alongside a Master’s degree in Geology.',
+      'With over four decades of leadership across government, industry, and the not-for-profit sector, Dr. Rao possesses a holistic understanding of national and international space ecosystems. Spending over half his career at the Indian Remote Sensing programme. His pioneering work includes applications of Space products for state- and district-level planning, implementing Natural Resources Information Systems (NRIS), urban management frameworks, Natural Resources Censuses, and foundational architectures for the National Spatial Data Infrastructure (NSDI) and National GIS. He also established the Delhi-SDI, Karnataka-GIS and has prototyped a farmer-facing Spatial Agri-Advisory system for Tata Trusts. In the commercial space sector, Dr. Rao has directed the design and delivery of global solutions, including enterprise GIS for Middle Eastern emirates, municipal GIS systems, spatial metadata portals, power distribution GIS and automated image-to-mapping systems in the USA and Japan.',
+      'As an influential voice in knowledge and policy think-tanks, he has defined policy perspectives for Indian Space, perspectives for Indian Human Space Flight, positioning Commercial sector for Indian Space, International Collaborations in Space and also shaped critical frameworks spanning algorithmic governance, national geospatial policy and standards, machine intelligence, unmanned aerial systems, and water information networks.',
+      'Presently, Dr. Rao focuses on measuring UN Sustainable Development Goal (SDG) achievements, advancing AI systems for farmer-supply-chain-agri polices, designing public-good space ecosystems, and conducting Futures studies.',
+      'Mukund is deeply influenced by his long-standing professional and personal relationship with Dr. K. Kasturirangan.'
+    ]
+  },
+  sanjay: {
+    name: 'Sanjay Rangan',
+    hasPhoto: false,
+    bio: [
+      'He has led initiatives at the intersection of education, society, and policy, bringing together diverse stakeholders to advance the mission of the Trust and its programmes.'
+    ]
   }
+};
+
+function openProfile(key) {
+  var m = members[key];
+  var section = document.getElementById('team-section');
+  var cards   = document.getElementById('team-cards-row');
+  var panel   = document.getElementById('team-profile-panel');
+
+  /* Populate photo slot */
+  var slot = document.getElementById('profile-photo-slot');
+  if (m.hasPhoto) {
+    slot.innerHTML = '<img class="team-profile-photo" src="' + m.photoSrc + '" alt="' + m.name + '">';
+  } else {
+    slot.innerHTML = '<div class="team-profile-frame" aria-hidden="true"></div>';
+  }
+
+  /* Populate name */
+  document.getElementById('profile-heading').textContent = m.name;
+
+  /* Populate bio */
+  document.getElementById('profile-bio').innerHTML =
+    m.bio.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+
+  /* Switch views */
+  cards.hidden = true;
+  panel.hidden = false;
+  section.classList.add('profile-open');
+
+  /* Scroll panel into view */
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeProfile() {
+  var section = document.getElementById('team-section');
+  var cards   = document.getElementById('team-cards-row');
+  var panel   = document.getElementById('team-profile-panel');
+
+  panel.hidden = true;
+  cards.hidden = false;
+  section.classList.remove('profile-open');
+
+  cards.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 </script>
 </body>
