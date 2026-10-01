@@ -464,7 +464,8 @@
   position: relative;
 }
 
-/* Amber circle: canvas(72,2060) size=32px, overlaps heading "W". */
+/* Amber circle: canvas(72,2060) size=32px, overlaps heading "W".
+   Afacad 24px lineHeightPx=32 → half-leading=4px; top:4 aligns dot with cap-height. */
 .stories-heading::before {
   content: '';
   position: absolute;
@@ -473,7 +474,7 @@
   border-radius: 50%;
   background: var(--c-accent);
   left: -12px;
-  top: 0;
+  top: 4px;
   z-index: -1;
   pointer-events: none;
 }

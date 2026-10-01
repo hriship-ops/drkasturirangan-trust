@@ -27,10 +27,12 @@
   min-height: 1680px;
 }
 
-/* Amber heading dot */
+/* Amber heading dot. Figma: dot y = heading y (rel_y=170 each, section starts at 117).
+   CSS renders Afacad Bold 36px with lineHeightPx=48 → half-leading=6px above cap-height.
+   Dot must be heading_top+7 so its top aligns with cap-height, matching Memories convention. */
 .team-dot {
   position: absolute;
-  top: 53px;
+  top: 60px;
   left: 56px;
   width: 32px;
   height: 32px;
