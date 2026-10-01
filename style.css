@@ -118,7 +118,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 242px 40px 60px 74px;
+  padding: 200px 40px 60px 74px;
 }
 
 .hero-headline-wrap {
@@ -314,7 +314,7 @@
 .area-panel.panel-default .area-panel-quote-col {
   flex: 1;
   padding-top: 112px;
-  padding-left: 122px;
+  padding-left: 220px;
   position: relative;
   align-self: flex-start;
 }
@@ -416,7 +416,7 @@
 .area-panel-desc-wrap {
   background: #fff;
   border-radius: 30px;
-  padding: 45px 40px;
+  padding: 52px 48px;
 }
 
 .area-panel-desc {

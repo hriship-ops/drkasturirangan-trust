@@ -338,7 +338,7 @@
 /* Each circle: label above SVG + body text overlaid via absolute */
 .fp-circ {
   position: relative;
-  width: clamp(200px, 22vw, 310px);
+  width: clamp(200px, 22vw, 370px);
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -478,7 +478,7 @@
 
 .fp-rcirc {
   position: relative;
-  width: clamp(150px, 17vw, 255px);
+  width: clamp(150px, 17vw, 310px);
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
