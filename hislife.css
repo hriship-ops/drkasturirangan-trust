@@ -121,6 +121,9 @@
 .hl-year-col .wht  { color: #fff; background-color: #2a417d; border-radius: 3px; }
 
 /* ── AMBER DOTS (timeline event markers) ──────────────────── */
+/* Figma: dot 5px above event text cap. CSS event text halfLead=4px →
+   dot needs to be at event_top-1, but inline tops set it at event_top-8.
+   translateY(+7px) closes the 7px gap without touching 37 inline styles. */
 .hl-dot {
   position: absolute;
   left: 531px;
@@ -128,6 +131,7 @@
   height: 32px;
   background: #ffb337;
   border-radius: 50%;
+  transform: translateY(7px);
 }
 
 /* ── YEAR LABELS (large 80px Agdasima, amber) ─────────────── */

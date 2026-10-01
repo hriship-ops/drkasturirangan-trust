@@ -136,12 +136,13 @@
   position: relative;
 }
 
-/* Amber dot behind "C" in "Cultivating": Figma node 41:27, 32px. */
+/* Amber dot behind "C" in "Cultivating": Figma node 41:27, 32px.
+   Afacad 44px lineHeight=54.78 → halfLead=5.4px; top:5 aligns dot top with cap-height. */
 .hero-headline::before {
   content: '';
   position: absolute;
   left: -14px;
-  top: 4px;
+  top: 5px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -191,7 +192,8 @@
   margin-bottom: 8px;
 }
 
-/* Amber dot: canvas(121,753), 10px circle at heading left+4, top+5. */
+/* Amber dot: canvas(121,753), 10px circle. Figma: dot 5px below cap-height.
+   Afacad 24px halfLead=4px → top = halfLead + 5 = 9px. */
 .about-heading::before {
   content: '';
   position: absolute;
@@ -200,7 +202,7 @@
   border-radius: 50%;
   background: var(--c-accent);
   left: 4px;
-  top: 5px;
+  top: 9px;
 }
 
 .about-text {
