@@ -192,7 +192,8 @@
   margin-bottom: 8px;
 }
 
-/* Amber dot: 10px circle. Figma oct-2: fs=36 lh=48 halfLead=6, dy=+5 → top=11px. */
+/* Amber dot: 10px circle. cap at 13px from element top; gap=1px → dot bottom=12px → top=2px.
+   left=0: center on I (I width≈10px, dot width=10px). */
 .about-heading::before {
   content: '';
   position: absolute;
@@ -200,8 +201,8 @@
   height: 10px;
   border-radius: 50%;
   background: var(--c-accent);
-  left: 4px;
-  top: 11px;
+  left: 0px;
+  top: 2px;
 }
 
 .about-text {
