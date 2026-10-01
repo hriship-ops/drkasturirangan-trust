@@ -352,10 +352,10 @@
 
 .fp-circ-body {
   position: absolute;
-  top: 14%;
-  left: 14%;
-  right: 14%;
-  bottom: 6%;
+  top: 16%;
+  left: 16%;
+  right: 16%;
+  bottom: 8%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -493,19 +493,20 @@
 
 .fp-rcirc-body {
   position: absolute;
-  top: 14%;
-  left: 14%;
-  right: 14%;
-  bottom: 3%;
+  top: 16%;
+  left: 16%;
+  right: 16%;
+  bottom: 16%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff;
-  font-size: 22px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.38;
   font-family: var(--font-main);
+  overflow: hidden;
 }
 
 .fp-rcirc-body p { margin: 0; }
