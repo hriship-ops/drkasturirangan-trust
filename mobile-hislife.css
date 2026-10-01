@@ -1,0 +1,108 @@
+/* mobile-hislife.css — hislife page mobile layout
+   Uses a .mobile-hislife block injected by make_preview_hislife.py.
+   .hl-wrap and .hl-year-col (sticky sidebar) are hidden on mobile. */
+
+@media (max-width: 768px) {
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .ml-hero {
+    padding: 20px 20px 20px;
+    background: #fff;
+    border-bottom: 3px solid #eedfc0;
+    overflow: hidden;
+  }
+
+  .ml-portrait {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    float: right;
+    margin: 0 0 8px 14px;
+  }
+
+  .ml-hero-title {
+    font-family: var(--font-main);
+    font-size: 26px;
+    font-weight: 500;
+    color: #d9982e;
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+
+  .ml-hero-subtitle {
+    font-family: var(--font-main);
+    font-size: 15px;
+    color: #202020;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ml-hero-subtitle em { font-style: italic; }
+
+  /* ── TIMELINE CONTAINER ───────────────────────────────────── */
+  .ml-timeline {
+    padding: 0 20px 48px;
+  }
+
+  /* ── REGULAR EVENT ────────────────────────────────────────── */
+  .ml-event {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #f0e8d8;
+  }
+
+  .ml-event:first-child {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 24px;
+  }
+
+  .ml-year {
+    display: inline-block;
+    background: #ffb337;
+    color: #fff;
+    font-family: var(--font-main);
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 3px 13px;
+    margin-bottom: 9px;
+    letter-spacing: 0.03em;
+  }
+
+  .ml-desc {
+    font-family: var(--font-main);
+    font-size: 15px;
+    color: #202020;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── MILESTONE EVENT (navy card) ──────────────────────────── */
+  .ml-milestone {
+    background: #2a417d;
+    border-radius: 16px;
+    padding: 16px 16px 18px;
+    border-top: none;
+    margin-top: 20px;
+  }
+
+  .ml-milestone .ml-year {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .ml-milestone .ml-desc {
+    color: #fff;
+  }
+
+  /* ── INLINE PHOTOS ────────────────────────────────────────── */
+  .ml-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin-top: 12px;
+  }
+}

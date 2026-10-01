@@ -1,0 +1,128 @@
+/* mobile-fellowship.css — fellowship page mobile overrides (linked after fellowship.css)
+   Breakpoint: 768px. Structural fixes for 390px that fellowship.css 680px/900px don't cover. */
+
+@media (max-width: 768px) {
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .fp-hero-org  { font-size: 22px; }
+  .fp-hero-prog { font-size: 20px; letter-spacing: 0.03em; }
+
+  /* Recalibrate dot: 22px cap≈8px; dot 32px → top: -12px floats above */
+  .fp-hero-org::before {
+    top: -10px;
+    left: -8px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .fp-hero-illus {
+    width: 100%;
+    max-width: 100%;
+    height: clamp(200px, 55vw, 280px);
+    margin: 0;
+  }
+
+  .fp-hero-bullets li { font-size: 15px; }
+
+  /* ── NOMINATIONS pills ────────────────────────────────────── */
+  /* 680px already stacks pills; connector stays rotated fine */
+  .fp-noms-intro { font-size: 16px; }
+  .fp-pill-label { font-size: 14px; }
+  .fp-pill-date  { font-size: 18px; }
+
+  /* ── SUBNAV: horizontal scroll (already overflow-x: auto) ── */
+  .fp-snav-item { font-size: 13px; padding: 8px 6px; }
+  .fp-snav-icon { width: 20px; height: 20px; }
+
+  /* ── OBJECTIVES ───────────────────────────────────────────── */
+  .fp-text-bullets li { font-size: 16px; }
+
+  /* ── BENEFITS circles: stack vertically ──────────────────── */
+  .fp-circles-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .fp-circ {
+    width: min(260px, 78%);
+  }
+
+  .fp-circ-body { font-size: 17px; }
+
+  /* ── EXPECTATIONS ─────────────────────────────────────────── */
+  /* 900px already stacks; make photo full width on mobile */
+  .fp-exp-photo {
+    max-width: 100%;
+    width: 100%;
+    min-height: 200px;
+  }
+
+  .fp-exp-text { font-size: 15px; padding-left: 40px; }
+
+  /* ── ELIGIBILITY ──────────────────────────────────────────── */
+  /* 680px stacks; just reduce font */
+  .fp-elig-box { font-size: 15px; }
+
+  /* ── REVIEW PROCESS ───────────────────────────────────────── */
+  /* 680px already stacks review row; shrink circle size */
+  .fp-rcirc { width: min(270px, 82%); }
+  .fp-rcirc-body { font-size: 14px; }
+
+  /* ── TIMELINE ─────────────────────────────────────────────── */
+  .fp-tl-wrap {
+    grid-template-columns: 90px 22px 1fr;
+    column-gap: 10px;
+    row-gap: 28px;
+  }
+
+  /* ── APPLICATION ──────────────────────────────────────────── */
+  .fp-app-banner {
+    width: auto;
+    border-radius: 0 16px 16px 0;
+  }
+  .fp-app-banner p {
+    white-space: normal;
+    font-size: 16px;
+  }
+
+  .fp-app-intro { font-size: 15px; }
+
+  .fp-app-box {
+    border-radius: 16px;
+    padding: 20px 16px;
+  }
+
+  .fp-doc-text { font-size: 16px; }
+  .fp-doc-tip  { font-size: 15px; }
+
+  /* Disclaimer: switch from absolute layout to simple flow */
+  .fp-disclaimer {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fp-disclaimer-rocket {
+    position: static;
+    width: 100px;
+    height: auto;
+  }
+
+  .fp-disclaimer-text {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .fp-cta-btn {
+    width: 100%;
+    max-width: 260px;
+    font-size: 17px;
+    padding: 12px 20px;
+  }
+}

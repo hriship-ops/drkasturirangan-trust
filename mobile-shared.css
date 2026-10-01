@@ -1,0 +1,12 @@
+/* mobile-shared.css — global mobile overrides (linked after shared.css on preview pages)
+   Breakpoint: 768px. Nav and footer already handled in shared.css. */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Reduce heading sizes globally for readability */
+  h1 { font-size: clamp(22px, 6vw, 32px); }
+  h2 { font-size: clamp(18px, 5vw, 26px); }
+}
