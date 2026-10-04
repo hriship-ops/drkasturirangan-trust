@@ -461,23 +461,22 @@
 }
 
 .stories-heading {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: var(--fw-bold);
   color: #D9982E;
   position: relative;
 }
 
-/* Amber circle: canvas(72,2060) size=32px, overlaps heading "W".
-   Afacad 24px lineHeightPx=32 → half-leading=4px; top:4 aligns dot with cap-height. */
+/* Amber circle: overlaps heading "W". Sized for 36px text (lineHeight ~43px). */
 .stories-heading::before {
   content: '';
   position: absolute;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--c-accent);
-  left: -12px;
-  top: 4px;
+  left: -14px;
+  top: 2px;
   z-index: -1;
   pointer-events: none;
 }
