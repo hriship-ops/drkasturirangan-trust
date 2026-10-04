@@ -84,12 +84,23 @@
   left: 72px;
   font-family: var(--font-main);
   font-size: 36px;
-  font-weight: 700;
   color: #2a427e;
   line-height: normal;
   margin: 0;
   min-width: 400px;
   padding-bottom: 12px;
+}
+
+/* H1 (e.g. "The Legacy"): Bold */
+.vm-h1 {
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* H2 section headings: Semibold Italic */
+.vm-h2 {
+  font-weight: 600;
+  font-style: italic;
 }
 
 /* ── BODY TEXT ────────────────────────────────────────────── */

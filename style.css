@@ -161,10 +161,11 @@
   margin-bottom: 16px;
 }
 
-/* Explore link: 24px #808080. */
+/* Explore link: 24px Italic #808080. */
 .hero-explore-link {
   display: block;
   font-size: 24px;
+  font-style: italic;
   color: var(--c-text-muted);
 }
 
@@ -522,7 +523,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 24px 8px 12px;
+  padding: 24px 20px;
   opacity: 0;
   transition: opacity 0.35s ease;
   overflow: hidden;

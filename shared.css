@@ -196,6 +196,7 @@
 
 .site-footer {
   padding: 40px 40px 60px 117px;
+  padding-bottom: max(60px, calc(env(safe-area-inset-bottom, 0px) + 40px));
   display: grid;
   grid-template-columns: 369px 420px 1fr;
   gap: 0;
