@@ -180,7 +180,7 @@
 .vm-focus-card {
   position: absolute;
   top: 2640px;
-  height: 330px; width: 274px;
+  height: 430px; width: 274px;
   border-radius: 27px;
   background: #fff6e6;
 }
@@ -192,7 +192,7 @@
 }
 .vm-focus-text {
   position: absolute;
-  top: 2862px;
+  top: 2972px;
   width: 261px;
   text-align: center;
   font-family: var(--font-main);
