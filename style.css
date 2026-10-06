@@ -237,6 +237,7 @@
   gap: 60px;
   flex-wrap: nowrap;
   justify-content: center;
+  margin-bottom: 15px;
 }
 
 .area-item {
@@ -245,6 +246,11 @@
   align-items: center;
   min-width: 0;
 }
+
+.area-item[data-area="publiclife"] {
+  margin-bottom: 12px;
+}
+
 
 .area-circle-wrap {
   position: relative;
