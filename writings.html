@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Agdasima&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space and Beyond – The Book — Dr Kasturirangan Trust</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ================================================================
+   SPACE AND BEYOND – THE BOOK  (writings.html)
+   Figma node 1741:1566, canvas 1439×1844px
+   ================================================================ */
+
+.book-section {
+  padding: 58px 160px 80px;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Amber dot + heading row */
+.book-heading-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.book-dot {
+  position: absolute;
+  top: 4px;
+  left: -16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffb337;
+  flex-shrink: 0;
+}
+
+.book-heading {
+  font-family: var(--font-main);
+  font-size: 36px;
+  font-weight: var(--fw-bold);
+  color: #2a417d;
+  line-height: 1.2;
+  margin: 0 0 0 16px;
+  position: relative;
+}
+
+.book-edited-by {
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: var(--fw-regular);
+  color: #555;
+  margin: 0 0 44px 16px;
+}
+
+/* Main content: two-column layout */
+.book-content {
+  display: grid;
+  grid-template-columns: 1fr 348px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Left: description */
+.book-description {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: var(--fw-regular);
+  color: #202020;
+  line-height: 1.5;
+}
+
+.book-description p {
+  margin: 0 0 1.2em;
+}
+
+.book-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Right: mockup image + link cards */
+.book-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Book cover mockup */
+.book-mockup {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 0;
+}
+
+/* Gray background block behind links */
+.book-links-panel {
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.book-link-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.book-link-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.book-link-row a {
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: var(--fw-medium);
+  color: #2a417d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.book-link-row a:hover {
+  color: #d9982e;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:86px;width:auto;">
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="vision.html">About Us <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="vision.html">Vision &amp; Mission</a>
+        <a href="team.html">Team</a>
+      </div>
+    </li>
+    <li>
+      <a href="hislife.html">Dr Kasturirangan <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="hislife.html">His Life</a>
+        <a href="writings.html">Space and Beyond &ndash; The Book</a>
+      </div>
+    </li>
+    <li>
+      <a href="fellowship.html">Initiatives <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="fellowship.html">Fellowship</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Useful Links <span class="nav-chev"></span></a>
+      <div class="nav-dropdown">
+        <a href="apply.html">Apply</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
+          onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="3" y1="6"  x2="21" y2="6"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- BOOK SECTION -->
+<section class="book-section" aria-label="Space and Beyond – The Book">
+
+  <div class="book-heading-row">
+    <div class="book-dot" aria-hidden="true"></div>
+    <h1 class="book-heading">Space and Beyond:<br>Professional Voyage of K.&nbsp;Kasturirangan</h1>
+  </div>
+  <p class="book-edited-by">Edited by B.N. Suresh</p>
+
+  <div class="book-content">
+
+    <!-- Left: description text -->
+    <div class="book-description">
+      <p>This book discusses the journey of Dr.&nbsp;K Kasturirangan, who shares his experience during his long tenure at ISRO including the Chairmanship of ISRO, subsequently membership of the Rajya Sabha, the Planning Commission and many other responsibilities.</p>
+      <p>Over the past five decades of public and professional service to the nation, Dr.&nbsp;Kasturirangan has graduated from a young researcher in astrophysics working under Vikram Sarabhai to leading India&rsquo;s space program (ISRO), being entrusted by five successive Prime Ministers, besides dealing with several other domains of responsibilities beyond space, all of which have significantly impacted India&rsquo;s development.</p>
+      <p>This book centers around select 12 public invited lectures Dr.&nbsp;Kasturirangan delivered ranging from developing hi-tech space systems, to managing an organization as intricate as ISRO which was guided by the wisdom of mentors, including Vikram Sarabhai, M.G.K. Menon, Satish Dhawan and U.R.&nbsp;Rao, to tackling multi-faceted socio-economic issues, including India&rsquo;s nuclear deal, the report headed by him on the Western Ghats ecosystem, and the new National Education Policy 2020.</p>
+      <p>Scientists, historians, policy makers, management strategists, journalists, or anyone with a keen interest in understanding the processes behind such large-scale science, technology and socio-economic endeavors &ndash; right from planning, creating appropriate institutional mechanisms, working with multiple stakeholders to ensure that these programs deliver tangible benefits to society, articulating these benefits with clarity to political leaders to assure public support &ndash; will find this book deeply instructive and illuminating. It will be of interest to the scientific, education and management community as well as to policy makers and researchers affiliated with multifaceted developmental issues.</p>
+    </div>
+
+    <!-- Right: book cover + links -->
+    <div class="book-right">
+      <img class="book-mockup"
+           src="assets/images/book-mockup.png"
+           alt="Space and Beyond: Professional Voyage of K. Kasturirangan — book cover">
+      <div class="book-links-panel">
+        <div class="book-link-row">
+          <img class="book-link-logo" src="assets/images/logo-springer-nature.png" alt="Springer Nature">
+          <a href="#" target="_blank" rel="noopener">Publisher&rsquo;s link</a>
+        </div>
+        <div class="book-link-row">
+          <img class="book-link-logo" src="assets/images/logo-amazon.png" alt="Amazon">
+          <a href="#" target="_blank" rel="noopener">Amazon link</a>
+        </div>
+        <div class="book-link-row">
+          <img class="book-link-logo" src="assets/images/logo-the-hindu.png" alt="The Hindu">
+          <a href="#" target="_blank" rel="noopener">Book review</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER RULE -->
+<div class="footer-rule-wrap">
+  <div class="footer-rule"></div>
+  <div class="footer-dot"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="vision.html">About Us</a>
+    <a href="kasturirangan.html">Dr Kasturirangan</a>
+    <a href="fellowship.html">Initiatives</a>
+    <a href="#">Useful Links</a>
+  </nav>
+  <div class="footer-addr-block">
+    <p class="footer-addr">
+      <strong>Dr Kasturirangan Trust</strong><br>
+      Alder 1002,<br>
+      Godrej Woodsman Estate, Hebbal,<br>
+      Bengaluru &ndash; 560045
+    </p>
+    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
+  </div>
+  <div class="footer-contact" id="contact">
+    <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
+    <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>
