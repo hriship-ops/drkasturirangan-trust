@@ -59,4 +59,32 @@ visual fixes/
 OneDrive_*/
 2ndpass/ss_behavior/
 2ndpass/Animas/
+dot_shots/
+backup_area_images/
+.claude/
+
+# ── Backup files ─────────────────────────────────────────────────────────
+*.bak
+*.bak_*
+
+# ── Scratch preview / audit HTML ─────────────────────────────────────────
+ss_*preview*.html
+audit_report*.html
+
+# ── Video files ──────────────────────────────────────────────────────────
+*.mov
+*.mp4
+
+# ── Designer notes / Word docs ───────────────────────────────────────────
+*.docx
+
+# ── Unmatched audit / verify scripts ─────────────────────────────────────
+verify_*.py
+check_*.py
+compare_*.py
+mobile_inventory.py
+take_shots.py
+shot_*.py
+audit_dots.py
+CLAUDE.md
 

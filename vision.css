@@ -97,10 +97,10 @@
   font-style: normal;
 }
 
-/* H2 section headings: Semibold Italic */
+/* H2 section headings: Semibold */
 .vm-h2 {
   font-weight: 600;
-  font-style: italic;
+  font-style: normal;
 }
 
 /* ── BODY TEXT ────────────────────────────────────────────── */
@@ -149,14 +149,15 @@
   background: #fff6e6;
 }
 .vm-obj-tag {
-  position: absolute;
-  height: 45px; width: 223px;
-  border-radius: 15px;
-  background: #2a417d;
+  display: none;
 }
 .vm-obj-label {
   position: absolute;
-  width: 223px;
+  width: auto;
+  padding: 0 20px;
+  background: #2a417d;
+  border-radius: 15px;
+  height: 45px;
   text-align: center;
   font-family: var(--font-main);
   font-size: 24px;
@@ -180,7 +181,7 @@
 .vm-focus-card {
   position: absolute;
   top: 2640px;
-  height: 430px; width: 274px;
+  height: 330px; width: 274px;
   border-radius: 27px;
   background: #fff6e6;
 }
@@ -192,7 +193,7 @@
 }
 .vm-focus-text {
   position: absolute;
-  top: 2972px;
+  top: 2859px;
   width: 261px;
   text-align: center;
   font-family: var(--font-main);
@@ -206,7 +207,7 @@
 .vm-partner-box {
   position: absolute;
   left: 740px; top: 3327px;
-  width: 754px; height: 575px;
+  width: 754px; height: 423px;
   border-radius: 27px;
   background: #fff6e6;
 }
