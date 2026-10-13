@@ -184,10 +184,10 @@
 }
 
 .about-heading {
-  font-size: 36px;
-  font-style: italic;
-  font-weight: 600;
-  color: #2a427e;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: var(--fw-bold);
+  color: var(--c-amber-border);
   line-height: normal;
   position: relative;
   margin-bottom: 8px;
@@ -248,7 +248,7 @@
 }
 
 .area-item[data-area="publiclife"] {
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 
 
@@ -467,9 +467,9 @@
 }
 
 .stories-heading {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: var(--fw-bold);
-  color: #2a427e;
+  color: var(--c-amber-border);
   position: relative;
 }
 

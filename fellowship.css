@@ -467,6 +467,9 @@
 .fp-elig-box:nth-child(3) { flex: 396 1 180px; }  /* medium */
 .fp-elig-box strong { font-weight: var(--fw-bold); }
 
+.fp-elig-row-b { margin-top: clamp(12px, 1.7vw, 24px); justify-content: center; }
+.fp-elig-row-b .fp-elig-box { flex: 490 1 200px; max-width: 530px; }
+
 /* ================================================================
    REVIEW PROCESS  (4 navy circles, arrows between)
    ================================================================ */

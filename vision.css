@@ -87,7 +87,7 @@
   color: #2a427e;
   line-height: normal;
   margin: 0;
-  min-width: 400px;
+  white-space: nowrap;
   padding-bottom: 12px;
 }
 
@@ -97,9 +97,9 @@
   font-style: normal;
 }
 
-/* H2 section headings: Semibold */
+/* H2 section headings: Bold per Figma */
 .vm-h2 {
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -181,7 +181,7 @@
 .vm-focus-card {
   position: absolute;
   top: 2640px;
-  height: 330px; width: 274px;
+  height: 295px; width: 274px;
   border-radius: 27px;
   background: #fff6e6;
 }
@@ -207,7 +207,7 @@
 .vm-partner-box {
   position: absolute;
   left: 740px; top: 3327px;
-  width: 754px; height: 423px;
+  width: 754px; height: 370px;
   border-radius: 27px;
   background: #fff6e6;
 }
