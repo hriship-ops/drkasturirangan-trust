@@ -83,11 +83,9 @@
     font-size: 22px;
   }
 
-  /* Recalibrate dot: at 22px cap≈8px from top; 1px gap → top=-3px.
-     I-glyph ≈6px wide at 22px → center dot: left=(6-10)/2=-2px */
   .about-heading::before {
-    top: -3px;
-    left: -2px;
+    top: 3px;
+    left: 1px;
   }
 
   .about-text {

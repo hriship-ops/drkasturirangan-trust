@@ -187,14 +187,12 @@
   font-size: 24px;
   font-style: normal;
   font-weight: var(--fw-bold);
-  color: var(--c-amber-border);
+  color: var(--c-primary);
   line-height: normal;
   position: relative;
   margin-bottom: 8px;
 }
 
-/* Amber dot: 10px circle. cap at 13px from element top; gap=1px → dot bottom=12px → top=2px.
-   left=0: center on I (I width≈10px, dot width=10px). */
 .about-heading::before {
   content: '';
   position: absolute;
@@ -202,8 +200,8 @@
   height: 10px;
   border-radius: 50%;
   background: var(--c-accent);
-  left: 0px;
-  top: 2px;
+  left: 3px;
+  top: 5px;
 }
 
 .about-text {
