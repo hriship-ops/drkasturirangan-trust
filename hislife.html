@@ -746,7 +746,10 @@
     function updateSticky() {
       var scrollY = window.scrollY || window.pageYOffset;
       var startT  = INITIAL_TOP;
-      var endT    = lastYearTop;
+      var footerEl = document.querySelector('.footer-rule-wrap');
+      var endT = footerEl
+        ? footerEl.getBoundingClientRect().top + scrollY - window.innerHeight
+        : lastYearTop;
 
       if (scrollY > endT) {
         nav.style.visibility = 'hidden';
