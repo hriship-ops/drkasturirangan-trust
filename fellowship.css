@@ -789,10 +789,15 @@
 }
 .fp-disclaimer-text {
   position: absolute;
-  left: 37px;
-  top: 70px;
-  width: 584px;
-  height: 53px;
+  left: 240px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 24px;
+  color: #202020;
+  line-height: 1.35;
 }
 
 .fp-cta-btn {
