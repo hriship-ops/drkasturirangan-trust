@@ -1,51 +1,53 @@
 /* bindi.js — amber dot positions after font load.
-   Hero + Stories: Figma-exact hardcoded offsets (large dots, browser diffs negligible).
-   About: Range-measured — centers the 10px dot on the first character's ink bounds,
-   so it tracks the "I" correctly in Firefox, Safari and Chrome. */
+   Hero + Stories: Figma-exact hardcoded offsets.
+   About: horizontal position measured via Range so the 10px dot correctly
+   tracks the "I" glyph across Chrome, Firefox and Safari (which all render
+   Afacad with slightly different left-side bearings). */
 (function () {
 
-  /* Large dots: fixed Figma offsets from heading element top-left. */
-  var FIXED = [
-    { sel: '.hero-headline',   left: -14, top: 3 },
-    { sel: '.stories-heading', left: -12, top: 0 },
-  ];
+  function applyFixed(sel, left, top) {
+    var el = document.querySelector(sel);
+    if (!el) return;
+    el.style.setProperty('--bindi-left', left + 'px');
+    el.style.setProperty('--bindi-top',  top  + 'px');
+  }
 
-  /* Find the first text node inside an element. */
-  function firstTextNode(el) {
+  function applyAbout() {
+    var el = document.querySelector('.about-heading');
+    if (!el) return;
+
+    /* Find first text node (skip any element children). */
     var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-    return walker.nextNode();
+    var tn = walker.nextNode();
+    if (!tn) { applyFixed('.about-heading', 3, -8); return; }
+
+    var range = document.createRange();
+    range.setStart(tn, 0);
+    range.setEnd(tn, 1);
+    var charRect = range.getBoundingClientRect();
+    var elRect   = el.getBoundingClientRect();
+
+    /* Left edge of the "I" glyph relative to the heading element. */
+    var glyphLeft = charRect.left - elRect.left;
+
+    /* Figma: dot left edge = "I" left edge + 2px (dot sits just inside the
+       "I" left edge, not centred on it, so the "I" appears in the dot's
+       left portion). glyphLeft tracks per-browser font bearing differences. */
+    var left = glyphLeft + 2;
+
+    el.style.setProperty('--bindi-left', left + 'px');
+    /* -8px floats the dot above the cap height with a visible gap,
+       matching Figma where the dot sits clearly above the "I". */
+    el.style.setProperty('--bindi-top',  '-8px');
   }
 
   function apply() {
-    /* Fixed offsets for hero and stories. */
-    FIXED.forEach(function (d) {
-      var el = document.querySelector(d.sel);
-      if (!el) return;
-      el.style.setProperty('--bindi-left', d.left + 'px');
-      el.style.setProperty('--bindi-top',  d.top  + 'px');
-    });
-
-    /* Range-measured for about: center the 10px dot on the "I" glyph. */
-    var about = document.querySelector('.about-heading');
-    if (about) {
-      var tn = firstTextNode(about);
-      if (tn) {
-        var range = document.createRange();
-        range.setStart(tn, 0);
-        range.setEnd(tn, 1);
-        var charRect = range.getBoundingClientRect();
-        var elRect   = about.getBoundingClientRect();
-        /* Center of glyph relative to heading element. */
-        var cx = charRect.left + charRect.width  / 2 - elRect.left;
-        var cy = charRect.top  + charRect.height / 2 - elRect.top;
-        /* Bindi is 10×10 — place its centre on the glyph centre. */
-        about.style.setProperty('--bindi-left', (cx - 5) + 'px');
-        about.style.setProperty('--bindi-top',  (cy - 5) + 'px');
-      }
-    }
+    applyFixed('.hero-headline',   -14, 3);
+    applyFixed('.stories-heading', -12, 0);
+    applyAbout();
   }
 
   document.fonts.ready.then(apply);
-  /* Fallback: Firefox sometimes resolves fonts.ready before web fonts paint. */
+  /* Fallback: some browsers resolve fonts.ready before the web font paints. */
   setTimeout(apply, 300);
 })();
