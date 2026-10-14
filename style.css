@@ -140,7 +140,7 @@
   content: '';
   position: absolute;
   left: var(--bindi-left, -14px);
-  top: var(--bindi-top, 5px);
+  top: var(--bindi-top, 3px);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -476,8 +476,8 @@
   height: 40px;
   border-radius: 50%;
   background: var(--c-accent);
-  left: var(--bindi-left, -14px);
-  top: var(--bindi-top, 2px);
+  left: var(--bindi-left, -12px);
+  top: var(--bindi-top, 0px);
   z-index: -1;
   pointer-events: none;
 }
