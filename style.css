@@ -136,13 +136,11 @@
   position: relative;
 }
 
-/* Amber dot behind "C" in "Cultivating": Figma node 41:27, 32px.
-   Afacad 44px lineHeight=54.78 → halfLead=5.4px; top:5 aligns dot top with cap-height. */
 .hero-headline::before {
   content: '';
   position: absolute;
-  left: -14px;
-  top: 5px;
+  left: var(--bindi-left, -14px);
+  top: var(--bindi-top, 5px);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -200,8 +198,8 @@
   height: 10px;
   border-radius: 50%;
   background: var(--c-accent);
-  left: 3px;
-  top: 5px;
+  left: var(--bindi-left, 3px);
+  top: var(--bindi-top, 5px);
 }
 
 .about-text {
@@ -471,7 +469,6 @@
   position: relative;
 }
 
-/* Amber circle: overlaps heading "W". Sized for 36px text (lineHeight ~43px). */
 .stories-heading::before {
   content: '';
   position: absolute;
@@ -479,8 +476,8 @@
   height: 40px;
   border-radius: 50%;
   background: var(--c-accent);
-  left: -14px;
-  top: 2px;
+  left: var(--bindi-left, -14px);
+  top: var(--bindi-top, 2px);
   z-index: -1;
   pointer-events: none;
 }
