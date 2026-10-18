@@ -83,12 +83,12 @@
 }
 
 /* Amber dot overlapping behind the 'D' in "Dr Kasturirangan Trust".
-   Afacad 44px lh=1.2 → lhPx=52.8 → halfLead=4.4px. Figma: dot at cap. top=5px aligns with cap. */
+   Figma: dot rx=75 vs text rx=87 → left=−12px; dot ry=221 vs text ry=213 → top=8px. */
 .fp-hero-org::before {
   content: '';
   position: absolute;
-  left: -10px;
-  top: 5px;
+  left: -12px;
+  top: 8px;
   width: 32px;
   height: 32px;
   border-radius: 50%;

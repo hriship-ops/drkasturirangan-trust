@@ -84,7 +84,7 @@
   }
 
   .about-heading::before {
-    top: 3px;
+    top: -8px;
     left: 1px;
   }
 
