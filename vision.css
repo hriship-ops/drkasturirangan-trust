@@ -7,7 +7,7 @@
 .vm-wrap {
   position: relative;
   width: 1440px;
-  min-height: 3760px;
+  min-height: 3610px;
   background: #fff;
   overflow-x: clip;
 }
@@ -181,9 +181,10 @@
 .vm-focus-card {
   position: absolute;
   top: 2640px;
-  height: 295px; width: 274px;
+  min-height: 295px; width: 274px;
   border-radius: 27px;
   background: #fff6e6;
+  overflow: visible;
 }
 .vm-focus-img {
   position: absolute;
@@ -206,8 +207,8 @@
 /* ── PARTNERSHIPS BOX ─────────────────────────────────────── */
 .vm-partner-box {
   position: absolute;
-  left: 740px; top: 3327px;
-  width: 754px; height: 370px;
+  left: 740px; top: 3177px;
+  width: 754px; min-height: 370px;
   border-radius: 27px;
   background: #fff6e6;
 }

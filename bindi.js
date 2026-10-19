@@ -36,9 +36,8 @@
     var left = glyphLeft + 2;
 
     el.style.setProperty('--bindi-left', left + 'px');
-    /* -8px floats the dot above the cap height with a visible gap,
-       matching Figma where the dot sits clearly above the "I". */
-    el.style.setProperty('--bindi-top',  '-8px');
+    /* -8px gives a hair gap above the cap height. */
+    el.style.setProperty('--bindi-top',  '-12px');
   }
 
   function apply() {

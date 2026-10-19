@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -22,17 +22,28 @@
   box-sizing: border-box;
 }
 
-/* Top row: title+editor (left) | large book image (right) */
-.book-top-row {
-  display: grid;
-  grid-template-columns: 1fr 380px;
+/* Two-column flex: left = title then description (no gap); right = image + links.
+   This removes the visual gap caused by the image being taller than the short
+   title block in the original two-grid layout. */
+.book-layout {
+  display: flex;
+  align-items: flex-start;
   gap: 64px;
-  align-items: start;
-  margin-bottom: 44px;
+}
+
+.book-col-left {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.book-col-right {
+  flex: 0 0 380px;
+  width: 380px;
 }
 
 .book-title-col {
   position: relative;
+  margin-bottom: 16px;
 }
 
 /* Amber dot + heading */
@@ -73,20 +84,13 @@
   margin: 0;
 }
 
-/* Book cover mockup — right column, full width */
+/* Book cover mockup — right column */
 .book-mockup {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 8px;
-}
-
-/* Bottom row: description (left) | links panel (right) */
-.book-content {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 64px;
-  align-items: start;
+  margin-bottom: 24px;
 }
 
 /* Left: description */
@@ -164,7 +168,7 @@
       </div>
     </li>
     <li>
-      <a href="hislife.html">Dr K Kasturirangan <span class="nav-chev"></span></a>
+      <a href="hislife.html">Dr Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="hislife.html">His Life</a>
         <a href="writings.html">Space and Beyond &ndash; The Book</a>
@@ -197,45 +201,45 @@
 <!-- BOOK SECTION -->
 <section class="book-section" aria-label="Space and Beyond – The Book">
 
-  <!-- Top row: title + editor (left) | book cover (right) -->
-  <div class="book-top-row">
-    <div class="book-title-col">
-      <div class="book-heading-row">
-        <div class="book-dot" aria-hidden="true"></div>
-        <h1 class="book-heading">Space and Beyond:<br>Professional Voyage of K.&nbsp;Kasturirangan</h1>
-      </div>
-      <p class="book-edited-by">Edited by B.N. Suresh</p>
-    </div>
-    <img class="book-mockup"
-         src="assets/images/book-mockup.png"
-         alt="Space and Beyond: Professional Voyage of K. Kasturirangan — book cover">
-  </div>
+  <!-- Left col: title then description (no gap). Right col: image then links. -->
+  <div class="book-layout">
 
-  <!-- Bottom row: description (left) | links panel (right) -->
-  <div class="book-content">
-
-    <div class="book-description">
-      <p>This book discusses the journey of Dr.&nbsp;K Kasturirangan, who shares his experience during his long tenure at ISRO including the Chairmanship of ISRO, subsequently membership of the Rajya Sabha, the Planning Commission and many other responsibilities. Over the past five decades of public and professional service to the nation, Dr.&nbsp;Kasturirangan has graduated from a young researcher in astrophysics working under Vikram Sarabhai to leading India&rsquo;s space program (ISRO), being entrusted by five successive Prime Ministers, besides dealing with several other domains of responsibilities beyond space, all of which have significantly impacted India&rsquo;s development.</p>
-      <p>This book centers around select 12 public invited lectures Dr.&nbsp;Kasturirangan delivered ranging from developing hi-tech space systems, to managing an organization as intricate as ISRO which was guided by the wisdom of mentors, including Vikram Sarabhai, M.G.K. Menon, Satish Dhawan and U.R.&nbsp;Rao, to tackling multi-faceted socio-economic issues, including India&rsquo;s nuclear deal, the report headed by him on the Western Ghats ecosystem, and the new National Education Policy 2020.</p>
-      <p>Scientists, historians, policy makers, management strategists, journalists, or anyone with a keen interest in understanding the processes behind such large-scale science, technology and socio-economic endeavors &ndash; right from planning, creating appropriate institutional mechanisms, working with multiple stakeholders to ensure that these programs deliver tangible benefits to society, articulating these benefits with clarity to political leaders to assure public support &ndash; will find this book deeply instructive and illuminating. It will be of interest to the scientific, education and management community as well as to policy makers and researchers affiliated with multifaceted developmental issues.</p>
-    </div>
-
-    <div class="book-links-panel">
-      <div class="book-link-row">
-        <img class="book-link-logo" src="assets/images/logo-springer-nature.png" alt="Springer Nature">
-        <a href="#" target="_blank" rel="noopener">Publisher&rsquo;s link</a>
+    <div class="book-col-left">
+      <div class="book-title-col">
+        <div class="book-heading-row">
+          <div class="book-dot" aria-hidden="true"></div>
+          <h1 class="book-heading">Space and Beyond:<br>Professional Voyage of K.&nbsp;Kasturirangan</h1>
+        </div>
+        <p class="book-edited-by">Edited by B.N. Suresh</p>
       </div>
-      <div class="book-link-row">
-        <img class="book-link-logo" src="assets/images/logo-amazon.png" alt="Amazon">
-        <a href="#" target="_blank" rel="noopener">Amazon link</a>
+      <div class="book-description">
+        <p>This book discusses the journey of Dr.&nbsp;K Kasturirangan, who shares his experience during his long tenure at ISRO including the Chairmanship of ISRO, subsequently membership of the Rajya Sabha, the Planning Commission and many other responsibilities. Over the past five decades of public and professional service to the nation, Dr.&nbsp;Kasturirangan has graduated from a young researcher in astrophysics working under Vikram Sarabhai to leading India&rsquo;s space program (ISRO), being entrusted by five successive Prime Ministers, besides dealing with several other domains of responsibilities beyond space, all of which have significantly impacted India&rsquo;s development.</p>
+        <p>This book centers around select 12 public invited lectures Dr.&nbsp;Kasturirangan delivered ranging from developing hi-tech space systems, to managing an organization as intricate as ISRO which was guided by the wisdom of mentors, including Vikram Sarabhai, M.G.K. Menon, Satish Dhawan and U.R.&nbsp;Rao, to tackling multi-faceted socio-economic issues, including India&rsquo;s nuclear deal, the report headed by him on the Western Ghats ecosystem, and the new National Education Policy 2020.</p>
+        <p>Scientists, historians, policy makers, management strategists, journalists, or anyone with a keen interest in understanding the processes behind such large-scale science, technology and socio-economic endeavors &ndash; right from planning, creating appropriate institutional mechanisms, working with multiple stakeholders to ensure that these programs deliver tangible benefits to society, articulating these benefits with clarity to political leaders to assure public support &ndash; will find this book deeply instructive and illuminating. It will be of interest to the scientific, education and management community as well as to policy makers and researchers affiliated with multifaceted developmental issues.</p>
       </div>
-      <div class="book-link-row">
-        <img class="book-link-logo" src="assets/images/logo-the-hindu.png" alt="The Hindu">
-        <a href="#" target="_blank" rel="noopener">Book review</a>
-      </div>
-    </div>
+    </div><!-- end .book-col-left -->
 
-  </div>
+    <div class="book-col-right">
+      <img class="book-mockup"
+           src="assets/images/book-mockup.png"
+           alt="Space and Beyond: Professional Voyage of K. Kasturirangan — book cover">
+      <div class="book-links-panel">
+        <div class="book-link-row">
+          <img class="book-link-logo" src="assets/images/logo-springer-nature.png" alt="Springer Nature">
+          <a href="#" target="_blank" rel="noopener">Publisher&rsquo;s link</a>
+        </div>
+        <div class="book-link-row">
+          <img class="book-link-logo" src="assets/images/logo-amazon.png" alt="Amazon">
+          <a href="#" target="_blank" rel="noopener">Amazon link</a>
+        </div>
+        <div class="book-link-row">
+          <img class="book-link-logo" src="assets/images/logo-the-hindu.png" alt="The Hindu">
+          <a href="#" target="_blank" rel="noopener">Book review</a>
+        </div>
+      </div>
+    </div><!-- end .book-col-right -->
+
+  </div><!-- end .book-layout -->
 
 </section>
 
@@ -249,7 +253,7 @@
 <footer class="site-footer">
   <nav class="footer-nav" aria-label="Footer navigation">
     <a href="vision.html">About Us</a>
-    <a href="kasturirangan.html">Dr K Kasturirangan</a>
+    <a href="kasturirangan.html">Dr Kasturirangan</a>
     <a href="fellowship.html">Initiatives</a>
     <a href="#">Useful Links</a>
   </nav>

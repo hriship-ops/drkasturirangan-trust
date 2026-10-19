@@ -461,6 +461,10 @@
   line-height: 1.5;
   flex: 317 1 160px;   /* base ratio = narrowest box */
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: break-word;
 }
 
 .fp-elig-box:nth-child(1) { flex: 490 1 200px; }  /* widest */
@@ -489,8 +493,10 @@
   flex-wrap: nowrap;
 }
 
-/* clamp tracks container: at 1440px = 280px; scales below so row never overflows.
-   overflow:hidden + border-radius:50% clips text body to the exact circle boundary. */
+/* clamp tracks container: at 1440px = 310px; scales below so row never overflows.
+   No overflow:hidden/border-radius on the wrapper — the PNG already looks circular
+   (navy circle on white bg); white corners blend with the white section background.
+   Text body overlays the navy zone without being clipped to the circle edge. */
 .fp-rcirc {
   position: relative;
   width: clamp(220px, calc(25vw - 35px), 310px);
@@ -498,50 +504,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
-  border-radius: 50%;
 }
 
 .fp-rcirc-img { display: block; width: 100%; height: auto; }
 
-/* 7% inset matches Figma text box width (~240px at 280px circle) */
+/* Anchored at navy circle center (175.1px / 310px = 56.5%) so text always
+   centers on the circle regardless of line count. left/right 13% keeps lines
+   short enough that the first wrapped line of "A distinguished…" stays within
+   the navy zone at that y position. */
 .fp-rcirc-body {
   position: absolute;
-  top: 7%;
-  left: 7%;
-  right: 7%;
-  bottom: 7%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 56.5%;
+  transform: translateY(-50%);
+  left: 13%;
+  right: 13%;
   text-align: center;
   color: #fff;
   font-size: 22px;
   font-weight: 600;
   line-height: 1.35;
   font-family: var(--font-main);
-  overflow: hidden;
 }
 
-/* Below 1440px font scales down so the text block is shorter, centred
-   lower in the circle, and edge characters stay within the navy shape.
-   Breakpoint 1324px = where clamp(200px,25vw-51px,280px) drops below 280px. */
 @media (max-width: 1439px) {
-  .fp-rcirc-body {
-    font-size: 19px;
-    line-height: 1.3;
-  }
+  .fp-rcirc-body { font-size: 19px; line-height: 1.3; }
 }
 @media (max-width: 1323px) {
-  .fp-rcirc-body {
-    font-size: 17px;
-    line-height: 1.3;
-    left: 12%;
-    right: 12%;
-  }
+  .fp-rcirc-body { font-size: 17px; line-height: 1.3; }
 }
 
-.fp-rcirc-body p { margin: 0; }
+.fp-rcirc-body p { margin: 0; width: 100%; }
 
 /* Announcement date: inline amber badge that travels with the text */
 .fp-announce-date {
@@ -590,7 +582,7 @@
 .fp-tl-date {
   font-size: 24px;
   font-weight: var(--fw-bold);
-  color: #202020;
+  color: #2A427E;
   text-align: right;
   line-height: 1.2;
   align-self: center;
@@ -666,9 +658,9 @@
 }
 
 .fp-app-intro {
-  font-size: var(--fs-body-lg);
+  font-size: 24px;
   font-weight: var(--fw-medium);
-  color: #D9982E;
+  color: #202020;
   text-align: center;
   line-height: 1.5;
   max-width: 710px;
@@ -682,6 +674,7 @@
   display: flex;
   align-items: center;
   gap: clamp(10px, 1.5vw, 22px);
+  background: #F6F6F6;
 }
 
 .fp-app-carousel-wrap .fp-app-box { flex: 1 1 auto; min-width: 0; }

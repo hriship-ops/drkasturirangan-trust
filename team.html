@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,8 +20,8 @@
 
 .team-section {
   position: relative;
-  min-height: 960px;
-  padding-bottom: 80px;
+  min-height: 920px;
+  padding-bottom: 32px;
   transition: min-height 0.3s ease;
 }
 
@@ -355,7 +355,7 @@
       </div>
     </li>
     <li>
-      <a href="hislife.html">Dr K Kasturirangan <span class="nav-chev"></span></a>
+      <a href="hislife.html">Dr Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="hislife.html">His Life</a>
         <a href="writings.html">Space and Beyond – The Book</a>
@@ -406,7 +406,7 @@
 
     <!-- Anurag Behar -->
     <article class="team-card" role="listitem" aria-labelledby="name-anurag">
-      <div class="team-card-frame" aria-hidden="true"></div>
+      <img class="team-card-photo" src="assets/team/anurag-behar.png" alt="Anurag Behar">
       <h2 id="name-anurag" class="team-card-name">Anurag Behar</h2>
       <div class="team-card-divider" aria-hidden="true"></div>
       <p class="team-card-desc">
@@ -423,7 +423,7 @@
     <!-- Mukund Kadursrinivas Rao -->
     <article class="team-card" role="listitem" aria-labelledby="name-mukund">
       <img class="team-card-photo"
-           src="assets/images/team-mukund.png"
+           src="assets/team/mukund-rao.png"
            alt="Mukund Kadursrinivas Rao">
       <h2 id="name-mukund" class="team-card-name">Mukund Kadursrinivas Rao</h2>
       <div class="team-card-divider" aria-hidden="true"></div>
@@ -439,7 +439,7 @@
 
     <!-- Sanjay Rangan -->
     <article class="team-card" role="listitem" aria-labelledby="name-sanjay">
-      <div class="team-card-frame" aria-hidden="true"></div>
+      <img class="team-card-photo" src="assets/team/sanjay-rangan.png" alt="Sanjay Rangan">
       <h2 id="name-sanjay" class="team-card-name">Sanjay Rangan</h2>
       <div class="team-card-divider" aria-hidden="true"></div>
       <p class="team-card-desc">
@@ -568,7 +568,7 @@
 <footer class="site-footer">
   <nav class="footer-nav" aria-label="Footer navigation">
     <a href="vision.html">About Us</a>
-    <a href="kasturirangan.html">Dr K Kasturirangan</a>
+    <a href="kasturirangan.html">Dr Kasturirangan</a>
     <a href="fellowship.html">Initiatives</a>
     <a href="#">Useful Links</a>
   </nav>
@@ -630,7 +630,8 @@ function showTeamView(view, btn) {
 var members = {
   anurag: {
     name: "Anurag Behar",
-    hasPhoto: false,
+    hasPhoto: true,
+    photoSrc: "assets/team/anurag-behar.png",
     bio: [
       "Anurag has been responsible for Azim Premji Foundation as its CEO since 2010, leading its development across multiple areas of work, as it has grown to become one of the largest philanthropic institutions in the world.",
       "Deeply valuing genuine grassroots work, he has been closely engaged in the development of the Foundation’s own Field work — to help improve equity and quality of the public education system. More recently, the Foundation’s own operations have expanded to public health and livelihoods of vulnerable communities.",
@@ -642,7 +643,7 @@ var members = {
   mukund: {
     name: "Mukund Kadursrinivas Rao",
     hasPhoto: true,
-    photoSrc: "assets/images/team-mukund.png",
+    photoSrc: "assets/team/mukund-rao.png",
     bio: [
       "Mukund Kadursrinivas Rao is an expert in space technology and information systems, specialising in Earth Observation, GIS, data science, policy, and Futures. He holds a PhD and MPhil in Remote Sensing and GIS, and a Master’s in Geology.",
       "With over four decades of leadership across government, industry, and non-profits, he possesses a holistic understanding of national, regional, and global space ecosystems. Spending over half his career at ISRO and Indian government, Mukund spearheaded Indian remote sensing applications, creating frameworks for GIS Resource Information Systems, Natural Resources Censuses, Spatial Data Infrastructures, National GIS, large GIS systems for Delhi and Karnataka, and a Tata Trusts spatial agri-advisory system for farmers.",
@@ -653,7 +654,8 @@ var members = {
   },
   sanjay: {
     name: "Sanjay Rangan",
-    hasPhoto: false,
+    hasPhoto: true,
+    photoSrc: "assets/team/sanjay-rangan.png",
     bio: [
       "Sanjay Rangan is Chairman of the Trust and the son of Dr Kasturirangan. An engineer by training, he has spent 25 years in the semiconductor industry, helping bring new memory and logic technologies from early development into products.",
       "He is a Senior Director at Micron Technology, and before that spent more than two decades at Intel. Over his career he has built and led engineering teams in the US and Singapore, and has been named as an inventor on over 20 US patents.",

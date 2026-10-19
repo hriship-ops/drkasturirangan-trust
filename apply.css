@@ -92,9 +92,9 @@
   width: 962px;
   margin: 0 auto;
   padding: 57px 0 30px;
-  font-size: 32px;
-  font-weight: 400;
-  color: #d9982e;
+  font-size: 24px;
+  font-weight: 600;
+  color: #202020;
   text-align: center;
   line-height: 1.4;
 }
@@ -111,6 +111,7 @@
    ─────────────────────────────────────────────────────────────── */
 .ap-docs {
   padding-bottom: 81px;
+  background: #F6F6F6;
 }
 
 .ap-card-full {

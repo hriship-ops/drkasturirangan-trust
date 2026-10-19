@@ -182,9 +182,9 @@
 }
 
 .about-heading {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: var(--fw-bold);
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 600;
   color: var(--c-primary);
   line-height: normal;
   position: relative;
@@ -463,9 +463,9 @@
 }
 
 .stories-heading {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: var(--fw-bold);
-  color: var(--c-amber-border);
+  color: #2A427E;
   position: relative;
 }
 
