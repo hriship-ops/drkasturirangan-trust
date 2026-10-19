@@ -7,7 +7,7 @@
 .vm-wrap {
   position: relative;
   width: 1440px;
-  min-height: 3610px;
+  min-height: 3780px;
   background: #fff;
   overflow-x: clip;
 }
@@ -208,7 +208,7 @@
 .vm-partner-box {
   position: absolute;
   left: 740px; top: 3177px;
-  width: 754px; min-height: 370px;
+  width: 642px; min-height: 520px;
   border-radius: 27px;
   background: #fff6e6;
 }
