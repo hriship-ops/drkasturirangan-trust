@@ -464,8 +464,7 @@
 
 .stories-heading {
   font-size: 36px;
-  font-weight: var(--fw-semibold);
-  font-style: italic;
+  font-weight: var(--fw-bold);
   color: #2A427E;
   position: relative;
 }
