@@ -199,7 +199,7 @@
   border-radius: 50%;
   background: var(--c-accent);
   left: var(--bindi-left, 3px);
-  top: var(--bindi-top, -8px);
+  top: var(--bindi-top, 5px);
 }
 
 .about-text {
