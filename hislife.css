@@ -241,11 +241,11 @@
 
 /* ── INLINE LINKS IN EVENT TEXT ──────────────────────────── */
 .hl-event a {
-  color: #2a6cb7 !important;
+  color: #d9982e !important;
   text-decoration: underline;
   font-style: italic;
 }
-.hl-event a:hover { color: #d9982e; }
+.hl-event a:hover { color: #ffb337; }
 
 /* ── PHOTOS ───────────────────────────────────────────────── */
 .hl-photo {
