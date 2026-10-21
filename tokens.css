@@ -72,13 +72,12 @@
 
 /* RESET */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 16px; scroll-behavior: smooth; overflow-x: hidden; }
+html { font-size: 16px; scroll-behavior: smooth; }
 body {
   font-family: var(--font-main);
   background: #fff;
   color: var(--c-text);
   overflow-wrap: break-word;
-  overflow-x: clip;
   max-width: var(--max-w-page);
   margin: 0 auto;
 }

@@ -23,7 +23,7 @@
   border-radius: 27px;
 }
 .ap-dates-pill--left  { left: 88px;  top: 88px; }
-.ap-dates-pill--right { left: 933px; top: 200px; }
+.ap-dates-pill--right { left: 64.79%; top: 200px; }
 
 /* "Nominations accepted from:" / "Last date for submission:" */
 .ap-dates-label {
@@ -37,7 +37,7 @@
   margin: 0;
 }
 .ap-dates-label--left  { left: 88px;  top: 107px; }
-.ap-dates-label--right { left: 933px; top: 218px; }
+.ap-dates-label--right { left: 64.79%; top: 218px; }
 
 /* Amber rounded date pill (October 25 / December 31) */
 .ap-date-box {
@@ -50,7 +50,7 @@
   justify-content: center;
 }
 .ap-date-box--left  { left: 159px; top: 169px; width: fit-content; min-width: 180px; padding: 0 28px; }
-.ap-date-box--right { left: 988px; top: 280px; width: fit-content; min-width: 180px; padding: 0 28px; }
+.ap-date-box--right { left: 68.61%; top: 280px; width: fit-content; min-width: 180px; padding: 0 28px; }
 
 .ap-date-box time {
   font-size: 36px;

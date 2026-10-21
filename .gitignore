@@ -88,3 +88,10 @@ shot_*.py
 audit_dots.py
 CLAUDE.md
 
+# ── Node / Playwright ─────────────────────────────────────────────────────
+node_modules/
+package.json
+package-lock.json
+diagnose_overflow.js
+overflow_report.txt
+take_after_shots.js
