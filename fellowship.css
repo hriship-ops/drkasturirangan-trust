@@ -370,6 +370,9 @@
 
 .fp-circ-body p { margin: 0; }
 
+/* Mentorship PNG has more label-text height (~19% vs ~15%), so push body down */
+.fp-circ:nth-child(2) .fp-circ-body { top: 23%; }
+
 /* ================================================================
    EXPECTATIONS
    ================================================================ */
