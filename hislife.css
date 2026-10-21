@@ -244,4 +244,5 @@
   position: absolute;
   object-fit: cover;
   display: block;
+  z-index: 1;
 }
