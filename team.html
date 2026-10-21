@@ -286,18 +286,25 @@
   width: 1290px;
 }
 
-/* 2-column grid for Council Members */
+/* 2-column layout for Council Members — two independent flex columns so
+   row heights in each column don't force gaps (Figma uses absolute positioning). */
 .council-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 0 80px;
 }
+.council-col {
+  flex: 1;
+  min-width: 0;
+}
 
-/* 3-column grid for ESC */
+/* 3-column layout for ESC — independent flex columns, same pattern as council */
 .esc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 60px;
+  display: flex;
+  gap: 0 80px;
+}
+.esc-col {
+  flex: 1;
+  min-width: 0;
 }
 
 .team-list-member {
@@ -307,19 +314,21 @@
 .team-list-name {
   font-family: var(--font-main);
   font-size: 24px;
-  font-weight: var(--fw-medium);
+  font-style: normal;
+  font-weight: 600;
   color: #2a417d;
   margin: 0 0 8px;
-  line-height: normal;
+  line-height: 32px;
 }
 
 .team-list-desc {
   font-family: var(--font-main);
   font-size: 22px;
+  font-style: italic;
   font-weight: 400;
   color: #202020;
   margin: 0;
-  line-height: 1.5;
+  line-height: 29px;
 }
 
 .team-list-desc--red {
@@ -329,6 +338,39 @@
 /* Active tab gets amber bg, inactive gets navy */
 .team-tab.is-active { background: #e9a12d !important; }
 .team-tab:not(.is-active) { background: #2a417d; }
+
+/* Council Members pale background (Figma Rectangle 102: #fff6e7, r=27, w=1285).
+   Content height is determined by flex columns; padding provides internal spacing. */
+#council-content {
+  background: #fff6e7;
+  border-radius: 27px;
+  padding: 49px 75px 50px 164px;
+  box-sizing: border-box;
+}
+
+/* ESC pale background (Figma Rectangle 107: #fff6e7, r=27, w=1285).
+   121px left padding (names at fx=196, bg at fx=75), 49px top, 92px right, 65px bottom. */
+#esc-content {
+  background: #fff6e7;
+  border-radius: 27px;
+  padding: 49px 92px 65px 121px;
+  box-sizing: border-box;
+}
+
+/* Amber bindi dots — council (Ellipse 32–35, fx=216) and ESC (Ellipse 36–39, fx=172) */
+#council-content .team-list-name::before,
+#esc-content .team-list-name::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #ffb337;
+  border-radius: 50%;
+  margin-right: 13px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
 
 /* Prevent display: flex/block on these elements from overriding [hidden] */
 #team-cards-row[hidden],
@@ -475,49 +517,49 @@
   <div id="council-content" class="team-list-view" hidden aria-label="Council Members">
     <div class="council-grid">
 
-      <div class="team-list-member">
-        <p class="team-list-name">Dr. Devi Shetty</p>
-        <p class="team-list-desc">Chairman – Narayana Health<br>
-          Chairman – Board of Governors, IIM Bangalore<br>
-          Chairman – Academics Committee, Healthcare Sector Skill Council<br>
-          Trustee – Vayah Vikas Trust</p>
+      <!-- Left column -->
+      <div class="council-col">
+        <div class="team-list-member">
+          <p class="team-list-name">Dr. Devi Shetty</p>
+          <p class="team-list-desc">Chairman – Narayana Health<br>
+            Chairman – Board of Governors, IIM Bangalore<br>
+            Chairman – Academics Committee, Healthcare Sector Skill Council<br>
+            Trustee – Vayah Vikas Trust</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Shri. M.R. Jaishankar</p>
+          <p class="team-list-desc">Executive Chairman, Brigade Group</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Dr. V. Narayanan</p>
+          <p class="team-list-desc">Chairman, ISRO<br>
+            Secretary, Department of Space</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Shri. SV Ranganath</p>
+          <p class="team-list-desc">Former Chief Secretary, Government of Karnataka</p>
+        </div>
       </div>
 
-      <div class="team-list-member">
-        <p class="team-list-name">Shri. Ramadorai</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Shri. M.R. Jaishankar</p>
-        <p class="team-list-desc">Executive Chairman, Brigade Group</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Prof. Spenta Wadia</p>
-        <p class="team-list-desc">Founding Director, International Centre for Theoretical Sciences<br>
-          Infosys-ICTS Homi Bhabha Chair Professor</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Dr. V. Narayanan</p>
-        <p class="team-list-desc">Chairman, ISRO<br>
-          Secretary, Department of Space</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Prof. Sridhara Murthi</p>
-        <p class="team-list-desc">Advisor, Chancellor's Advisory Board, Jain Deemed to be University<br>
-          Honorary Director, International Institute of Space Law</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Shri. SV Ranganath</p>
-        <p class="team-list-desc">Former Chief Secretary, Government of Karnataka</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Dr. BN Suresh</p>
-        <p class="team-list-desc">Chancellor, Indian Institute of Space Science and Technology (yet to be confirmed)</p>
+      <!-- Right column -->
+      <div class="council-col">
+        <div class="team-list-member">
+          <p class="team-list-name">Shri. Ramadorai</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Prof. Spenta Wadia</p>
+          <p class="team-list-desc">Founding Director, International Centre for Theoretical Sciences<br>
+            Infosys-ICTS Homi Bhabha Chair Professor</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Prof. Sridhara Murthi</p>
+          <p class="team-list-desc">Advisor, Chancellor's Advisory Board, Jain Deemed to be University<br>
+            Honorary Director, International Institute of Space Law</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Dr. BN Suresh</p>
+          <p class="team-list-desc">Chancellor, Indian Institute of Space Science and Technology (yet to be confirmed)</p>
+        </div>
       </div>
 
     </div>
@@ -527,30 +569,37 @@
   <div id="esc-content" class="team-list-view" hidden aria-label="Executive Steering Committee">
     <div class="esc-grid">
 
-      <div class="team-list-member">
-        <p class="team-list-name">Smt. Githa Shankar</p>
-        <p class="team-list-desc">Founder, Brigade Foundation</p>
+      <!-- Column 1 -->
+      <div class="esc-col">
+        <div class="team-list-member">
+          <p class="team-list-name">Smt. Githa Shankar</p>
+          <p class="team-list-desc">Founder, Brigade Foundation</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Prof. MB Rajani</p>
+          <p class="team-list-desc">Professor, School of Humanities<br>
+            National Institute of Advanced Studies</p>
+        </div>
       </div>
 
-      <div class="team-list-member">
-        <p class="team-list-name">Dr. Leena Wadia</p>
-        <p class="team-list-desc">Vice Chancellor, The University of Trans-Disciplinary Health Sciences and Technology</p>
+      <!-- Column 2 -->
+      <div class="esc-col">
+        <div class="team-list-member">
+          <p class="team-list-name">Dr. Leena Wadia</p>
+          <p class="team-list-desc">Vice Chancellor, The University of Trans-Disciplinary Health Sciences and Technology</p>
+        </div>
+        <div class="team-list-member">
+          <p class="team-list-name">Prof MK Sridhar</p>
+          <p class="team-list-desc team-list-desc--red">Founding Chancellor, Chanakya University (yet to be confirmed)</p>
+        </div>
       </div>
 
-      <div class="team-list-member">
-        <p class="team-list-name">Dr. Narayan Rao</p>
-        <p class="team-list-desc">Executive Director, SRM Group of Institutions</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Prof. MB Rajani</p>
-        <p class="team-list-desc">Professor, School of Humanities<br>
-          National Institute of Advanced Studies</p>
-      </div>
-
-      <div class="team-list-member">
-        <p class="team-list-name">Prof MK Sridhar</p>
-        <p class="team-list-desc team-list-desc--red">Founding Chancellor, Chanakya University (yet to be confirmed)</p>
+      <!-- Column 3 -->
+      <div class="esc-col">
+        <div class="team-list-member">
+          <p class="team-list-name">Dr. Narayan Rao</p>
+          <p class="team-list-desc">Executive Director, SRM Group of Institutions</p>
+        </div>
       </div>
 
     </div>
@@ -610,10 +659,10 @@ function showTeamView(view, btn) {
     section.style.minHeight = '';
   } else if (view === 'council') {
     council.hidden = false;
-    section.style.minHeight = '1100px';
+    section.style.minHeight = '1363px';
   } else if (view === 'esc') {
     esc.hidden = false;
-    section.style.minHeight = '700px';
+    section.style.minHeight = '1046px';
   }
 
   // Update tab active state
