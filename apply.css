@@ -129,7 +129,7 @@
    ─────────────────────────────────────────────────────────────── */
 .ap-disclaimer {
   position: relative;
-  width: 631px;
+  width: 481px;
   height: 153px;
   margin: 0 auto 78px;
 }
@@ -143,10 +143,9 @@
 }
 .ap-disclaimer-text {
   position: absolute;
-  left: 240px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 380px;
+  left: 31px;
+  top: 70px;
+  width: 450px;
   margin: 0;
   font-family: var(--font-main);
   font-size: 24px;
