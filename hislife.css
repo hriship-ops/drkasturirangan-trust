@@ -8,7 +8,7 @@
 .hl-wrap {
   position: relative;
   width: 1440px;
-  min-height: 22520px;
+  min-height: 22350px;
   background: #fff;
   overflow-x: clip;
 }
@@ -238,6 +238,14 @@
   max-height: calc(100vh - 121px);
   overflow: hidden;
 }
+
+/* ── INLINE LINKS IN EVENT TEXT ──────────────────────────── */
+.hl-event a {
+  color: #2a6cb7;
+  text-decoration: underline;
+  font-style: italic;
+}
+.hl-event a:hover { color: #d9982e; }
 
 /* ── PHOTOS ───────────────────────────────────────────────── */
 .hl-photo {
