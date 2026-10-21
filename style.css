@@ -186,7 +186,7 @@
   font-style: italic;
   font-weight: 600;
   color: var(--c-primary);
-  line-height: normal;
+  line-height: 1;
   position: relative;
   margin-bottom: 8px;
 }
@@ -194,12 +194,12 @@
 .about-heading::before {
   content: '';
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 0.278em;
+  height: 0.278em;
   border-radius: 50%;
   background: var(--c-accent);
-  left: var(--bindi-left, 3px);
-  top: var(--bindi-top, 5px);
+  left: 0.083em;
+  top: 0.139em;
 }
 
 .about-text {
