@@ -2,419 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Agdasima&display=swap">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr Kasturirangan &mdash; A Many-Splendored Life</title>
+<title>His Life — Dr Kasturirangan Trust</title>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="shared.css">
-<style>
-/* overflow-x:hidden on body (from tokens.css) implicitly sets overflow-y:auto,
-   which can make body the scroll container and break position:sticky in Safari.
-   Reset overflow-y so the viewport remains the scroll container. */
-body { overflow-y: visible; }
-
-/* ================================================================
-   DR KASTURIRANGAN'S LIFE — kasturirangan.html
-   From Figma node 650:56 (1440x4732px canvas).
-   Two-column timeline layout:
-     Left sidebar (160px): amber vertical line + year index list
-     Main content: hero intro + stacked timeline entries
-   ================================================================ */
-
-/* ----------------------------------------------------------
-   HERO INTRO SECTION
-   Left: amber title (50px Afacad Medium #c58316) + body text.
-   Right: illustrated sketch SVG (flipped) + amber circle.
-   Canvas: title at x=209, y=219; illustration at x=989, y=145.
-   ---------------------------------------------------------- */
-
-.kk-hero {
-  padding: 56px var(--page-px) 0;
-  display: grid;
-  grid-template-columns: 1fr clamp(240px, 29.2vw, 420px);
-  gap: 60px;
-  align-items: center;
-  position: relative;
-  overflow: visible;
-}
-
-/* R1: shift text column right, closer to illustration */
-.kk-hero-text {
-  padding-left: clamp(24px, 8.3vw, 120px);
-}
-
-.kk-hero-title {
-  font-size: 50px;
-  font-weight: var(--fw-medium);
-  color: var(--c-amber-deep);
-  font-family: var(--font-main);
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.kk-hero-desc {
-  font-size: 30px;
-  font-weight: var(--fw-regular);
-  color: var(--c-primary-dark);
-  line-height: 1.5;
-  max-width: 720px;
-}
-
-/* R1: illustration wrapper — holds circle + flipped image */
-.kk-hero-illus-wrap {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  overflow: visible;
-}
-
-/* Figma V2: Ellipse 8 w=403, illustration y=145, circle y=153 → 8px below illustration top. */
-.kk-illus-circle {
-  position: absolute;
-  width: clamp(200px, 28vw, 403px);
-  height: clamp(200px, 28vw, 403px);
-  border-radius: 50%;
-  background: rgba(217, 152, 46, 0.15);
-  top: 8px;
-  right: clamp(16px, 2.8vw, 40px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* R1: flip illustration horizontally */
-.kk-hero-illus {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 356px;
-  height: auto;
-  transform: scaleX(-1);
-}
-
-/* Figma Line 27: y=502 (6px below illustration bottom at y=496), x=-57 to x=1197 (~83% of 1440px).
-   Stroke #d9982e a=0.20, sw=3. Positioned in .kk-hero (full-width section). */
-.kk-hero-hline {
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  right: 17%;
-  height: 3px;
-  background: rgba(217, 152, 46, 0.20);
-  z-index: 0;
-}
-
-/* ----------------------------------------------------------
-   TIMELINE WRAPPER
-   Left sidebar: 160px wide, amber vertical line (border-left 3px).
-   Main: all timeline entries stacked.
-   ---------------------------------------------------------- */
-
-.kk-timeline-wrap {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  margin-top: 60px;
-}
-
-/* R3: sidebar sticky so year index stays visible while scrolling */
-.kk-sidebar {
-  position: sticky;
-  top: var(--nav-h);
-  align-self: start;
-  border-right: 3px solid var(--c-accent);
-  padding: 0 12px 0 40px;
-  display: flex;
-  flex-direction: column;
-}
-
-.kk-sidebar-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  margin-left: -5.5px;
-  position: absolute;
-  left: 100%;
-}
-
-/* R3: year index — fully static, no internal scroll ever */
-.kk-sidebar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  padding-top: 16px;
-  overflow: hidden;
-  max-height: calc(100vh - 140px);
-}
-
-.kk-sidebar ul li {
-  font-family: var(--font-deco);
-  font-size: 32px;
-  color: var(--c-primary-dark);
-  line-height: 1.4;
-  margin-bottom: 6px;
-  text-align: center;
-}
-
-.kk-sidebar ul li.kk-yr-lg {
-  font-size: 34px;
-}
-
-.kk-sidebar ul li.kk-yr-active {
-  color: var(--c-accent);
-  font-weight: 700;
-}
-
-/* R3: highlighted years — full-width navy band, white text */
-.kk-sidebar ul li.kk-yr-highlight {
-  background: var(--c-primary);
-  color: #fff;
-  display: block;
-  margin-left: -40px;
-  margin-right: -12px;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  text-align: center;
-}
-
-/* Main content column */
-.kk-main {
-  position: relative;
-}
-
-/* ----------------------------------------------------------
-   TIMELINE ENTRY
-   Each entry: horizontal amber divider above, then content row.
-   Content row: large amber year (96px Agdasima, centre) + text right.
-   Photos: rounded 27px, right-aligned, max-w 670px.
-   ---------------------------------------------------------- */
-
-/* Horizontal amber line separating entries */
-.kk-entry-divider {
-  height: 3px;
-  background: var(--c-accent);
-}
-
-/* Figma V2: per-section grey line at x=496 (sidebar=160 → within kk-main: 336px).
-   Stroke #7f7f7f sw=0.5 — per-section only, not continuous. */
-.kk-entry-inner {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  padding: clamp(20px, 3.1vw, 44px) clamp(20px, 4vw, 58px) clamp(20px, 3.1vw, 44px) clamp(20px, 3.5vw, 50px);
-  position: relative;
-}
-.kk-entry-inner::before {
-  content: '';
-  position: absolute;
-  left: 336px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: rgba(127, 127, 127, 0.55);
-  z-index: 0;
-}
-
-/* R4: year label — Figma: "1940s to 1950s" CENTER, numeric years LEFT. */
-.kk-entry-year {
-  font-family: var(--font-deco);
-  font-size: 96px;
-  color: var(--c-accent);
-  line-height: 1;
-  flex-shrink: 0;
-  min-width: clamp(120px, 20.1vw, 290px);
-  text-align: left;
-  position: relative;
-}
-.kk-entry-year-first { text-align: center; }
-
-/* R11: amber glow circle removed per V2 design */
-.kk-entry-year::before {
-  display: none;
-}
-
-/* Entry content: text + optional photo */
-.kk-entry-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding-top: 12px;
-  position: relative;
-  z-index: 1;
-}
-
-/* Figma: dot x=531, text x=542 — dot nearly abuts text (11px from dot left to text). */
-.kk-entry-dot-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.kk-entry-dot {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  flex-shrink: 0;
-  margin-top: 3px;
-  position: relative;
-  z-index: 1;
-}
-
-.kk-entry-text {
-  font-size: 24px;
-  font-weight: var(--fw-regular);
-  color: #000;
-  line-height: 1.5;
-}
-
-.kk-entry-photo {
-  border-radius: 27px;
-  object-fit: cover;
-  width: 100%;
-  max-width: 670px;
-  height: auto;
-  display: block;
-}
-
-/* ----------------------------------------------------------
-   DARK NAVY CALLOUT SECTION
-   Navy bg #2a427e, white text, used for the Berkeley/ISRO story.
-   Left: text (400px). Right: photo.
-   ---------------------------------------------------------- */
-
-.kk-dark-section {
-  background: var(--c-primary);
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 56px 50px 56px 49px;
-  position: relative;
-  z-index: 1;
-}
-
-.kk-dark-text {
-  font-size: 24px;
-  font-weight: var(--fw-regular);
-  color: #fff;
-  line-height: 1.5;
-  flex: 1;
-}
-
-.kk-dark-photo {
-  border-radius: 27px;
-  object-fit: cover;
-  width: clamp(280px, 42.7vw, 615px);
-  flex-shrink: 1;
-  height: auto;
-  display: block;
-}
-
-/* ----------------------------------------------------------
-   RESPONSIVE
-   ---------------------------------------------------------- */
-
-.kk-entry-tail { padding-top: 40px; padding-bottom: 60px; }
-
-/* ── Tablet wide (≤1100px): hero collapses to single column ── */
-@media (max-width: 1100px) {
-  .kk-hero {
-    grid-template-columns: 1fr;
-    padding: 40px var(--page-px) 0;
-    gap: 32px;
-  }
-  .kk-hero-text { padding-left: 0; }
-  /* Center illustration + reposition circle so it doesn't escape right edge */
-  .kk-hero-illus-wrap { justify-content: center; }
-  .kk-hero-illus       { max-width: 220px; }
-  .kk-illus-circle {
-    width: 250px; height: 250px;
-    top: -20px; right: auto;
-    left: 50%; transform: translateX(-50%);
-  }
-  /* Horizontal deco line doesn't make sense in stacked layout */
-  .kk-hero-hline { display: none; }
-  .kk-dark-section { flex-direction: column; padding: 40px var(--page-px); }
-  .kk-dark-photo   { width: 100%; max-width: 540px; }
-}
-
-/* ── Tablet narrow (≤900px): shrink sidebar + year labels ── */
-@media (max-width: 900px) {
-  .kk-timeline-wrap  { grid-template-columns: 72px 1fr; }
-  .kk-sidebar        { padding: 0 6px 0 16px; }
-  .kk-sidebar ul li  { font-size: 18px; }
-  .kk-sidebar ul li.kk-yr-lg { font-size: 18px; }
-  /* Highlighted band must still reach sidebar edges at new padding */
-  .kk-sidebar ul li.kk-yr-highlight { margin-left: -16px; }
-  .kk-entry-inner    { gap: 20px; padding: 32px 20px 32px 16px; }
-  .kk-entry-year     { font-size: 60px; min-width: 140px; }
-  /* grey line: sidebar narrows to 72px, same left-of-dot offset → 72+(290-150)/1 ≈ 141px */
-  .kk-entry-inner::before { left: 141px; }
-}
-
-/* ── Mobile (≤600px): hide sidebar, stack year above content ── */
-@media (max-width: 600px) {
-  /* ghost spacer year for 1971 dark-section layout — remove entirely on mobile */
-  .kk-ghost-year { display: none; }
-  .kk-hero          { padding: 28px 20px 0; }
-  .kk-hero-title    { font-size: 34px; }
-  .kk-hero-desc     { font-size: 18px; }
-  .kk-hero-illus    { max-width: 160px; }
-  .kk-illus-circle  { width: 180px; height: 180px; }
-
-  .kk-timeline-wrap { grid-template-columns: 1fr; }
-  .kk-sidebar       { display: none; }
-
-  /* Stacked entry: year on top, content below */
-  .kk-entry-inner   { flex-direction: column; gap: 8px; padding: 20px 20px; }
-  .kk-entry-year    { font-size: 52px; min-width: unset; text-align: left; }
-  .kk-entry-year-first { text-align: center; }
-  .kk-entry-year::before { left: 0; top: 4px; width: 64px; height: 64px; }
-  .kk-entry-content { padding-top: 0; }
-  .kk-entry-text    { font-size: 18px; }
-  .kk-entry-dot     { width: 22px; height: 22px; }
-  .kk-entry-photo   { max-width: 100%; }
-
-  /* Remove decorative lines — too cluttered on narrow screens */
-  .kk-entry-inner::before { display: none; }
-
-  .kk-dark-section { padding: 28px 20px; }
-  .kk-dark-text    { font-size: 18px; }
-}
-
-/* ── Small phones (≤400px) ── */
-@media (max-width: 400px) {
-  .kk-hero-title  { font-size: 26px; }
-  .kk-hero-desc   { font-size: 17px; }
-  .kk-entry-year  { font-size: 40px; }
-  .kk-entry-text  { font-size: 16px; }
-  .kk-hero-illus  { max-width: 120px; }
-  .kk-illus-circle { width: 140px; height: 140px; }
-}
-</style>
-  <link rel="stylesheet" href="mobile-shared.css">
+<link rel="stylesheet" href="hislife.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="site-nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust">
+    <img src="assets/images/logo-final.png" alt="Dr Kasturirangan Trust" style="height:86px;width:auto;">
   </a>
   <ul class="nav-links">
     <li>
-      <a href="vision.html">About Us <span class="nav-chev"></span></a>
+      <a href="#">About Us <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="vision.html">Vision &amp; Mission</a>
         <a href="team.html">Team</a>
       </div>
     </li>
     <li>
-      <a href="kasturirangan.html">Dr Kasturirangan <span class="nav-chev"></span></a>
+      <a href="hislife.html">Dr Kasturirangan <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
-        <a href="kasturirangan.html">His Life</a>
-        <a href="writings.html">Space and Beyond &ndash; The Book</a>
+        <a href="hislife.html">His Life</a>
+        <a href="writings.html">Space and Beyond – The Book</a>
       </div>
     </li>
     <li>
@@ -427,17 +43,10 @@ body { overflow-y: visible; }
       <a href="#">Useful Links <span class="nav-chev"></span></a>
       <div class="nav-dropdown">
         <a href="apply.html">Apply</a>
-        <a href="#">Contact Us</a>
+        <a href="#contact">Contact Us</a>
       </div>
     </li>
   </ul>
-  <button class="nav-search-btn" aria-label="Search">
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="9.5" cy="9.5" r="7.5" stroke="currentColor" stroke-width="2"/>
-      <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </button>
-  <!-- Hamburger — visible only on mobile via shared.css -->
   <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
           onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -448,761 +57,624 @@ body { overflow-y: visible; }
   </button>
 </nav>
 
-<!-- HERO INTRO -->
-<section class="kk-hero">
-  <div class="kk-hero-text">
-    <h1 class="kk-hero-title">A Many-Splendored Life</h1>
-    <p class="kk-hero-desc">In his book <em>Space and Beyond</em>, KK. Kasturirangan reflects on his life as &ldquo;extraordinary and many-splendored.&rdquo; This timeline traces the remarkable journey behind those words.</p>
+<!-- TIMELINE PAGE WRAPPER
+     All y coordinates = Figma/Anima absolute y − 101px (nav height).
+     x coordinates unchanged from Figma/Anima.
+-->
+<div class="hl-wrap" aria-label="Dr Kasturirangan life timeline">
+
+  <!-- ══ HERO ══════════════════════════════════════════════════ -->
+  <div class="hl-amber-circle" aria-hidden="true"></div>
+
+  <h1 class="hl-title">A Many-Splendored Life</h1>
+
+  <p class="hl-subtitle">
+    In his book <em>Space and Beyond</em>, Dr Kasturirangan reflects on his
+    &ldquo;extraordinary and many-splendored&rdquo; life. This timeline traces
+    the remarkable journey behind those words.
+  </p>
+
+  <img class="hl-portrait"
+       src="assets/hislife/layer-1.png"
+       alt="Dr Kasturirangan portrait">
+
+  <div class="hl-hero-line" aria-hidden="true"></div>
+
+  <!-- ══ SPINE ══════════════════════════════════════════════════ -->
+  <div class="hl-spine-dot" aria-hidden="true"></div>
+  <div class="hl-spine" aria-hidden="true"></div>
+
+  <!-- ══ ERA LABEL ══════════════════════════════════════════════ -->
+  <div class="hl-era" aria-hidden="true">1940s<br>to 1950s</div>
+
+  <!-- ══ SMALL YEAR INDEX COLUMN (x=67, all years) ═════════════ -->
+  <div class="hl-year-col" id="hl-year-nav">
+  <div class="hl-yn-track">
+    <a href="#yr-1940" class="hl-yn-item">1940<br>to<br>1950</a>
+    <a href="#yr-1961" class="hl-yn-item">1961</a>
+    <a href="#yr-1963" class="hl-yn-item">1963</a>
+    <a href="#yr-1969" class="hl-yn-item">1969</a>
+    <a href="#yr-1971" class="hl-yn-item">1971</a>
+    <a href="#yr-1975" class="hl-yn-item">1975</a>
+    <a href="#yr-1976" class="hl-yn-item">1976</a>
+    <a href="#yr-1979" class="hl-yn-item">1979</a>
+    <a href="#yr-1981" class="hl-yn-item">1981</a>
+    <a href="#yr-1982" class="hl-yn-item">1982</a>
+    <a href="#yr-1983" class="hl-yn-item">1983</a>
+    <a href="#yr-1984" class="hl-yn-item">1984</a>
+    <a href="#yr-1986" class="hl-yn-item">1986</a>
+    <a href="#yr-1988" class="hl-yn-item">1988</a>
+    <a href="#yr-1990" class="hl-yn-item">1990</a>
+    <a href="#yr-1991" class="hl-yn-item">1991</a>
+    <a href="#yr-1992" class="hl-yn-item">1992</a>
+    <a href="#yr-1993" class="hl-yn-item">1993</a>
+    <a href="#yr-1994" class="hl-yn-item">1994</a>
+    <a href="#yr-1997" class="hl-yn-item">1997</a>
+    <a href="#yr-1999" class="hl-yn-item">1999</a>
+    <a href="#yr-2000" class="hl-yn-item">2000</a>
+    <a href="#yr-2001" class="hl-yn-item">2001</a>
+    <a href="#yr-2002" class="hl-yn-item">2002</a>
+    <a href="#yr-2003" class="hl-yn-item">2003</a>
+    <a href="#yr-2004" class="hl-yn-item">2004</a>
+    <a href="#yr-2005" class="hl-yn-item">2005</a>
+    <a href="#yr-2006" class="hl-yn-item">2006</a>
+    <a href="#yr-2007" class="hl-yn-item">2007</a>
+    <a href="#yr-2008" class="hl-yn-item">2008</a>
+    <a href="#yr-2009" class="hl-yn-item">2009</a>
+    <a href="#yr-2012" class="hl-yn-item">2012</a>
+    <a href="#yr-2013" class="hl-yn-item">2013</a>
+    <a href="#yr-2014" class="hl-yn-item">2014</a>
+    <a href="#yr-2015" class="hl-yn-item">2015</a>
+    <a href="#yr-2017" class="hl-yn-item">2017</a>
+    <a href="#yr-2019" class="hl-yn-item">2019</a>
+    <a href="#yr-2021" class="hl-yn-item">2021</a>
+    <a href="#yr-2023" class="hl-yn-item">2023</a>
+    <a href="#yr-2025" class="hl-yn-item">2025</a>
+    </div>
   </div>
-  <div class="kk-hero-illus-wrap">
-    <div class="kk-illus-circle"></div>
-    <img class="kk-hero-illus"
-         src="assets/images/kk-illustration.svg"
-         alt="Sketch portrait of K. Kasturirangan">
-  </div>
-  <div class="kk-hero-hline"></div>
-</section>
 
-<!-- TIMELINE -->
-<div class="kk-timeline-wrap">
+  <!-- ══ NAVY LEFT STRIP BARS (early era markers) ═════════════ -->
+  <div class="hl-lstrip" style="top:786px"  aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:1325px" aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:1625px" aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:1983px" aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:2283px" aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:2392px" aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:2409px" aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:2537px" aria-hidden="true"></div>
+  <div class="hl-lstrip" style="top:2666px" aria-hidden="true"></div>
 
-  <!-- LEFT SIDEBAR: year index + amber vertical line -->
-  <div class="kk-sidebar">
-    <div class="kk-sidebar-dot"></div>
-    <ul>
-      <li data-yr="1940">1940<br>to 1950</li>
-      <li data-yr="1961">1961</li>
-      <li data-yr="1963">1963</li>
-      <li data-yr="1969">1969</li>
-      <li data-yr="1971">1971</li>
-      <li data-yr="1975">1975</li>
-      <li data-yr="1976">1976</li>
-      <li data-yr="1979">1979</li>
-      <li data-yr="1981">1981</li>
-      <li data-yr="1982">1982</li>
-      <li data-yr="1983">1983</li>
-      <li data-yr="1984">1984</li>
-      <li data-yr="1986">1986</li>
-      <li data-yr="1988">1988</li>
-      <li data-yr="1990">1990</li>
-      <li data-yr="1991">1991</li>
-      <li data-yr="1992">1992</li>
-      <li data-yr="1993">1993</li>
-      <li class="kk-yr-highlight" data-yr="1994">1994</li>
-      <li data-yr="1997">1997</li>
-      <li data-yr="1999">1999</li>
-      <li data-yr="2000">2000</li>
-      <li data-yr="2001">2001</li>
-      <li data-yr="2002">2002</li>
-      <li data-yr="2003">2003</li>
-      <li data-yr="2004">2004</li>
-      <li data-yr="2005">2005</li>
-      <li data-yr="2006">2006</li>
-      <li data-yr="2007">2007</li>
-      <li data-yr="2008">2008</li>
-      <li data-yr="2009">2009</li>
-      <li data-yr="2012">2012</li>
-      <li data-yr="2013">2013</li>
-      <li data-yr="2014">2014</li>
-      <li data-yr="2015">2015</li>
-      <li data-yr="2017">2017</li>
-      <li data-yr="2019">2019</li>
-      <li data-yr="2021">2021</li>
-      <li data-yr="2023">2023</li>
-      <li data-yr="2025">2025</li>
-    </ul>
-  </div>
+  <!-- ══ PHOTOS ═════════════════════════════════════════════════ -->
+  <img class="hl-photo" style="top:657px;left:547px;width:670px;height:445px"
+       src="assets/hislife/screenshot-2026-07-03-at-12-20-08-pm-1.png"
+       alt="Dr Kasturirangan early life">
 
-  <!-- MAIN TIMELINE CONTENT -->
-  <div class="kk-main">
+  <img class="hl-photo" style="top:1370px;left:547px;width:674px;height:445px"
+       src="assets/hislife/screenshot-2026-07-03-at-12-34-17-pm-1.png"
+       alt="Dr Kasturirangan at university">
 
-    <!-- 1940s–1950s -->
-    <div class="kk-entry" data-year="1940">
-      <div class="kk-entry-divider"></div>
+  <img class="hl-photo" style="top:2149px;left:542px;width:773px;height:269px"
+       src="assets/hislife/screenshot-2026-07-03-at-12-35-50-pm-1.png"
+       alt="Dr Kasturirangan with family">
 
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year kk-entry-year-first">1940s<br>to<br>1950s</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">K. Kasturirangan is born on October 24, 1940, in Ernakulam, Kerala, to C.M. Krishnaswamy Iyer and Visalakshi. He attends Sree Rama Varma High School, Ernakulam, and later South Indian Education Society High School, in Bombay.</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/kk-school-ernakulam.png"
-               alt="Sree Rama Varma High School, Ernakulam, where K. Kasturirangan studied">
-        </div>
-      </div>
-    </div>
+  <img class="hl-photo" style="top:2710px;left:542px;width:679px;height:506px"
+       src="assets/hislife/screenshot-2026-07-15-at-11-45-42-pm-1.png"
+       alt="Dr Kasturirangan early career at ISRO">
 
-    <!-- 1961 -->
-    <div class="kk-entry" data-year="1961">
-      <div class="kk-entry-divider"></div>
+  <!-- ══ FIRST AMBER DOT + CONNECTOR ══════════════════════════ -->
+  <div class="hl-dot" id="yr-1940" style="top:489px" aria-hidden="true"></div>
+  <div class="hl-vline" style="top:478px;height:661px" aria-hidden="true"></div>
 
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1961</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Completes BSc (Honours) in Physics at Ramnarain Ruia College, Mumbai</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/bsc-bombay-1961.png"
-               alt="K. Kasturirangan receiving BSc Degree with Honors, Bombay University">
-        </div>
-      </div>
-    </div>
+  <!-- ══ BLUE BANDS ════════════════════════════════════════════ -->
+  <div class="hl-band" style="top:3514px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:6502px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:8533px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:10944px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:13685px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:14778px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:15868px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:17147px" aria-hidden="true"></div>
 
-    <!-- 1963 -->
-    <div class="kk-entry" data-year="1963">
-      <div class="kk-entry-divider"></div>
+  <!-- Aryabhata photo: inside blue band 1, must render on top of it -->
+  <img class="hl-photo" style="top:3567px;left:575px;width:615px;height:412px"
+       src="assets/hislife/image-25.png"
+       alt="Aryabhata satellite programme">
 
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1963</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Completes MSc in Physics from Bombay University</p>
-              <p class="kk-entry-text">Joins Physical Research Laboratory (PRL) for his doctoral work in cosmic X-rays in Vikram Sarabhai&rsquo;s laboratory</p>
-            </div>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/prl-ahmedabad-1963.png"
-               alt="Physical Research Laboratory, Ahmedabad, where Kasturirangan pursued doctoral research">
-        </div>
-      </div>
-    </div>
+  <!-- ══ BLUE BAND CONNECTOR LINES (amber, 4px wide, x=496) ═══ -->
+  <div class="hl-bbline" style="top:3619px;height:324px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:6607px;height:324px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:8638px;height:324px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:11049px;height:324px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:13790px;height:324px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:14883px;height:324px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:15973px;height:324px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:17252px;height:324px" aria-hidden="true"></div>
 
-    <!-- 1969 -->
-    <div class="kk-entry" data-year="1969">
-      <div class="kk-entry-divider"></div>
+  <!-- ══ HORIZONTAL RULES (amber, 3px, x=218, w=1143) ════════ -->
+  <div class="hl-hline" style="top:1190px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:1897px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:2531px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:3302px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:4263px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:4520px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:4764px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:5077px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:5334px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:5578px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:5805px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:6049px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:6296px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:7139px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:7383px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:7683px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:8060px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:8307px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:9309px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:9559px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:9826px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:10064px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:10391px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:10718px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:11531px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:11779px" aria-hidden="true"></div>
+  <!-- ══ 2006 ═══════════════════════════════════════════════ -->
+  <div class="hl-hline" style="top:12051px" aria-hidden="true"></div>
+  <div class="hl-year" style="top:12127px;left:229px" id="yr-2006" aria-hidden="true">2006</div>
+  <div class="hl-vline" style="top:12127px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot"  style="top:12139px" aria-hidden="true"></div>
+  <div class="hl-band" style="top:12273px" aria-hidden="true"></div>
+  <div class="hl-bbline" style="top:12378px;height:324px" aria-hidden="true"></div>
+  <p class="hl-bbtext" style="top:12435px;width:277px">
+    Appointed Academician of Pontifical Academy of Sciences by Pope Benedict
+    XVI. He is the fourth Indian to be appointed to the Academy after CV Raman,
+    MGK Menon and CNR Rao.
+  </p>
 
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1969</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Marries Lakshmi. They have two sons, Rajesh and Sanjay</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/kk-lakshmi-1969.png"
-               alt="K. Kasturirangan and Lakshmi, 1969">
-        </div>
-      </div>
-    </div>
+  <!-- ══ 2007 (continued) ══════════════════════════════════════ -->
+  <div class="hl-hline" style="top:12887px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:13134px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:13459px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:13461px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:14261px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:14578px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:15354px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:15651px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:16630px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:16947px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:17723px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:18000px" aria-hidden="true"></div>
+  <div class="hl-hline" style="top:18279px" aria-hidden="true"></div>
 
-    <!-- 1971 -->
-    <div class="kk-entry" data-year="1971">
-      <div class="kk-entry-divider"></div>
+  <!-- ══ MAJOR YEAR LABELS + CONNECTORS + DOTS ════════════════ -->
 
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1971</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Completes doctorate in experimental high-energy astronomy.</p>
-          </div>
-        </div>
-      </div>
+  <!-- 1961 -->
+  <div class="hl-year" style="top:1281px;left:240px" id="yr-1961" aria-hidden="true">1961</div>
+  <div class="hl-vline" style="top:1281px;height:563px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:1293px" aria-hidden="true"></div>
 
-      <!-- Navy callout band: Berkeley offer vs ISRO + Aryabhata photo -->
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">Receives an offer to do postdoctoral work with Nobel Laureate Prof Louis Alvarez at UC Berkeley, but is convinced by Sarabhai to join ISRO instead</p>
-        <img class="kk-dark-photo"
-             src="assets/images/kk-photo-isro.png"
-             alt="">
-      </div>
+  <!-- 1963 -->
+  <div class="hl-year" style="top:1968px;left:229px" id="yr-1963" aria-hidden="true">1963</div>
+  <div class="hl-vline" style="top:1968px;height:499px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:1980px" aria-hidden="true"></div>
 
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year kk-ghost-year" aria-hidden="true" style="visibility:hidden">1971</div>
-        <div class="kk-entry-content">
-          <p class="kk-entry-text">Takes on systems engineering responsibility for Aryabhata, India&rsquo;s first satellite</p>
-        </div>
-      </div>
-    </div>
+  <!-- 1969 -->
+  <div class="hl-year" style="top:2615px;left:229px" id="yr-1969" aria-hidden="true">1969</div>
+  <div class="hl-vline" style="top:2615px;height:609px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:2627px" aria-hidden="true"></div>
 
+  <!-- 1971 -->
+  <div class="hl-year" style="top:3368px;left:243px" id="yr-1971" aria-hidden="true">1971</div>
+  <div class="hl-vline" style="top:3368px;height:827px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:3431px" aria-hidden="true"></div>
 
-    <!-- 1975 -->
-    <div class="kk-entry" data-year="1975">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1975</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Aryabhata is successfully launched by a Soviet Kosmos-3M rocket from Kapustin Yar</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/aryabhata-team-1975.png"
-               alt="Architects of Aryabhata &mdash; Dr Kasturirangan, top row, third from left">
-        </div>
-      </div>
-    </div>
+  <!-- 1988 -->
+  <div class="hl-year" style="top:6356px;left:228px" id="yr-1988" aria-hidden="true">1988</div>
+  <div class="hl-vline" style="top:6356px;height:725px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:7227px" aria-hidden="true"></div>
 
-    <!-- 1976 -->
-    <div class="kk-entry" data-year="1976">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1976</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Appointed Project Director for Bhaskara-I, India&rsquo;s first experimental earth observation satellite</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1994 -->
+  <div class="hl-year" style="top:8387px;left:231px" id="yr-1994" aria-hidden="true">1994</div>
+  <div class="hl-vline" style="top:8387px;height:866px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:9083px" aria-hidden="true"></div>
 
-    <!-- 1979 -->
-    <div class="kk-entry" data-year="1979">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1979</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Bhaskara-I is launched</p>
-              <p class="kk-entry-text">Appointed Project Director for Bhaskara-II</p>
-              <p class="kk-entry-text">The Aryabhata Project, a book he co-edited with U.R. Rao, is released</p>
-            </div>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/bhaskara-ussr-1979.png"
-               alt="Bhaskara team in the USSR">
-        </div>
-      </div>
-    </div>
+  <!-- 2003 -->
+  <div class="hl-year" style="top:10798px;left:231px" id="yr-2003" aria-hidden="true">2003</div>
+  <div class="hl-vline" style="top:10798px;height:630px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:10810px" aria-hidden="true"></div>
 
-    <!-- 1981 -->
-    <div class="kk-entry" data-year="1981">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1981</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Bhaskara-II launches from Kapustin Yar aboard the Soviet&rsquo;s Intercosmos launch vehicle</p>
-              <p class="kk-entry-text">Awarded the Intercosmos Council Award of the Soviet Academy of Sciences</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2009 -->
+  <div class="hl-year" style="top:13539px;left:231px" id="yr-2009" aria-hidden="true">2009</div>
+  <div class="hl-vline" style="top:13539px;height:594px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:14353px" aria-hidden="true"></div>
 
-    <!-- 1982 -->
-    <div class="kk-entry" data-year="1982">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1982</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Receives his first Padma award, the Padma Shri, in the Science and Engineering category</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/padma-shri-1982.png"
-               alt="Receiving the Padma Shri from President Neelam Sanjiva Reddy, 1982">
-        </div>
-      </div>
-    </div>
+  <!-- 2012 -->
+  <div class="hl-year" style="top:14337px;left:231px" id="yr-2012" aria-hidden="true">2012</div>
+  <div class="hl-vline" style="top:14337px;height:150px" aria-hidden="true"></div>
+  <!-- dot shared with 2009 at 13483 -->
 
-    <!-- 1983 -->
-    <div class="kk-entry" data-year="1983">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1983</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Awarded the Shanti Swarup Bhatnagar Award in Engineering Sciences</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/ssb-award-1983.png"
-               alt="Receiving the Shanti Swarup Bhatnagar Award from Rajiv Gandhi, 1983">
-        </div>
-      </div>
-    </div>
+  <!-- 2013 -->
+  <div class="hl-year" style="top:14632px;left:231px" id="yr-2013" aria-hidden="true">2013</div>
+  <div class="hl-vline" style="top:14632px;height:594px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:15431px" aria-hidden="true"></div>
 
-    <!-- 1984 -->
-    <div class="kk-entry" data-year="1984">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1984</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Appointed Deputy Director of ISRO Satellite Centre</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2015 -->
+  <div class="hl-year" style="top:15722px;left:231px" id="yr-2015" aria-hidden="true">2015</div>
+  <div class="hl-vline" style="top:15722px;height:787px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:16416px" aria-hidden="true"></div>
 
-    <!-- 1986 -->
-    <div class="kk-entry" data-year="1986">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1986</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Appointed Associate Director of ISRO Satellite Centre</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2019 -->
+  <div class="hl-year" style="top:17001px;left:231px" id="yr-2019" aria-hidden="true">2019</div>
+  <div class="hl-vline" style="top:17001px;height:594px" aria-hidden="true"></div>
+  <!-- dot shared with 2017 at 15852 -->
 
-    <!-- 1988 -->
-    <div class="kk-entry" data-year="1988">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1988</div>
-        <div class="kk-entry-content"></div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">IRS-1A, India&rsquo;s first operational remote sensing satellite, developed under his leadership, successfully launches from the Soviet Cosmodrome at Baikonur aboard their Vostok-2M rocket</p>
-        <img class="kk-dark-photo"
-             src="assets/kasturirangan/irs1a-1988.png"
-             alt="Launch of IRS-1A at Baikonur Cosmodrome, 1988">
-      </div>
-    </div>
+  <!-- ══ MINOR YEAR LABELS + CONNECTORS + DOTS ════════════════ -->
 
-    <!-- 1990 -->
-    <div class="kk-entry" data-year="1990">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1990</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Appointed Director of ISRO Satellite Centre, overseeing development of IRS-1B, INSAT-2, and other programmes</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1975 -->
+  <div class="hl-year" style="top:4339px;left:233px" id="yr-1975" aria-hidden="true">1975</div>
+  <div class="hl-vline" style="top:4339px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:4351px" aria-hidden="true"></div>
 
-    <!-- 1991 -->
-    <div class="kk-entry" data-year="1991">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1991</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">IRS-1B, the second of the series of indigenously developed remote sensing satellites of India, successfully launches from the Soviet Cosmodrome at Baikonur</p>
-              <p class="kk-entry-text">His wife Lakshmi passes away</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1976 -->
+  <div class="hl-year" style="top:4596px;left:232px" id="yr-1976" aria-hidden="true">1976</div>
+  <div class="hl-vline" style="top:4596px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:4608px" aria-hidden="true"></div>
 
-    <!-- 1992 -->
-    <div class="kk-entry" data-year="1992">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1992</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Receives his second Padma award, the Padma Bhushan, in the Science and Engineering category</p>
-              <p class="kk-entry-text">INSAT-2A and 2B, India&rsquo;s first multipurpose satellites (providing telecommunications, television broadcasting, meteorological and search and rescue services) launch from French Guiana using the European Ariane 4 launch vehicle</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1979 -->
+  <div class="hl-year" style="top:4840px;left:232px" id="yr-1979" aria-hidden="true">1979</div>
+  <div class="hl-vline" style="top:4840px;height:189px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:4852px" aria-hidden="true"></div>
 
-    <!-- 1993 -->
-    <div class="kk-entry" data-year="1993">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1993</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">The first flight of the indigenously developed launch vehicle PSLV narrowly misses success due to a software error</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1981 -->
+  <div class="hl-year" style="top:5153px;left:239px" id="yr-1981" aria-hidden="true">1981</div>
+  <div class="hl-vline" style="top:5153px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:5165px" aria-hidden="true"></div>
 
-    <!-- 1994 -->
-    <div class="kk-entry" data-year="1994">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1994</div>
-        <div class="kk-entry-content"></div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">Takes charge as Chairman of ISRO and Secretary of the Department of Space</p>
-        <img class="kk-dark-photo"
-             src="assets/kasturirangan/kk-rao-dhawan-1994.png"
-             alt="With Prof. U.R. Rao and Prof. Satish Dhawan, ISRO pioneers">
-      </div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year kk-ghost-year" aria-hidden="true" style="visibility:hidden">1994</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Appointed Chairman of the Space Commission, a position he held for nearly a decade under four successive Prime Ministers</p>
-              <p class="kk-entry-text">The PSLV achieves its first successful launch</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1982 -->
+  <div class="hl-year" style="top:5410px;left:230px" id="yr-1982" aria-hidden="true">1982</div>
+  <div class="hl-vline" style="top:5410px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:5422px" aria-hidden="true"></div>
 
-    <!-- 1997 -->
-    <div class="kk-entry" data-year="1997">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1997</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">India&rsquo;s first second-generation operational remote sensing satellite, IRS-1C, is launched by a Molniya-M launch vehicle from the Baikonur Cosmodrome</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/kk-chairman-1990s.png"
-               alt="K. Kasturirangan as Chairman of ISRO, in discussion with a senior government official">
-        </div>
-      </div>
-    </div>
+  <!-- 1983 -->
+  <div class="hl-year" style="top:5647px;left:229px" id="yr-1983" aria-hidden="true">1983</div>
+  <div class="hl-vline" style="top:5647px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:5659px" aria-hidden="true"></div>
 
-    <!-- 1999 -->
-    <div class="kk-entry" data-year="1999">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">1999</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">He proposes an Indian lunar mission during a public lecture in New Delhi</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1984 -->
+  <div class="hl-year" style="top:5881px;left:231px" id="yr-1984" aria-hidden="true">1984</div>
+  <div class="hl-vline" style="top:5881px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:5893px" aria-hidden="true"></div>
 
-    <!-- 2000 -->
-    <div class="kk-entry" data-year="2000">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2000</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Receives his third Padma award, the Padma Vibhushan, in the Science and Engineering category</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/padma-vibhushan-2000.png"
-               alt="Receiving the Padma Vibhushan from President K.R. Narayanan, 2000">
-        </div>
-      </div>
-    </div>
+  <!-- 1986 -->
+  <div class="hl-year" style="top:6125px;left:229px" id="yr-1986" aria-hidden="true">1986</div>
+  <div class="hl-vline" style="top:6125px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:6137px" aria-hidden="true"></div>
 
-    <!-- 2001 -->
-    <div class="kk-entry" data-year="2001">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2001</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">A new class of launch vehicle capable of launching heavy communication and navigation satellites, the GSLV, achieves its first successful test flight, making India one of the six countries in the world to demonstrate capabilities for geostationary satellite launches</p>
-              <p class="kk-entry-text">Elected President of the Indian Academy of Sciences</p>
-            </div>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/gslv-2001.png"
-               alt="GSLV-D1 first successful test flight, 2001">
-        </div>
-      </div>
-    </div>
+  <!-- 1990 -->
+  <div class="hl-year" style="top:7215px;left:229px" id="yr-1990" aria-hidden="true">1990</div>
+  <div class="hl-vline" style="top:7215px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:7227px" aria-hidden="true"></div>
 
-    <!-- 2002 -->
-    <div class="kk-entry" data-year="2002">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2002</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">MetSat-1, India&rsquo;s first dedicated meteorological satellite, is launched on the indigenous PSLV at Sriharikota</p>
-              <p class="kk-entry-text">Conferred the title of Officer of the L&eacute;gion d&rsquo;honneur, France&rsquo;s highest and most prestigious national order of merit</p>
-            </div>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/legion-dhonneur-2002.png"
-               alt="L&eacute;gion d&rsquo;Honneur, September 2002">
-        </div>
-      </div>
-    </div>
+  <!-- 1991 -->
+  <div class="hl-year" style="top:7452px;left:240px" id="yr-1991" aria-hidden="true">1991</div>
+  <div class="hl-vline" style="top:7452px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:7464px" aria-hidden="true"></div>
 
-    <!-- 2003 -->
-    <div class="kk-entry" data-year="2003">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2003</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">MetSat-1 is renamed Kalpana-1, in honour of astronaut Kalpana Chawla who was killed when Space Shuttle Columbia disintegrated on reentry</p>
-          </div>
-        </div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">Following a midnight phone call nominating him to the Rajya Sabha, he steps down as Chairman of ISRO</p>
-      </div>
-    </div>
+  <!-- 1992 -->
+  <div class="hl-year" style="top:7759px;left:231px" id="yr-1992" aria-hidden="true">1992</div>
+  <div class="hl-vline" style="top:7759px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:7771px" aria-hidden="true"></div>
 
-    <!-- 2004 -->
-    <div class="kk-entry" data-year="2004">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2004</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Becomes Director of the National Institute of Advanced Studies (NIAS) in Bengaluru</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/nias-office.png"
-               alt="At his office in NIAS">
-        </div>
-      </div>
-    </div>
+  <!-- 1993 -->
+  <div class="hl-year" style="top:8136px;left:229px" id="yr-1993" aria-hidden="true">1993</div>
+  <div class="hl-vline" style="top:8136px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:8148px" aria-hidden="true"></div>
 
-    <!-- 2005 -->
-    <div class="kk-entry" data-year="2005">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2005</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Elected President of the Indian National Academy of Engineering</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 1997 -->
+  <div class="hl-year" style="top:9375px;left:229px" id="yr-1997" aria-hidden="true">1997</div>
+  <div class="hl-vline" style="top:9375px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:9387px" aria-hidden="true"></div>
 
-    <!-- 2006 -->
-    <div class="kk-entry" data-year="2006">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2006</div>
-        <div class="kk-entry-content"></div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">Appointed Academician of the Pontifical Academy of Sciences by Pope Benedict XVI. He is the fourth Indian to be appointed to the Academy after C.V. Raman, M.G.K. Menon and C.N.R. Rao.</p>
-        <img class="kk-dark-photo"
-             src="assets/kasturirangan/pas-2006.png"
-             alt="Inducted into the Pontifical Academy of Sciences by Pope Benedict XVI, December 2006">
-      </div>
-    </div>
+  <!-- 1999 -->
+  <div class="hl-year" style="top:9635px;left:231px" id="yr-1999" aria-hidden="true">1999</div>
+  <div class="hl-vline" style="top:9635px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:9651px" aria-hidden="true"></div>
 
-    <!-- 2007 -->
-    <div class="kk-entry" data-year="2007">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2007</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Delivers a 29-minute speech in the Rajya Sabha in support of the Indo-US nuclear 123 Agreement</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2000 -->
+  <div class="hl-year" style="top:9902px;left:229px" id="yr-2000" aria-hidden="true">2000</div>
+  <div class="hl-vline" style="top:9902px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:9914px" aria-hidden="true"></div>
 
-    <!-- 2008 -->
-    <div class="kk-entry" data-year="2008">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2008</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Chandrayaan-1, the Moon mission he championed for years, is successfully launched</p>
-              <p class="kk-entry-text">Becomes the first chairman of the Karnataka Knowledge Commission (KKC)</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2001 -->
+  <div class="hl-year" style="top:10140px;left:231px" id="yr-2001" aria-hidden="true">2001</div>
+  <div class="hl-vline" style="top:10140px;height:223px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:10152px" aria-hidden="true"></div>
 
-    <!-- 2009 -->
-    <div class="kk-entry" data-year="2009">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2009</div>
-        <div class="kk-entry-content"></div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">Joins the Planning Commission under Prime Minister Manmohan Singh, with charge of Science and Technology, Environment, Forests, Agriculture Research, and Climate Change</p>
-        <img class="kk-dark-photo"
-             src="assets/kasturirangan/kk-manmohan-2009.png"
-             alt="With Prime Minister Dr Manmohan Singh, Planning Commission">
-      </div>
-    </div>
+  <!-- 2002 -->
+  <div class="hl-year" style="top:10467px;left:229px" id="yr-2002" aria-hidden="true">2002</div>
+  <div class="hl-vline" style="top:10467px;height:224px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:10479px" aria-hidden="true"></div>
 
-    <!-- 2012 -->
-    <div class="kk-entry" data-year="2012">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2012</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Chairs the High Level Working Group on the Western Ghats, constituted by the Ministry of Environment and Forests</p>
-              <p class="kk-entry-text">Appointed Chancellor of Jawaharlal Nehru University, New Delhi</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2004 -->
+  <div class="hl-year" style="top:11607px;left:231px" id="yr-2004" aria-hidden="true">2004</div>
+  <div class="hl-vline" style="top:11607px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:11623px" aria-hidden="true"></div>
 
-    <!-- 2013 -->
-    <div class="kk-entry" data-year="2013">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2013</div>
-        <div class="kk-entry-content"></div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">The comprehensive report on the Western Ghats is released by the High-Level Working Group which he chaired</p>
-      </div>
-    </div>
+  <!-- 2005 -->
+  <div class="hl-year" style="top:11855px;left:229px" id="yr-2005" aria-hidden="true">2005</div>
+  <div class="hl-vline" style="top:11855px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:11867px" aria-hidden="true"></div>
 
-    <!-- 2014 -->
-    <div class="kk-entry" data-year="2014">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2014</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <p class="kk-entry-text">Delivers the convocation address at IISc, Bengaluru, at its first ever convocation ceremony</p>
-              <p class="kk-entry-text">Awarded the Rajyotsava Prashasti by the Government of Karnataka</p>
-            </div>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/rajyotsava-2014.png"
-               alt="Receiving the Rajyotsava Prashasthi from Chief Minister Siddaramaiah, 2014">
-        </div>
-      </div>
-    </div>
+  <!-- 2007 -->
+  <div class="hl-year" style="top:12963px;left:231px" id="yr-2007" aria-hidden="true">2007</div>
+  <div class="hl-vline" style="top:12963px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:12975px" aria-hidden="true"></div>
 
-    <!-- 2015 -->
-    <div class="kk-entry" data-year="2015">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2015</div>
-        <div class="kk-entry-content"></div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">Astrosat, India&rsquo;s first dedicated multi-wavelength space observatory and a mission he championed, is successfully launched</p>
-      </div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year kk-ghost-year" aria-hidden="true" style="visibility:hidden">2015</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">The Hesaraghatta campus of the International Centre for Theoretical Sciences (ICTS), an institute Dr Kasturirangan was closely involved in establishing, is inaugurated</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2008 -->
+  <div class="hl-year" style="top:13210px;left:229px" id="yr-2008" aria-hidden="true">2008</div>
+  <div class="hl-vline" style="top:13210px;height:114px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:13222px" aria-hidden="true"></div>
 
-    <!-- 2017 -->
-    <div class="kk-entry" data-year="2017">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2017</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Chairs a committee constituted by the Government of India to develop the National Education Policy (NEP)</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2014 -->
+  <div class="hl-year" style="top:15419px;left:229px" id="yr-2014" aria-hidden="true">2014</div>
+  <div class="hl-vline" style="top:15419px;height:179px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:15431px" aria-hidden="true"></div>
 
-    <!-- 2019 -->
-    <div class="kk-entry" data-year="2019">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2019</div>
-        <div class="kk-entry-content"></div>
-      </div>
-      <div class="kk-dark-section">
-        <p class="kk-dark-text">The Draft National Education Policy 2020 is officially released</p>
-        <img class="kk-dark-photo"
-             src="assets/kasturirangan/nep-interview-2019.png"
-             alt="All set for an NEP-related interview, June 2019">
-      </div>
-    </div>
+  <!-- 2017 -->
+  <div class="hl-year" style="top:16706px;left:231px" id="yr-2017" aria-hidden="true">2017</div>
+  <div class="hl-vline" style="top:16706px;height:155px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:16722px" aria-hidden="true"></div>
 
-    <!-- 2021 -->
-    <div class="kk-entry" data-year="2021">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2021</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">His book <a href="writings.html"><em>Space and Beyond</em></a> is published by Springer Nature</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/kk-book-to-pm-2021.png"
-               alt="Presenting Space and Beyond to the Prime Minister, 2021">
-        </div>
-      </div>
-    </div>
+  <!-- 2021 -->
+  <div class="hl-year" style="top:17788px;left:229px" id="yr-2021" aria-hidden="true">2021</div>
+  <div class="hl-vline" style="top:17788px;height:139px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:17800px" aria-hidden="true"></div>
 
-    <!-- 2023 -->
-    <div class="kk-entry" data-year="2023">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2023</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">The National Curriculum Framework for School Education, formulated by a steering committee under his stewardship, is released</p>
-          </div>
-          <img class="kk-entry-photo"
-               src="assets/kasturirangan/kk-president-2023.png"
-               alt="With President Droupadi Murmu, 2023">
-        </div>
-      </div>
-    </div>
+  <!-- 2023 -->
+  <div class="hl-year" style="top:18065px;left:229px" id="yr-2023" aria-hidden="true">2023</div>
+  <div class="hl-vline" style="top:18065px;height:139px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:18077px" aria-hidden="true"></div>
 
-    <!-- 2025 -->
-    <div class="kk-entry" data-year="2025">
-      <div class="kk-entry-divider"></div>
-      <div class="kk-entry-inner">
-        <div class="kk-entry-year">2025</div>
-        <div class="kk-entry-content">
-          <div class="kk-entry-dot-row">
-            <div class="kk-entry-dot"></div>
-            <p class="kk-entry-text">Passes away at the age of 84 at his residence in Bengaluru</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 2025 -->
+  <div class="hl-year" style="top:18344px;left:229px" id="yr-2025" aria-hidden="true">2025</div>
+  <div class="hl-vline" style="top:18344px;height:139px" aria-hidden="true"></div>
+  <div class="hl-dot" style="top:18356px" aria-hidden="true"></div>
 
-  </div><!-- /.kk-main -->
-</div><!-- /.kk-timeline-wrap -->
+  <!-- ══ EVENT DESCRIPTIONS (black, 24px, x=542) ══════════════ -->
+
+  <p class="hl-event" style="top:497px">
+    Dr Kasturirangan is born on October 24, 1940, in Ernakulam, Kerala,
+    to C.M. Krishnaswamy Iyer and Visalakshi. He attends Sree Rama Varma
+    High School, Ernakulam, and later South Indian Education Society High
+    School, in Bombay.
+  </p>
+
+  <p class="hl-event" style="top:1301px">
+    Completes BSc (Honours) in Physics at Ramnarain Ruia College, Mumbai
+  </p>
+
+  <p class="hl-event" style="top:1988px">
+    Completes MSc in Physics from Bombay University<br><br>
+    Joins Physical Research Laboratory (PRL) for his doctoral work in cosmic
+    X-rays in Vikram Sarabhai&rsquo;s laboratory
+  </p>
+
+  <p class="hl-event" style="top:2631px">
+    Marries Lakshmi. They have two sons, Rajesh and Sanjay
+  </p>
+
+  <p class="hl-event" style="top:3435px;width:681px">
+    Completes doctorate in experimental high-energy astronomy.<br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    Takes on systems engineering responsibility for Aryabhata, India&rsquo;s
+    first satellite
+  </p>
+
+  <p class="hl-event" style="top:4355px;width:618px">
+    Aryabhata is successfully launched by a Soviet Kosmos-3M rocket from
+    Kapustin Yar
+  </p>
+
+  <p class="hl-event" style="top:4612px;width:641px">
+    Appointed Project Director for Bhaskara-I, India&rsquo;s first experimental
+    earth observation satellite
+  </p>
+
+  <p class="hl-event" style="top:4856px;width:641px">
+    Bhaskara-I is launched<br><br>
+    Appointed Project Director for Bhaskara-II<br><br>
+    <em>The Aryabhata Project</em>, a book he co-edited with U.R. Rao is released
+  </p>
+
+  <p class="hl-event" style="top:5169px;width:722px">
+    Bhaskara-II launches from Kapustin Yar aboard the Soviet&rsquo;s
+    Intercosmos launch vehicle<br><br>
+    Awarded the Intercosmos Council Award of the Soviet Academy of Sciences
+  </p>
+
+  <p class="hl-event" style="top:5426px;width:641px">
+    Receives his first Padma award, the Padma Shri, in the Science and
+    Engineering category
+  </p>
+
+  <p class="hl-event" style="top:5663px">
+    Awarded the Shanti Swarup Bhatnagar Award in Engineering Sciences
+  </p>
+
+  <p class="hl-event" style="top:5897px;width:641px">
+    Appointed Deputy Director of ISRO Satellite Centre
+  </p>
+
+  <p class="hl-event" style="top:6141px">
+    Appointed Associate Director of ISRO Satellite Centre
+  </p>
+
+  <p class="hl-event" style="top:7231px;width:677px">
+    Appointed Director of ISRO Satellite Centre, overseeing development of
+    IRS-1B, INSAT-2, and other programmes
+  </p>
+
+  <p class="hl-event" style="top:7468px">
+    IRS-1B, the second of the series of indigenously developed remote sensing
+    satellites of India, successfully launches from the Soviet Cosmodrome at
+    Baikonur<br><br>
+    His wife Lakshmi passes away
+  </p>
+
+  <p class="hl-event" style="top:7775px;width:641px">
+    Receives his second Padma award, the Padma Bhushan, in the Science and
+    Engineering category<br><br>
+    INSAT-2A and 2B, India&rsquo;s first multipurpose satellites (for providing
+    telecommunications, television broadcasting, meteorological and search and
+    rescue services) launches from French Guiana using the European Ariane 4
+    launch vehicle
+  </p>
+
+  <p class="hl-event" style="top:8152px">
+    The first flight of the indigenously developed launch vehicle PSLV narrowly
+    misses success due to a software error
+  </p>
+
+  <p class="hl-event" style="top:9087px">
+    Appointed Chairman of the Space Commission, a position he held for nearly
+    a decade under four successive Prime Ministers<br><br>
+    The PSLV has its first successful launch
+  </p>
+
+  <p class="hl-event" style="top:9391px;width:720px">
+    India&rsquo;s first second-generation operational remote sensing satellite,
+    IRS-1C, is launched by a Molniya-M launch vehicle from the Baikonur
+    Cosmodrome
+  </p>
+
+  <p class="hl-event" style="top:9651px;width:656px">
+    He proposes an Indian lunar mission during a public lecture in New Delhi
+  </p>
+
+  <p class="hl-event" style="top:9918px">
+    Receives his third Padma award, the Padma Vibhushan, in the Science and
+    Engineering category
+  </p>
+
+  <p class="hl-event" style="top:10156px;width:701px">
+    A new class of launch vehicle capable of launching heavy communication
+    and navigation satellites, the GSLV, achieves its first successful test
+    flight, making India one of the six countries in the world to demonstrate
+    capabilities for geostationary satellite launches<br><br>
+    Elected President of the Indian Academy of Sciences
+  </p>
+
+  <p class="hl-event" style="top:10483px">
+    MetSat-1, India&rsquo;s first dedicated meteorological satellite, is launched
+    on the indigenous PSLV in Sriharikota<br><br>
+    Conferred the title of Officer of the Legion d&rsquo;honneur, the highest
+    and most prestigious French national order of merit
+  </p>
+
+  <p class="hl-event" style="top:10814px">
+    MetSat-1 is renamed Kalpana-1, in honour of astronaut Kalpana Chawla who
+    was killed when Space Shuttle Columbia disintegrates on reentry
+  </p>
+
+  <p class="hl-event" style="top:11623px;width:656px">
+    Becomes Director of the National Institute of Advanced Studies (NIAS) in
+    Bengaluru
+  </p>
+
+  <p class="hl-event" style="top:11871px">
+    Elected President of the Indian National Academy of Engineering
+  </p>
+
+  <p class="hl-event" style="top:12979px;width:701px">
+    Delivers a 29-minute speech in the Rajya Sabha in support of the Indo-US
+    nuclear 123 Agreement
+  </p>
+
+  <p class="hl-event" style="top:13226px">
+    Chandrayaan-1, the Moon mission he championed for years, is successfully
+    launched<br><br>
+    Becomes the first chairman of the Karnataka Knowledge Commission (KKC),
+    established by the government of Karnataka
+  </p>
+
+  <p class="hl-event" style="top:14353px;width:691px">
+    Chairs the High Level Working Group on the Western Ghats constituted by
+    the Ministry of Environment and Forests to suggest an approach for
+    development of the ecologically sensitive Western Ghats<br><br>
+    Appointed Chancellor of Jawaharlal Nehru University, New Delhi
+  </p>
+
+  <p class="hl-event" style="top:15435px">
+    Delivers the convocation address at IISc, Bengaluru, at its first ever
+    convocation ceremony<br><br>
+    Awarded the Rajyotsava Prashasti by the Government of Karnataka
+  </p>
+
+  <p class="hl-event" style="top:16420px;width:666px">
+    The Hesaraghatta campus of the International Centre for Theoretical
+    Sciences (ICTS), an institute Dr Kasturirangan was closely involved in,
+    is inaugurated
+  </p>
+
+  <p class="hl-event" style="top:16722px">
+    Chairs a committee constituted by the government of India to develop the
+    National Education Policy (NEP)
+  </p>
+
+  <p class="hl-event" style="top:17804px">
+    His book <em>Space and Beyond</em> is published by Springer Nature
+  </p>
+
+  <p class="hl-event" style="top:18081px">
+    The National Curriculum Framework for School Education, formulated by a
+    steering committee under his stewardship, is released
+  </p>
+
+  <p class="hl-event" style="top:18360px">
+    Passes away at the age of 84 at his residence in Bengaluru
+  </p>
+
+  <!-- ══ BLUE BAND TEXT (white, 24px, x=49) ══════════════════ -->
+
+  <p class="hl-bbtext" style="top:3713px;width:277px">
+    Receives an offer to do postdoctoral work with Nobel Laureate Prof Louis
+    Alvarez at UC Berkeley, but is convinced by Sarabhai to join ISRO instead
+  </p>
+
+  <p class="hl-bbtext" style="top:6701px;width:277px">
+    IRS-1A, India&rsquo;s first operational remote sensing satellite and, developed
+    under his leadership, successfully launches from the Soviet Cosmodrome at
+    Baikonur, aboard their Vostok-2M rocket
+  </p>
+
+  <p class="hl-bbtext" style="top:8778px;width:277px">
+    Takes charge as Chairman of ISRO and Secretary of the Department of Space
+  </p>
+
+  <p class="hl-bbtext" style="top:11169px;width:243px">
+    Following a midnight phone call nominating him to the Rajya Sabha, he
+    steps down as Chairman of ISRO
+  </p>
+
+  <p class="hl-bbtext" style="top:13878px;width:247px">
+    Joins the Planning Commission under PM Manmohan Singh, with charge of
+    Science and Technology, Environment, Forests, Agriculture Research, and
+    Climate Change
+  </p>
+
+  <p class="hl-bbtext" style="top:14971px;width:247px">
+    The comprehensive report on the Western Ghats is released by the High-Level Working Group which he chaired
+  </p>
+
+  <p class="hl-bbtext" style="top:16061px;width:225px">
+    Astrosat, India&rsquo;s first dedicated multi-wavelength space observatory
+    and a mission he championed, is successfully launched
+  </p>
+
+  <p class="hl-bbtext" style="top:17370px;width:247px">
+    The Draft National Education Policy 2020 is officially released
+  </p>
+
+</div><!-- /.hl-wrap -->
 
 <!-- FOOTER RULE -->
 <div class="footer-rule-wrap">
@@ -1213,8 +685,8 @@ body { overflow-y: visible; }
 <!-- FOOTER -->
 <footer class="site-footer">
   <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="vision.html">About Us</a>
-    <a href="kasturirangan.html">Dr Kasturirangan</a>
+    <a href="#">About Us</a>
+    <a href="hislife.html">Dr Kasturirangan</a>
     <a href="fellowship.html">Initiatives</a>
     <a href="#">Useful Links</a>
   </nav>
@@ -1225,42 +697,102 @@ body { overflow-y: visible; }
       Godrej Woodsman Estate, Hebbal,<br>
       Bengaluru &ndash; 560045
     </p>
-    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
+    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045"
+       target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
   </div>
-  <div class="footer-contact">
+  <div class="footer-contact" id="contact">
     <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
     <a href="mailto:info@drkasturirangantrust.org">info@drkasturirangantrust.org</a>
 </div>
 </footer>
 
-<script>
-(function () {
-  var entries = Array.from(document.querySelectorAll('.kk-entry[data-year]'));
-  var ul = document.querySelector('.kk-sidebar ul');
-  if (!entries.length || !ul) return;
-  var active = null;
-  function update() {
-    var mid = window.innerHeight / 2;
-    var best = null, bestDist = Infinity;
-    entries.forEach(function (e) {
-      var r = e.getBoundingClientRect();
-      var dist = Math.abs((r.top + r.bottom) / 2 - mid);
-      if (dist < bestDist) { bestDist = dist; best = e; }
+  <script>
+  (function () {
+    var nav   = document.getElementById('hl-year-nav');
+    var track = nav ? nav.querySelector('.hl-yn-track') : null;
+    var wrap  = document.querySelector('.hl-wrap');
+    if (!nav || !track || !wrap) return;
+
+    var NAV_H       = 101;
+    var INITIAL_TOP = 484;
+
+    var yearEls = Array.from(document.querySelectorAll('.hl-year[id], .hl-dot[id^="yr-"]'));
+    yearEls.sort(function (a, b) {
+      return parseInt(a.style.top) - parseInt(b.style.top);
     });
-    var yr = best ? best.getAttribute('data-year') : null;
-    if (yr === active) return;
-    active = yr;
-    ul.querySelectorAll('li.kk-yr-active').forEach(function (li) { li.classList.remove('kk-yr-active'); });
-    if (yr) {
-      var li = ul.querySelector('li[data-yr="' + yr + '"]');
-      if (li) li.classList.add('kk-yr-active');
+    var lastYearTop = yearEls.length
+      ? parseInt(yearEls[yearEls.length - 1].style.top)
+      : 17474;
+
+    var items = Array.from(nav.querySelectorAll('.hl-yn-item'));
+    var navH  = 0; // cached after first fix
+
+    function setActive(id) {
+      var activeItem = null;
+      items.forEach(function (item) {
+        var isActive = item.getAttribute('href') === '#' + id;
+        item.classList.toggle('active', isActive);
+        if (isActive) activeItem = item;
+      });
+      if (activeItem && nav.classList.contains('is-fixed')) {
+        if (!navH) navH = window.innerHeight - NAV_H - 20;
+        var offset = activeItem.offsetTop - navH / 2 + activeItem.offsetHeight / 2;
+        track.style.transform = 'translateY(-' + Math.max(0, offset) + 'px)';
+      } else if (!nav.classList.contains('is-fixed')) {
+        track.style.transform = '';
+      }
     }
-  }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-}());
-</script>
-<script src="nav.js"></script>
+
+    function updateSticky() {
+      var scrollY = window.scrollY || window.pageYOffset;
+      var startT  = INITIAL_TOP;
+      var footerEl = document.querySelector('.footer-rule-wrap');
+      var endT = footerEl
+        ? footerEl.getBoundingClientRect().top + scrollY - window.innerHeight
+        : lastYearTop;
+
+      if (scrollY > endT) {
+        nav.style.visibility = 'hidden';
+        return;
+      }
+      nav.style.visibility = '';
+
+      if (scrollY >= startT) {
+        nav.classList.add('is-fixed');
+        nav.style.left = wrap.getBoundingClientRect().left + 'px';
+        nav.style.top  = '';
+      } else {
+        nav.classList.remove('is-fixed');
+        nav.style.left = '';
+        nav.style.top  = '';
+        track.style.transform = '';
+      }
+    }
+
+    function updateActive() {
+      var viewTop  = (window.scrollY || window.pageYOffset) + NAV_H + 40;
+      var activeId = yearEls.length ? yearEls[0].id : null;
+      for (var i = 0; i < yearEls.length; i++) {
+        if (viewTop >= parseInt(yearEls[i].style.top)) activeId = yearEls[i].id;
+      }
+      if (activeId) setActive(activeId);
+    }
+
+    items.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        var target = document.getElementById(item.getAttribute('href').slice(1));
+        if (target) {
+          window.scrollTo({ top: Math.max(0, parseInt(target.style.top) - NAV_H - 20), behavior: 'smooth' });
+        }
+      });
+    });
+
+    window.addEventListener('scroll', function () { updateSticky(); updateActive(); }, { passive: true });
+    window.addEventListener('resize', updateSticky, { passive: true });
+    updateSticky();
+    updateActive();
+  })();
+  </script>
 </body>
 </html>
-
