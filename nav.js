@@ -17,16 +17,27 @@
     });
   }
 
-  // Close when clicking outside the nav
-  document.addEventListener('click', function (e) {
+  // Close when tapping/clicking outside the nav.
+  // iOS Safari doesn't fire 'click' on non-interactive elements (divs, sections),
+  // so we listen on both 'touchstart' and 'click' and deduplicate with a flag.
+  var _justClosed = false;
+  function handleOutside(e) {
+    if (_justClosed) return;
     if (!navLinks.classList.contains('nav-open')) return;
-    if (hamburger.contains(e.target) || navLinks.contains(e.target)) return;
+    var path = e.composedPath ? e.composedPath() : [];
+    var inNav = path.length
+      ? path.some(function (el) { return el === hamburger || el === navLinks; })
+      : (hamburger.contains(e.target) || navLinks.contains(e.target));
+    if (inNav) return;
+    _justClosed = true;
     closeAll();
-  });
+    setTimeout(function () { _justClosed = false; }, 300);
+  }
+  document.addEventListener('touchstart', handleOutside, { passive: true });
+  document.addEventListener('click', handleOutside);
 
   // Clear sub-menus whenever the main nav closes
   hamburger.addEventListener('click', function () {
-    // After the inline onclick runs, check if nav just closed
     setTimeout(function () {
       if (!navLinks.classList.contains('nav-open')) {
         navLinks.querySelectorAll('.nav-sub-open').forEach(function (li) {

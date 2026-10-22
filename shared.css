@@ -300,6 +300,8 @@
   padding: 8px;
   color: var(--c-primary-dark);
   flex-shrink: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-hamburger:hover { color: var(--c-accent); }
 
