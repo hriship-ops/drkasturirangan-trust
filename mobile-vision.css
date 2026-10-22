@@ -1,183 +1,232 @@
-/* mobile-vision.css — vision page mobile layout
-   Uses a .mobile-version block injected by make_preview_vision.py.
-   .vm-wrap is hidden; .mobile-version is shown via the preview's inline <style>. */
+/* mobile-vision.css — Vision & Mission page mobile overrides (max-width: 768px)
+   Desktop: 1440px absolute canvas with fit-canvas zoom (zoom ≈ 0.27 at 390px).
+   Mobile: cancel zoom, reflow all sections to single-column block flow. */
 
 @media (max-width: 768px) {
 
-  /* ── MISSION ──────────────────────────────────────────────── */
-  .mv-mission {
-    background: #fffcf6;
-    padding: 36px 24px;
-    text-align: center;
-    border-bottom: 3px solid #e4e4e4;
+  /* ── WRAPPER: cancel fit-canvas JS zoom, full width ─────────── */
+  .vm-wrap {
+    zoom: 1 !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
   }
 
-  .mv-mission-text {
-    font-family: var(--font-main);
-    font-size: 20px;
-    color: #d9982e;
-    line-height: 1.55;
-    margin: 0;
+  /* ── MISSION SECTION ─────────────────────────────────────────── */
+  .vm-mission-section {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 36px 24px !important;
+    box-sizing: border-box !important;
   }
 
-  /* ── SECTIONS ─────────────────────────────────────────────── */
-  .mv-section {
-    padding: 32px 20px;
-    border-top: 1px solid #e4e4e4;
+  /* Decorative 300px quote glyphs: hide */
+  .vm-quote { display: none !important; }
+
+  /* Decorative outline portrait: hide */
+  .vm-layer { display: none !important; }
+
+  .vm-mission-text {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    font-size: 18px !important;
+    line-height: 1.55 !important;
   }
 
-  /* ── HEADINGS ─────────────────────────────────────────────── */
-  .mv-h1, .mv-h2 {
-    font-family: var(--font-main);
-    font-size: 26px;
-    font-weight: 700;
-    color: #2a427e;
-    margin: 0 0 20px;
-    line-height: 1.2;
+  /* ── RULES ────────────────────────────────────────────────────── */
+  .vm-gray-rule {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: 3px !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 0 !important;
   }
 
-  /* ── BODY TEXT ────────────────────────────────────────────── */
-  .mv-body {
-    font-family: var(--font-main);
-    font-size: 16px;
-    color: #202020;
-    line-height: 1.65;
-    margin: 0 0 16px;
-  }
-  .mv-body:last-child { margin-bottom: 0; }
-  .mv-body a { font-weight: 700; color: #cd850f; }
-  .mv-body a:hover { text-decoration: underline; }
-  .mv-body strong { font-weight: 700; }
-
-  /* ── LEGACY PHOTO ─────────────────────────────────────────── */
-  .mv-photo {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    object-position: center 20%;
-    border-radius: 16px;
-    display: block;
-    margin: 0 0 20px;
+  .vm-amber-rule {
+    position: static !important;
+    display: block !important;
+    width: 60% !important;
+    height: 3px !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 4px auto 0 !important;
   }
 
-  /* ── ETHOS GRID: 2×2 ──────────────────────────────────────── */
-  .mv-ethos-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 16px;
-    margin-top: 20px;
+  /* ── SECTION DOTS (all decorative on mobile) ─────────────────── */
+  .vm-dot { display: none !important; }
+
+  /* ── HEADINGS ────────────────────────────────────────────────── */
+  .vm-h1, .vm-h2 {
+    position: static !important;
+    display: block !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    white-space: normal !important;
+    font-size: 22px !important;
+    padding: 24px 20px 6px !important;
+    clear: both !important;
   }
 
-  .mv-ethos-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  /* ── BODY TEXT ────────────────────────────────────────────────── */
+  .vm-body {
+    position: static !important;
+    display: block !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    padding: 4px 20px 16px !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
 
-  .mv-ethos-title {
-    width: 100%;
-    max-width: 140px;
-    height: auto;
+  /* ── LEGACY PHOTO ─────────────────────────────────────────────── */
+  .vm-deco-circle { display: none !important; }
+
+  .vm-legacy-photo {
+    position: static !important;
+    display: block !important;
+    top: auto !important;
+    left: auto !important;
+    width: calc(100% - 40px) !important;
+    height: auto !important;
+    max-width: 100% !important;
+    margin: 0 20px 16px !important;
+    object-fit: contain !important;
+    object-position: center !important;
   }
 
-  /* Ellipse circle with quest SVG overlaid */
-  .mv-ethos-circle {
-    position: relative;
-    width: 90px;
-    height: 90px;
+  /* ── ETHOS: title label → amber circle → quest overlaid ─────── */
+  /* ellipse-18.svg is a plain amber circle (no text).
+     quest SVGs have WHITE text — only legible over the amber circle.
+     Show ellipse, then pull quest UP into it with negative margin. */
+
+  .vm-ethos-title {
+    /* Arch text occupies top ~40% of the SVG bounding box; bottom ~60% is empty.
+       Keep full dimensions (no clipping) and let the ellipse's negative margin
+       slide up into that empty space instead. */
+    position: static !important;
+    display: block !important;
+    float: none !important;
+    top: auto !important;
+    left: auto !important;
+    width: 260px !important;
+    height: auto !important;
+    margin: 20px auto 0 !important;
   }
 
-  .mv-ethos-ellipse {
-    width: 100%;
-    height: 100%;
+  .vm-ethos-ellipse {
+    /* Pull the circle up ~100px into the empty lower half of the title SVG */
+    position: static !important;
+    display: block !important;
+    float: none !important;
+    top: auto !important;
+    left: auto !important;
+    width: 160px !important;
+    height: 160px !important;
+    margin: -100px auto 0 !important;
   }
 
-  .mv-ethos-quest {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    object-fit: contain;
+  .vm-ethos-quest {
+    /* White text visible on amber — centred inside ellipse via negative margin.
+       Larger margin-bottom adds breathing room before next title arch. */
+    position: static !important;
+    display: block !important;
+    float: none !important;
+    top: auto !important;
+    left: auto !important;
+    width: 110px !important;
+    height: 110px !important;
+    margin: -135px auto 48px !important;
   }
 
-  /* ── OBJECTIVE CARDS ──────────────────────────────────────── */
-  .mv-obj-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 20px;
+  /* ── OBJECTIVES: amber-ruled list (same style as site rules) ── */
+  .vm-obj-card { display: none !important; }
+  .vm-obj-tag  { display: none !important; }
+
+  .vm-obj-label {
+    position: static !important;
+    display: block !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    height: auto !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    color: #2a417d !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    border-top: 2px solid #ffb337 !important;
+    padding: 14px 20px 4px !important;
+    text-align: center !important;
+    margin: 0 !important;
   }
 
-  .mv-obj-card {
-    background: #fff6e6;
-    border-radius: 20px;
-    padding: 16px 20px 18px;
-    text-align: center;
+  .vm-obj-desc {
+    position: static !important;
+    display: block !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    color: #202020 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 2px 20px 16px !important;
+    margin: 0 !important;
   }
 
-  .mv-obj-tag {
-    display: inline-block;
-    background: #2a417d;
-    color: #fff;
-    font-family: var(--font-main);
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 12px;
-    padding: 6px 18px;
-    margin-bottom: 10px;
-    line-height: 1.3;
+  /* Suppress forced <br> in desc text — let natural wrap handle it */
+  .vm-obj-desc br { display: none !important; }
+
+  /* ── FOCUS AREAS ─────────────────────────────────────────────── */
+  .vm-focus-card { display: none !important; }
+
+  .vm-focus-img {
+    position: static !important;
+    display: block !important;
+    top: auto !important;
+    left: auto !important;
+    width: 90px !important;
+    height: 90px !important;
+    margin: 20px auto 4px !important;
+    object-fit: contain !important;
+    object-position: center !important;
   }
 
-  .mv-obj-desc {
-    font-family: var(--font-main);
-    font-size: 15px;
-    color: #202020;
-    margin: 0;
-    line-height: 1.5;
+  .vm-focus-text {
+    position: static !important;
+    display: block !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    font-size: 17px !important;
+    text-align: center !important;
+    padding: 0 20px 16px !important;
   }
 
-  /* ── FOCUS AREA GRID: 2×2 ─────────────────────────────────── */
-  .mv-focus-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 20px;
-  }
-
-  .mv-focus-card {
-    background: #fff6e6;
-    border-radius: 20px;
-    padding: 16px 12px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .mv-focus-img {
-    width: 100%;
-    max-width: 100px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .mv-focus-text {
-    font-family: var(--font-main);
-    font-size: 13px;
-    color: #202020;
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  /* ── PARTNERSHIP BOX ──────────────────────────────────────── */
-  .mv-partner-box {
-    background: #fff6e6;
-    border-radius: 20px;
-    padding: 20px;
-    margin-top: 16px;
-  }
+  /* ── GOVERNANCE & PARTNERSHIPS ───────────────────────────────── */
+  .vm-partner-box { display: none !important; }
+  /* Governance and Partnerships headings/body handled by .vm-h2 and .vm-body above */
 }

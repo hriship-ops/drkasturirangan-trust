@@ -1,0 +1,52 @@
+/* mobile-memories.css — Memories page mobile overrides (max-width: 768px)
+   Desktop CSS: 1440×1283px absolute canvas with fit-canvas zoom.
+   Mobile: cancel zoom, stack 6 cards vertically (each 393px naturally ≈ phone width). */
+
+@media (max-width: 768px) {
+
+  /* ── STAGE: cancel fit-canvas zoom, switch to vertical flow ─── */
+  .mem-stage {
+    zoom: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 16px 12px 40px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+
+  /* ── HEADING ─────────────────────────────────────────────────── */
+  .mem-head-dot { display: none; }
+
+  .mem-h1 {
+    position: static !important;
+    align-self: flex-start !important;
+    font-size: 28px !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 0 0 20px 8px !important;
+    white-space: normal !important;
+  }
+
+  /* ── CARDS: static flow, full viewport width ─────────────────── */
+  /* Override all data-row/data-col absolute positions */
+  .mem-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 393px !important;
+    height: 456px !important;
+    margin-bottom: 20px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Internal clip still works fine — it's relative to the card */
+  .mem-card-clip {
+    position: absolute;
+    inset: 0;
+  }
+}

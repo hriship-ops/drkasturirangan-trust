@@ -1,108 +1,132 @@
-/* mobile-hislife.css — hislife page mobile layout
-   Uses a .mobile-hislife block injected by make_preview_hislife.py.
-   .hl-wrap and .hl-year-col (sticky sidebar) are hidden on mobile. */
+/* mobile-hislife.css — His Life timeline page mobile overrides (max-width: 768px)
+   Desktop: 1440px absolute canvas with fit-canvas zoom (zoom ≈ 0.27 at 390px).
+   Mobile: cancel zoom, hide year sidebar, shift all columns into 390px viewport.
+   Strategy: leave inline top: values untouched (vertical order preserved).
+             Override only left, width, height, font-size via !important. */
 
 @media (max-width: 768px) {
 
-  /* ── HERO ─────────────────────────────────────────────────── */
-  .ml-hero {
-    padding: 20px 20px 20px;
-    background: #fff;
-    border-bottom: 3px solid #eedfc0;
-    overflow: hidden;
+  /* ── WRAPPER: cancel zoom, full width ────────────────────── */
+  .hl-wrap {
+    zoom: 1 !important;
+    width: 100% !important;
+    min-height: 100vh !important;    /* fallback before JS runs (JS overrides with style.height) */
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;   /* clips abs-positioned elements at large top values from extending page */
   }
 
-  .ml-portrait {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    float: right;
-    margin: 0 0 8px 14px;
+  /* Hide non-timeline images inside wrap (SpringerNature logo at top:23993px) */
+  .hl-wrap > img:not(.hl-photo) { display: none !important; }
+
+  /* ── HERO: hide decorative elements ──────────────────────── */
+  .hl-amber-circle { display: none !important; }
+  .hl-hero-line    { display: none !important; }
+  .hl-era          { display: none !important; }
+
+  /* ── HERO: portrait top-left, title + subtitle below it ──── */
+  .hl-portrait {
+    top: 16px !important;
+    left: 20px !important;
+    width: 120px !important;
+    height: 120px !important;
   }
 
-  .ml-hero-title {
-    font-family: var(--font-main);
-    font-size: 26px;
-    font-weight: 500;
-    color: #d9982e;
-    margin: 0 0 10px;
-    line-height: 1.2;
+  .hl-title {
+    top: 148px !important;
+    left: 20px !important;
+    width: calc(100% - 40px) !important;
+    font-size: 26px !important;
+    white-space: normal !important;
   }
 
-  .ml-hero-subtitle {
-    font-family: var(--font-main);
-    font-size: 15px;
-    color: #202020;
-    line-height: 1.6;
-    margin: 0;
+  .hl-subtitle {
+    top: 196px !important;
+    left: 20px !important;
+    width: calc(100% - 40px) !important;
+    font-size: 16px !important;
   }
 
-  .ml-hero-subtitle em { font-style: italic; }
+  /* ── YEAR SIDEBAR: hide completely ───────────────────────── */
+  .hl-year-col { display: none !important; }
 
-  /* ── TIMELINE CONTAINER ───────────────────────────────────── */
-  .ml-timeline {
-    padding: 0 20px 48px;
+  /* ── DECORATIVE LEFT STRIPS: hide ────────────────────────── */
+  .hl-lstrip { display: none !important; }
+
+  /* ── SPINE: hide (24200px tall — causes gigantic scroll gap) */
+  .hl-spine-dot { display: none !important; }
+  .hl-spine     { display: none !important; }
+
+  /* ── YEAR LABELS: compact, content column ────────────────── */
+  .hl-year {
+    left: 48px !important;
+    font-size: 32px !important;
+    line-height: 1 !important;
   }
 
-  /* ── REGULAR EVENT ────────────────────────────────────────── */
-  .ml-event {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px solid #f0e8d8;
+  /* ── AMBER DOTS ───────────────────────────────────────────── */
+  .hl-dot {
+    left: 7px !important;
+    width: 26px !important;
+    height: 26px !important;
   }
 
-  .ml-event:first-child {
-    margin-top: 0;
-    border-top: none;
-    padding-top: 24px;
+  /* ── CONNECTOR LINES ──────────────────────────────────────── */
+  .hl-vline  { left: 22px !important; }
+  /* bbline (amber vertical in blue bands) overlaps text on mobile — hide */
+  .hl-bbline { display: none !important; }
+
+  /* ── HORIZONTAL RULES: full width ────────────────────────── */
+  .hl-hline {
+    left: 0 !important;
+    width: 100% !important;
   }
 
-  .ml-year {
-    display: inline-block;
-    background: #ffb337;
-    color: #fff;
-    font-family: var(--font-main);
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 20px;
-    padding: 3px 13px;
-    margin-bottom: 9px;
-    letter-spacing: 0.03em;
+  /* ── BLUE BANDS: full width ───────────────────────────────── */
+  .hl-band {
+    left: 0 !important;
+    width: 100% !important;
   }
 
-  .ml-desc {
-    font-family: var(--font-main);
-    font-size: 15px;
-    color: #202020;
-    line-height: 1.65;
-    margin: 0;
+  /* ── EVENT TEXT: larger font, full remaining width ────────── */
+  .hl-event {
+    left: 48px !important;
+    width: calc(100% - 60px) !important;
+    font-size: 19px !important;
+    line-height: 1.55 !important;
   }
 
-  /* ── MILESTONE EVENT (navy card) ──────────────────────────── */
-  .ml-milestone {
-    background: #2a417d;
-    border-radius: 16px;
-    padding: 16px 16px 18px;
-    border-top: none;
-    margin-top: 20px;
+  /* Suppress decorative <br> tags used on desktop to space
+     event text around adjacent photos */
+  .hl-event br { display: none !important; }
+
+  /* ── BLUE BAND TEXT: above photo via z-index ─────────────── */
+  .hl-bbtext {
+    left: 20px !important;
+    width: calc(100% - 40px) !important;
+    font-size: 19px !important;
+    line-height: 1.55 !important;
+    z-index: 3 !important;
   }
 
-  .ml-milestone .ml-year {
-    background: rgba(255, 255, 255, 0.25);
-    color: #fff;
+  /* ── PHOTOS: full remaining width, natural height (no cropping) */
+  .hl-photo {
+    left: 48px !important;
+    width: calc(100% - 60px) !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
-  .ml-milestone .ml-desc {
-    color: #fff;
+  /* ── PUBLISHER LINK (book section) ───────────────────────── */
+  .hl-pub-link {
+    left: 48px !important;
+    font-size: 18px !important;
   }
 
-  /* ── INLINE PHOTOS ────────────────────────────────────────── */
-  .ml-photo {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    display: block;
-    margin-top: 12px;
-  }
+  /* ── DUPLICATE PHOTOS: hide placeholder screenshots replaced by named photos ── */
+  /* kk-school-ernakulam.png replaces the early-life screenshot (both ~top:660) */
+  .hl-photo[src*="screenshot-2026-07-03-at-12-20-08-pm"] { display: none !important; }
+  /* prl-ahmedabad-1963.png replaces the family screenshot (both ~top:3060) */
+  .hl-photo[src*="screenshot-2026-07-03-at-12-35-50-pm"] { display: none !important; }
+  /* ISRO screenshot sits between 1969 and 1971, creating a 1969 duplicate — hide */
+  .hl-photo[src*="screenshot-2026-07-15-at-11-45-42-pm"] { display: none !important; }
 }
