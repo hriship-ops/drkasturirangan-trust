@@ -38,11 +38,22 @@
     border-radius: 10px;
   }
 
-  .team-tab--trustees { width: 90px; }
-  .team-tab--council  { width: 100px; }
-  .team-tab--exec     { width: 180px; }
+  .team-tabs {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 20px 16px;
+  }
+
+  .team-tab--trustees,
+  .team-tab--council,
+  .team-tab--exec { width: 100%; }
 
   /* ── CARDS ROW ────────────────────────────────────────────── */
+  /* Cancel fit-canvas zoom — team cards have proper mobile CSS */
+  #team-cards-row {
+    zoom: 1 !important;
+  }
+
   .team-cards-row {
     position: static;
     display: flex;
