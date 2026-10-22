@@ -122,11 +122,4 @@
     font-size: 18px !important;
   }
 
-  /* ── DUPLICATE PHOTOS: hide placeholder screenshots replaced by named photos ── */
-  /* kk-school-ernakulam.png replaces the early-life screenshot (both ~top:660) */
-  .hl-photo[src*="screenshot-2026-07-03-at-12-20-08-pm"] { display: none !important; }
-  /* prl-ahmedabad-1963.png replaces the family screenshot (both ~top:3060) */
-  .hl-photo[src*="screenshot-2026-07-03-at-12-35-50-pm"] { display: none !important; }
-  /* ISRO screenshot sits between 1969 and 1971, creating a 1969 duplicate — hide */
-  .hl-photo[src*="screenshot-2026-07-15-at-11-45-42-pm"] { display: none !important; }
 }
