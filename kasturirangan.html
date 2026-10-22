@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 body { overflow-y: visible; }
 
 /* ================================================================
-   DR KASTURIRANGAN'S LIFE — kasturirangan.html
+   DR KASTURIRANGAN'S LIFE � kasturirangan.html
    From Figma node 650:56 (1440x4732px canvas).
    Two-column timeline layout:
      Left sidebar (160px): amber vertical line + year index list
@@ -59,7 +59,7 @@ body { overflow-y: visible; }
   max-width: 720px;
 }
 
-/* R1: illustration wrapper — holds circle + flipped image */
+/* R1: illustration wrapper � holds circle + flipped image */
 .kk-hero-illus-wrap {
   position: relative;
   display: flex;
@@ -67,7 +67,7 @@ body { overflow-y: visible; }
   overflow: visible;
 }
 
-/* Figma V2: Ellipse 8 w=403, illustration y=145, circle y=153 → 8px below illustration top. */
+/* Figma V2: Ellipse 8 w=403, illustration y=145, circle y=153 ? 8px below illustration top. */
 .kk-illus-circle {
   position: absolute;
   width: clamp(200px, 28vw, 403px);
@@ -135,7 +135,7 @@ body { overflow-y: visible; }
   left: 100%;
 }
 
-/* R3: year index — fully static, no internal scroll ever */
+/* R3: year index � fully static, no internal scroll ever */
 .kk-sidebar ul {
   list-style: none;
   margin: 0;
@@ -163,7 +163,7 @@ body { overflow-y: visible; }
   font-weight: 700;
 }
 
-/* R3: highlighted years — full-width navy band, white text */
+/* R3: highlighted years � full-width navy band, white text */
 .kk-sidebar ul li.kk-yr-highlight {
   background: var(--c-primary);
   color: #fff;
@@ -195,8 +195,8 @@ body { overflow-y: visible; }
   background: var(--c-accent);
 }
 
-/* Figma V2: per-section grey line at x=496 (sidebar=160 → within kk-main: 336px).
-   Stroke #7f7f7f sw=0.5 — per-section only, not continuous. */
+/* Figma V2: per-section grey line at x=496 (sidebar=160 ? within kk-main: 336px).
+   Stroke #7f7f7f sw=0.5 � per-section only, not continuous. */
 .kk-entry-inner {
   display: flex;
   align-items: flex-start;
@@ -215,7 +215,7 @@ body { overflow-y: visible; }
   z-index: 0;
 }
 
-/* R4: year label — Figma: "1940s to 1950s" CENTER, numeric years LEFT. */
+/* R4: year label � Figma: "1940s to 1950s" CENTER, numeric years LEFT. */
 .kk-entry-year {
   font-family: var(--font-deco);
   font-size: 96px;
@@ -244,7 +244,7 @@ body { overflow-y: visible; }
   z-index: 1;
 }
 
-/* Figma: dot x=531, text x=542 — dot nearly abuts text (11px from dot left to text). */
+/* Figma: dot x=531, text x=542 � dot nearly abuts text (11px from dot left to text). */
 .kk-entry-dot-row {
   display: flex;
   align-items: flex-start;
@@ -317,7 +317,7 @@ body { overflow-y: visible; }
 
 .kk-entry-tail { padding-top: 40px; padding-bottom: 60px; }
 
-/* ── Tablet wide (≤1100px): hero collapses to single column ── */
+/* -- Tablet wide (=1100px): hero collapses to single column -- */
 @media (max-width: 1100px) {
   .kk-hero {
     grid-template-columns: 1fr;
@@ -339,7 +339,7 @@ body { overflow-y: visible; }
   .kk-dark-photo   { width: 100%; max-width: 540px; }
 }
 
-/* ── Tablet narrow (≤900px): shrink sidebar + year labels ── */
+/* -- Tablet narrow (=900px): shrink sidebar + year labels -- */
 @media (max-width: 900px) {
   .kk-timeline-wrap  { grid-template-columns: 72px 1fr; }
   .kk-sidebar        { padding: 0 6px 0 16px; }
@@ -349,13 +349,13 @@ body { overflow-y: visible; }
   .kk-sidebar ul li.kk-yr-highlight { margin-left: -16px; }
   .kk-entry-inner    { gap: 20px; padding: 32px 20px 32px 16px; }
   .kk-entry-year     { font-size: 60px; min-width: 140px; }
-  /* grey line: sidebar narrows to 72px, same left-of-dot offset → 72+(290-150)/1 ≈ 141px */
+  /* grey line: sidebar narrows to 72px, same left-of-dot offset ? 72+(290-150)/1 � 141px */
   .kk-entry-inner::before { left: 141px; }
 }
 
-/* ── Mobile (≤600px): hide sidebar, stack year above content ── */
+/* -- Mobile (=600px): hide sidebar, stack year above content -- */
 @media (max-width: 600px) {
-  /* ghost spacer year for 1971 dark-section layout — remove entirely on mobile */
+  /* ghost spacer year for 1971 dark-section layout � remove entirely on mobile */
   .kk-ghost-year { display: none; }
   .kk-hero          { padding: 28px 20px 0; }
   .kk-hero-title    { font-size: 34px; }
@@ -376,14 +376,14 @@ body { overflow-y: visible; }
   .kk-entry-dot     { width: 22px; height: 22px; }
   .kk-entry-photo   { max-width: 100%; }
 
-  /* Remove decorative lines — too cluttered on narrow screens */
+  /* Remove decorative lines � too cluttered on narrow screens */
   .kk-entry-inner::before { display: none; }
 
   .kk-dark-section { padding: 28px 20px; }
   .kk-dark-text    { font-size: 18px; }
 }
 
-/* ── Small phones (≤400px) ── */
+/* -- Small phones (=400px) -- */
 @media (max-width: 400px) {
   .kk-hero-title  { font-size: 26px; }
   .kk-hero-desc   { font-size: 17px; }
@@ -437,7 +437,7 @@ body { overflow-y: visible; }
       <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
-  <!-- Hamburger — visible only on mobile via shared.css -->
+  <!-- Hamburger � visible only on mobile via shared.css -->
   <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"
           onclick="var n=this.closest('nav');var ul=n.querySelector('.nav-links');ul.classList.toggle('nav-open');this.setAttribute('aria-expanded',ul.classList.contains('nav-open'))">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -516,7 +516,7 @@ body { overflow-y: visible; }
   <!-- MAIN TIMELINE CONTENT -->
   <div class="kk-main">
 
-    <!-- 1940s–1950s -->
+    <!-- 1940s�1950s -->
     <div class="kk-entry" data-year="1940">
       <div class="kk-entry-divider"></div>
 
@@ -1223,9 +1223,9 @@ body { overflow-y: visible; }
       <strong>Dr Kasturirangan Trust</strong><br>
       Alder 1002,<br>
       Godrej Woodsman Estate, Hebbal,<br>
-      Bengaluru &ndash; 560045
+      Bengaluru &ndash; 560024
     </p>
-    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560045" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
+    <a href="https://maps.google.com/maps?q=Godrej+Woodsman+Estate,+Hebbal,+Bengaluru+560024" target="_blank" rel="noopener" class="footer-map-btn">&#128205; View on Map</a>
   </div>
   <div class="footer-contact">
     <p><strong>Office hours:</strong> 9 AM to 5 PM</p>
