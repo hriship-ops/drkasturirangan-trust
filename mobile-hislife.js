@@ -22,15 +22,6 @@
     if (!wrap) return;
     clearZoom(); // ensure zoom is clear before measuring offsetHeights
 
-    // Explicitly hide placeholder screenshots that create duplicate photos
-    // (CSS attribute selector may not fire on first paint if stylesheet is cached old)
-    ['screenshot-2026-07-03-at-12-20-08-pm',
-     'screenshot-2026-07-03-at-12-35-50-pm',
-     'screenshot-2026-07-15-at-11-45-42-pm'].forEach(function (name) {
-      var img = wrap.querySelector('img[src*="' + name + '"]');
-      if (img) img.style.display = 'none';
-    });
-
     // Classes that stack vertically (content elements)
     var STACK = ['hl-hline', 'hl-year', 'hl-event', 'hl-photo', 'hl-bbtext', 'hl-band'];
     // Classes repositioned to match their nearest content companion
