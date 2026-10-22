@@ -232,17 +232,32 @@
     justify-content: center;
   }
 
-  .home-cta-rocket-tagline {
-    display: block;
-    width: 100%;
-    max-width: 360px;
-    height: auto;
-    margin: 0 auto;
+  .home-cta-inner {
+    position: static !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    height: auto !important;
+    flex-shrink: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
   }
 
-  /* Fallback if old split CTA structure exists */
-  .home-cta-inner {
-    width: 100%;
-    max-width: 340px;
+  .home-cta-rocket {
+    position: static !important;
+    width: 100px !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .home-cta-tagline {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    white-space: normal !important;
+    width: auto !important;
   }
 }
