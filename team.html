@@ -663,10 +663,10 @@ function showTeamView(view, btn) {
     section.style.minHeight = '';
   } else if (view === 'council') {
     council.hidden = false;
-    section.style.minHeight = '1363px';
+    if (window.innerWidth > 768) section.style.minHeight = '1363px';
   } else if (view === 'esc') {
     esc.hidden = false;
-    section.style.minHeight = '1046px';
+    if (window.innerWidth > 768) section.style.minHeight = '1046px';
   }
 
   // Update tab active state
@@ -742,9 +742,11 @@ function openProfile(key) {
   cards.hidden = true;
   panel.hidden = false;
 
-  /* Set section height after a full layout pass (panel is position:absolute) */
+  /* Set section height only on desktop (mobile: position:static, let flow determine height) */
   setTimeout(function() {
-    section.style.minHeight = (panel.offsetTop + panel.offsetHeight + 80) + 'px';
+    if (window.innerWidth > 768) {
+      section.style.minHeight = (panel.offsetTop + panel.offsetHeight + 80) + 'px';
+    }
   }, 50);
 
   /* Scroll so the section heading is visible, clear of the nav (113px) */

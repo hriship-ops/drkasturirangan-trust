@@ -140,6 +140,19 @@
     min-height: 0;
   }
 
+  /* Stack photo above bio (desktop is a side-by-side flex row) */
+  .team-profile-inner {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .team-profile-left {
+    width: auto;
+    flex-shrink: 1;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
   .team-profile-photo {
     position: static;
     width: 100%;
