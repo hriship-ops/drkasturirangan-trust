@@ -72,7 +72,7 @@
   }
 
   .hero-desc {
-    font-size: 18px;
+    font-size: 22px;
     max-width: 100%;
     margin-bottom: 10px;
   }
@@ -96,7 +96,7 @@
   }
 
   .about-text {
-    font-size: 18px;
+    font-size: 22px;
     max-width: 100%;
   }
 
@@ -174,7 +174,7 @@
   }
 
   .area-panel-desc {
-    font-size: 16px;
+    font-size: 22px;
   }
 
   /* ── STORIES ─────────────────────────────────────────────── */
@@ -211,7 +211,7 @@
   }
 
   .story-overlay p {
-    font-size: 16px;
+    font-size: 22px;
     line-height: 1.4;
   }
 
@@ -223,7 +223,7 @@
   }
 
   .moment-text {
-    font-size: 16px;
+    font-size: 22px;
   }
 
   /* ── HOME CTA ─────────────────────────────────────────────── */
@@ -256,7 +256,7 @@
     left: auto !important;
     top: auto !important;
     text-align: center !important;
-    font-size: 16px !important;
+    font-size: 22px !important;
     white-space: normal !important;
     width: auto !important;
   }
