@@ -123,6 +123,9 @@
 
 .ap-card-full + .ap-card-full { margin-top: 48px; }
 
+/* Mobile card alternatives — hidden on desktop, shown on mobile */
+.ap-card-mobile { display: none; }
+
 /* ─── 5. DISCLAIMER ────────────────────────────────────────────
    Rocket image left + disclaimer SVG text right.
    Figma: container 631×153px centred, gap 78px to footer.

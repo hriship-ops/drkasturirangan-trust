@@ -61,19 +61,49 @@
 
   /* ── DOCUMENT CARDS ─────────────────────────────────────────── */
   .ap-docs {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 16px 16px 40px;
   }
 
-  .ap-card-full {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    height: auto;
+  /* Hide PNG image cards on mobile (text baked in, unreadably small) */
+  .ap-card-full { display: none; }
+
+  /* HTML card shown on mobile */
+  .ap-card-mobile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 4px solid #d9982e;
+    border-radius: 20px;
+    padding: 20px 20px 20px 16px;
+    margin-bottom: 16px;
+    background: #fff;
+  }
+
+  .ap-card-num {
+    font-family: var(--font-deco);
+    font-size: 64px;
+    color: #ffb338;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 44px;
+    text-align: center;
+  }
+
+  .ap-card-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2a427e;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .ap-card-sub {
+    font-weight: 400;
+    color: #202020;
     display: block;
+    margin-top: 4px;
+    font-size: 17px;
   }
-
-  .ap-card-full + .ap-card-full { margin-top: 24px; }
 
   /* ── DISCLAIMER ─────────────────────────────────────────────── */
   .ap-disclaimer {
