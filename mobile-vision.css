@@ -36,8 +36,8 @@
     top: auto !important;
     left: auto !important;
     width: auto !important;
-    font-size: 18px !important;
-    line-height: 1.55 !important;
+    font-size: 26px !important;
+    line-height: 1.45 !important;
   }
 
   /* ── RULES ────────────────────────────────────────────────────── */
@@ -72,7 +72,7 @@
     left: auto !important;
     width: auto !important;
     white-space: normal !important;
-    font-size: 22px !important;
+    font-size: 26px !important;
     padding: 24px 20px 6px !important;
     clear: both !important;
   }
@@ -85,7 +85,7 @@
     left: auto !important;
     width: auto !important;
     max-width: 100% !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     line-height: 1.6 !important;
     padding: 4px 20px 16px !important;
     max-height: none !important;
@@ -187,7 +187,7 @@
     width: auto !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
-    font-size: 17px !important;
+    font-size: 18px !important;
     line-height: 1.5 !important;
     text-align: center !important;
     color: #202020 !important;
@@ -221,7 +221,7 @@
     top: auto !important;
     left: auto !important;
     width: auto !important;
-    font-size: 17px !important;
+    font-size: 18px !important;
     text-align: center !important;
     padding: 0 20px 16px !important;
   }

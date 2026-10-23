@@ -4,15 +4,15 @@
 @media (max-width: 768px) {
 
   /* ── HERO ─────────────────────────────────────────────────── */
-  .fp-hero-org  { font-size: 22px; }
-  .fp-hero-prog { font-size: 20px; letter-spacing: 0.03em; }
+  .fp-hero-org  { font-size: 32px; }
+  .fp-hero-prog { font-size: 32px; }
 
-  /* Recalibrate dot: 22px cap≈8px; dot 32px → top: -12px floats above */
+  /* Recalibrate dot for 32px cap (~22px cap-height) */
   .fp-hero-org::before {
-    top: -10px;
-    left: -8px;
-    width: 24px;
-    height: 24px;
+    top: -8px;
+    left: -10px;
+    width: 28px;
+    height: 28px;
   }
 
   .fp-hero-illus {
@@ -22,11 +22,11 @@
     margin: 0;
   }
 
-  .fp-hero-bullets li { font-size: 15px; }
+  .fp-hero-bullets li { font-size: 18px; }
 
   /* ── NOMINATIONS pills ────────────────────────────────────── */
   /* 680px already stacks pills; connector stays rotated fine */
-  .fp-noms-intro { font-size: 16px; }
+  .fp-noms-intro { font-size: 18px; }
   .fp-pill-label { font-size: 14px; }
   .fp-pill-date  { font-size: 18px; }
 
@@ -35,7 +35,7 @@
   .fp-snav-icon { width: 20px; height: 20px; }
 
   /* ── OBJECTIVES ───────────────────────────────────────────── */
-  .fp-text-bullets li { font-size: 16px; }
+  .fp-text-bullets li { font-size: 18px; }
 
   /* ── BENEFITS circles: stack vertically ──────────────────── */
   .fp-circles-row {
@@ -48,7 +48,7 @@
     width: min(260px, 78%);
   }
 
-  .fp-circ-body { font-size: 17px; }
+  .fp-circ-body { font-size: 18px; }
 
   /* ── EXPECTATIONS ─────────────────────────────────────────── */
   /* 900px already stacks; make photo full width on mobile */
@@ -58,16 +58,16 @@
     min-height: 200px;
   }
 
-  .fp-exp-text { font-size: 15px; padding-left: 40px; }
+  .fp-exp-text { font-size: 18px; padding-left: 40px; }
 
   /* ── ELIGIBILITY ──────────────────────────────────────────── */
   /* 680px stacks; just reduce font */
-  .fp-elig-box { font-size: 15px; }
+  .fp-elig-box { font-size: 18px; }
 
   /* ── REVIEW PROCESS ───────────────────────────────────────── */
   /* 680px already stacks review row; shrink circle size */
   .fp-rcirc { width: min(270px, 82%); }
-  .fp-rcirc-body { font-size: 14px; }
+  .fp-rcirc-body { font-size: 17px; }
 
   /* ── TIMELINE ─────────────────────────────────────────────── */
   .fp-tl-wrap {
@@ -76,6 +76,9 @@
     row-gap: 28px;
   }
 
+  .fp-tl-date  { font-size: 18px; }
+  .fp-tl-label { font-size: 18px; }
+
   /* ── APPLICATION ──────────────────────────────────────────── */
   .fp-app-banner {
     width: auto;
@@ -83,18 +86,18 @@
   }
   .fp-app-banner p {
     white-space: normal;
-    font-size: 16px;
+    font-size: 18px;
   }
 
-  .fp-app-intro { font-size: 15px; }
+  .fp-app-intro { font-size: 18px; }
 
   .fp-app-box {
     border-radius: 16px;
     padding: 20px 16px;
   }
 
-  .fp-doc-text { font-size: 16px; }
-  .fp-doc-tip  { font-size: 15px; }
+  .fp-doc-text { font-size: 18px; }
+  .fp-doc-tip  { font-size: 18px; }
 
   /* Disclaimer: switch from absolute layout to simple flow */
   .fp-disclaimer {
