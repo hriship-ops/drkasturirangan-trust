@@ -71,13 +71,24 @@
 
   /* ── TIMELINE ─────────────────────────────────────────────── */
   .fp-tl-wrap {
-    grid-template-columns: 90px 22px 1fr;
+    grid-template-columns: 130px 22px 1fr;
     column-gap: 10px;
     row-gap: 28px;
   }
 
-  .fp-tl-date  { font-size: 18px; }
+  /* Reposition amber line to match date col: 130 + 10 + 22/2 = 151px */
+  .fp-tl-wrap::before {
+    left: 151px;
+    top: 11px;
+    bottom: 11px;
+  }
+
+  /* Figma: dates left-aligned, not right; 16px keeps labels uncrowded */
+  .fp-tl-date  { font-size: 16px; text-align: left; }
   .fp-tl-label { font-size: 18px; }
+
+  /* Left edge of triangle covers amber line: col start(140px) + 8px = 148px (= line_center 151 - 3px) */
+  .fp-tl-dot-play { justify-self: start; margin-left: 8px; }
 
   /* ── APPLICATION ──────────────────────────────────────────── */
   .fp-app-banner {
