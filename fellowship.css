@@ -357,22 +357,24 @@
   left: 16%;
   right: 16%;
   bottom: 8%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff;
-  font-size: 20px;
+  /* Scale with the circle (clamp matches clamp(200px,22vw,370px)) */
+  font-size: clamp(13px, 1.3vw, 20px);
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.3;
   font-family: var(--font-main);
 }
 
 .fp-circ-body p { margin: 0; }
 
-/* Financial support label arc is long — push body below it */
-.fp-circ:nth-child(1) .fp-circ-body { top: 21%; }
-/* Mentorship PNG has more label-text height (~19% vs ~15%), so push body down */
+/* Financial support arc is long — push body below it */
+.fp-circ:nth-child(1) .fp-circ-body { top: 25%; }
+/* Mentorship PNG has taller arc text */
 .fp-circ:nth-child(2) .fp-circ-body { top: 23%; }
 
 /* ================================================================
