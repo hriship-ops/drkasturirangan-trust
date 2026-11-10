@@ -59,13 +59,21 @@
   text-align: center;
 }
 
-/* Connector arrow between the two date groups */
+/* Connector arrow between the two date groups.
+   Left tracks the fixed-px left group; right tracks the %-based right group. */
 .ap-dates-connector {
   position: absolute;
   left: 526px;
+  right: calc(35.21% + 20px);
   top: 145px;
-  width: 387px;
   height: 142px;
+  background: url('assets/apply/dates-connector.svg') no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Hide connector when viewport is too narrow for the gap to look right */
+@media (max-width: 900px) {
+  .ap-dates-connector { display: none; }
 }
 
 /* ─── 2. NOTICE BANNER ─────────────────────────────────────────
@@ -125,6 +133,46 @@
 
 /* Mobile card alternatives — hidden on desktop, shown on mobile */
 .ap-card-mobile { display: none; }
+
+/* HTML cards shown at all screen sizes (used for cards without a PNG) */
+.ap-card-html {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 4px solid #d9982e;
+  border-radius: 20px;
+  padding: 24px 32px;
+  margin: 48px auto 0;
+  background: #fff;
+  max-width: 962px;
+}
+
+.ap-card-html .ap-card-num {
+  font-family: var(--font-deco);
+  font-size: 80px;
+  color: #ffb338;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 56px;
+  text-align: center;
+}
+
+.ap-card-html .ap-card-label {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 600;
+  color: #2a427e;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ap-card-html .ap-card-sub {
+  font-weight: 400;
+  color: #202020;
+  display: block;
+  margin-top: 4px;
+  font-size: 20px;
+}
 
 /* ─── 5. DISCLAIMER ────────────────────────────────────────────
    Rocket image left + disclaimer SVG text right.

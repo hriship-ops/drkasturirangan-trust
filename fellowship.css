@@ -362,14 +362,16 @@
   justify-content: center;
   text-align: center;
   color: #fff;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.35;
   font-family: var(--font-main);
 }
 
 .fp-circ-body p { margin: 0; }
 
+/* Financial support label arc is long — push body below it */
+.fp-circ:nth-child(1) .fp-circ-body { top: 21%; }
 /* Mentorship PNG has more label-text height (~19% vs ~15%), so push body down */
 .fp-circ:nth-child(2) .fp-circ-body { top: 23%; }
 
