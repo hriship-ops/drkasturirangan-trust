@@ -134,44 +134,76 @@
 /* Mobile card alternatives — hidden on desktop, shown on mobile */
 .ap-card-mobile { display: none; }
 
-/* HTML cards shown at all screen sizes (used for cards without a PNG) */
+/* HTML cards — replicates the visual design of .ap-card-full PNG cards.
+   Number hangs outside the border box (bottom-left), illustration left, text right. */
 .ap-card-html {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  border: 4px solid #d9982e;
-  border-radius: 20px;
-  padding: 24px 32px;
+  position: relative;
+  width: 1010px;
   margin: 48px auto 0;
-  background: #fff;
-  max-width: 962px;
+  padding-bottom: 55px; /* room for the number hanging below the card */
 }
 
+.ap-card-html .ap-card-inner {
+  position: relative;
+  margin-left: 115px;
+  border: 4px solid #d9982e;
+  border-radius: 27px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 36px 48px 36px 36px;
+  min-height: 280px;
+  box-sizing: border-box;
+}
+
+/* Large decorative number — absolute, hangs left of and below the card border */
 .ap-card-html .ap-card-num {
+  position: absolute;
+  left: -115px;
+  bottom: -55px;
   font-family: var(--font-deco);
-  font-size: 80px;
+  font-size: 220px;
   color: #ffb338;
   line-height: 1;
+}
+
+/* Illustration slot — beige rounded box matching the card-1 PNG style */
+.ap-card-html .ap-card-illus-wrap {
   flex-shrink: 0;
-  min-width: 56px;
-  text-align: center;
+  width: 236px;
+  height: 220px;
+  background: #fdf8ed;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.ap-card-html .ap-card-illus-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .ap-card-html .ap-card-label {
   font-family: var(--font-main);
   font-size: 24px;
-  font-weight: 600;
-  color: #2a427e;
+  font-weight: 700;
+  color: #202020;
   line-height: 1.4;
   margin: 0;
 }
 
 .ap-card-html .ap-card-sub {
   font-weight: 400;
-  color: #202020;
+  color: #d9982e;
   display: block;
   margin-top: 4px;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 /* ─── 5. DISCLAIMER ────────────────────────────────────────────
