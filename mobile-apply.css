@@ -105,36 +105,6 @@
     font-size: 17px;
   }
 
-  /* ── HTML CARDS (2 & 3) mobile reset ───────────────────────── */
-  .ap-card-html {
-    width: auto;
-    padding-bottom: 0;
-    margin-bottom: 16px;
-  }
-
-  .ap-card-html .ap-card-inner {
-    margin-left: 0;
-    min-height: 0;
-    padding: 20px 20px 20px 16px;
-    gap: 16px;
-  }
-
-  /* Number re-enters flow, illustration hidden */
-  .ap-card-html .ap-card-num {
-    position: static;
-    font-size: 64px;
-    flex-shrink: 0;
-    min-width: 44px;
-    text-align: center;
-    align-self: center;
-  }
-
-  .ap-card-html .ap-card-illus-wrap { display: none; }
-
-  .ap-card-html .ap-card-label { font-size: 20px; color: #2a427e; }
-
-  .ap-card-html .ap-card-sub { font-size: 17px; color: #202020; }
-
   /* ── DISCLAIMER ─────────────────────────────────────────────── */
   .ap-disclaimer {
     position: static;
